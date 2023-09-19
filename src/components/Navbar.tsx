@@ -6,7 +6,7 @@ import HamburgerIcon from '@/assets/hamburger.svg';
 
 export default function Navbar() {
   return (
-    <div className="sticky top-0">
+    <div className="sticky top-0 z-10">
       <div className="hidden sm:block">
         <DesktopNavbar />
       </div>
