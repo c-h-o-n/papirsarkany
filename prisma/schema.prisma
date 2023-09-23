@@ -19,7 +19,7 @@ enum Status {
 
 enum Category {
   Egyzsinoros  @map("Egyzsinóros")
-  PalcakRudak  @map("Pálcák, rudak")
+  PalcakRudak  @map("Pálcák és rudak")
   Csovek       @map("Csövek")
   Zsinorok     @map("Zsinórok")
   Zsinortartok @map("Zsinórtartók")
@@ -76,7 +76,7 @@ model OrderItems {
 model Products {
   id         String   @id @default(uuid())
   name       String
-  slug       String
+  slug       String   @unique
   imageUrl   String?
   image      Bytes?   @db.Blob
   price      Int
