@@ -78,7 +78,6 @@ model Products {
   name       String
   slug       String   @unique
   imageUrl   String?
-  image      Bytes?   @db.Blob
   price      Int
   category   Category
   properties Json?
