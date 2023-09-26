@@ -1,5 +1,8 @@
 import type { Config } from 'tailwindcss';
 import daisyui from 'daisyui';
+import theme from 'daisyui/src/theming/themes';
+
+const lightTheme = theme['[data-theme=light]']
 
 const config: Config = {
   content: [
@@ -12,16 +15,15 @@ const config: Config = {
       center: true,
       padding: '2rem'
     },
-    extend: {
-      screens: {
-        'xs': '320px',
-      },
-    },
   },
   plugins: [daisyui],
   daisyui: {
     prefix: 'd-',
-    themes: ['light'],
+    themes: [{light: {
+      ...lightTheme,
+      'primary': '#0ea5e9',
+      'primary-content': '#fff'
+    }}],
   },
 };
 export default config;
