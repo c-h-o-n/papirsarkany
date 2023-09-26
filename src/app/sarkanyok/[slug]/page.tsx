@@ -1,7 +1,7 @@
-/* eslint-disable @next/next/no-img-element */
 import AddToCartButton from '@/components/AddToCartButton';
 import { getKitebySlug, getKites } from '@/lib/db';
 import { currencyFormatter } from '@/lib/formatters';
+import { Kite } from '@/lib/types';
 import { redirect } from 'next/navigation';
 
 export async function generateStaticParams() {
@@ -20,24 +20,69 @@ export default async function Kite({ params }: { params: { slug: string } }) {
   }
 
   return (
-    <div className="h-full p-8 sm:grid sm:grid-cols-2 sm:gap-4">
+    <>
+      <div className="hidden h-full sm:block">
+        <DesktopKitePage kite={kite} />
+      </div>
+      <div className="block sm:hidden">
+        <MobileLayout kite={kite} />
+      </div>
+    </>
+  );
+}
+
+function DesktopKitePage({ kite }: { kite: Kite }) {
+  return (
+    <div className="grid h-full grid-cols-2 gap-4 p-8">
       <div className="flex flex-col items-center space-y-4">
         {kite.imageUrl && <img className="h-3/4 rounded-lg object-cover" src={kite.imageUrl} alt={kite.name} />}
 
-        <AddToCartButton kite={kite} />
+        {kite.properties?.isBeginner && (
+          <h2 className="text-center font-bold text-primary underline underline-offset-8">Kezdőknek ajánlott!</h2>
+        )}
       </div>
+
       <div className="space-y-4 text-3xl">
-        <div className="text-center sm:text-left">
-          <h2 className="font-bold">{kite.name}</h2>
-          <div className="font-bold text-primary">{currencyFormatter(kite.price)}</div>
+        <div className="space-y-2 text-left">
+          <h1 className="font-bold">{kite.name}</h1>
+          <div className="flex items-center gap-2">
+            <div className="font-bold text-primary">{currencyFormatter(kite.price)}</div>
+            <AddToCartButton kite={kite} />
+          </div>
         </div>
 
-        <div>
-          <div>Meret</div>
-          <div>Anyag</div>
-          <div>Szelerosseg</div>
-          <div>Kezdoknek ajonlott</div>
+        <div className="space-y-">
+          {/* <h3>Méret: {kite.properties.windSpeed}</h3>
+          <h3>Anyag: {kite.properties.material}</h3>
+          <h3>Szélerosseg:{kite.properties.windSpeed}</h3> */}
         </div>
+      </div>
+    </div>
+  );
+}
+
+function MobileLayout({ kite }: { kite: Kite }) {
+  return (
+    <div className="h-full space-y-4 p-8">
+      <div className="space-y-4 text-center">
+        <div>
+          <h1 className="font-bold">{kite.name}</h1>
+          {kite.properties?.isBeginner && (
+            <h2 className=" font-bold text-primary underline underline-offset-8">Kezdőknek ajánlott!</h2>
+          )}
+        </div>
+        {kite.imageUrl && <img className="mx-auto h-3/4 rounded-lg object-cover" src={kite.imageUrl} alt={kite.name} />}
+
+        <div className="space-y-2 ">
+          <h2 className="font-bold text-primary">{currencyFormatter(kite.price)}</h2>
+          <AddToCartButton kite={kite} />
+        </div>
+      </div>
+
+      <div className="space-y-1">
+        {/* <h3>Méret: {kite.properties?.windSpeed}</h3>
+        <h3>Anyag: {kite.properties?.material}</h3>
+        <h3>Szélerosség: {kite.properties?.windSpeed}</h3> */}
       </div>
     </div>
   );
