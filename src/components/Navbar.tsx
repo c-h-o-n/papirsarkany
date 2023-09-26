@@ -66,7 +66,7 @@ function MobileNavbar() {
       </div>
 
       <div className="d-navbar-end">
-        <Link href={'/'} className="d-btn d-btn-ghost normal-case xs:text-xl">
+        <Link href={'/'} className="d-btn d-btn-ghost normal-case min-[320px]:text-xl">
           papirsarkany.hu
         </Link>
       </div>
