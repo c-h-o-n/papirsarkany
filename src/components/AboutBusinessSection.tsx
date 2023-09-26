@@ -6,6 +6,7 @@ export default function AboutBusinessSection() {
       <div className="pb-4 pr-4 sm:float-left">
         <AboutBusinessIcon className="h-32 w-32" />
       </div>
+      
       <div>
         <h2 className="font-bold">A vállalkozásról</h2>
         <p>Üzletem nincs, ezért postai utánvétellel szállítok, melynek költsége a megrendelőt terheli.</p>
@@ -28,7 +29,7 @@ export default function AboutBusinessSection() {
           Nagykovácsiban. (Telefonos időpont egyeztetés után.)
         </p>
 
-        <p>
+        <div>
           Mindenkinek kellemes sárkányeresztést kíván a www.papirsarkany.hu egyéni vállalkozás tulajdonosa: <br />
           <div>
             Ducsai Barnabás
@@ -46,7 +47,7 @@ export default function AboutBusinessSection() {
               </div>
             </div>
           </div>
-        </p>
+        </div>
       </div>
     </section>
   );
