@@ -1,0 +1,75 @@
+import { create } from 'zustand';
+import { Products } from '@prisma/client';
+
+type CartItem = Products & { quantity: number };
+
+type State = {
+  cart: CartItem[];
+  totalItems: number;
+  totalPrice: number;
+};
+
+type Actions = {
+  addToCart: (item: CartItem) => void;
+  removeFromCart: (item: CartItem) => void;
+  decreaseItemQuantity: (item: CartItem) => void;
+};
+
+const initialState: State = {
+  cart: [],
+  totalItems: 0,
+  totalPrice: 0,
+};
+
+export const useCartStore = create<State & Actions>((set, get) => ({
+  cart: initialState.cart,
+  totalItems: initialState.totalItems,
+  totalPrice: initialState.totalPrice,
+  addToCart(product) {
+    const cart = get().cart;
+    const cartItem = cart.find((item) => item.id === product.id);
+    if (cartItem) {
+      const updatedCart = cart.map((item) =>
+        item.id === product.id ? { ...item, quantity: (item.quantity as number) + 1 } : item,
+      );
+      set((state) => ({
+        cart: updatedCart,
+        totalItems: state.totalItems + 1,
+        totalPrice: state.totalPrice + product.price,
+      }));
+      return;
+    }
+
+    const updatedCart = [...cart, { ...product, quantity: 1 }];
+
+    set((state) => ({
+      cart: updatedCart,
+      totalItems: state.totalItems + 1,
+      totalPrice: state.totalPrice + product.price,
+    }));
+  },
+  decreaseItemQuantity(product) {
+    const cart = get().cart;
+    const cartItem = cart.find((item) => item.id === product.id);
+    if (cartItem?.quantity! > 1) {
+      const updatedCart = cart.map((item) =>
+        item.id === product.id ? { ...item, quantity: item.quantity - 1 } : item,
+      );
+      set((state) => ({
+        cart: updatedCart,
+        totalItems: state.totalItems - 1,
+        totalPrice: state.totalPrice - product.price,
+      }));
+      return;
+    }
+
+    get().removeFromCart(product);
+  },
+  removeFromCart(product) {
+    set((state) => ({
+      cart: state.cart.filter((item) => item.id !== product.id),
+      totalItems: state.totalItems - product.quantity,
+      totalPrice: state.totalPrice - product.price * product.quantity,
+    }));
+  },
+}));
