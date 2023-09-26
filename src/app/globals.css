@@ -6,3 +6,32 @@ body {
   color: theme('colors.base-content');
   background: theme('colors.base-100');
 }
+
+@layer base {
+  h1 {
+    @apply text-[36px] sm:text-[48px]; 
+  }
+
+  h2 {
+    @apply text-[24px] sm:text-[32px];
+  }
+
+  h3 {
+    @apply text-[20px] sm:text-[24px];
+  }
+
+  h4 {
+    @apply text-[20px];
+  }
+
+  h5 {
+    @apply text-[18px];
+  }
+
+  h6 {
+    @apply text-[16px];
+  }
+  p {
+    @apply my-4
+  }
+}
