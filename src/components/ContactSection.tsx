@@ -3,9 +3,10 @@ import ContactIcon from '@/assets/contact.svg';
 export default function ContactSection() {
   return (
     <section id="elerhetoseg" className=" py-12">
-      <div className="pl-4 pt-4 sm:float-left">
+      <div className="pb-4 pr-4 sm:float-left">
         <ContactIcon className="h-32 w-32" />
       </div>
+
       <div>
         <h2 className="font-bold">Elérhetőség</h2>
         <b>Email:</b> mail@papirsarkany.hu
