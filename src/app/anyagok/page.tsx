@@ -1,5 +1,7 @@
 export default function Materials() {
   return (
-    <h1 className='font-bold text-5xl text-center'>Anyagok</h1>
-  )
+    <div className="container p-8">
+      <h1 className="text-center font-bold">Anyagok</h1>
+    </div>
+  );
 }
