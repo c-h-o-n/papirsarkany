@@ -1,21 +1,14 @@
-import { Products } from '@prisma/client';
+import { Prisma } from '@prisma/client';
 import prisma from './prisma';
+import { Kite, Rods } from './types';
 
-export type Kite = Products & {
-  properties: {
-    isBeginner: true
-  }
-} 
-
-export async function getKites(): Promise<Kite[]> {
+export async function getKites(args?: Omit<Prisma.ProductsFindManyArgs, 'where'>): Promise<Kite[]> {
   return await prisma.products.findMany({
     where: {
       category: 'Egyzsinoros',
     },
-    orderBy: {
-      price: 'asc',
-    },
-  }) as Kite[];
+    ...args
+  })  as Kite[];
 }
 
 export async function getKitebySlug(slug:string): Promise<Kite> {
@@ -26,4 +19,13 @@ export async function getKitebySlug(slug:string): Promise<Kite> {
       }
     }
   }) as Kite
+}
+
+export async function getRods(args?: Omit<Prisma.ProductsFindManyArgs, 'where'>): Promise<Rods[]> {
+  return await prisma.products.findMany({
+    where: {
+      category: 'PalcakRudak'
+    },
+    ...args
+  }) as Rods[]
 }
