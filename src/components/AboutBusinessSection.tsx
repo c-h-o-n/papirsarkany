@@ -7,6 +7,7 @@ export default function AboutBusinessSection() {
         <AboutBusinessIcon className="h-32 w-32" />
       </div>
       <div>
+        <h2 className="font-bold">A vállalkozásról</h2>
         <p>Üzletem nincs, ezért postai utánvétellel szállítok, melynek költsége a megrendelőt terheli.</p>
 
         <p>
@@ -30,24 +31,22 @@ export default function AboutBusinessSection() {
         <p>
           Mindenkinek kellemes sárkányeresztést kíván a www.papirsarkany.hu egyéni vállalkozás tulajdonosa: <br />
           <div>
-          Ducsai Barnabás
-          <br />
-          <b>Adószám:</b> 61090938-1-33
-          <br />
-          <div className="gap-1 sm:flex">
-            <b>Számlaszámom:</b>
-            <div>
-              www.papirsarkany.hu
-              <br />
-              Ducsai Barnabás
-              <br />
-              Erste Bank 11600006-00000000-76709302
+            Ducsai Barnabás
+            <br />
+            <b>Adószám:</b> 61090938-1-33
+            <br />
+            <div className="gap-1 sm:flex">
+              <b>Számlaszám:</b>
+              <div>
+                www.papirsarkany.hu
+                <br />
+                Ducsai Barnabás
+                <br />
+                Erste Bank 11600006-00000000-76709302
+              </div>
             </div>
           </div>
-        </div>
         </p>
-
-
       </div>
     </section>
   );

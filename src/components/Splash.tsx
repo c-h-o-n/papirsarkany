@@ -9,7 +9,7 @@ export default function Splash() {
   return (
     <div className="grid h-[calc(100vh-68px)] place-items-center content-center gap-4 bg-red-400 sm:h-[calc(100vh-72px)]">
       <div className="container">
-        <Logo className="mx-auto hidden sm:block sm:w-[368px]" />
+        <Logo className="mx-auto hidden sm:block sm:w-[368px] mb-8" />
         <div className=" hidden justify-evenly gap-8 sm:flex">
           <Card className="p-12">
             <AboutBusinessIcon className="h-full w-full" />
