@@ -22,7 +22,8 @@ const config: Config = {
     themes: [{light: {
       ...lightTheme,
       'primary': '#0ea5e9',
-      'primary-content': '#fff'
+      'primary-content': '#fff',
+      "error": "#ef5258",
     }}],
   },
 };
