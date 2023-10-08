@@ -45,16 +45,14 @@ function DesktopKitePage({ kite }: { kite: Kite }) {
       <div className="space-y-4 text-3xl">
         <div className="space-y-2 text-left">
           <h1 className="font-bold">{kite.name}</h1>
-          <div className="flex items-center gap-2">
             <div className="font-bold text-primary">{currencyFormatter(kite.price)}</div>
             <AddToCartButton kite={kite} />
-          </div>
         </div>
 
         <div className="space-y-">
-          {/* <h3>Méret: {kite.properties.windSpeed}</h3>
-          <h3>Anyag: {kite.properties.material}</h3>
-          <h3>Szélerosseg:{kite.properties.windSpeed}</h3> */}
+          {kite.properties?.size && <h3>Méret: {kite.properties.size}</h3>}
+          {kite.properties?.material && <h3>Méret: {kite.properties.material}</h3>}
+          {kite.properties?.windSpeed && <h3>Méret: {kite.properties.windSpeed}</h3>}
         </div>
       </div>
     </div>

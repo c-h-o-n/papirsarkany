@@ -1,7 +1,6 @@
 import { create } from 'zustand';
-import { Products } from '@prisma/client';
+import { CartItem } from '@/lib/types';
 
-type CartItem = Products & { quantity: number };
 
 type State = {
   cart: CartItem[];
@@ -13,6 +12,7 @@ type Actions = {
   addToCart: (item: CartItem) => void;
   removeFromCart: (item: CartItem) => void;
   decreaseItemQuantity: (item: CartItem) => void;
+  setItemQuantity: (item: CartItem, quantity: number) => void;
 };
 
 const initialState: State = {
@@ -25,6 +25,25 @@ export const useCartStore = create<State & Actions>((set, get) => ({
   cart: initialState.cart,
   totalItems: initialState.totalItems,
   totalPrice: initialState.totalPrice,
+  setItemQuantity(product, quantity) {
+    if (quantity < 1 || quantity > 999) {
+      return;
+    }
+    const cart = get().cart;
+    const cartItem = cart.find((item) => item.id === product.id);
+    
+    if (!cartItem) {
+      return;
+    }
+
+    const updatedCart = cart.map((item) => (item.id === product.id ? { ...item, quantity } : item));
+
+    set((state) => ({
+      cart: updatedCart,
+      totalItems: state.totalItems + (quantity - product.quantity),
+      totalPrice: state.totalPrice + product.price * (quantity - product.quantity),
+    }));
+  },
   addToCart(product) {
     const cart = get().cart;
     const cartItem = cart.find((item) => item.id === product.id);
@@ -32,6 +51,7 @@ export const useCartStore = create<State & Actions>((set, get) => ({
       const updatedCart = cart.map((item) =>
         item.id === product.id ? { ...item, quantity: (item.quantity as number) + 1 } : item,
       );
+
       set((state) => ({
         cart: updatedCart,
         totalItems: state.totalItems + 1,
