@@ -21,11 +21,11 @@ body {
   }
 
   h4 {
-    @apply text-[20px];
+    @apply text-[18px] sm:text-[20px];
   }
 
   h5 {
-    @apply text-[18px];
+    @apply text-[16px] sm:text-[18px];
   }
 
   h6 {
@@ -34,4 +34,15 @@ body {
   p {
     @apply my-4
   }
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+
+    -webkit-appearance: none;
+    margin: 0; 
+}
+
+input[type=number] {
+    -moz-appearance:textfield; /* Firefox */
+    appearance: none;
 }
