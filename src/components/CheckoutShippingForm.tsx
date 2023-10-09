@@ -134,7 +134,7 @@ export default function CheckoutShippingForm() {
               onChange={(e) => copyShippingToBilling(e, 'City')}
             />
             <label className="d-label">
-              <span className="d-label-text-alt text-error">{errors.shippingPostcode?.message}</span>
+              <span className="d-label-text-alt text-error">{errors.shippingCity?.message}</span>
             </label>
           </div>
 
