@@ -45,34 +45,62 @@ export default function CheckoutStepper({ children }: Props) {
     nextStep();
 
     if (isLast) {
-      console.log(data);
+      console.log({data, cart});
     }
   };
 
   const schema: FormSchemaArray = [
     object({
       email: string()
-        // .required(({ label }) => `${label} kötelezo mezo`)
+        .required(({ label }) => `${label} kötelező mező`)
         .email()
         .label('Email'),
-      firstName: string(),
-      lastName: string(),
-      phoneNumber: string(),
+      firstName: string()
+        .required(({ label }) => `${label} kötelező mező`)
+        .label('Keresztnév'),
+      lastName: string()
+        .required(({ label }) => `${label} kötelező mező`)
+        .label('Vezetéknév'),
+      phoneNumber: string()
+        .required(({ label }) => `${label} kötelező mező`)
+        .matches(/^(?:\+36|06)/, 'Érvényes magyar telefonszámnak kell lennie pl.: +36123456789 vagy 06123456789')
+        .label('Telefonszám'),
 
-      shippingOption: string().required().ensure(),
+      shippingOption: string()
+        .required(({ label }) => `Kérlek válassz egy ${label.toLowerCase()}ot`)
+        .ensure()
+        .label('Szállitási mód'),
 
-      shippingPostcode: string(),
-      shippingCity: string(),
-      shippingAddress: string(),
-      shippingSubaddress: string(),
+      shippingPostcode: string()
+        .when('shippingOption', {
+          is: 'Postai szállítás',
+          then: (schema) => schema.required(({ label }) => `${label} kötelező mező`),
+        })
+        .label('Irányítószám'),
+      shippingCity: string()
+        .when('shippingOption', {
+          is: 'Postai szállítás',
+          then: (schema) => schema.required(({ label }) => `${label} kötelező mező`),
+        })
+        .label('Város'),
+      shippingAddress: string()
+        .when('shippingOption', {
+          is: 'Postai szállítás',
+          then: (schema) => schema.required(({ label }) => `${label} kötelező mező`),
+        })
+        .label('Cím'),
+      shippingSubaddress: string().label('Másodlagos cím'),
     }),
     object({
-      paymentOption: string().required().ensure(),
+      paymentOption: string()
+        .required(({ label }) => `Kérlek válassz egy ${label.toLowerCase()}ot`)
+        .ensure()
+        .label('Fizetési mód'),
       isSameAdressAsShipping: boolean().default(true),
-      billingPostcode: string(),
-      billingCity: string(),
-      billingAddress: string(),
-      billingSubaddress: string(),
+      billingPostcode: string().required(({label}) => `${label} kötelező mező`).label('Irányítószám'),
+      billingCity: string().required(({label}) => `${label} kötelező mező`).label('Város'),
+      billingAddress: string().required(({label}) => `${label} kötelező mező`).label('Cím'),
+      billingSubaddress: string().label('Másodlagos cím'),
     }),
     object({
       comment: string(),
@@ -91,7 +119,7 @@ export default function CheckoutStepper({ children }: Props) {
   return (
     <div className={`container  p-8 ${!isLast && 'max-w-screen-md'}`}>
       <FormProvider {...methods}>
-        <form onSubmit={methods.handleSubmit((data) => onSubmit(data))}>
+        <form onSubmit={methods.handleSubmit((data) => onSubmit(data), console.log)}>
           {Children.toArray(children)[step]}
 
           <div className="flex flex-wrap justify-between gap-4">

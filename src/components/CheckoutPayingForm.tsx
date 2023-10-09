@@ -28,6 +28,7 @@ export default function CheckoutPayingForm() {
       setValue('isSameAdressAsShipping', false);
     }
   };
+
   return (
     <>
       <h2 className="underline underline-offset-8">Fizetés</h2>
@@ -92,7 +93,7 @@ export default function CheckoutPayingForm() {
             </label>
             <input type="text" className="d-input d-input-bordered" {...register('billingCity')} />
             <label className="d-label">
-              <span className="d-label-text-alt text-error">{errors.billingPostcode?.message}</span>
+              <span className="d-label-text-alt text-error">{errors.billingCity?.message}</span>
             </label>
           </div>
           <div className="d-form-control">
