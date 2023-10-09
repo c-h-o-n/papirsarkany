@@ -2,7 +2,6 @@ import { getKites } from '@/lib/db';
 
 import MasonryContainer from '@/components/MasonryContainer';
 import KiteCard from '@/components/KiteCard';
-import { Prisma } from '@prisma/client';
 
 export default async function Kites() {
   const kites = await getKites({ orderBy: { price: 'asc' } });

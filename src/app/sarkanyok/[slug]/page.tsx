@@ -45,11 +45,11 @@ function DesktopKitePage({ kite }: { kite: Kite }) {
       <div className="space-y-4 text-3xl">
         <div className="space-y-2 text-left">
           <h1 className="font-bold">{kite.name}</h1>
-            <div className="font-bold text-primary">{currencyFormatter(kite.price)}</div>
-            <AddToCartButton kite={kite} />
+          <div className="font-bold text-primary">{currencyFormatter(kite.price)}</div>
+          <AddToCartButton kite={kite} />
         </div>
 
-        <div className="space-y-">
+        <div className="space-y-1">
           {kite.properties?.size && <h3>Méret: {kite.properties.size}</h3>}
           {kite.properties?.material && <h3>Méret: {kite.properties.material}</h3>}
           {kite.properties?.windSpeed && <h3>Méret: {kite.properties.windSpeed}</h3>}
@@ -78,9 +78,9 @@ function MobileLayout({ kite }: { kite: Kite }) {
       </div>
 
       <div className="space-y-1">
-        {/* <h3>Méret: {kite.properties?.windSpeed}</h3>
-        <h3>Anyag: {kite.properties?.material}</h3>
-        <h3>Szélerosség: {kite.properties?.windSpeed}</h3> */}
+        {kite.properties?.size && <h3>Méret: {kite.properties.size}</h3>}
+        {kite.properties?.material && <h3>Méret: {kite.properties.material}</h3>}
+        {kite.properties?.windSpeed && <h3>Méret: {kite.properties.windSpeed}</h3>}
       </div>
     </div>
   );
