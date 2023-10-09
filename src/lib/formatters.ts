@@ -11,6 +11,10 @@ export function currencyFormatter(value: number): string {
   return formatter.format(value);
 }
 
+export function pricePerMeterFormatter(value: number): string {
+  return currencyFormatter(value) + ' / m'
+}
+
 export const ProductCategoryMap: Record<Category, ProductCategoryMapLiterals> = {
   Egyzsinoros: 'Egyzsinóros sárkány',
   PalcakRudak: 'Pálcák és rudak',

@@ -1,11 +1,10 @@
 'use client'
 
-import { Kite } from '@/lib/types';
 import { useCartStore } from '@/store/useCartStore';
+import { Products } from '@prisma/client';
 import { MouseEvent } from 'react';
 
-export default function AddToCartButton({ kite }: { kite: Kite }) {
-
+export default function AddToCartButton({ kite }: { kite: Products }) {
   const addToCart = useCartStore((state) => state.addToCart);
   const onclick = (e: MouseEvent) => {
     e.preventDefault();
