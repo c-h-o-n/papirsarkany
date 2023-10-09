@@ -6,7 +6,7 @@ import ContactSection from '@/components/ContactSection';
 export default function Home() {
   return (
     <div>
-      <Splash />
+      {/* <Splash /> */}
 
       <div className="container mx-auto">
         <AboutBusinessSection />
