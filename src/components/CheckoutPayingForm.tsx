@@ -1,6 +1,6 @@
 'use client';
 
-import { FS } from '@/lib/types';
+import { FormSchemaObject } from '@/lib/types';
 import { ChangeEvent } from 'react';
 import { useFormContext } from 'react-hook-form';
 
@@ -11,7 +11,7 @@ export default function CheckoutPayingForm() {
     setValue,
     watch,
     formState: { errors },
-  } = useFormContext<FS>();
+  } = useFormContext<FormSchemaObject>();
 
   const onIsSameAdressAsShippingChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.checked) {

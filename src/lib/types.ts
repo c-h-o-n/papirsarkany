@@ -1,34 +1,10 @@
 import { Products } from '@prisma/client';
-import { Asserts, BooleanSchema, InferType, StringSchema } from 'yup';
+import { Asserts, BooleanSchema, StringSchema } from 'yup';
 import ObjectSchema, { TypeOfShape } from 'yup/lib/object';
-import { AnyObject } from 'yup/lib/types';
 
 export type CartItem = Products & { quantity: number };
 
-export type FormSchema = {
-  email: StringSchema;
-  firstName: StringSchema;
-  lastName: StringSchema;
-  phoneNumber: StringSchema;
-
-  shippingOption: StringSchema;
-
-  shippingPostcode: StringSchema;
-  shippingCity: StringSchema;
-  shippingAddress: StringSchema;
-  shippingSubaddress: StringSchema;
-
-  isSameAdressAsShipping: BooleanSchema;
-  paymentOption: StringSchema;
-  billingPostcode: StringSchema;
-  billingCity: StringSchema;
-  billingAddress: StringSchema;
-  billingSubaddress: StringSchema;
-
-  comment: StringSchema;
-};
-
-export type FSArray = [
+export type FormSchemaArray = [
   ObjectSchema<{
     email: StringSchema;
     firstName: StringSchema;
@@ -55,9 +31,14 @@ export type FSArray = [
   }>,
 ];
 
-export type FS = Asserts<FSArray[0]> & Asserts<FSArray[1]> & Asserts<FSArray[2]>;
+export type FormSchemaObject = Asserts<FormSchemaArray[0]> & Asserts<FormSchemaArray[1]> & Asserts<FormSchemaArray[2]>;
 
-export type ProductCategoryMapLiterals = 'Egyzsinóros sárkány' | 'Pálcák és rudak' | 'Csövek' | 'Zsinórok' | 'Zsinórtartók';
+export type ProductCategoryMapLiterals =
+  | 'Egyzsinóros sárkány'
+  | 'Pálcák és rudak'
+  | 'Csövek'
+  | 'Zsinórok'
+  | 'Zsinórtartók';
 
 export type Kite = Products & {
   category: 'Egyzsinoros';
@@ -70,5 +51,18 @@ export type Kite = Products & {
 };
 
 export type Rods = Products & {
-  properties: {};
+  category: 'PalcakRudak';
+  properties: {
+    diameter: string;
+    length: string;
+    pricePerMeter: string;
+  };
+};
+
+export type Lines = Products & {
+  properties: {
+    diameter: string;
+    tensileStegth: string;
+    pricePerMeter: string;
+  };
 };
