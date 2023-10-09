@@ -1,6 +1,6 @@
 'use client';
 
-import { FS } from '@/lib/types';
+import { FormSchemaObject } from '@/lib/types';
 import { ChangeEvent } from 'react';
 import { useFormContext } from 'react-hook-form';
 
@@ -10,7 +10,7 @@ export default function CheckoutShippingForm() {
     watch,
     formState: { errors },
     setValue,
-  } = useFormContext<FS>();
+  } = useFormContext<FormSchemaObject>();
 
   const copyShippingToBilling = (
     e: ChangeEvent<HTMLInputElement>,
