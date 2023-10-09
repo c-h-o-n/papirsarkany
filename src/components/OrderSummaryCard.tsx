@@ -124,10 +124,10 @@ export default function OrderSummaryCard({ layout = 'full' }: Props) {
               </button>
             </div>
           </div>
-          <div className="flex gap-4 md:hidden">
+          <div className="flex gap-4 md:hidden justify-between">
             <ProductinCartCounter value={item.quantity} cartItem={item} />
 
-            <button className="d-btn d-btn-sm d-btn-square d-btn-error" onClick={() => onDeleteClick(item)}>
+            <button className="d-btn d-btn-square d-btn-error" onClick={() => onDeleteClick(item)}>
               <TrashCanIcon className="h-6 w-6" />
             </button>
           </div>
