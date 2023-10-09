@@ -50,19 +50,23 @@ export type Kite = Products & {
   };
 };
 
-export type Rods = Products & {
+export type Rod = Products & {
   category: 'PalcakRudak';
   properties: {
-    diameter: string;
-    length: string;
-    pricePerMeter: string;
+    diameters: [{
+      name: string;
+      pricePerMeter: number;
+    }];
+    lengths: number[];
   };
 };
 
-export type Lines = Products & {
+export type Line = Products & {
   properties: {
-    diameter: string;
+    diameters: [{
+      name: string;
+      pricePerMeter: number;
+    }];
     tensileStegth: string;
-    pricePerMeter: string;
   };
 };
