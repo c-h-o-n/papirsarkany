@@ -1,6 +1,6 @@
 'use client';
 
-import { FS, FSArray } from '@/lib/types';
+import { FormSchemaObject, FormSchemaArray } from '@/lib/types';
 import { useCartStore } from '@/store/useCartStore';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { redirect } from 'next/navigation';
@@ -41,7 +41,7 @@ export default function CheckoutStepper({ children }: Props) {
     setStep(step + 1);
   };
 
-  const onSubmit = (data: FS) => {
+  const onSubmit = (data: FormSchemaObject) => {
     nextStep();
 
     if (isLast) {
@@ -49,7 +49,7 @@ export default function CheckoutStepper({ children }: Props) {
     }
   };
 
-  const schema: FSArray = [
+  const schema: FormSchemaArray = [
     object({
       email: string()
         // .required(({ label }) => `${label} kötelezo mezo`)
@@ -81,7 +81,7 @@ export default function CheckoutStepper({ children }: Props) {
 
   const methods = useForm<any>({
     resolver: yupResolver(schema[step] as any),
-    defaultValues: { isSameAdressAsShipping: true } as FS,
+    defaultValues: { isSameAdressAsShipping: true } as FormSchemaObject,
   });
 
   const sendOrder = () => {

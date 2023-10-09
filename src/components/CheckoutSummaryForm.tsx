@@ -3,15 +3,15 @@
 import { useFormContext } from 'react-hook-form';
 import Card from './Card';
 import OrderSummaryCard from './OrderSummaryCard';
-import { FS } from '@/lib/types';
+import { FormSchemaObject } from '@/lib/types';
 
 export default function CheckoutSummary() {
-  const { getValues } = useFormContext<FS>();
+  const { getValues } = useFormContext<FormSchemaObject>();
   const formValues = getValues();
   const {
     register,
     formState: { errors },
-  } = useFormContext<FS>();
+  } = useFormContext<FormSchemaObject>();
 
   return (
     <div className="space-y-6">
