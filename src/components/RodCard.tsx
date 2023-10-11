@@ -65,7 +65,7 @@ export default function RodCard({ rod }: Props) {
           kite={{
             ...rod,
             id: `${rod.id}-${selectedDiameter.name}-${selectedLength}}`,
-            name: `${rod.name} ${selectedDiameter.name} x ${selectedLength} cm `,
+            name: `${rod.name} (${selectedDiameter.name} x ${selectedLength} cm)`,
             price: selectedDiameter.pricePerMeter * Math.ceil(selectedLength / 100),
           }}
         />
