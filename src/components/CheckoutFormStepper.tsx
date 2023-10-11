@@ -1,10 +1,13 @@
 'use client';
 
-import { FormSchemaObject, FormSchemaArray } from '@/lib/types';
+import { currencyFormatter } from '@/lib/formatters';
+import { FormSchemaObject, FormSchemaArray, OrderMail } from '@/lib/types';
 import { useCartStore } from '@/store/useCartStore';
+import { useCheckoutFormStore } from '@/store/useCheckoutFormStore';
+import { useStepperStore } from '@/store/useStepperStore';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { redirect } from 'next/navigation';
-import { Children, ReactNode, useState } from 'react';
+import { redirect, useRouter } from 'next/navigation';
+import { Children, ReactNode, cloneElement, isValidElement, useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { boolean, object, string } from 'yup';
 
@@ -13,41 +16,22 @@ type Props = {
 };
 
 export default function CheckoutStepper({ children }: Props) {
+  const router = useRouter()
+  
   const cart = useCartStore((state) => state.cart);
+  const totalPrice = useCartStore((state) => state.totalPrice);
+
+  const formData = useCheckoutFormStore((state) => state.formData);
+  const setFormData = useCheckoutFormStore((state) => state.setFormData);
+
+  const step = useStepperStore((state) => state.step);
+  const nextStep = useStepperStore((state) => state.nextStep);
 
   if (cart.length < 1) {
     redirect('/kosar');
   }
 
-  const [step, setStep] = useState(0);
-
-  const isFirst = step === 0;
   const isLast = step === Children.count(children) - 1;
-
-  const prevStep = () => {
-    console.log('prev', step);
-    if (isFirst) {
-      return;
-    }
-    setStep(step - 1);
-  };
-
-  const nextStep = () => {
-    if (isLast) {
-      console.log('send form');
-      return;
-    }
-
-    setStep(step + 1);
-  };
-
-  const onSubmit = (data: FormSchemaObject) => {
-    nextStep();
-
-    if (isLast) {
-      console.log({data, cart});
-    }
-  };
 
   const schema: FormSchemaArray = [
     object({
@@ -97,9 +81,15 @@ export default function CheckoutStepper({ children }: Props) {
         .ensure()
         .label('Fizetési mód'),
       isSameAdressAsShipping: boolean().default(true),
-      billingPostcode: string().required(({label}) => `${label} kötelező mező`).label('Irányítószám'),
-      billingCity: string().required(({label}) => `${label} kötelező mező`).label('Város'),
-      billingAddress: string().required(({label}) => `${label} kötelező mező`).label('Cím'),
+      billingPostcode: string()
+        .required(({ label }) => `${label} kötelező mező`)
+        .label('Irányítószám'),
+      billingCity: string()
+        .required(({ label }) => `${label} kötelező mező`)
+        .label('Város'),
+      billingAddress: string()
+        .required(({ label }) => `${label} kötelező mező`)
+        .label('Cím'),
       billingSubaddress: string().label('Másodlagos cím'),
     }),
     object({
@@ -109,31 +99,65 @@ export default function CheckoutStepper({ children }: Props) {
 
   const methods = useForm<any>({
     resolver: yupResolver(schema[step] as any),
-    defaultValues: { isSameAdressAsShipping: true } as FormSchemaObject,
+    defaultValues: { ...formData } as FormSchemaObject,
   });
 
-  const sendOrder = () => {
-    console.log('order');
+  const onSubmit = (data: FormSchemaObject) => {
+    setFormData(data);
+
+    if (!isLast) {
+      nextStep();
+      return;
+    }
+
+    const orderEmailData: OrderMail = {
+      contact: {
+        email: data.email!,
+        firstName: data.firstName!,
+        lastName: data.lastName!,
+        phone: data.phoneNumber!,
+      },
+      shippingOption: data.shippingOption!,
+      shipping: {
+        postcode: data.shippingPostcode!,
+        city: data.shippingCity!,
+        address: data.shippingAddress!,
+        subaddress: data.shippingSubaddress!,
+      },
+      paymentOption: data.paymentOption!,
+      billing: {
+        postcode: data.billingPostcode!,
+        city: data.billingCity!,
+        address: data.billingAddress!,
+        subaddress: data.billingSubaddress!,
+      },
+      comment: data.comment!,
+      subject: 'papirsarkany.hu - Köszönöm rendelését!',
+      total: currencyFormatter(totalPrice),
+      products: cart.map((c) => ({
+        name: c.name,
+        price: currencyFormatter(c.price),
+        quantity: c.quantity.toString(),
+      })),
+    };
+
+    fetch('/api', {
+      method: 'POST',
+      body: JSON.stringify(orderEmailData),
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    }).then((v) => {
+      router.push("/sikeres-rendeles")
+    });
   };
 
   return (
-    <div className={`container  p-8 ${!isLast && 'max-w-screen-md'}`}>
+    <div className={`container p-8 ${!isLast && 'max-w-screen-md'}`}>
       <FormProvider {...methods}>
         <form onSubmit={methods.handleSubmit((data) => onSubmit(data), console.log)}>
           {Children.toArray(children)[step]}
-
-          <div className="flex flex-wrap justify-between gap-4">
-            {!isFirst && (
-              <button type="button" className="d-btn d-btn-neutral d-btn-outline max-sm:d-btn-block" onClick={prevStep}>
-                Vissza
-              </button>
-            )}
-            {isFirst && <div></div>}
-
-            <button type="submit" className={`d-btn max-sm:d-btn-block ${isLast ? 'd-btn-success' : 'd-btn-primary'}`}>
-              {isLast ? 'Megrendelem' : 'Tovább'}
-            </button>
-          </div>
         </form>
       </FormProvider>
     </div>
