@@ -3,7 +3,7 @@ import ContactIcon from '@/assets/contact.svg';
 export default function ContactSection() {
   return (
     <section id="elerhetoseg" className=" py-12">
-      <div className="pb-4 pr-4 sm:float-left">
+      <div className="flex justify-center pb-4 sm:float-left sm:pr-4">
         <ContactIcon className="h-32 w-32" />
       </div>
 
