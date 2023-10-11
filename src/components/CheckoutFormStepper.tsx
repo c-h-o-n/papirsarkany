@@ -16,8 +16,8 @@ type Props = {
 };
 
 export default function CheckoutStepper({ children }: Props) {
-  const router = useRouter()
-  
+  const router = useRouter();
+
   const cart = useCartStore((state) => state.cart);
   const totalPrice = useCartStore((state) => state.totalPrice);
 
@@ -110,6 +110,20 @@ export default function CheckoutStepper({ children }: Props) {
       return;
     }
 
+    sendOrder(data)
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error(res.statusText);
+        }
+        if (res.status !== 200) {
+          return;
+        }
+        router.push('/sikeres-rendeles');
+      })
+      .catch((error) => alert(`Hiba történt a rendelés leadásakor. (${error})`));
+  };
+
+  const sendOrder = (data: FormSchemaObject) => {
     const orderEmailData: OrderMail = {
       contact: {
         email: data.email!,
@@ -141,15 +155,13 @@ export default function CheckoutStepper({ children }: Props) {
       })),
     };
 
-    fetch('/api', {
+    return fetch('/api', {
       method: 'POST',
-      body: JSON.stringify(orderEmailData),
+      body: JSON.stringify({ data, cart, orderEmailData }),
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },
-    }).then((v) => {
-      router.push("/sikeres-rendeles")
     });
   };
 
