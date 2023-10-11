@@ -1,4 +1,4 @@
-import { Category } from '@prisma/client';
+import { $Enums, Category } from '@prisma/client';
 import { ProductCategoryMapLiterals } from './types';
 
 export function currencyFormatter(value: number): string {
@@ -22,3 +22,15 @@ export const ProductCategoryMap: Record<Category, ProductCategoryMapLiterals> = 
   Zsinorok: 'Zsinórok',
   Zsinortartok: 'Zsinórtartók',
 } as const;
+
+
+export const prismaShippingModeMap: Record<string, $Enums.ShippingMode> = {
+  'Személyes átvétel': 'PersonalPickup',
+  'Postai szállítás': 'Post',
+}
+
+
+export const prismaPaymentModemMap: Record<string, $Enums.PaymentMode> = {
+  'Átvételkor készpénzel': 'Cash',
+  'Előreutalással': 'Transfer',
+}
