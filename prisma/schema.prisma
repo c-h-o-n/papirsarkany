@@ -37,7 +37,7 @@ enum PaymentMode {
 
 model Customers {
   id                 Int      @id @default(autoincrement())
-  email              String
+  email              String   @unique
   firstName          String
   lastName           String
   phone              String
@@ -55,7 +55,7 @@ model Customers {
 
 model Orders {
   id           Int          @id @default(autoincrement())
-  customerId   Int          @unique
+  customerId   Int
   status       Status
   shippingMode ShippingMode
   paymentMode  PaymentMode
@@ -63,22 +63,31 @@ model Orders {
   createdAt    DateTime     @default(now()) @db.Timestamp(6)
   Customers    Customers    @relation(fields: [customerId], references: [id])
   OrderItems   OrderItems[]
+
+  @@index([customerId])
 }
 
 model OrderItems {
-  id        Int    @id @default(autoincrement())
-  orderId   Int    @unique
-  productId String @unique
+  id        Int      @id @default(autoincrement())
+  orderId   Int
+  productId String
   quantity  Int
-  Orders    Orders @relation(fields: [orderId], references: [id])
+
+  orders    Orders?   @relation(fields: [orderId], references: [id])
+  products  Products? @relation(fields: [productId], references: [id])
+
+  @@index([orderId])
+  @@index([productId])
 }
 
 model Products {
-  id         String   @id @default(uuid())
+
+ id         String       @id @default(uuid())
   name       String
-  slug       String   @unique
+  slug       String       @unique
   imageUrl   String?
   price      Int
   category   Category
   properties Json?
+  OrderItems OrderItems[]
 }
