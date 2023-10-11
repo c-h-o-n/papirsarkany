@@ -51,8 +51,8 @@ function DesktopKitePage({ kite }: { kite: Kite }) {
 
         <div className="space-y-1">
           {kite.properties?.size && <h3>Méret: {kite.properties.size}</h3>}
-          {kite.properties?.material && <h3>Méret: {kite.properties.material}</h3>}
-          {kite.properties?.windSpeed && <h3>Méret: {kite.properties.windSpeed}</h3>}
+          {kite.properties?.material && <h3>Anyag: {kite.properties.material}</h3>}
+          {kite.properties?.windSpeed && <h3>Szél: {kite.properties.windSpeed}</h3>}
         </div>
       </div>
     </div>
@@ -78,9 +78,9 @@ function MobileLayout({ kite }: { kite: Kite }) {
       </div>
 
       <div className="space-y-1">
-        {kite.properties?.size && <h3>Méret: {kite.properties.size}</h3>}
-        {kite.properties?.material && <h3>Méret: {kite.properties.material}</h3>}
-        {kite.properties?.windSpeed && <h3>Méret: {kite.properties.windSpeed}</h3>}
+        {kite.properties?.size && <h2>Méret: {kite.properties.size}</h2>}
+        {kite.properties?.material && <h2>Anyag:  {kite.properties.material}</h2>}
+        {kite.properties?.windSpeed && <h2>Szél: {kite.properties.windSpeed}</h2>}
       </div>
     </div>
   );
