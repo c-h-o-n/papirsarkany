@@ -3,7 +3,7 @@ import CraftingIcon from '@/assets/crafting.svg';
 export default function CraftingSection() {
   return (
     <section id="sarkany-keszites" className=" py-12">
-      <div className="pb-4 pl-4 sm:float-right">
+      <div className="flex justify-center pb-4 sm:float-left sm:pr-4">
         <CraftingIcon className="h-32 w-32" />
       </div>
       <div>

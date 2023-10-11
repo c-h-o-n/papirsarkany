@@ -3,7 +3,7 @@ import AboutBusinessIcon from '@/assets/about-business.svg';
 export default function AboutBusinessSection() {
   return (
     <section id="vallalkozas" className="py-12">
-      <div className="pb-4 pr-4 sm:float-left">
+      <div className="flex justify-center pb-4 sm:float-left sm:pr-4">
         <AboutBusinessIcon className="h-32 w-32" />
       </div>
       
