@@ -25,7 +25,7 @@ export default function AddToCartButton({ kite }: { kite: Products }) {
         createPortal(
           <Link href="/kosar">
             <div className="d-toast d-toast-end d-toast-bottom z-50">
-              <div className="d-alert d-alert-success" id="asd">
+              <div className="d-alert d-alert-success">
                 <span>Sikeresen hozzádva a kosárhoz.</span>
               </div>
             </div>
