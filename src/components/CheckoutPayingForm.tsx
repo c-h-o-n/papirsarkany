@@ -1,6 +1,7 @@
 'use client';
 
 import { FormSchemaObject } from '@/lib/types';
+import { useStepperStore } from '@/store/useStepperStore';
 import { ChangeEvent } from 'react';
 import { useFormContext } from 'react-hook-form';
 
@@ -12,6 +13,8 @@ export default function CheckoutPayingForm() {
     watch,
     formState: { errors },
   } = useFormContext<FormSchemaObject>();
+
+  const prevStep = useStepperStore(state => state.prevStep)
 
   const onIsSameAdressAsShippingChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.checked) {
@@ -120,8 +123,18 @@ export default function CheckoutPayingForm() {
               <span className="d-label-text-alt text-error">{errors.billingSubaddress?.message}</span>
             </label>
           </div>
+
+
         </>
       )}
+          <div className="flex flex-wrap justify-between gap-4">
+            <button type="button" className="d-btn d-btn-neutral d-btn-outline max-sm:d-btn-block" onClick={prevStep}>
+              Vissza
+            </button>
+            <button type="submit" className={`d-btn d-btn-primary max-sm:d-btn-block`}>
+              Tovább
+            </button>
+          </div>
     </>
   );
 }

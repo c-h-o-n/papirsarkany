@@ -1,6 +1,5 @@
 import { Products } from '@prisma/client';
-import { Asserts, BooleanSchema, StringSchema } from 'yup';
-import ObjectSchema, { TypeOfShape } from 'yup/lib/object';
+import { Asserts, BooleanSchema, StringSchema, ObjectSchema } from 'yup';
 
 export type CartItem = Products & { quantity: number };
 
@@ -53,20 +52,62 @@ export type Kite = Products & {
 export type Rod = Products & {
   category: 'PalcakRudak';
   properties: {
-    diameters: [{
-      name: string;
-      pricePerMeter: number;
-    }];
+    diameters: [
+      {
+        name: string;
+        pricePerMeter: number;
+      },
+    ];
     lengths: number[];
   };
 };
 
 export type Line = Products & {
   properties: {
-    diameters: [{
-      name: string;
-      pricePerMeter: number;
-    }];
+    diameters: [
+      {
+        name: string;
+        pricePerMeter: number;
+      },
+    ];
     tensileStegth: string;
   };
+};
+
+export type NewOrder = {
+  contact: {
+    email: string;
+    firstName: string;
+    lastName: string;
+    phone: string;
+  };
+
+  shippingOption: string;
+  paymentOption: string;
+
+  shipping: {
+    postcode: string;
+    city: string;
+    address: string;
+    subaddress: string;
+  };
+
+  billing: {
+    postcode: string;
+    city: string;
+    address: string;
+    subaddress: string;
+  };
+
+  comment: string;
+};
+
+export type OrderMail = NewOrder & {
+  subject: string;
+  products: {
+    name: string;
+    price: string;
+    quantity: string;
+  }[];
+  total: string;
 };
