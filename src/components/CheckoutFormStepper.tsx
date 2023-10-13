@@ -148,10 +148,10 @@ export default function CheckoutStepper({ children }: Props) {
       comment: data.comment!,
       subject: 'papirsarkany.hu - Köszönöm rendelését!',
       total: currencyFormatter(totalPrice),
-      products: cart.map((c) => ({
-        name: c.name,
-        price: currencyFormatter(c.price),
-        quantity: c.quantity.toString(),
+      products: cart.map((product) => ({
+        name: product.name,
+        price: currencyFormatter(product.price),
+        quantity: product.quantity.toString(),
       })),
     };
 
