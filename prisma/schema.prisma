@@ -68,25 +68,24 @@ model Orders {
 }
 
 model OrderItems {
-  id        Int      @id @default(autoincrement())
+  id        Int    @id @default(autoincrement())
   orderId   Int
   productId String
   quantity  Int
 
-  orders    Orders?   @relation(fields: [orderId], references: [id])
-  products  Products? @relation(fields: [productId], references: [id])
+  orders   Orders?   @relation(fields: [orderId], references: [id])
+  products Products? @relation(fields: [productId], references: [id])
 
   @@index([orderId])
   @@index([productId])
 }
 
 model Products {
-
- id         String       @id @default(uuid())
+  id         String       @id @default(uuid())
   name       String
   slug       String       @unique
   imageUrl   String?
-  price      Int
+  price      Int?
   category   Category
   properties Json?
   OrderItems OrderItems[]
