@@ -1,7 +1,7 @@
 import { Products } from '@prisma/client';
 import { Asserts, BooleanSchema, StringSchema, ObjectSchema } from 'yup';
 
-export type CartItem = Products & { quantity: number };
+export type CartItem = Products & { price: number, quantity: number };
 
 export type FormSchemaArray = [
   ObjectSchema<{
@@ -40,6 +40,7 @@ export type ProductCategoryMapLiterals =
   | 'Zsinórtartók';
 
 export type Kite = Products & {
+  price: number;
   category: 'Egyzsinoros';
   properties: {
     isBeginner?: boolean;

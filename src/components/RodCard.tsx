@@ -72,7 +72,7 @@ export default function RodCard({ rod }: Props) {
         </h2>
 
         <AddToCartButton
-          kite={{
+          product={{
             ...rod,
             id: `${rod.id}-${selectedDiameter.name}-${selectedLength}}`,
             name: `${rod.name} (${selectedDiameter.name} x ${selectedLength}cm)`,

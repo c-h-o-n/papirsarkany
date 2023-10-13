@@ -46,7 +46,7 @@ function DesktopKitePage({ kite }: { kite: Kite }) {
         <div className="space-y-2 text-left">
           <h1 className="font-bold">{kite.name}</h1>
           <div className="font-bold text-primary">{currencyFormatter(kite.price)}</div>
-          <AddToCartButton kite={kite} />
+          <AddToCartButton product={kite} />
         </div>
 
         <div className="space-y-1">
@@ -73,7 +73,7 @@ function MobileLayout({ kite }: { kite: Kite }) {
 
         <div className="space-y-2 ">
           <h2 className="font-bold text-primary">{currencyFormatter(kite.price)}</h2>
-          <AddToCartButton kite={kite} />
+          <AddToCartButton product={kite} />
         </div>
       </div>
 
