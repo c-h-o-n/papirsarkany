@@ -23,7 +23,7 @@ export default function KiteCard({ kite }: { kite: Kite }) {
           <h3 className="text-center font-bold text-primary">{currencyFormatter(kite.price)}</h3>
 
           <div className="flex justify-end">
-            <AddToCartButton kite={kite} />
+            <AddToCartButton product={kite} />
           </div>
         </Card>
       </Link>

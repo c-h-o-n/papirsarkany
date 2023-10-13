@@ -6,7 +6,11 @@ import Link from 'next/link';
 import { MouseEvent, useState } from 'react';
 import { createPortal } from 'react-dom';
 
-export default function AddToCartButton({ kite }: { kite: Products }) {
+type Props = {
+  product: Products & { price: number };
+};
+
+export default function AddToCartButton({ product }: Props) {
   const addToCart = useCartStore((state) => state.addToCart);
   const [isShowAlert, setIsShowAlert] = useState(false);
 
@@ -16,7 +20,7 @@ export default function AddToCartButton({ kite }: { kite: Products }) {
     setIsShowAlert(true);
     setTimeout(() => setIsShowAlert(false), 3000);
 
-    addToCart({ ...kite, quantity: 1 });
+    addToCart({ ...product, quantity: 1 });
   };
 
   return (
