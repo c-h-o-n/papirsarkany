@@ -52,13 +52,13 @@ export type Kite = Products & {
 export type Rod = Products & {
   category: 'PalcakRudak';
   properties: {
-    diameters: [
-      {
-        name: string;
-        pricePerMeter: number;
-      },
+    diameters:       {
+      name: string;
+      pricePerMeter: number;
+      lengths: number[];
+    }[
+
     ];
-    lengths: number[];
   };
 };
 
