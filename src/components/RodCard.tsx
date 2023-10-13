@@ -11,10 +11,23 @@ type Props = {
 
 export default function RodCard({ rod }: Props) {
   const [selectedDiameter, setSelectedDiameter] = useState(rod.properties.diameters[0]);
-  const [selectedLength, setselectedLength] = useState<number>(rod.properties.lengths[0]);
+  const [selectedLength, setSelectedLength] = useState<number>(selectedDiameter.lengths[0]);
+  
+  const handleDiameterChange = (e: any) => {
+    const diamaterName = e.target.value as string;
+    const selectedDiamater = rod.properties.diameters.find((diameter) => diameter.name === diamaterName)!;
+
+    setSelectedDiameter({
+      name: diamaterName,
+      pricePerMeter: selectedDiamater.pricePerMeter,
+      lengths: selectedDiamater.lengths,
+    });
+
+    setSelectedLength(selectedDiamater.lengths[0]);
+  };
 
   return (
-    <div className="relative z-0 cursor-pointer">
+    <div className="relative z-0">
       {/* <Link href={`anyagok/${rod.slug}`}> */}
       <Card className="w-full space-y-3 p-5">
         <h3 className="font-bold">{rod.name}</h3>
@@ -26,14 +39,9 @@ export default function RodCard({ rod }: Props) {
             </label>
             <select
               className="d-select d-select-bordered"
-              onChange={(e) =>
-                setSelectedDiameter({
-                  name: e.target.value,
-                  pricePerMeter: rod.properties.diameters.find((diameter) => diameter.name === e.target.value)
-                    ?.pricePerMeter!,
-                })
-              }
-              onClick={(e) => e.preventDefault()}
+              onChange={(e) => {
+                handleDiameterChange(e);
+              }}
             >
               {rod.properties.diameters.map((diamater) => (
                 <option key={diamater.name}>{diamater.name}</option>
@@ -47,11 +55,13 @@ export default function RodCard({ rod }: Props) {
             </label>
             <select
               className="d-select d-select-bordered w-full max-w-xs"
-              onChange={(e) => setselectedLength(+e.target.value)}
-              onClick={(e) => e.preventDefault()}
+              onChange={(e) => setSelectedLength(+e.target.value)}
+              value={selectedLength}
             >
-              {rod.properties.lengths.map((length) => (
-                <option key={length}>{length}</option>
+              {selectedDiameter.lengths.map((length) => (
+                <option key={length} value={length}>
+                  {length}cm
+                </option>
               ))}
             </select>
           </div>
@@ -65,7 +75,7 @@ export default function RodCard({ rod }: Props) {
           kite={{
             ...rod,
             id: `${rod.id}-${selectedDiameter.name}-${selectedLength}}`,
-            name: `${rod.name} (${selectedDiameter.name} x ${selectedLength} cm)`,
+            name: `${rod.name} (${selectedDiameter.name} x ${selectedLength}cm)`,
             price: selectedDiameter.pricePerMeter * Math.ceil(selectedLength / 100),
           }}
         />
