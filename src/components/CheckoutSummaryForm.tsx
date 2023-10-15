@@ -5,15 +5,17 @@ import Card from './Card';
 import OrderSummaryCard from './OrderSummaryCard';
 import { FormSchemaObject } from '@/lib/types';
 import { useStepperStore } from '@/store/useStepperStore';
+import { useCheckoutFormStore } from '@/store/useCheckoutFormStore';
 
 export default function CheckoutSummary() {
-  const { getValues } = useFormContext<FormSchemaObject>();
-  const formValues = getValues();
   const {
     register,
+    getValues,
     formState: { errors },
   } = useFormContext<FormSchemaObject>();
+  const formValues = getValues();
 
+  const isSubmitting = useCheckoutFormStore(state => state.isSubmitting)
   const prevStep = useStepperStore((state) => state.prevStep);
 
   return (
@@ -76,7 +78,8 @@ export default function CheckoutSummary() {
         <button type="button" className="d-btn d-btn-neutral d-btn-outline max-sm:d-btn-block" onClick={prevStep}>
           Vissza
         </button>
-        <button type="submit" className={`d-btn d-btn-success max-sm:d-btn-block`}>
+        <button type="submit" className={`d-btn d-btn-success max-sm:d-btn-block`} disabled={isSubmitting}>
+          {isSubmitting && <span className="d-loading d-loading-spinner"></span>}
           Megrendelem
         </button>
       </div>
