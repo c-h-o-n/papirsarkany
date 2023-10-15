@@ -16,6 +16,7 @@ type Props = {
 };
 
 export default function CheckoutStepper({ children }: Props) {
+
   const router = useRouter();
 
   const cart = useCartStore((state) => state.cart);
@@ -23,6 +24,9 @@ export default function CheckoutStepper({ children }: Props) {
 
   const formData = useCheckoutFormStore((state) => state.formData);
   const setFormData = useCheckoutFormStore((state) => state.setFormData);
+  const isSubmitting = useCheckoutFormStore(state => state.isSubmitting)
+  const setIsSubmitting = useCheckoutFormStore(state => state.setIsSubmitting)
+
 
   const step = useStepperStore((state) => state.step);
   const nextStep = useStepperStore((state) => state.nextStep);
@@ -102,7 +106,7 @@ export default function CheckoutStepper({ children }: Props) {
     defaultValues: { ...formData } as FormSchemaObject,
   });
 
-  const onSubmit = (data: FormSchemaObject) => {
+  const onSubmit = async (data: FormSchemaObject) => {
     setFormData(data);
 
     if (!isLast) {
@@ -110,6 +114,11 @@ export default function CheckoutStepper({ children }: Props) {
       return;
     }
 
+    if(isSubmitting) {
+      return;
+    }
+
+    setIsSubmitting(true)
     sendOrder(data)
       .then((res) => {
         if (!res.ok) {
@@ -120,7 +129,10 @@ export default function CheckoutStepper({ children }: Props) {
         }
         router.push('/sikeres-rendeles');
       })
-      .catch((error) => alert(`Hiba történt a rendelés leadásakor. (${error})`));
+      .catch((error) => alert(`Hiba történt a rendelés leadásakor. (${error})`))
+      .finally(() => {
+        setIsSubmitting(false);
+      });
   };
 
   const sendOrder = (data: FormSchemaObject) => {
