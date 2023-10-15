@@ -3,14 +3,17 @@ import { FormSchemaObject } from '@/lib/types';
 
 type State = {
   formData: FormSchemaObject;
+  isSubmitting: boolean;
 };
 
 type Actions = {
   setFormData: (formData: Partial<FormSchemaObject>) => void;
-  resetFormData: () => void
+  resetFormData: () => void;
+  setIsSubmitting: (value: boolean) => void;
 };
 
 const initialState: State = {
+  isSubmitting: false,
   formData: {
     email: '',
     firstName: '',
@@ -39,12 +42,15 @@ const initialState: State = {
 
 export const useCheckoutFormStore = create<State & Actions>((set) => ({
   ...initialState,
+  setIsSubmitting(value) {
+    set(() => ({ isSubmitting: value }));
+  },
   setFormData(formData) {
-    set((state) => ({ formData: {...state.formData, ...formData }}));
+    set((state) => ({ formData: { ...state.formData, ...formData } }));
   },
   resetFormData() {
     set(() => ({
-      ...initialState
+      ...initialState,
     }));
   },
 }));
