@@ -63,15 +63,15 @@ export default function CheckoutSummary() {
 
       <div className="d-form-control">
         <label className="d-label">
-          <span className="d-label-text">Megjegyzés</span>
+          <span className="d-labels-text text-lg">Megjegyzés</span>
         </label>
         <textarea
           className="d-textarea d-textarea-bordered d-textarea-primary h-24"
           {...register('comment')}
         ></textarea>
-        <label className="d-label">
-          <span className="d-label-text-alt text-error">{errors.shippingSubaddress?.message}</span>
-        </label>
+        <label className="d-label justify-end">
+          <span className="d-label-text-alt">14 napos elállási jog fentartva a rendelés leadásától számítva.</span>
+        </label>  
       </div>
 
       <div className="flex flex-wrap justify-between gap-4">
