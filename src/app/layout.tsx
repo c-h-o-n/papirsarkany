@@ -19,7 +19,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   const { publicRuntimeConfig } = getConfig()
 
   return (
-    <html lang="en" className="scroll-pt-[68px] scroll-smooth sm:scroll-pt-[72px]" data-app-version={publicRuntimeConfig.appVersion}>
+    <html lang="hu" className="scroll-pt-[68px] scroll-smooth sm:scroll-pt-[72px]" data-app-version={publicRuntimeConfig.appVersion}>
       <body className={`${inter.className} `}>
         <div className="flex min-h-screen flex-col">
           <Navbar />
