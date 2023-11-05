@@ -1,10 +1,11 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/react';
+import getConfig from 'next/config';
 
 import './globals.css';
 import Navbar from '@/components/Navbar';
-import getConfig from 'next/config';
+import CartStoreRehydrate from '@/components/CartStoreRehydrate';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -12,8 +13,6 @@ export const metadata: Metadata = {
   title: 'papirsarkany.hu - Papírsárkány, sárkány, anyagok',
   description: 'Papírsárkány árusítás 1984-óta.',
 };
-
-
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const { publicRuntimeConfig } = getConfig()
@@ -26,6 +25,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <main className="grid flex-1 bg-sky-100">
             {children}
             <Analytics />
+            <CartStoreRehydrate />
           </main>
         </div>
       </body>
