@@ -1,10 +1,10 @@
 import { Prisma } from '@prisma/client';
 import prisma from './prisma';
-import { CartItem, FormSchemaObject, Kite, Rod } from './types';
+import { CartItem, FormSchemaObject, Kite, Reel, Rod } from './types';
 import { prismaPaymentModemMap, prismaShippingModeMap } from './formatters';
 
 export async function createOrder(orderForm: FormSchemaObject, products: CartItem[]) {
-  return await prisma.$transaction(async (tx) => { 
+  return await prisma.$transaction(async (tx) => {
     const user = await tx.customers.upsert({
       where: {
         email: orderForm.email!,
@@ -39,29 +39,29 @@ export async function createOrder(orderForm: FormSchemaObject, products: CartIte
       },
     });
 
-    const order= await tx.orders.create({
+    const order = await tx.orders.create({
       data: {
         customerId: user.id,
         status: 'Pending',
         shippingMode: prismaShippingModeMap[orderForm.shippingOption!],
         paymentMode: prismaPaymentModemMap[orderForm.paymentOption!],
         comment: orderForm.comment!,
-  
+
         createdAt: new Date(),
       },
     });
-  
+
     const orderItemsToCreate: Prisma.OrderItemsUncheckedCreateInput[] = [];
     for (const product of products) {
-      orderItemsToCreate.push({ productId: product.id, orderId: order.id, quantity: product.quantity  });
+      orderItemsToCreate.push({ productId: product.id, orderId: order.id, quantity: product.quantity });
     }
-  
+
     await tx.orderItems.createMany({
       data: orderItemsToCreate,
     });
 
     return order;
-  })
+  });
 }
 
 export async function getKites(args?: Omit<Prisma.ProductsFindManyArgs, 'where'>): Promise<Kite[]> {
@@ -83,11 +83,20 @@ export async function getKitebySlug(slug: string): Promise<Kite> {
   })) as Kite;
 }
 
-export async function getRods(args?: Omit<Prisma.ProductsFindManyArgs, 'where'>): Promise<Rod[]> {
+export async function getRods(args?: Omit<Prisma.ProductsFindManyArgs, 'where'>): Promise<Rod[] | undefined> {
   return (await prisma.products.findMany({
     where: {
       category: 'PalcakRudak',
     },
     ...args,
-  })) as Rod[];
+  })) as Rod[] | undefined;
+}
+
+export async function getReels(args?: Omit<Prisma.ProductsFindManyArgs, 'where'>): Promise<Reel[] | undefined> {
+  return (await prisma.products.findMany({
+    where: {
+      category: 'Zsinortartok',
+    },
+    ...args,
+  })) as Reel[] | undefined;
 }
