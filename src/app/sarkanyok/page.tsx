@@ -10,7 +10,7 @@ export default async function Kites() {
     <div className="container p-8">
       <div className="mb-8 text-center font-bold">
         <h1 className="">Sárkányok</h1>
-        <h3>A vételár tartalmaz 100m eresztőzsinórt és fogantyút.</h3>
+        <h3>A vételár tartalmaz 100m eresztőzsinórt és zsinórtartót.</h3>
       </div>
 
       <MasonryContainer>
