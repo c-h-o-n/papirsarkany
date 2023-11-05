@@ -100,7 +100,7 @@ export default function OrderSummaryCard({ layout = 'full' }: Props) {
     <Card className="flex flex-1 flex-col gap-4 p-8">
       {cart.map((item) => (
         <Fragment key={item.id}>
-          <div className="flex items-center gap-2 justify-between">
+          <div className="flex items-center justify-between gap-2">
             <div className="flex gap-2">
               {item.imageUrl && (
                 <img src={item.imageUrl} alt={item.name} className="h-32 w-32 rounded-lg object-cover" />
@@ -124,7 +124,7 @@ export default function OrderSummaryCard({ layout = 'full' }: Props) {
               </button>
             </div>
           </div>
-          <div className="flex gap-4 md:hidden justify-between">
+          <div className="flex justify-between gap-4 md:hidden">
             <ProductinCartCounter value={item.quantity} cartItem={item} />
 
             <button className="d-btn d-btn-square d-btn-error" onClick={() => onDeleteClick(item)}>
