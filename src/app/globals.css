@@ -9,32 +9,39 @@ body {
 
 @layer base {
   h1 {
-    @apply text-[36px] sm:text-[48px]; 
+    @apply text-3xl sm:text-5xl; 
   }
 
   h2 {
-    @apply text-[24px] sm:text-[32px];
+    @apply text-2xl sm:text-4xl
   }
 
   h3 {
-    @apply text-[20px] sm:text-[24px];
+    @apply text-xl sm:text-2xl;
   }
 
   h4 {
-    @apply text-[18px] sm:text-[20px];
+    @apply text-lg sm:text-xl;
   }
 
   h5 {
-    @apply text-[16px] sm:text-[18px];
+    @apply text-base sm:text-lg;
   }
 
   h6 {
-    @apply text-[16px];
+    @apply text-base;
   }
   p {
     @apply my-4
   }
 }
+
+@layer utilities {
+  .text-wrap-balance {
+    text-wrap:balance;
+  }
+}
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
 
