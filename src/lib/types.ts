@@ -20,13 +20,23 @@ export type Kite = Products & {
 };
 
 export type Reel = Products & {
-  price: number
+  price: number;
   category: 'Zsinortartok';
-}
-
+};
 
 export type Rod = Products & {
   category: 'PalcakRudak';
+  properties: {
+    diameters: {
+      name: string;
+      pricePerMeter: number;
+      lengths: number[];
+    }[];
+  };
+};
+
+export type Tube = Products & {
+  category: 'Csovek';
   properties: {
     diameters: {
       name: string;
@@ -78,8 +88,6 @@ export type FormSchemaArray = [
 ];
 
 export type FormSchemaObject = Asserts<FormSchemaArray[0]> & Asserts<FormSchemaArray[1]> & Asserts<FormSchemaArray[2]>;
-
-
 
 export type NewOrder = {
   contact: {
