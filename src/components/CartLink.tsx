@@ -1,10 +1,10 @@
 'use client';
 
+import Link from 'next/link';
+
 import CartIcon from '@/assets/cart.svg';
 import { currencyFormatter } from '@/lib/formatters';
 import { useCartStore } from '@/store/useCartStore';
-import Link from 'next/link';
-import { useState } from 'react';
 
 export default function CartLink() {
   const totalItems = useCartStore((state) => state.totalItems);

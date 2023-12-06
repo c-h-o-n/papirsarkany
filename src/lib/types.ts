@@ -1,7 +1,64 @@
 import { Products } from '@prisma/client';
 import { Asserts, BooleanSchema, StringSchema, ObjectSchema } from 'yup';
 
-export type CartItem = Products & { price: number, quantity: number };
+export type ProductCategoryMapLiterals =
+  | 'Egyzsinóros sárkány'
+  | 'Pálcák és rudak'
+  | 'Csövek'
+  | 'Zsinórok'
+  | 'Zsinórtartók';
+
+export type Kite = Products & {
+  price: number;
+  category: 'Egyzsinoros';
+  properties: {
+    isBeginner?: boolean;
+    size?: string;
+    material?: string;
+    windSpeed?: string;
+  };
+};
+
+export type Reel = Products & {
+  price: number;
+  category: 'Zsinortartok';
+};
+
+export type Rod = Products & {
+  category: 'PalcakRudak';
+  properties: {
+    diameters: {
+      name: string;
+      pricePerMeter: number;
+      lengths: number[];
+    }[];
+  };
+};
+
+export type Tube = Products & {
+  category: 'Csovek';
+  properties: {
+    diameters: {
+      name: string;
+      pricePerMeter: number;
+      lengths: number[];
+    }[];
+  };
+};
+
+export type Twine = Products & {
+  properties: {
+    diameters: [
+      {
+        name: string;
+        pricePerMeter: number;
+      },
+    ];
+    tensileStegth: string;
+  };
+};
+
+export type CartItem = Products & { price: number; quantity: number };
 
 export type FormSchemaArray = [
   ObjectSchema<{
@@ -31,49 +88,6 @@ export type FormSchemaArray = [
 ];
 
 export type FormSchemaObject = Asserts<FormSchemaArray[0]> & Asserts<FormSchemaArray[1]> & Asserts<FormSchemaArray[2]>;
-
-export type ProductCategoryMapLiterals =
-  | 'Egyzsinóros sárkány'
-  | 'Pálcák és rudak'
-  | 'Csövek'
-  | 'Zsinórok'
-  | 'Zsinórtartók';
-
-export type Kite = Products & {
-  price: number;
-  category: 'Egyzsinoros';
-  properties: {
-    isBeginner?: boolean;
-    size?: string;
-    material?: string;
-    windSpeed?: string;
-  };
-};
-
-export type Rod = Products & {
-  category: 'PalcakRudak';
-  properties: {
-    diameters:       {
-      name: string;
-      pricePerMeter: number;
-      lengths: number[];
-    }[
-
-    ];
-  };
-};
-
-export type Line = Products & {
-  properties: {
-    diameters: [
-      {
-        name: string;
-        pricePerMeter: number;
-      },
-    ];
-    tensileStegth: string;
-  };
-};
 
 export type NewOrder = {
   contact: {
