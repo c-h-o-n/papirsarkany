@@ -1,21 +1,21 @@
 'use client';
-import { Rod } from '@/lib/types';
+import { Tube } from '@/lib/types';
 import Card from './Card';
 import AddToCartButton from './AddToCartButton';
 import { useState } from 'react';
 import { currencyFormatter, pricePerMeterFormatter } from '@/lib/formatters';
 
 type Props = {
-  rod: Rod;
+  tube: Tube;
 };
 
-export default function RodCard({ rod }: Props) {
-  const [selectedDiameter, setSelectedDiameter] = useState(rod.properties.diameters[0]);
+export default function TubeCard({ tube }: Props) {
+  const [selectedDiameter, setSelectedDiameter] = useState(tube.properties.diameters[0]);
   const [selectedLength, setSelectedLength] = useState<number>(selectedDiameter.lengths[0]);
   
   const handleDiameterChange = (e: any) => {
     const diamaterName = e.target.value as string;
-    const selectedDiamater = rod.properties.diameters.find((diameter) => diameter.name === diamaterName)!;
+    const selectedDiamater = tube.properties.diameters.find((diameter) => diameter.name === diamaterName)!;
 
     setSelectedDiameter({
       name: diamaterName,
@@ -28,9 +28,8 @@ export default function RodCard({ rod }: Props) {
 
   return (
     <div className="relative z-0">
-      {/* <Link href={`anyagok/${rod.slug}`}> */}
       <Card className="w-full space-y-3 p-5">
-        <h3 className="font-bold">{rod.name}</h3>
+        <h3 className="font-bold">{tube.name}</h3>
 
         <div className="flex gap-2">
           <div className="d-form-control w-full max-w-xs">
@@ -43,7 +42,7 @@ export default function RodCard({ rod }: Props) {
                 handleDiameterChange(e);
               }}
             >
-              {rod.properties.diameters.map((diamater) => (
+              {tube.properties.diameters.map((diamater) => (
                 <option key={diamater.name}>{diamater.name}</option>
               ))}
             </select>
@@ -73,14 +72,13 @@ export default function RodCard({ rod }: Props) {
 
         <AddToCartButton
           product={{
-            ...rod,
-            id: `${rod.id}-${selectedDiameter.name}-${selectedLength}}`,
-            name: `${rod.name} (${selectedDiameter.name} - ${selectedLength}cm)`,
+            ...tube,
+            id: `${tube.id}-${selectedDiameter.name}-${selectedLength}}`,
+            name: `${tube.name} (${selectedDiameter.name} - ${selectedLength}cm)`,
             price: selectedDiameter.pricePerMeter * Math.ceil(selectedLength / 100),
           }}
         />
       </Card>
-      {/* </Link> */}
     </div>
   );
 }
