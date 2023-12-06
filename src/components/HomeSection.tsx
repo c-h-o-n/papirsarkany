@@ -29,7 +29,7 @@ const HomeSection = (props: Props) => {
   });
 
   return (
-    <section id={'id'} className={`py-12 ${props.className}`}>
+    <section id={props.id} className={`py-12 ${props.className}`}>
       {Icon && <div className="flex justify-center px-12 pb-12">{Icon}</div>}
 
       <div className="space-y-8">{Content}</div>
