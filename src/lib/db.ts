@@ -1,6 +1,6 @@
 import { Prisma } from '@prisma/client';
 import prisma from './prisma';
-import { CartItem, FormSchemaObject, Kite, Reel, Rod } from './types';
+import { CartItem, FormSchemaObject, Kite, Reel, Rod, Tube } from './types';
 import { prismaPaymentModemMap, prismaShippingModeMap } from './formatters';
 
 export async function createOrder(orderForm: FormSchemaObject, products: CartItem[]) {
@@ -99,4 +99,12 @@ export async function getReels(args?: Omit<Prisma.ProductsFindManyArgs, 'where'>
     },
     ...args,
   })) as Reel[] | undefined;
+}
+
+export async function getTubes(args?: Omit<Prisma.ProductsFindManyArgs, 'where'>): Promise<Tube[] | undefined> {
+  return (await prisma.products.findMany({
+    where: {
+      category: 'Csovek'
+    }
+  })) as Tube[] | undefined
 }
