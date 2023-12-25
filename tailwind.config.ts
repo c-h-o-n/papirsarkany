@@ -2,7 +2,7 @@ import type { Config } from 'tailwindcss';
 import daisyui from 'daisyui';
 import theme from 'daisyui/src/theming/themes';
 
-const lightTheme = theme['[data-theme=light]']
+const lightTheme = theme.light
 
 const config: Config = {
   content: [
@@ -22,7 +22,8 @@ const config: Config = {
     themes: [{light: {
       ...lightTheme,
       'primary': '#0ea5e9',
-      'primary-content': '#fff',
+      'success-content': '#f8f8f8',
+      'primary-content': '#ffffff',
       "error": "#ef5258",
     }}],
   },
