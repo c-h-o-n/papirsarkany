@@ -15,7 +15,7 @@ export default function CheckoutSummary() {
   } = useFormContext<FormSchemaObject>();
   const formValues = getValues();
 
-  const isSubmitting = useCheckoutFormStore(state => state.isSubmitting)
+  const isSubmitting = useCheckoutFormStore((state) => state.isSubmitting);
   const prevStep = useStepperStore((state) => state.prevStep);
 
   return (
@@ -71,14 +71,18 @@ export default function CheckoutSummary() {
         ></textarea>
         <label className="d-label justify-end">
           <span className="d-label-text-alt">14 napos elállási jog fentartva a rendelés leadásától számítva.</span>
-        </label>  
+        </label>
       </div>
 
       <div className="flex flex-wrap justify-between gap-4">
-        <button type="button" className="d-btn d-btn-neutral d-btn-outline max-sm:d-btn-block" onClick={prevStep}>
+        <button
+          type="button"
+          className="d-btn d-btn-outline d-btn-neutral uppercase max-sm:d-btn-block"
+          onClick={prevStep}
+        >
           Vissza
         </button>
-        <button type="submit" className={`d-btn d-btn-success max-sm:d-btn-block`} disabled={isSubmitting}>
+        <button type="submit" className={`d-btn d-btn-success uppercase max-sm:d-btn-block`} disabled={isSubmitting}>
           {isSubmitting && <span className="d-loading d-loading-spinner"></span>}
           Megrendelem
         </button>

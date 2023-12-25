@@ -26,7 +26,7 @@ function DesktopNavbar() {
         </Link>
       </div>
       <div className="d-navbar-end">
-        <ul className="d-menu d-menu-horizontal text-base font-extrabold">
+        <ul className="d-menu d-menu-horizontal gap-2 text-base font-extrabold">
           <li>
             <Link href={'/sarkanyok'}>Sárkányok</Link>
           </li>

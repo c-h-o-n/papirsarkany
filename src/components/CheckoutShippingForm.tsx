@@ -12,8 +12,7 @@ export default function CheckoutShippingForm() {
     setValue,
   } = useFormContext<FormSchemaObject>();
 
-  const copyShippingToBilling = (
-  ) => {
+  const copyShippingToBilling = () => {
     setValue('billingPostcode', watch('shippingPostcode'));
     setValue('billingCity', watch('shippingCity'));
     setValue('billingAddress', watch('shippingAddress'));
@@ -112,11 +111,7 @@ export default function CheckoutShippingForm() {
             <label className="d-label">
               <span className="d-label-text text-lg">Irányítószám</span>
             </label>
-            <input
-              type="text"
-              className="d-input d-input-bordered"
-              {...register('shippingPostcode')}
-            />
+            <input type="text" className="d-input d-input-bordered" {...register('shippingPostcode')} />
             <label className="d-label">
               <span className="d-label-text-alt text-error">{errors.shippingPostcode?.message}</span>
             </label>
@@ -126,11 +121,7 @@ export default function CheckoutShippingForm() {
             <label className="d-label">
               <span className="d-label-text text-lg">Város</span>
             </label>
-            <input
-              type="text"
-              className="d-input d-input-bordered"
-              {...register('shippingCity')}
-            />
+            <input type="text" className="d-input d-input-bordered" {...register('shippingCity')} />
             <label className="d-label">
               <span className="d-label-text-alt text-error">{errors.shippingCity?.message}</span>
             </label>
@@ -145,7 +136,6 @@ export default function CheckoutShippingForm() {
               placeholder="Utca, házszám"
               className="d-input d-input-bordered"
               {...register('shippingAddress')}
-
             />
             <label className="d-label">
               <span className="d-label-text-alt text-error">{errors.shippingAddress?.message}</span>
@@ -156,7 +146,6 @@ export default function CheckoutShippingForm() {
               placeholder="Emelet, ajtó, egyéb (opcionális)"
               className="d-input d-input-bordered"
               {...register('shippingSubaddress')}
-
             />
             <label className="d-label">
               <span className="d-label-text-alt text-error">{errors.shippingSubaddress?.message}</span>
@@ -166,7 +155,11 @@ export default function CheckoutShippingForm() {
       )}
 
       <div className="flex justify-end">
-        <button type="submit" onClick={copyShippingToBilling} className="d-btn d-btn-primary max-sm:d-btn-block">
+        <button
+          type="submit"
+          onClick={copyShippingToBilling}
+          className="d-btn d-btn-primary uppercase max-sm:d-btn-block"
+        >
           Tovább
         </button>
       </div>
