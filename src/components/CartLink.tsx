@@ -24,7 +24,7 @@ export default function CartLink() {
           <span className="text-lg font-bold">{totalItems} termék</span>
           <span className="text-info">Összesen: {currencyFormatter(totalPrice)}</span>
           <div className="d-card-actions">
-            <Link href={'/kosar'} className="d-btn d-btn-primary d-btn-block" onClick={(e) => e.currentTarget.blur()}>
+            <Link href={'/kosar'} className="d-btn d-btn-primary d-btn-block uppercase" onClick={(e) => e.currentTarget.blur()}>
               Kosár
             </Link>
           </div>
