@@ -3,6 +3,7 @@ import Link from 'next/link';
 import CartLink from './CartLink';
 import HomeIcon from '@/assets/home.svg';
 import HamburgerIcon from '@/assets/hamburger.svg';
+import MobileNavLink from './MobileNavLink';
 
 export default function Navbar() {
   return (
@@ -52,10 +53,10 @@ function MobileNavbar() {
           </label>
           <ul tabIndex={0} className="d-menu d-dropdown-content rounded-box z-[1] mt-5 w-52 bg-base-100 p-2 shadow">
             <li>
-              <Link href={'/sarkanyok'}>Sárkányok</Link>
+              <MobileNavLink href={'/sarkanyok'}>Sárkányok</MobileNavLink>
             </li>
             <li>
-              <Link href={'/anyagok'}>Anyagok</Link>
+              <MobileNavLink href={'/anyagok'}>Anyagok</MobileNavLink>
             </li>
           </ul>
         </div>
