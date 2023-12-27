@@ -9,11 +9,11 @@ body {
 
 @layer base {
   h1 {
-    @apply text-3xl sm:text-5xl; 
+    @apply text-3xl sm:text-5xl;
   }
 
   h2 {
-    @apply text-2xl sm:text-4xl
+    @apply text-2xl sm:text-4xl;
   }
 
   h3 {
@@ -31,25 +31,25 @@ body {
   h6 {
     @apply text-base;
   }
+
   p {
-    @apply my-4
+    @apply my-4;
   }
 }
 
 @layer utilities {
   .text-wrap-balance {
-    text-wrap:balance;
+    text-wrap: balance;
   }
 }
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-
-    -webkit-appearance: none;
-    margin: 0; 
+  -webkit-appearance: none;
+  margin: 0;
 }
 
-input[type=number] {
-    -moz-appearance:textfield; /* Firefox */
-    appearance: none;
+input[type='number'] {
+  -moz-appearance: textfield; /* Firefox */
+  appearance: none;
 }
