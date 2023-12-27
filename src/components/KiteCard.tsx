@@ -14,13 +14,23 @@ export default function KiteCard({ kite }: { kite: Kite }) {
             <h3 className="text-center font-bold">{kite.name}</h3>
 
             {kite.properties?.isBeginner && (
-              <div className="text-center font-bold text-primary underline">Kezdőknek ajánlott!</div>
+              <div className="text-center font-bold text-primary underline">
+                Kezdőknek ajánlott!
+              </div>
             )}
           </div>
 
-          {kite.imageUrl && <img src={kite.imageUrl} alt={kite.name} className="mx-auto mb-6 rounded-lg" />}
+          {kite.imageUrl && (
+            <img
+              src={kite.imageUrl}
+              alt={kite.name}
+              className="mx-auto mb-6 rounded-lg"
+            />
+          )}
 
-          <h3 className="text-center font-bold text-primary">{currencyFormatter(kite.price)}</h3>
+          <h3 className="text-center font-bold text-primary">
+            {currencyFormatter(kite.price)}
+          </h3>
 
           <div className="flex justify-end">
             <AddToCartButton product={kite} />

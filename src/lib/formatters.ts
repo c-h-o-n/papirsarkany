@@ -15,13 +15,14 @@ export function pricePerMeterFormatter(value: number): string {
   return currencyFormatter(value) + ' / m';
 }
 
-export const ProductCategoryMap: Record<Category, ProductCategoryMapLiterals> = {
-  Egyzsinoros: 'Egyzsinóros sárkány',
-  PalcakRudak: 'Pálcák és rudak',
-  Csovek: 'Csövek',
-  Zsinorok: 'Zsinórok',
-  Zsinortartok: 'Zsinórtartók',
-} as const;
+export const ProductCategoryMap: Record<Category, ProductCategoryMapLiterals> =
+  {
+    Egyzsinoros: 'Egyzsinóros sárkány',
+    PalcakRudak: 'Pálcák és rudak',
+    Csovek: 'Csövek',
+    Zsinorok: 'Zsinórok',
+    Zsinortartok: 'Zsinórtartók',
+  } as const;
 
 export const prismaShippingModeMap: Record<string, $Enums.ShippingMode> = {
   'Személyes átvétel': 'PersonalPickup',

@@ -5,7 +5,11 @@ import { NextResponse } from 'next/server';
 
 export async function POST(request: Request) {
   try {
-    const body = (await request.json()) as { data: FormSchemaObject; cart: CartItem[]; orderEmailData: OrderMail };
+    const body = (await request.json()) as {
+      data: FormSchemaObject;
+      cart: CartItem[];
+      orderEmailData: OrderMail;
+    };
     const order = await createOrder(body.data, body.cart);
 
     sgMail.setApiKey(process.env.SENDGRID_API_KEY || 'no_key');
@@ -44,7 +48,9 @@ export async function POST(request: Request) {
     await sgMail
       .send(customerMail)
       .then(() => {
-        console.log(`Customer email is sent to ${body.orderEmailData.contact.email}`);
+        console.log(
+          `Customer email is sent to ${body.orderEmailData.contact.email}`,
+        );
       })
       .catch((error: any) => {
         console.error(error);
@@ -53,7 +59,10 @@ export async function POST(request: Request) {
     return NextResponse.json(body);
   } catch (error) {
     console.error(error);
-    NextResponse.json({ error: `Internal Server Error reason: ${error}}` }, { status: 500 });
+    NextResponse.json(
+      { error: `Internal Server Error reason: ${error}}` },
+      { status: 500 },
+    );
     return;
   }
 }

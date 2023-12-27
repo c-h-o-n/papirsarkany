@@ -49,7 +49,9 @@ export default async function Materials() {
         </div>
       )}
 
-      <h2 className="font-bold">{lines.length > 0 && ProductCategoryMap['Zsinorok']}</h2>
+      <h2 className="font-bold">
+        {lines.length > 0 && ProductCategoryMap['Zsinorok']}
+      </h2>
     </div>
   );
 }

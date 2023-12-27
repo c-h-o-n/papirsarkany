@@ -7,13 +7,17 @@ type Props = {
   value: number;
 };
 export default function ProductinCartCounter({ cartItem }: Props) {
-  const [temporaryValue, setTemporaryValue] = useState(cartItem.quantity.toString());
+  const [temporaryValue, setTemporaryValue] = useState(
+    cartItem.quantity.toString(),
+  );
 
   useEffect(() => {
     setTemporaryValue(cartItem.quantity.toString());
   }, [cartItem.quantity]);
 
-  const decreaseItemQuantity = useCartStore((state) => state.decreaseItemQuantity);
+  const decreaseItemQuantity = useCartStore(
+    (state) => state.decreaseItemQuantity,
+  );
   const addToCart = useCartStore((state) => state.addToCart);
   const setItem = useCartStore((state) => state.setItemQuantity);
 
@@ -22,7 +26,11 @@ export default function ProductinCartCounter({ cartItem }: Props) {
   };
 
   const handleBlur = (e: FocusEvent<HTMLInputElement>) => {
-    if (+e.target.value < 1 || +e.target.value > 999 || !Number.isInteger(+e.target.value)) {
+    if (
+      +e.target.value < 1 ||
+      +e.target.value > 999 ||
+      !Number.isInteger(+e.target.value)
+    ) {
       setTemporaryValue(cartItem.quantity.toString());
       return;
     }
@@ -38,7 +46,10 @@ export default function ProductinCartCounter({ cartItem }: Props) {
 
   return (
     <div className="flex items-center">
-      <div className="d-btn no-animation rounded-r-none" onClick={() => decreaseItemQuantity(cartItem)}>
+      <div
+        className="d-btn no-animation rounded-r-none"
+        onClick={() => decreaseItemQuantity(cartItem)}
+      >
         -
       </div>
       <input
@@ -50,7 +61,9 @@ export default function ProductinCartCounter({ cartItem }: Props) {
         onKeyDown={handleInputKeyPress}
       />
       <div
-        className={`d-btn no-animation rounded-l-none ${cartItem.quantity >= 999 && 'd-btn-disabled'}`}
+        className={`d-btn no-animation rounded-l-none ${
+          cartItem.quantity >= 999 && 'd-btn-disabled'
+        }`}
         onClick={() => addToCart(cartItem)}
       >
         +
