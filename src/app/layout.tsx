@@ -15,7 +15,11 @@ export const metadata: Metadata = {
   description: 'Papírsárkány árusítás 1984-óta.',
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const { publicRuntimeConfig } = getConfig();
 
   return (

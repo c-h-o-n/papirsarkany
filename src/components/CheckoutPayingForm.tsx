@@ -73,30 +73,46 @@ export default function CheckoutPayingForm() {
               type="checkbox"
               className="d-checkbox checked:d-checkbox-primary"
             />
-            <span className="d-label-text">A számlázási adataim megegyeznek a szállítási címemmel</span>
+            <span className="d-label-text">
+              A számlázási adataim megegyeznek a szállítási címemmel
+            </span>
           </label>
         </div>
       )}
-      {getValues('shippingOption') === 'Személyes átvétel' || !watch('isSameAdressAsShipping')}
+      {getValues('shippingOption') === 'Személyes átvétel' ||
+        !watch('isSameAdressAsShipping')}
 
-      {(getValues('shippingOption') === 'Személyes átvétel' || !watch('isSameAdressAsShipping')) && (
+      {(getValues('shippingOption') === 'Személyes átvétel' ||
+        !watch('isSameAdressAsShipping')) && (
         <>
           <div className="d-form-control">
             <label className="d-label">
               <span className="d-label-text text-lg">Irányítószám</span>
             </label>
-            <input type="text" className="d-input d-input-bordered" {...register('billingPostcode')} />
+            <input
+              type="text"
+              className="d-input d-input-bordered"
+              {...register('billingPostcode')}
+            />
             <label className="d-label">
-              <span className="d-label-text-alt text-error">{errors.billingPostcode?.message}</span>
+              <span className="d-label-text-alt text-error">
+                {errors.billingPostcode?.message}
+              </span>
             </label>
           </div>
           <div className="d-form-control">
             <label className="d-label">
               <span className="d-label-text text-lg">Város</span>
             </label>
-            <input type="text" className="d-input d-input-bordered" {...register('billingCity')} />
+            <input
+              type="text"
+              className="d-input d-input-bordered"
+              {...register('billingCity')}
+            />
             <label className="d-label">
-              <span className="d-label-text-alt text-error">{errors.billingCity?.message}</span>
+              <span className="d-label-text-alt text-error">
+                {errors.billingCity?.message}
+              </span>
             </label>
           </div>
           <div className="d-form-control">
@@ -110,7 +126,9 @@ export default function CheckoutPayingForm() {
               {...register('billingAddress')}
             />
             <label className="d-label">
-              <span className="d-label-text-alt text-error">{errors.billingAddress?.message}</span>
+              <span className="d-label-text-alt text-error">
+                {errors.billingAddress?.message}
+              </span>
             </label>
 
             <input
@@ -120,7 +138,9 @@ export default function CheckoutPayingForm() {
               {...register('billingSubaddress')}
             />
             <label className="d-label">
-              <span className="d-label-text-alt text-error">{errors.billingSubaddress?.message}</span>
+              <span className="d-label-text-alt text-error">
+                {errors.billingSubaddress?.message}
+              </span>
             </label>
           </div>
         </>
@@ -133,7 +153,10 @@ export default function CheckoutPayingForm() {
         >
           Vissza
         </button>
-        <button type="submit" className="d-btn d-btn-primary uppercase max-sm:d-btn-block">
+        <button
+          type="submit"
+          className="d-btn d-btn-primary uppercase max-sm:d-btn-block"
+        >
           Tovább
         </button>
       </div>

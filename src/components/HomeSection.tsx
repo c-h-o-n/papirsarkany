@@ -37,7 +37,9 @@ const HomeSection = (props: Props) => {
   );
 };
 
-const Icon = (props: IconProps) => <div className="max-w-[12rem] flex-1">{props.children}</div>;
+const Icon = (props: IconProps) => (
+  <div className="max-w-[12rem] flex-1">{props.children}</div>
+);
 const Content = (props: ContentProps) => <>{props.children}</>;
 
 HomeSection.Icon = Icon;
