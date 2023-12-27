@@ -39,12 +39,15 @@ export const useCartStore = create(
           return;
         }
 
-        const updatedCart = cart.map((item) => (item.id === product.id ? { ...item, quantity } : item));
+        const updatedCart = cart.map((item) =>
+          item.id === product.id ? { ...item, quantity } : item,
+        );
 
         set((state) => ({
           cart: updatedCart,
           totalItems: state.totalItems + (quantity - product.quantity),
-          totalPrice: state.totalPrice + product.price * (quantity - product.quantity),
+          totalPrice:
+            state.totalPrice + product.price * (quantity - product.quantity),
         }));
       },
       addToCart(product) {
@@ -52,7 +55,9 @@ export const useCartStore = create(
         const cartItem = cart.find((item) => item.id === product.id);
         if (cartItem) {
           const updatedCart = cart.map((item) =>
-            item.id === product.id ? { ...item, quantity: (item.quantity as number) + 1 } : item,
+            item.id === product.id
+              ? { ...item, quantity: (item.quantity as number) + 1 }
+              : item,
           );
 
           set((state) => ({
@@ -76,7 +81,9 @@ export const useCartStore = create(
         const cartItem = cart.find((item) => item.id === product.id);
         if (cartItem?.quantity! > 1) {
           const updatedCart = cart.map((item) =>
-            item.id === product.id ? { ...item, quantity: item.quantity - 1 } : item,
+            item.id === product.id
+              ? { ...item, quantity: item.quantity - 1 }
+              : item,
           );
           set((state) => ({
             cart: updatedCart,
@@ -101,6 +108,10 @@ export const useCartStore = create(
         }));
       },
     }),
-    { name: 'cart-storage', storage: createJSONStorage(() => sessionStorage), skipHydration: true },
+    {
+      name: 'cart-storage',
+      storage: createJSONStorage(() => sessionStorage),
+      skipHydration: true,
+    },
   ),
 );

@@ -70,7 +70,9 @@ export default function CheckoutSummary() {
           {...register('comment')}
         ></textarea>
         <label className="d-label justify-end">
-          <span className="d-label-text-alt">14 napos elállási jog fentartva a rendelés leadásától számítva.</span>
+          <span className="d-label-text-alt">
+            14 napos elállási jog fentartva a rendelés leadásától számítva.
+          </span>
         </label>
       </div>
 
@@ -82,8 +84,14 @@ export default function CheckoutSummary() {
         >
           Vissza
         </button>
-        <button type="submit" className={`d-btn d-btn-success uppercase max-sm:d-btn-block`} disabled={isSubmitting}>
-          {isSubmitting && <span className="d-loading d-loading-spinner"></span>}
+        <button
+          type="submit"
+          className={`d-btn d-btn-success uppercase max-sm:d-btn-block`}
+          disabled={isSubmitting}
+        >
+          {isSubmitting && (
+            <span className="d-loading d-loading-spinner"></span>
+          )}
           Megrendelem
         </button>
       </div>

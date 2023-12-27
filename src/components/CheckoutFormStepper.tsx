@@ -7,7 +7,13 @@ import { useCheckoutFormStore } from '@/store/useCheckoutFormStore';
 import { useStepperStore } from '@/store/useStepperStore';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { redirect, useRouter } from 'next/navigation';
-import { Children, ReactNode, cloneElement, isValidElement, useState } from 'react';
+import {
+  Children,
+  ReactNode,
+  cloneElement,
+  isValidElement,
+  useState,
+} from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { boolean, object, string } from 'yup';
 
@@ -24,7 +30,9 @@ export default function CheckoutStepper({ children }: Props) {
   const formData = useCheckoutFormStore((state) => state.formData);
   const setFormData = useCheckoutFormStore((state) => state.setFormData);
   const isSubmitting = useCheckoutFormStore((state) => state.isSubmitting);
-  const setIsSubmitting = useCheckoutFormStore((state) => state.setIsSubmitting);
+  const setIsSubmitting = useCheckoutFormStore(
+    (state) => state.setIsSubmitting,
+  );
 
   const step = useStepperStore((state) => state.step);
   const nextStep = useStepperStore((state) => state.nextStep);
@@ -49,7 +57,10 @@ export default function CheckoutStepper({ children }: Props) {
         .label('Vezetéknév'),
       phoneNumber: string()
         .required(({ label }) => `${label} kötelező mező`)
-        .matches(/^(?:\+36|06)/, 'Érvényes magyar telefonszámnak kell lennie pl.: +36123456789 vagy 06123456789')
+        .matches(
+          /^(?:\+36|06)/,
+          'Érvényes magyar telefonszámnak kell lennie pl.: +36123456789 vagy 06123456789',
+        )
         .label('Telefonszám'),
 
       shippingOption: string()
@@ -60,19 +71,22 @@ export default function CheckoutStepper({ children }: Props) {
       shippingPostcode: string()
         .when('shippingOption', {
           is: 'Postai szállítás',
-          then: (schema) => schema.required(({ label }) => `${label} kötelező mező`),
+          then: (schema) =>
+            schema.required(({ label }) => `${label} kötelező mező`),
         })
         .label('Irányítószám'),
       shippingCity: string()
         .when('shippingOption', {
           is: 'Postai szállítás',
-          then: (schema) => schema.required(({ label }) => `${label} kötelező mező`),
+          then: (schema) =>
+            schema.required(({ label }) => `${label} kötelező mező`),
         })
         .label('Város'),
       shippingAddress: string()
         .when('shippingOption', {
           is: 'Postai szállítás',
-          then: (schema) => schema.required(({ label }) => `${label} kötelező mező`),
+          then: (schema) =>
+            schema.required(({ label }) => `${label} kötelező mező`),
         })
         .label('Cím'),
       shippingSubaddress: string().label('Másodlagos cím'),
@@ -178,7 +192,9 @@ export default function CheckoutStepper({ children }: Props) {
   return (
     <div className={`container p-8 ${!isLast && 'max-w-screen-md'}`}>
       <FormProvider {...methods}>
-        <form onSubmit={methods.handleSubmit((data) => onSubmit(data), console.log)}>
+        <form
+          onSubmit={methods.handleSubmit((data) => onSubmit(data), console.log)}
+        >
           {Children.toArray(children)[step]}
         </form>
       </FormProvider>
