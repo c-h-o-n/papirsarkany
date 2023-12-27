@@ -16,8 +16,6 @@ export default function Home() {
       <Splash />
 
       <div className="container mx-auto max-w-screen-lg">
-
-
         <HomeSection id="vallalkozas">
           <HomeSection.Icon>
             <AboutBusinessIcon />

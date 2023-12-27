@@ -16,7 +16,6 @@ type Props = {
 };
 
 export default function CheckoutStepper({ children }: Props) {
-
   const router = useRouter();
 
   const cart = useCartStore((state) => state.cart);
@@ -24,9 +23,8 @@ export default function CheckoutStepper({ children }: Props) {
 
   const formData = useCheckoutFormStore((state) => state.formData);
   const setFormData = useCheckoutFormStore((state) => state.setFormData);
-  const isSubmitting = useCheckoutFormStore(state => state.isSubmitting)
-  const setIsSubmitting = useCheckoutFormStore(state => state.setIsSubmitting)
-
+  const isSubmitting = useCheckoutFormStore((state) => state.isSubmitting);
+  const setIsSubmitting = useCheckoutFormStore((state) => state.setIsSubmitting);
 
   const step = useStepperStore((state) => state.step);
   const nextStep = useStepperStore((state) => state.nextStep);
@@ -114,11 +112,11 @@ export default function CheckoutStepper({ children }: Props) {
       return;
     }
 
-    if(isSubmitting) {
+    if (isSubmitting) {
       return;
     }
 
-    setIsSubmitting(true)
+    setIsSubmitting(true);
     sendOrder(data)
       .then((res) => {
         if (!res.ok) {

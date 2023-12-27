@@ -24,7 +24,7 @@ export const useStepperStore = create<State & Actions>((set) => ({
   },
   resetStepper() {
     set(() => ({
-      ...initialState
+      ...initialState,
     }));
-  }
+  },
 }));

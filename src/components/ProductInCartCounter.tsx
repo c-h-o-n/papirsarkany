@@ -38,7 +38,7 @@ export default function ProductinCartCounter({ cartItem }: Props) {
 
   return (
     <div className="flex items-center">
-      <div className="d-btn rounded-r-none no-animation" onClick={() => decreaseItemQuantity(cartItem)}>
+      <div className="d-btn no-animation rounded-r-none" onClick={() => decreaseItemQuantity(cartItem)}>
         -
       </div>
       <input
@@ -50,7 +50,7 @@ export default function ProductinCartCounter({ cartItem }: Props) {
         onKeyDown={handleInputKeyPress}
       />
       <div
-        className={`d-btn rounded-l-none no-animation ${cartItem.quantity >= 999 && 'd-btn-disabled'}`}
+        className={`d-btn no-animation rounded-l-none ${cartItem.quantity >= 999 && 'd-btn-disabled'}`}
         onClick={() => addToCart(cartItem)}
       >
         +

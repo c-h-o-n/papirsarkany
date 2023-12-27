@@ -17,7 +17,7 @@ type Props = {
 const HomeSection = (props: Props) => {
   let Icon: ReactNode | null = null;
   let Content: ReactNode | null = null;
-  
+
   React.Children.forEach(props.children, (child) => {
     if (React.isValidElement(child)) {
       if (child.type === HomeSection.Icon) {

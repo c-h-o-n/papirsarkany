@@ -51,7 +51,7 @@ function MobileNavbar() {
           <label tabIndex={0} className="d-btn d-btn-ghost">
             <HamburgerIcon className="h-5 w-5" />
           </label>
-          <ul tabIndex={0} className="d-menu d-dropdown-content rounded-box z-[1] mt-5 w-52 bg-base-100 p-2 shadow">
+          <ul tabIndex={0} className="d-menu d-dropdown-content z-[1] mt-5 w-52 rounded-box bg-base-100 p-2 shadow">
             <li>
               <MobileNavLink href={'/sarkanyok'}>Sárkányok</MobileNavLink>
             </li>

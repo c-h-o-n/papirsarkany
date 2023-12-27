@@ -104,7 +104,7 @@ export async function getReels(args?: Omit<Prisma.ProductsFindManyArgs, 'where'>
 export async function getTubes(args?: Omit<Prisma.ProductsFindManyArgs, 'where'>): Promise<Tube[] | undefined> {
   return (await prisma.products.findMany({
     where: {
-      category: 'Csovek'
-    }
-  })) as Tube[] | undefined
+      category: 'Csovek',
+    },
+  })) as Tube[] | undefined;
 }

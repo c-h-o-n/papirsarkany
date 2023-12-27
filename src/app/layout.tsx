@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/react';
-import { SpeedInsights } from "@vercel/speed-insights/next"
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import getConfig from 'next/config';
 
 import './globals.css';
@@ -16,10 +16,14 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  const { publicRuntimeConfig } = getConfig()
+  const { publicRuntimeConfig } = getConfig();
 
   return (
-    <html lang="hu" className="scroll-pt-[68px] scroll-smooth sm:scroll-pt-[72px]" data-app-version={publicRuntimeConfig.appVersion}>
+    <html
+      lang="hu"
+      className="scroll-pt-[68px] scroll-smooth sm:scroll-pt-[72px]"
+      data-app-version={publicRuntimeConfig.appVersion}
+    >
       <body className={`${inter.className} `}>
         <div className="flex min-h-screen flex-col">
           <Navbar />

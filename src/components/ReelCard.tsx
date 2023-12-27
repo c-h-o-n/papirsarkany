@@ -6,12 +6,10 @@ import AddToCartButton from './AddToCartButton';
 
 type Props = {
   reel: Reel;
-}
+};
 
-
-export default function ReelCard({reel}: Props) {
-return (
-
+export default function ReelCard({ reel }: Props) {
+  return (
     <Card className="w-full space-y-3 p-5">
       <div>
         <h3 className="text-center font-bold">{reel.name}</h3>
@@ -25,5 +23,5 @@ return (
         <AddToCartButton product={reel} />
       </div>
     </Card>
-)
+  );
 }

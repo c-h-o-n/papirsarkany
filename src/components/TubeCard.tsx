@@ -12,7 +12,7 @@ type Props = {
 export default function TubeCard({ tube }: Props) {
   const [selectedDiameter, setSelectedDiameter] = useState(tube.properties.diameters[0]);
   const [selectedLength, setSelectedLength] = useState<number>(selectedDiameter.lengths[0]);
-  
+
   const handleDiameterChange = (e: any) => {
     const diamaterName = e.target.value as string;
     const selectedDiamater = tube.properties.diameters.find((diameter) => diameter.name === diamaterName)!;

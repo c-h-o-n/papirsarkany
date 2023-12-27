@@ -7,7 +7,7 @@ export async function POST(request: Request) {
   try {
     const body = (await request.json()) as { data: FormSchemaObject; cart: CartItem[]; orderEmailData: OrderMail };
     const order = await createOrder(body.data, body.cart);
-    
+
     sgMail.setApiKey(process.env.SENDGRID_API_KEY || 'no_key');
 
     const vendorTemplateId = 'd-6eee94a3becb45d2b50e5f8d6a1ac491';
@@ -40,7 +40,7 @@ export async function POST(request: Request) {
       .catch((error: any) => {
         console.error(error);
       });
-    
+
     await sgMail
       .send(customerMail)
       .then(() => {

@@ -12,7 +12,7 @@ export function currencyFormatter(value: number): string {
 }
 
 export function pricePerMeterFormatter(value: number): string {
-  return currencyFormatter(value) + ' / m'
+  return currencyFormatter(value) + ' / m';
 }
 
 export const ProductCategoryMap: Record<Category, ProductCategoryMapLiterals> = {
@@ -23,14 +23,12 @@ export const ProductCategoryMap: Record<Category, ProductCategoryMapLiterals> = 
   Zsinortartok: 'Zsinórtartók',
 } as const;
 
-
 export const prismaShippingModeMap: Record<string, $Enums.ShippingMode> = {
   'Személyes átvétel': 'PersonalPickup',
   'Postai szállítás': 'Post',
-}
-
+};
 
 export const prismaPaymentModemMap: Record<string, $Enums.PaymentMode> = {
   'Átvételkor készpénzel': 'Cash',
-  'Előreutalással': 'Transfer',
-}
+  Előreutalással: 'Transfer',
+};
