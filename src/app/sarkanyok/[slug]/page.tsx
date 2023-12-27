@@ -79,7 +79,7 @@ function MobileLayout({ kite }: { kite: Kite }) {
 
       <div className="space-y-1">
         {kite.properties?.size && <h2>Méret: {kite.properties.size}</h2>}
-        {kite.properties?.material && <h2>Anyag:  {kite.properties.material}</h2>}
+        {kite.properties?.material && <h2>Anyag: {kite.properties.material}</h2>}
         {kite.properties?.windSpeed && <h2>Szél: {kite.properties.windSpeed}</h2>}
       </div>
     </div>

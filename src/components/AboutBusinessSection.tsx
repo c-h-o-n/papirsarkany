@@ -3,8 +3,6 @@ import AboutBusinessIcon from '@/assets/about-business.svg';
 export default function AboutBusinessSection() {
   return (
     <section id="vallalkozas" className="py-12">
-
-      
       <div>
         <h2 className="font-bold">A vállalkozásról</h2>
         <p>Üzletem nincs, ezért postai utánvétellel szállítok, melynek költsége a megrendelőt terheli.</p>
