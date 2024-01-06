@@ -21,10 +21,10 @@ export default async function Kite({ params }: { params: { slug: string } }) {
 
   return (
     <>
-      <div className="hidden h-full sm:block">
+      <div className="hidden h-full md:block">
         <DesktopKitePage kite={kite} />
       </div>
-      <div className="block sm:hidden">
+      <div className="block md:hidden">
         <MobileLayout kite={kite} />
       </div>
     </>
@@ -33,8 +33,8 @@ export default async function Kite({ params }: { params: { slug: string } }) {
 
 function DesktopKitePage({ kite }: { kite: Kite }) {
   return (
-    <div className="grid h-full grid-cols-2 gap-4 p-8">
-      <div className="flex flex-col items-center space-y-4">
+    <div className="grid h-full grid-cols-3 gap-4 p-8">
+      <div className="flex flex-col items-center space-y-4 col-span-2">
         {kite.imageUrl && (
           <img
             className="h-3/4 rounded-lg object-cover"
