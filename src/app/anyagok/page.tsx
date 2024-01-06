@@ -2,14 +2,15 @@ import MasonryContainer from '@/components/MasonryContainer';
 import ReelCard from '@/components/ReelCard';
 import RodCard from '@/components/RodCard';
 import TubeCard from '@/components/TubeCard';
-import { getReels, getRods, getTubes } from '@/lib/db';
+import TwineCard from '@/components/TwineCard';
+import { getReels, getRods, getTubes, getTwines } from '@/lib/db';
 import { ProductCategoryMap } from '@/lib/formatters';
 
 export default async function Materials() {
   const reels = await getReels({ orderBy: { price: 'asc' } });
   const rods = await getRods({ orderBy: { name: 'asc' } });
   const tubes = await getTubes({ orderBy: { name: 'asc' } });
-  const lines = [];
+  const twines = await getTwines({ orderBy: { name: 'asc' } });
 
   return (
     <div className="container space-y-8 p-8">
@@ -49,9 +50,17 @@ export default async function Materials() {
         </div>
       )}
 
-      <h2 className="font-bold">
-        {lines.length > 0 && ProductCategoryMap['Zsinorok']}
-      </h2>
+      {twines && twines.length > 0 && (
+        <div className="space-y-4">
+          <h2 className="font-bold">{ProductCategoryMap['Zsinorok']}</h2>
+
+          <MasonryContainer>
+            {twines.map((twine) => (
+              <TwineCard twine={twine} key={twine.id} />
+            ))}
+          </MasonryContainer>
+        </div>
+      )}
     </div>
   );
 }
