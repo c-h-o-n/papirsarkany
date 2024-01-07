@@ -14,17 +14,33 @@ export default function CartLink() {
     <div className="d-dropdown sm:d-dropdown-end ">
       <label tabIndex={0} className="d-btn d-btn-circle d-btn-ghost">
         <div className="d-indicator">
-          <CartIcon className="h-5 w-5" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-          <span className="d-badge d-indicator-item d-badge-sm">{totalItems}</span>
+          <CartIcon
+            className="h-5 w-5"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <span className="d-badge d-indicator-item d-badge-sm">
+            {totalItems}
+          </span>
         </div>
       </label>
 
-      <div tabIndex={0} className="d-card d-dropdown-content d-card-compact z-[1] mt-5 w-52 bg-base-100 shadow">
+      <div
+        tabIndex={0}
+        className="d-card d-dropdown-content d-card-compact z-[1] mt-5 w-52 bg-base-100 shadow"
+      >
         <div className="d-card-body">
           <span className="text-lg font-bold">{totalItems} termék</span>
-          <span className="text-info">Összesen: {currencyFormatter(totalPrice)}</span>
+          <span className="text-info">
+            Összesen: {currencyFormatter(totalPrice)}
+          </span>
           <div className="d-card-actions">
-            <Link href={'/kosar'} className="d-btn d-btn-primary d-btn-block" onClick={(e) => e.currentTarget.blur()}>
+            <Link
+              href={'/kosar'}
+              className="d-btn d-btn-primary d-btn-block uppercase"
+              onClick={(e) => e.currentTarget.blur()}
+            >
               Kosár
             </Link>
           </div>

@@ -10,12 +10,18 @@ type Props = {
 };
 
 export default function RodCard({ rod }: Props) {
-  const [selectedDiameter, setSelectedDiameter] = useState(rod.properties.diameters[0]);
-  const [selectedLength, setSelectedLength] = useState<number>(selectedDiameter.lengths[0]);
-  
+  const [selectedDiameter, setSelectedDiameter] = useState(
+    rod.properties.diameters[0],
+  );
+  const [selectedLength, setSelectedLength] = useState<number>(
+    selectedDiameter.lengths[0],
+  );
+
   const handleDiameterChange = (e: any) => {
     const diamaterName = e.target.value as string;
-    const selectedDiamater = rod.properties.diameters.find((diameter) => diameter.name === diamaterName)!;
+    const selectedDiamater = rod.properties.diameters.find(
+      (diameter) => diameter.name === diamaterName,
+    )!;
 
     setSelectedDiameter({
       name: diamaterName,
@@ -67,8 +73,12 @@ export default function RodCard({ rod }: Props) {
           </div>
         </div>
         <h2>
-          {currencyFormatter(selectedDiameter.pricePerMeter * Math.ceil(selectedLength / 100))}{' '}
-          <span className="text-base text-gray-400">({pricePerMeterFormatter(selectedDiameter.pricePerMeter)})</span>
+          {currencyFormatter(
+            selectedDiameter.pricePerMeter * Math.ceil(selectedLength / 100),
+          )}{' '}
+          <span className="text-base text-gray-400">
+            ({pricePerMeterFormatter(selectedDiameter.pricePerMeter)})
+          </span>
         </h2>
 
         <AddToCartButton
@@ -76,7 +86,8 @@ export default function RodCard({ rod }: Props) {
             ...rod,
             id: `${rod.id}-${selectedDiameter.name}-${selectedLength}}`,
             name: `${rod.name} (${selectedDiameter.name} - ${selectedLength}cm)`,
-            price: selectedDiameter.pricePerMeter * Math.ceil(selectedLength / 100),
+            price:
+              selectedDiameter.pricePerMeter * Math.ceil(selectedLength / 100),
           }}
         />
       </Card>
