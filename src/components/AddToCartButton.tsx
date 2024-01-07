@@ -37,7 +37,7 @@ export default function AddToCartButton({ product }: Props) {
           document.body,
         )}
 
-      <button className="d-btn d-btn-primary " onClick={onclick}>
+      <button className="d-btn d-btn-primary uppercase" onClick={onclick}>
         Kosárba
       </button>
     </>

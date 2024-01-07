@@ -16,8 +16,6 @@ export default function Home() {
       <Splash />
 
       <div className="container mx-auto max-w-screen-lg">
-
-
         <HomeSection id="vallalkozas">
           <HomeSection.Icon>
             <AboutBusinessIcon />
@@ -27,7 +25,8 @@ export default function Home() {
 
             <Card className="p-5 text-center font-semibold sm:p-10">
               <h4>
-                Üzletem nincs, ezért postai utánvétellel szállítok, melynek költsége a megrendelőt terheli.
+                Üzletem nincs, ezért postai utánvétellel szállítok, melynek
+                költsége a megrendelőt terheli.
                 <br />
                 Személyesen{' '}
                 <Link className="underline" href="#elerhetoseg">
@@ -38,10 +37,14 @@ export default function Home() {
             </Card>
 
             <Card className="p-5 text-center font-semibold sm:p-10">
-              <h4>Sárkányaim repülési és nyolc napos pénzvisszafizetési garanciával kaphatók.</h4>
+              <h4>
+                Sárkányaim repülési és nyolc napos pénzvisszafizetési
+                garanciával kaphatók.
+              </h4>
               <h4>A visszaküldés költsége a vevőt terheli.</h4>
               <h4>
-                Minden érdeklődőnek egy óra ingyenes oktatás sárkány biztosításával - vásárlási kötelezettség nélkül -
+                Minden érdeklődőnek egy óra ingyenes oktatás sárkány
+                biztosításával - vásárlási kötelezettség nélkül -
                 Nagykovácsiban. (Telefonos időpont egyeztetés után.)
               </h4>
 
@@ -65,22 +68,26 @@ export default function Home() {
             <CraftingIcon />
           </HomeSection.Icon>
           <HomeSection.Content>
-            <h1 className="text-center font-bold">Sárkányépítő foglalkozások</h1>
+            <h1 className="text-center font-bold">
+              Sárkányépítő foglalkozások
+            </h1>
 
             <Card className="p-5 text-center font-semibold sm:p-10">
               <h4>
-                A sárkánykészítés és -repítés régebben mindennapos dolog volt a gyerekek hétköznapjaiban. Ez a
-                &quot;tudomány&quot; apáról fiúra szállt, illetve a nagyobbaktól lesték el a kisebbek. A gyerekek mára
-                elfelejtették ezt a szép régi játékot.
+                A sárkánykészítés és -repítés régebben mindennapos dolog volt a
+                gyerekek hétköznapjaiban. Ez a &quot;tudomány&quot; apáról fiúra
+                szállt, illetve a nagyobbaktól lesték el a kisebbek. A gyerekek
+                mára elfelejtették ezt a szép régi játékot.
               </h4>
             </Card>
 
             <Card className="p-5 text-center font-semibold sm:p-10">
               <h4>
-                Vállalom sárkányépítő foglalkozások vezetését gyerekrendezvények, -intézmények és céges rendezvények
-                számára.
+                Vállalom sárkányépítő foglalkozások vezetését
+                gyerekrendezvények, -intézmények és céges rendezvények számára.
                 <br />
-                Anyagot biztosítok. (Szelet a megrendelő biztosít.) Ár egyedi megállapodás alapján.
+                Anyagot biztosítok. (Szelet a megrendelő biztosít.) Ár egyedi
+                megállapodás alapján.
               </h4>
             </Card>
           </HomeSection.Content>
