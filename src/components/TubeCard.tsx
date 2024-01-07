@@ -10,12 +10,18 @@ type Props = {
 };
 
 export default function TubeCard({ tube }: Props) {
-  const [selectedDiameter, setSelectedDiameter] = useState(tube.properties.diameters[0]);
-  const [selectedLength, setSelectedLength] = useState<number>(selectedDiameter.lengths[0]);
-  
+  const [selectedDiameter, setSelectedDiameter] = useState(
+    tube.properties.diameters[0],
+  );
+  const [selectedLength, setSelectedLength] = useState<number>(
+    selectedDiameter.lengths[0],
+  );
+
   const handleDiameterChange = (e: any) => {
     const diamaterName = e.target.value as string;
-    const selectedDiamater = tube.properties.diameters.find((diameter) => diameter.name === diamaterName)!;
+    const selectedDiamater = tube.properties.diameters.find(
+      (diameter) => diameter.name === diamaterName,
+    )!;
 
     setSelectedDiameter({
       name: diamaterName,
@@ -66,8 +72,12 @@ export default function TubeCard({ tube }: Props) {
           </div>
         </div>
         <h2>
-          {currencyFormatter(selectedDiameter.pricePerMeter * Math.ceil(selectedLength / 100))}{' '}
-          <span className="text-base text-gray-400">({pricePerMeterFormatter(selectedDiameter.pricePerMeter)})</span>
+          {currencyFormatter(
+            selectedDiameter.pricePerMeter * Math.ceil(selectedLength / 100),
+          )}{' '}
+          <span className="text-base text-gray-400">
+            ({pricePerMeterFormatter(selectedDiameter.pricePerMeter)})
+          </span>
         </h2>
 
         <AddToCartButton
@@ -75,7 +85,8 @@ export default function TubeCard({ tube }: Props) {
             ...tube,
             id: `${tube.id}-${selectedDiameter.name}-${selectedLength}}`,
             name: `${tube.name} (${selectedDiameter.name} - ${selectedLength}cm)`,
-            price: selectedDiameter.pricePerMeter * Math.ceil(selectedLength / 100),
+            price:
+              selectedDiameter.pricePerMeter * Math.ceil(selectedLength / 100),
           }}
         />
       </Card>

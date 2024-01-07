@@ -87,7 +87,9 @@ export type FormSchemaArray = [
   }>,
 ];
 
-export type FormSchemaObject = Asserts<FormSchemaArray[0]> & Asserts<FormSchemaArray[1]> & Asserts<FormSchemaArray[2]>;
+export type FormSchemaObject = Asserts<FormSchemaArray[0]> &
+  Asserts<FormSchemaArray[1]> &
+  Asserts<FormSchemaArray[2]>;
 
 export type NewOrder = {
   contact: {

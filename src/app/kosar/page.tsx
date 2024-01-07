@@ -6,7 +6,7 @@ export default function Cart() {
     <div className="container flex flex-col gap-4 p-8">
       <h1 className="text-center font-bold">Kosár tartalma</h1>
 
-      <div className="flex-1 grid items-center">
+      <div className="grid flex-1 items-center">
         <OrderSummaryCard />
       </div>
 
