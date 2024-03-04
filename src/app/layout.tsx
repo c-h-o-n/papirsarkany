@@ -29,12 +29,15 @@ export default function RootLayout({
       className="scroll-pt-[68px] scroll-smooth sm:scroll-pt-[72px]"
       data-app-version={publicRuntimeConfig.appVersion}
     >
-      <Script
-        id="truendoAutoBlock"
-        type="text/javascript"
-        src="https://cdn.priv.center/pc/truendo_cmp.pid.js"
-        data-siteid="88306c5c-ce8c-45d7-8daf-47e99864c1b8"
-      />
+      <head>
+        <Script
+          id="truendoAutoBlock"
+          type="text/javascript"
+          src="https://cdn.priv.center/pc/truendo_cmp.pid.js"
+          data-siteid="88306c5c-ce8c-45d7-8daf-47e99864c1b8"
+          strategy="beforeInteractive"
+        />
+      </head>
       <body className={`${inter.className} `}>
         <div className="flex min-h-screen flex-col">
           <Navbar />
