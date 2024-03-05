@@ -35,7 +35,6 @@ export default function RootLayout({
           type="text/javascript"
           src="https://cdn.priv.center/pc/truendo_cmp.pid.js"
           data-siteid="88306c5c-ce8c-45d7-8daf-47e99864c1b8"
-          strategy="beforeInteractive"
         />
       </head>
       <body className={`${inter.className} `}>
