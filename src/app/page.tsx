@@ -103,7 +103,7 @@ export default function Home() {
 
             <div className=" text-center font-semibold">
               <h4>mail@papirsarkany.hu</h4>
-              <h4>+3630 9754 786</h4>
+              <h4>+36 30 9754 786</h4>
             </div>
 
             <iframe
