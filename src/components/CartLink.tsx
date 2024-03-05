@@ -11,7 +11,7 @@ export default function CartLink() {
   const totalPrice = useCartStore((state) => state.totalPrice);
 
   return (
-    <div className="d-dropdown sm:d-dropdown-end ">
+    <div className="d-dropdown sm:d-dropdown-end p-0">
       <label tabIndex={0} className="d-btn d-btn-circle d-btn-ghost">
         <div className="d-indicator">
           <CartIcon
