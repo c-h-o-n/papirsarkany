@@ -3,15 +3,15 @@ import Link from 'next/link';
 import CartLink from './CartLink';
 import HomeIcon from '@/assets/home.svg';
 import HamburgerIcon from '@/assets/hamburger.svg';
-import MobileNavLink from './MobileNavLink';
+import MenuItem from './MenuItem';
 
 export default function Navbar() {
   return (
     <div className="sticky top-0 z-10">
-      <div className="hidden sm:block">
+      <div className="hidden md:block">
         <DesktopNavbar />
       </div>
-      <div className="block sm:hidden">
+      <div className="block md:hidden">
         <MobileNavbar />
       </div>
     </div>
@@ -23,20 +23,22 @@ function DesktopNavbar() {
     <div className="d-navbar border-b-4 border-black bg-white">
       <div className="d-navbar-start gap-1">
         <Link
-          href={'/'}
+          href={'/#hello'}
           className="d-btn d-btn-ghost py-1 text-xl normal-case hover:!bg-sky-200"
         >
           <HomeIcon className="h-full" />
         </Link>
+        <ul className="d-menu d-menu-horizontal flex-nowrap gap-2 text-base font-extrabold">
+          <MenuItem href={'/#vallalkozas'}>A vállalkozásról</MenuItem>
+          <MenuItem href={'/#sarkany-keszites'}>Sárkány készítés</MenuItem>
+          <MenuItem href={'/#elerhetoseg'}>Elérhetőség</MenuItem>
+        </ul>
       </div>
       <div className="d-navbar-end">
         <ul className="d-menu d-menu-horizontal gap-2 text-base font-extrabold">
-          <li>
-            <Link href={'/sarkanyok'}>Sárkányok</Link>
-          </li>
-          <li>
-            <Link href={'/anyagok'}>Anyagok</Link>
-          </li>
+          <MenuItem href={'/sarkanyok'}>Sárkányok</MenuItem>
+
+          <MenuItem href={'/anyagok'}>Anyagok</MenuItem>
         </ul>
         <div className="flex-none">
           <CartLink />
@@ -58,12 +60,15 @@ function MobileNavbar() {
             tabIndex={0}
             className="d-menu d-dropdown-content z-[1] mt-5 w-52 rounded-box bg-base-100 p-2 shadow"
           >
-            <li>
-              <MobileNavLink href={'/sarkanyok'}>Sárkányok</MobileNavLink>
-            </li>
-            <li>
-              <MobileNavLink href={'/anyagok'}>Anyagok</MobileNavLink>
-            </li>
+            <MenuItem href={'/sarkanyok'}>Sárkányok</MenuItem>
+
+            <MenuItem href={'/anyagok'}>Anyagok</MenuItem>
+
+            <MenuItem href={'/#vallalkozas'}>A vállalkozásról</MenuItem>
+
+            <MenuItem href={'/#sarkany-keszites'}>Sárkány készítés</MenuItem>
+
+            <MenuItem href={'/#elerhetoseg'}>Elérhetőség</MenuItem>
           </ul>
         </div>
 
