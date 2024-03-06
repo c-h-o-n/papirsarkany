@@ -34,7 +34,7 @@ export default async function Kite({ params }: { params: { slug: string } }) {
 function DesktopKitePage({ kite }: { kite: Kite }) {
   return (
     <div className="grid h-full grid-cols-3 gap-4 p-8">
-      <div className="flex flex-col items-center space-y-4 col-span-2">
+      <div className="col-span-2 flex flex-col items-center space-y-4">
         {kite.imageUrl && (
           <img
             className="h-3/4 rounded-lg object-cover"

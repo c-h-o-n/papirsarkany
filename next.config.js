@@ -5,7 +5,6 @@ function getAppVersion() {
   return version;
 }
 
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   webpack(config) {

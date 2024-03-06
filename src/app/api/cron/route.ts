@@ -9,8 +9,8 @@ export async function GET(req: Request) {
       status: 401,
     });
   }
-  
+
   await getKites();
-  
+
   return NextResponse.json({ ok: true });
 }

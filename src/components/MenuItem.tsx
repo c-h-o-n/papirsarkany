@@ -10,7 +10,10 @@ type MenuItemProps = LinkProps & {
 export default function MenuItem(props: MenuItemProps) {
   const { children } = props;
   return (
-    <li className='text-sm lg:text-base' onClick={(e) => e.currentTarget.blur()}>
+    <li
+      className="text-sm lg:text-base"
+      onClick={(e) => e.currentTarget.blur()}
+    >
       <Link {...props}>{children}</Link>
     </li>
   );
