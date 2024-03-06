@@ -25,7 +25,7 @@ function DesktopNavbar() {
         <Link
           href={'/#hello'}
           className="d-btn d-btn-ghost py-1 text-xl normal-case hover:!bg-sky-200"
-          aria-label='home'
+          aria-label="home"
         >
           <HomeIcon className="h-full" />
         </Link>
