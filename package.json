@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "postbuild": "next-sitemap",
     "start": "next start",
     "lint": "next lint",
     "format": "prettier src --write"
@@ -25,6 +26,7 @@
     "eslint": "8.48.0",
     "eslint-config-next": "^14.0.4",
     "next": "^14.0.4",
+    "next-sitemap": "^4.2.3",
     "postcss": "^8.4.29",
     "prettier": "^3.0.3",
     "prettier-plugin-tailwindcss": "^0.5.4",
