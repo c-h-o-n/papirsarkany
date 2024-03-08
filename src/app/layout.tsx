@@ -8,6 +8,7 @@ import getConfig from 'next/config';
 import './globals.css';
 import Navbar from '@/components/Navbar';
 import CartStoreRehydrate from '@/components/CartStoreRehydrate';
+import TruendoScript from '@/components/TruendoScript';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -30,12 +31,7 @@ export default function RootLayout({
       data-app-version={publicRuntimeConfig.appVersion}
     >
       <head>
-        <Script
-          id="truendoAutoBlock"
-          type="text/javascript"
-          src="https://cdn.priv.center/pc/truendo_cmp.pid.js"
-          data-siteid="88306c5c-ce8c-45d7-8daf-47e99864c1b8"
-        />
+        <TruendoScript />
       </head>
       <body className={`${inter.className} `}>
         <div className="flex min-h-screen flex-col">
