@@ -44,14 +44,14 @@ export default function TwineCard({ twine }: Props) {
                 onChange={(e) => setLength(+e.target.value)}
               />
               <span className="d-join-item inline-flex items-center justify-center rounded-r-full bg-base-200 px-4 ">
-                cm
+                m
               </span>
             </div>
           </div>
         </div>
         <h2>
           {currencyFormatter(
-            selectedDiameter.pricePerMeter * Math.ceil(length / 100),
+            selectedDiameter.pricePerMeter * Math.ceil(length),
           )}{' '}
           <span className="text-base text-gray-400">
             ({pricePerMeterFormatter(selectedDiameter.pricePerMeter)})
@@ -61,8 +61,8 @@ export default function TwineCard({ twine }: Props) {
           product={{
             ...twine,
             id: `${twine.id}`,
-            name: `${twine.name} (${selectedDiameter.name} - ${length}cm)`,
-            price: selectedDiameter.pricePerMeter * Math.ceil(length / 100),
+            name: `${twine.name} (${selectedDiameter.name} - ${length}m)`,
+            price: selectedDiameter.pricePerMeter * Math.ceil(length),
           }}
         />
       </Card>

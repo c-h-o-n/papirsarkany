@@ -22,10 +22,12 @@ const config: Config = {
     themes: [{light: {
       ...lightTheme,
       'primary': '#0ea5e9',
-      'success-content': '#f8f8f8',
       'primary-content': '#ffffff',
+
+      'success-content': '#f8f8f8',
+
       "error": "#ef5258",
-    }}],
+    }}],  
   },
 };
 export default config;

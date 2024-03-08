@@ -6,12 +6,12 @@ import CartIcon from '@/assets/cart.svg';
 import { currencyFormatter } from '@/lib/formatters';
 import { useCartStore } from '@/store/useCartStore';
 
-export default function CartLink() {
+export default function CartDropDown() {
   const totalItems = useCartStore((state) => state.totalItems);
   const totalPrice = useCartStore((state) => state.totalPrice);
 
   return (
-    <div className="d-dropdown sm:d-dropdown-end ">
+    <div className="d-dropdown p-0 sm:d-dropdown-end">
       <label tabIndex={0} className="d-btn d-btn-circle d-btn-ghost">
         <div className="d-indicator">
           <CartIcon

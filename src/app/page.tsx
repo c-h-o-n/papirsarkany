@@ -1,14 +1,11 @@
-import Splash from '@/components/Splash';
-import AboutBusinessSection from '@/components/AboutBusinessSection';
-import CraftingSection from '@/components/CraftingSection';
-import ContactSection from '@/components/ContactSection';
-import HomeSection from '@/components/HomeSection';
-import AboutBusinessIcon from '@/assets/about-business.svg';
 import Link from 'next/link';
+
+import Splash from '@/components/Splash';
+import HomeSection from '@/components/HomeSection';
+import Card from '@/components/Card';
+import AboutBusinessIcon from '@/assets/about-business.svg';
 import ContactIcon from '@/assets/contact.svg';
 import CraftingIcon from '@/assets/crafting.svg';
-
-import Card from '@/components/Card';
 
 export default function Home() {
   return (
@@ -103,7 +100,7 @@ export default function Home() {
 
             <div className=" text-center font-semibold">
               <h4>mail@papirsarkany.hu</h4>
-              <h4>+3630 9754 786</h4>
+              <h4>+36 30 9754 786</h4>
             </div>
 
             <iframe
@@ -113,9 +110,6 @@ export default function Home() {
             />
           </HomeSection.Content>
         </HomeSection>
-        {/* <AboutBusinessSection />
-        <CraftingSection />
-        <ContactSection /> */}
       </div>
     </div>
   );
