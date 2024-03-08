@@ -7,14 +7,13 @@ type MenuItemProps = LinkProps & {
   children?: ReactNode;
 };
 
-export default function MenuItem(props: MenuItemProps) {
+export default function NavMenuItem(props: MenuItemProps) {
   const { children } = props;
   return (
-    <li
-      className="text-sm lg:text-base"
-      onClick={(e) => e.currentTarget.blur()}
-    >
-      <Link {...props}>{children}</Link>
+    <li className="text-sm lg:text-base">
+      <Link {...props} onClick={(e) => e.currentTarget.blur()}>
+        {children}
+      </Link>
     </li>
   );
 }
