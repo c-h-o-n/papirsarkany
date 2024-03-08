@@ -1,9 +1,10 @@
 import Link from 'next/link';
 
-import CartLink from './CartLink';
+import CartDropDown from './CartDropDown';
 import HomeIcon from '@/assets/home.svg';
 import HamburgerIcon from '@/assets/hamburger.svg';
-import MenuItem from './MenuItem';
+import NavMenuItem from './NavMenuItem';
+import HamburgerDropDown from './HamburgerDropDown';
 
 export default function Navbar() {
   return (
@@ -30,19 +31,21 @@ function DesktopNavbar() {
           <HomeIcon className="h-full" />
         </Link>
         <ul className="d-menu d-menu-horizontal flex-nowrap gap-2 text-base font-extrabold">
-          <MenuItem href={'/#vallalkozas'}>A vállalkozásról</MenuItem>
-          <MenuItem href={'/#sarkany-keszites'}>Sárkány készítés</MenuItem>
-          <MenuItem href={'/#elerhetoseg'}>Elérhetőség</MenuItem>
+          <NavMenuItem href={'/#vallalkozas'}>A vállalkozásról</NavMenuItem>
+          <NavMenuItem href={'/#sarkany-keszites'}>
+            Sárkány készítés
+          </NavMenuItem>
+          <NavMenuItem href={'/#elerhetoseg'}>Elérhetőség</NavMenuItem>
         </ul>
       </div>
       <div className="d-navbar-end">
         <ul className="d-menu d-menu-horizontal gap-2 text-base font-extrabold">
-          <MenuItem href={'/sarkanyok'}>Sárkányok</MenuItem>
+          <NavMenuItem href={'/sarkanyok'}>Sárkányok</NavMenuItem>
 
-          <MenuItem href={'/anyagok'}>Anyagok</MenuItem>
+          <NavMenuItem href={'/anyagok'}>Anyagok</NavMenuItem>
         </ul>
         <div className="flex-none">
-          <CartLink />
+          <CartDropDown />
         </div>
       </div>
     </div>
@@ -53,28 +56,10 @@ function MobileNavbar() {
   return (
     <div className="d-navbar sticky top-0 border-b-4 border-black bg-white">
       <div className="d-navbar-start gap-1">
-        <div className="d-dropdown">
-          <label tabIndex={0} className="d-btn d-btn-ghost">
-            <HamburgerIcon className="h-5 w-5" />
-          </label>
-          <ul
-            tabIndex={0}
-            className="d-menu d-dropdown-content z-[1] mt-5 w-52 rounded-box bg-base-100 p-2 shadow"
-          >
-            <MenuItem href={'/sarkanyok'}>Sárkányok</MenuItem>
-
-            <MenuItem href={'/anyagok'}>Anyagok</MenuItem>
-
-            <MenuItem href={'/#vallalkozas'}>A vállalkozásról</MenuItem>
-
-            <MenuItem href={'/#sarkany-keszites'}>Sárkány készítés</MenuItem>
-
-            <MenuItem href={'/#elerhetoseg'}>Elérhetőség</MenuItem>
-          </ul>
-        </div>
+        <HamburgerDropDown />
 
         <div className="flex-none">
-          <CartLink />
+          <CartDropDown />
         </div>
       </div>
 

@@ -6,7 +6,7 @@ import CartIcon from '@/assets/cart.svg';
 import { currencyFormatter } from '@/lib/formatters';
 import { useCartStore } from '@/store/useCartStore';
 
-export default function CartLink() {
+export default function CartDropDown() {
   const totalItems = useCartStore((state) => state.totalItems);
   const totalPrice = useCartStore((state) => state.totalPrice);
 
