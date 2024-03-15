@@ -1,7 +1,9 @@
 import AddToCartButton from '@/components/AddToCartButton';
 import { getKitebySlug, getKites } from '@/lib/db';
 import { currencyFormatter } from '@/lib/formatters';
+import { getKiteStaticImageData } from '@/lib/kiteImages';
 import { Kite } from '@/lib/types';
+import Image from 'next/image';
 import { redirect } from 'next/navigation';
 
 export async function generateStaticParams() {
@@ -36,10 +38,11 @@ function DesktopKitePage({ kite }: { kite: Kite }) {
     <div className="grid h-full grid-cols-3 gap-4 p-8">
       <div className="col-span-2 flex flex-col items-center space-y-4">
         {kite.imageUrl && (
-          <img
+          <Image
             className="h-3/4 rounded-lg object-cover"
-            src={kite.imageUrl}
+            src={getKiteStaticImageData(kite.imageUrl)}
             alt={kite.name}
+            placeholder="blur"
           />
         )}
 
@@ -85,11 +88,13 @@ function MobileLayout({ kite }: { kite: Kite }) {
             </h2>
           )}
         </div>
+
         {kite.imageUrl && (
-          <img
+          <Image
             className="mx-auto h-3/4 rounded-lg object-cover"
-            src={kite.imageUrl}
+            src={getKiteStaticImageData(kite.imageUrl)}
             alt={kite.name}
+            placeholder="blur"
           />
         )}
 

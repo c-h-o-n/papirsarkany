@@ -4,6 +4,9 @@ import Card from './Card';
 import AddToCartButton from './AddToCartButton';
 import { currencyFormatter } from '@/lib/formatters';
 import { Kite } from '@/lib/types';
+import Image from 'next/image';
+
+import { getKiteStaticImageData } from '@/lib/kiteImages';
 
 export default function KiteCard({ kite }: { kite: Kite }) {
   return (
@@ -21,10 +24,12 @@ export default function KiteCard({ kite }: { kite: Kite }) {
           </div>
 
           {kite.imageUrl && (
-            <img
-              src={kite.imageUrl}
+            <Image
+              src={getKiteStaticImageData(kite.imageUrl)}
+              placeholder="blur"
               alt={kite.name}
-              className="mx-auto mb-6 rounded-lg"
+              loading="lazy"
+              className="mx-auto mb-6 rounded-lg object-cover"
             />
           )}
 
