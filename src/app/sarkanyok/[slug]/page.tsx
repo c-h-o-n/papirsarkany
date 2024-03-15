@@ -39,7 +39,7 @@ function DesktopKitePage({ kite }: { kite: Kite }) {
       <div className="col-span-2 flex flex-col items-center space-y-4">
         {kite.imageUrl && (
           <Image
-            className="h-3/4 rounded-lg object-cover"
+            className="h-3/4 w-full max-w-fit rounded-lg object-cover"
             src={getKiteStaticImageData(kite.imageUrl)}
             alt={kite.name}
             placeholder="blur"
