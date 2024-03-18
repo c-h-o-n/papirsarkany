@@ -7,13 +7,7 @@ import { useCheckoutFormStore } from '@/store/useCheckoutFormStore';
 import { useStepperStore } from '@/store/useStepperStore';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { redirect, useRouter } from 'next/navigation';
-import {
-  Children,
-  ReactNode,
-  cloneElement,
-  isValidElement,
-  useState,
-} from 'react';
+import { Children, ReactNode } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { boolean, object, string } from 'yup';
 
@@ -47,7 +41,7 @@ export default function CheckoutStepper({ children }: Props) {
     object({
       email: string()
         .required(({ label }) => `${label} kötelező mező`)
-        .email()
+        .email('Érvénytelen email cím')
         .label('Email'),
       firstName: string()
         .required(({ label }) => `${label} kötelező mező`)
@@ -58,11 +52,10 @@ export default function CheckoutStepper({ children }: Props) {
       phoneNumber: string()
         .required(({ label }) => `${label} kötelező mező`)
         .matches(
-          /^(?:\+36|06)/,
-          'Érvényes magyar telefonszámnak kell lennie pl.: +36123456789 vagy 06123456789',
+          /^(?:\+36|06)(?:(?:20|30|31|32|33|34|35|36|70|71|72|73|74|75|76|77|78|79|90|91|92|93|94|95|96|97|99)\d{7})/,
+          'Érvényes magyar telefonszámnak kell lennie pl.: +36201234567 vagy 06201234567',
         )
         .label('Telefonszám'),
-
       shippingOption: string()
         .required(({ label }) => `Kérlek válassz egy ${label.toLowerCase()}ot`)
         .ensure()
