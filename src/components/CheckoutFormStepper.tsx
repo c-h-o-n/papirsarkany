@@ -10,12 +10,13 @@ import { redirect, useRouter } from 'next/navigation';
 import { Children, ReactNode } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { boolean, object, string } from 'yup';
+import '@/lib/yupConfig';
 
-type Props = {
+type CheckoutStepperProps = {
   children: ReactNode;
 };
 
-export default function CheckoutStepper({ children }: Props) {
+export default function CheckoutStepper({ children }: CheckoutStepperProps) {
   const router = useRouter();
 
   const cart = useCartStore((state) => state.cart);
@@ -39,18 +40,11 @@ export default function CheckoutStepper({ children }: Props) {
 
   const schema: FormSchemaArray = [
     object({
-      email: string()
-        .required(({ label }) => `${label} kötelező mező`)
-        .email('Érvénytelen email cím')
-        .label('Email'),
-      firstName: string()
-        .required(({ label }) => `${label} kötelező mező`)
-        .label('Keresztnév'),
-      lastName: string()
-        .required(({ label }) => `${label} kötelező mező`)
-        .label('Vezetéknév'),
+      email: string().required().email().label('Email'),
+      firstName: string().required().label('Keresztnév'),
+      lastName: string().required().label('Vezetéknév'),
       phoneNumber: string()
-        .required(({ label }) => `${label} kötelező mező`)
+        .required()
         .matches(
           /^(?:\+36|06)(?:(?:20|30|31|32|33|34|35|36|70|71|72|73|74|75|76|77|78|79|90|91|92|93|94|95|96|97|99)\d{7})/,
           'Érvényes magyar telefonszámnak kell lennie pl.: +36201234567 vagy 06201234567',
@@ -64,22 +58,19 @@ export default function CheckoutStepper({ children }: Props) {
       shippingPostcode: string()
         .when('shippingOption', {
           is: 'Postai szállítás',
-          then: (schema) =>
-            schema.required(({ label }) => `${label} kötelező mező`),
+          then: (schema) => schema.required(),
         })
         .label('Irányítószám'),
       shippingCity: string()
         .when('shippingOption', {
           is: 'Postai szállítás',
-          then: (schema) =>
-            schema.required(({ label }) => `${label} kötelező mező`),
+          then: (schema) => schema.required(),
         })
         .label('Város'),
       shippingAddress: string()
         .when('shippingOption', {
           is: 'Postai szállítás',
-          then: (schema) =>
-            schema.required(({ label }) => `${label} kötelező mező`),
+          then: (schema) => schema.required(),
         })
         .label('Cím'),
       shippingSubaddress: string().label('Másodlagos cím'),
@@ -90,15 +81,9 @@ export default function CheckoutStepper({ children }: Props) {
         .ensure()
         .label('Fizetési mód'),
       isSameAdressAsShipping: boolean().default(true),
-      billingPostcode: string()
-        .required(({ label }) => `${label} kötelező mező`)
-        .label('Irányítószám'),
-      billingCity: string()
-        .required(({ label }) => `${label} kötelező mező`)
-        .label('Város'),
-      billingAddress: string()
-        .required(({ label }) => `${label} kötelező mező`)
-        .label('Cím'),
+      billingPostcode: string().required().label('Irányítószám'),
+      billingCity: string().required().label('Város'),
+      billingAddress: string().required().label('Cím'),
       billingSubaddress: string().label('Másodlagos cím'),
     }),
     object({
