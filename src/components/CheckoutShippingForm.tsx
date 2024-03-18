@@ -80,7 +80,7 @@ export default function CheckoutShippingForm() {
         </label>
         <input
           type="text"
-          placeholder="+36123456789"
+          placeholder="+36201234567"
           className="d-input d-input-bordered"
           {...register('phoneNumber')}
         />
