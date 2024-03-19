@@ -171,7 +171,7 @@ export default function CheckoutStepper({ children }: CheckoutStepperProps) {
     <div className={`container p-8 ${!isLast && 'max-w-screen-md'}`}>
       <FormProvider {...methods}>
         <form
-          onSubmit={methods.handleSubmit((data) => onSubmit(data), console.log)}
+          onSubmit={methods.handleSubmit((data) => onSubmit(data))}
         >
           {Children.toArray(children)[step]}
         </form>
