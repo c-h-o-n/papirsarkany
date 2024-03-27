@@ -4,7 +4,7 @@ import { currencyFormatter } from '@/lib/formatters';
 import { getKiteStaticImageData } from '@/lib/kiteImages';
 import { Kite } from '@/lib/types';
 import Image from 'next/image';
-import { redirect } from 'next/navigation';
+import { notFound } from 'next/navigation';
 
 export async function generateStaticParams() {
   const kites = await getKites();
@@ -17,8 +17,9 @@ export async function generateStaticParams() {
 export default async function Kite({ params }: { params: { slug: string } }) {
   const kite = await getKitebySlug(params.slug);
 
+  // TODO remove this after BUG is fixed in not-found.tsx
   if (!kite) {
-    redirect('/404');
+    notFound();
   }
 
   return (

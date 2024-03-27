@@ -90,14 +90,14 @@ export async function getKites(
   })) as Kite[];
 }
 
-export async function getKitebySlug(slug: string): Promise<Kite> {
+export async function getKitebySlug(slug: string): Promise<Kite | undefined> {
   return (await prisma.products.findFirst({
     where: {
       slug: {
         equals: slug,
       },
     },
-  })) as Kite;
+  })) as Kite | undefined;
 }
 
 export async function getRods(
