@@ -2,9 +2,14 @@ import { getKites } from '@/lib/db';
 
 import MasonryContainer from '@/components/MasonryContainer';
 import KiteCard from '@/components/KiteCard';
+import { getAllKites } from '@/lib/sanity';
 
 export default async function Kites() {
-  const kites = await getKites({ orderBy: { price: 'asc' } });
+  // const kites = await getKites({ orderBy: { price: 'asc' } });
+  const kites = await getAllKites();
+
+
+console.log({kites: kites.map(k => k._id)})
 
   return (
     <div className="container p-8">
@@ -15,7 +20,7 @@ export default async function Kites() {
 
       <MasonryContainer>
         {kites.map((kite) => (
-          <KiteCard kite={kite} key={kite.id} />
+          <KiteCard kite={kite} key={kite._id} />
         ))}
       </MasonryContainer>
     </div>

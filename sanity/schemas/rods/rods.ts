@@ -2,7 +2,7 @@ import { defineField, defineType } from 'sanity';
 import productFields from '../../productFields';
 
 export default defineType({
-  name: 'rods',
+  name: 'rod',
   type: 'document',
   title: 'Pálcák, rudak és csövek',
   fields: [
