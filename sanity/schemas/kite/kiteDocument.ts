@@ -1,12 +1,22 @@
 import { defineField, defineType } from 'sanity';
-import productFields from '../../productFields';
+import productFields from '../productFields';
 
 export default defineType({
   name: 'kite',
   type: 'document',
-  title: 'Sárkányok',
+  title: 'Egyzsinóros sárkány',
   fields: [
     ...productFields,
+    defineField({
+      name: 'slug',
+      type: 'slug',
+      title: 'Útvonal (slug)',
+      description: 'A termék ezen az útvonalon lesz elérhető.',
+      options: {
+        source: 'name',
+      },
+      validation: (rule) => rule.required(),
+    }),
     defineField({
       name: 'price',
       type: 'number',
@@ -40,7 +50,7 @@ export default defineType({
       type: 'boolean',
       title: 'Kezdő',
       description: '"Kezdőknek ajánlott!" felirat',
-      validation: (rule) => rule.required()
+      validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'description',

@@ -3,7 +3,8 @@ import { defineArrayMember, defineType } from 'sanity';
 export default defineType({
   name: 'lengths',
   type: 'array',
-  validation: (rule) => rule.required(),
+  description: 'Rendelhető hossz cm-ben.',
+  validation: (rule) => rule.required().unique(),
   of: [
     defineArrayMember({
       name: 'value',

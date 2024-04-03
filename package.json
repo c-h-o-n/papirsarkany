@@ -9,7 +9,7 @@
     "start": "next start",
     "lint": "next lint",
     "format": "prettier src --write",
-    "typegen": "rm -rf ./sanity/schema.json && npx sanity schema extract --path sanity/schema.json && npx sanity typegen generate --enforce-required-fields"
+    "typegen": "rm -rf ./sanity/schema.json && npx sanity schema extract --path sanity/schema.json && npx sanity typegen generate"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.1",

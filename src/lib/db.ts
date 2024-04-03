@@ -3,11 +3,6 @@ import prisma from './prisma';
 import {
   CartItem,
   FormSchemaObject,
-  Kite,
-  Reel,
-  Rod,
-  Tube,
-  Twine,
 } from './types';
 import { prismaPaymentModemMap, prismaShippingModeMap } from './formatters';
 
@@ -65,7 +60,7 @@ export async function createOrder(
     const orderItemsToCreate: Prisma.OrderItemsUncheckedCreateInput[] = [];
     for (const product of products) {
       orderItemsToCreate.push({
-        productId: product.id,
+        productId: product._id,
         orderId: order.id,
         quantity: product.quantity,
       });
@@ -79,67 +74,3 @@ export async function createOrder(
   });
 }
 
-export async function getKites(
-  args?: Omit<Prisma.ProductsFindManyArgs, 'where'>,
-): Promise<Kite[]> {
-  return (await prisma.products.findMany({
-    where: {
-      category: 'Egyzsinoros',
-    },
-    ...args,
-  })) as Kite[];
-}
-
-export async function getKitebySlug(slug: string): Promise<Kite | undefined> {
-  return (await prisma.products.findFirst({
-    where: {
-      slug: {
-        equals: slug,
-      },
-    },
-  })) as Kite | undefined;
-}
-
-export async function getRods(
-  args?: Omit<Prisma.ProductsFindManyArgs, 'where'>,
-): Promise<Rod[] | undefined> {
-  return (await prisma.products.findMany({
-    where: {
-      category: 'PalcakRudak',
-    },
-    ...args,
-  })) as Rod[] | undefined;
-}
-
-export async function getReels(
-  args?: Omit<Prisma.ProductsFindManyArgs, 'where'>,
-): Promise<Reel[] | undefined> {
-  return (await prisma.products.findMany({
-    where: {
-      category: 'Zsinortartok',
-    },
-    ...args,
-  })) as Reel[] | undefined;
-}
-
-export async function getTubes(
-  args?: Omit<Prisma.ProductsFindManyArgs, 'where'>,
-): Promise<Tube[] | undefined> {
-  return (await prisma.products.findMany({
-    where: {
-      category: 'Csovek',
-    },
-    ...args,
-  })) as Tube[] | undefined;
-}
-
-export async function getTwines(
-  args?: Omit<Prisma.ProductsFindManyArgs, 'where'>,
-): Promise<Twine[] | undefined> {
-  return (await prisma.products.findMany({
-    where: {
-      category: 'Zsinorok',
-    },
-    ...args,
-  })) as Twine[] | undefined;
-}

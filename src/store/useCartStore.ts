@@ -33,14 +33,16 @@ export const useCartStore = create(
           return;
         }
         const cart = get().cart;
-        const cartItem = cart.find((item) => item.id === product.id);
+        const cartItem = cart.find(
+          (item) => item._id === product._id && item.name === product.name,
+        );
 
         if (!cartItem) {
           return;
         }
 
         const updatedCart = cart.map((item) =>
-          item.id === product.id ? { ...item, quantity } : item,
+          item._id === product._id ? { ...item, quantity } : item,
         );
 
         set((state) => ({
@@ -52,10 +54,10 @@ export const useCartStore = create(
       },
       addToCart(product) {
         const cart = get().cart;
-        const cartItem = cart.find((item) => item.id === product.id);
+        const cartItem = cart.find((item) => item._id === product._id);
         if (cartItem) {
           const updatedCart = cart.map((item) =>
-            item.id === product.id
+            item._id === product._id
               ? { ...item, quantity: (item.quantity as number) + 1 }
               : item,
           );
@@ -63,7 +65,7 @@ export const useCartStore = create(
           set((state) => ({
             cart: updatedCart,
             totalItems: state.totalItems + 1,
-            totalPrice: state.totalPrice + product.price,
+            totalPrice: state.totalPrice + (product.price),
           }));
           return;
         }
@@ -73,22 +75,22 @@ export const useCartStore = create(
         set((state) => ({
           cart: updatedCart,
           totalItems: state.totalItems + 1,
-          totalPrice: state.totalPrice + product.price,
+          totalPrice: state.totalPrice + (product.price),
         }));
       },
       decreaseItemQuantity(product) {
         const cart = get().cart;
-        const cartItem = cart.find((item) => item.id === product.id);
+        const cartItem = cart.find((item) => item._id === product._id);
         if (cartItem?.quantity! > 1) {
           const updatedCart = cart.map((item) =>
-            item.id === product.id
+            item._id === product._id
               ? { ...item, quantity: item.quantity - 1 }
               : item,
           );
           set((state) => ({
             cart: updatedCart,
             totalItems: state.totalItems - 1,
-            totalPrice: state.totalPrice - product.price,
+            totalPrice: state.totalPrice - (product.price),
           }));
           return;
         }
@@ -97,9 +99,10 @@ export const useCartStore = create(
       },
       removeFromCart(product) {
         set((state) => ({
-          cart: state.cart.filter((item) => item.id !== product.id),
+          cart: state.cart.filter((item) => item._id !== product._id),
           totalItems: state.totalItems - product.quantity,
-          totalPrice: state.totalPrice - product.price * product.quantity,
+          totalPrice:
+            state.totalPrice - (product.price) * product.quantity,
         }));
       },
       resetCart() {

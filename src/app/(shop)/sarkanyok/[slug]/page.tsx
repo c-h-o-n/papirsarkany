@@ -1,21 +1,27 @@
 import AddToCartButton from '@/components/AddToCartButton';
-import { getKitebySlug, getKites } from '@/lib/db';
+
 import { currencyFormatter } from '@/lib/formatters';
 import { getKiteStaticImageData } from '@/lib/kiteImages';
-import { Kite } from '@/lib/types';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
+import { getAllKites, getKiteBySlug } from '@/lib/sanity';
+import { Kite } from '@sanity/lib/sanity.types';
+import { WithImageAsset } from '@/lib/types';
 
-export async function generateStaticParams() {
-  const kites = await getKites();
+type Params = {
+  slug: string
+}
+
+export async function generateStaticParams(): Promise<Partial<Params>[]> {
+  const kites = await getAllKites();
 
   return kites.map((kite) => ({
-    slug: kite.slug,
+    slug: kite.slug?.current,
   }));
 }
 
-export default async function Kite({ params }: { params: { slug: string } }) {
-  const kite = await getKitebySlug(params.slug);
+export default async function Kite({ params }: { params: Params }) {
+  const kite = await getKiteBySlug(params.slug);
 
   // TODO remove this after BUG is fixed in not-found.tsx
   if (!kite) {
@@ -34,20 +40,23 @@ export default async function Kite({ params }: { params: { slug: string } }) {
   );
 }
 
-function DesktopKitePage({ kite }: { kite: Kite }) {
+function DesktopKitePage({ kite }: { kite: WithImageAsset<Kite> }) {
   return (
     <div className="grid h-full grid-cols-3 gap-4 p-8">
       <div className="col-span-2 flex flex-col items-center space-y-4">
-        {kite.imageUrl && (
+        {kite.image && (
           <Image
             className="h-3/4 w-full max-w-fit rounded-lg object-cover"
-            src={getKiteStaticImageData(kite.imageUrl)}
-            alt={kite.name}
+            src={kite.image.asset?.url || 'no-url'}
+            width={kite.image.asset?.metadata?.dimensions?.width}
+            height={kite.image.asset?.metadata?.dimensions?.height}
+            alt={kite.name || 'no-name'}
             placeholder="blur"
+            blurDataURL={kite.image.asset?.metadata?.blurHash}
           />
         )}
 
-        {kite.properties?.isBeginner && (
+        {kite.isBeginner && (
           <h2 className="text-center font-bold text-primary underline underline-offset-8">
             Kezdőknek ajánlott!
           </h2>
@@ -57,63 +66,64 @@ function DesktopKitePage({ kite }: { kite: Kite }) {
       <div className="space-y-4 text-3xl">
         <div className="space-y-2 text-left">
           <h1 className="font-bold">{kite.name}</h1>
-          <div className="font-bold text-primary">
-            {currencyFormatter(kite.price)}
-          </div>
+          {kite.price && (
+            <div className="font-bold text-primary">
+              {currencyFormatter(kite.price)}
+            </div>
+          )}
           <AddToCartButton product={kite} />
         </div>
 
         <div className="space-y-1">
-          {kite.properties?.size && <h3>Méret: {kite.properties.size}</h3>}
-          {kite.properties?.material && (
-            <h3>Anyag: {kite.properties.material}</h3>
-          )}
-          {kite.properties?.windSpeed && (
-            <h3>Szél: {kite.properties.windSpeed}</h3>
-          )}
+          {kite.size && <h3>Méret: {kite.size}</h3>}
+          <h3>Anyag:{kite.materials?.map((material) => material)}</h3>
+          {kite.windSpeed && <h3>Szél: {kite.windSpeed}</h3>}
         </div>
       </div>
     </div>
   );
 }
 
-function MobileLayout({ kite }: { kite: Kite }) {
+function MobileLayout({ kite }: { kite: WithImageAsset<Kite> }) {
   return (
     <div className="h-full space-y-4 p-8">
       <div className="space-y-4 text-center">
         <div>
           <h1 className="font-bold">{kite.name}</h1>
-          {kite.properties?.isBeginner && (
+          {kite.isBeginner && (
             <h2 className=" font-bold text-primary underline underline-offset-8">
               Kezdőknek ajánlott!
             </h2>
           )}
         </div>
 
-        {kite.imageUrl && (
+        {kite.image && (
           <Image
             className="mx-auto h-3/4 rounded-lg object-cover"
-            src={getKiteStaticImageData(kite.imageUrl)}
-            alt={kite.name}
+            src={kite.image.asset?.url || 'no-url'}
+            width={kite.image.asset?.metadata?.dimensions?.width}
+            height={kite.image.asset?.metadata?.dimensions?.height}
+            alt={kite.name || 'no-name'}
             placeholder="blur"
+            blurDataURL={kite.image.asset?.metadata?.blurHash}
           />
         )}
 
         <div className="space-y-2 ">
-          <h2 className="font-bold text-primary">
+          {kite.price && <h2 className="font-bold text-primary">
             {currencyFormatter(kite.price)}
-          </h2>
+          </h2>}
           <AddToCartButton product={kite} />
         </div>
       </div>
 
       <div className="space-y-1">
-        {kite.properties?.size && <h2>Méret: {kite.properties.size}</h2>}
-        {kite.properties?.material && (
-          <h2>Anyag: {kite.properties.material}</h2>
-        )}
-        {kite.properties?.windSpeed && (
-          <h2>Szél: {kite.properties.windSpeed}</h2>
+        {kite?.size && <h2>Méret: {kite.size}</h2>}
+
+          <h2>Anyag:{kite.materials?.map((material) => material)}</h2>
+
+        {kite.windSpeed && (
+          <h2>Szél: {kite.windSpeed}</h2>
         )}
       </div>
     </div>
