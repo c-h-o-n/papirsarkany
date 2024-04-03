@@ -1,5 +1,5 @@
-import { Products } from '@prisma/client';
 import { Asserts, BooleanSchema, StringSchema, ObjectSchema } from 'yup';
+import { SanityImageMetadata } from '@sanity/lib/sanity.types';
 
 export type ProductCategoryMapLiterals =
   | 'Egyzsinóros sárkány'
@@ -8,57 +8,26 @@ export type ProductCategoryMapLiterals =
   | 'Zsinórok'
   | 'Zsinórtartók';
 
-export type Kite = Products & {
-  price: number;
-  category: 'Egyzsinoros';
-  properties: {
-    isBeginner?: boolean;
-    size?: string;
-    material?: string;
-    windSpeed?: string;
-  };
+export type WithImageAsset<T> = Omit<T, 'image'> & {
+  image: {
+    asset: {
+      url: string | null;
+      metadata: SanityImageMetadata | null;
+    } | null;
+  } | null;
 };
 
-export type Reel = Products & {
-  price: number;
-  category: 'Zsinortartok';
-};
+export type Product = WithImageAsset<{
+  _id: string;
+  name?: string;
+  price?: number;
+}>;
 
-export type Rod = Products & {
-  category: 'PalcakRudak';
-  properties: {
-    diameters: {
-      name: string;
-      pricePerMeter: number;
-      lengths: number[];
-    }[];
-  };
-};
+export type ProductTypes = 'kite' | 'rod' | 'reel' | 'twine';
 
-export type Tube = Products & {
-  category: 'Csovek';
-  properties: {
-    diameters: {
-      name: string;
-      pricePerMeter: number;
-      lengths: number[];
-    }[];
-  };
+export type CartItem = Required<Product> & {
+  quantity: number;
 };
-
-export type Twine = Products & {
-  properties: {
-    diameters: [
-      {
-        name: string;
-        pricePerMeter: number;
-      },
-    ];
-    tensileStegth: string;
-  };
-};
-
-export type CartItem = Products & { price: number; quantity: number };
 
 export type FormSchemaArray = [
   ObjectSchema<{

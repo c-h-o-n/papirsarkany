@@ -82,7 +82,6 @@ export type Twine = {
   _updatedAt: string;
   _rev: string;
   name?: string;
-  slug?: Slug;
   image?: {
     asset?: {
       _ref: string;
@@ -104,7 +103,6 @@ export type Reel = {
   _updatedAt: string;
   _rev: string;
   name?: string;
-  slug?: Slug;
   image?: {
     asset?: {
       _ref: string;
@@ -116,11 +114,12 @@ export type Reel = {
     crop?: SanityImageCrop;
     _type: "image";
   };
+  price?: number;
 };
 
 export type Lengths = Array<number>;
 
-export type Diameters = Array<{
+export type RodDiameters = Array<{
   diameter?: number;
   pricePerMeter?: number;
   lengths?: Lengths;
@@ -134,7 +133,6 @@ export type Rod = {
   _updatedAt: string;
   _rev: string;
   name?: string;
-  slug?: Slug;
   image?: {
     asset?: {
       _ref: string;
@@ -146,7 +144,7 @@ export type Rod = {
     crop?: SanityImageCrop;
     _type: "image";
   };
-  diameters?: Diameters;
+  diameters?: RodDiameters;
 };
 
 export type KiteMaterials = Array<"ripstop" | "\xFCvegsz\xE1las m\u0171anyag" | "fa" | "nylon" | "bambusz" | "pap\xEDr">;
@@ -158,7 +156,6 @@ export type Kite = {
   _updatedAt: string;
   _rev: string;
   name?: string;
-  slug?: Slug;
   image?: {
     asset?: {
       _ref: string;
@@ -170,12 +167,19 @@ export type Kite = {
     crop?: SanityImageCrop;
     _type: "image";
   };
+  slug?: Slug;
   price?: number;
   size?: string;
   materials?: KiteMaterials;
   windSpeed?: "gyeng\xE9t\u0151l a k\xF6zepes sz\xE9lig" | "gyeng\xE9t\u0151l az \xE9l\xE9nk sz\xE9lig" | "k\xF6zepest\u0151l az \xE9l\xE9nk sz\xE9lig";
   isBeginner?: boolean;
   description?: string;
+};
+
+export type Slug = {
+  _type: "slug";
+  current?: string;
+  source?: string;
 };
 
 export type SanityImageCrop = {
@@ -234,17 +238,11 @@ export type SanityImageMetadata = {
   hasAlpha?: boolean;
   isOpaque?: boolean;
 };
-
-export type Slug = {
-  _type: "slug";
-  current?: string;
-  source?: string;
-};
 export declare const internalGroqTypeReferenceTo: unique symbol;
 
 // Source: ./src/lib/sanity.ts
 // Variable: getAllKitesQuery
-// Query: *[_type == "kite"] {..., image { asset -> { url, metadata } } } 
+// Query: *[_type == "kite"] { ..., image { asset -> { url, metadata } } }
 export type GetAllKitesQueryResult = Array<{
   _id: string;
   _type: "kite";
@@ -252,13 +250,13 @@ export type GetAllKitesQueryResult = Array<{
   _updatedAt: string;
   _rev: string;
   name?: string;
-  slug?: Slug;
   image: {
     asset: {
       url: string | null;
       metadata: SanityImageMetadata | null;
     } | null;
   } | null;
+  slug?: Slug;
   price?: number;
   size?: string;
   materials?: KiteMaterials;
@@ -267,29 +265,30 @@ export type GetAllKitesQueryResult = Array<{
   description?: string;
 }>;
 // Variable: getKiteBySlugQuery
-// Query:     *[_type == "kite" && slug == $slug] {      ...,      image {        asset-> {          metadata        }      }    }  
-export type GetKiteBySlugQueryResult = Array<{
+// Query: *[_type == "kite" && slug.current == $slug] { ..., image { asset-> { url, metadata } } }[0]
+export type GetKiteBySlugQueryResult = {
   _id: string;
   _type: "kite";
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
   name?: string;
-  slug?: Slug;
   image: {
     asset: {
+      url: string | null;
       metadata: SanityImageMetadata | null;
     } | null;
   } | null;
+  slug?: Slug;
   price?: number;
   size?: string;
   materials?: KiteMaterials;
   windSpeed?: "gyeng\xE9t\u0151l a k\xF6zepes sz\xE9lig" | "gyeng\xE9t\u0151l az \xE9l\xE9nk sz\xE9lig" | "k\xF6zepest\u0151l az \xE9l\xE9nk sz\xE9lig";
   isBeginner?: boolean;
   description?: string;
-}>;
+} | null;
 // Variable: getAllRodsQuery
-// Query:     *[_type == "rod"] {      ...,      image {        asset-> {          metadata        }      }    }  
+// Query: *[_type == "rod"] { ..., image { asset-> { url, metadata } } }
 export type GetAllRodsQueryResult = Array<{
   _id: string;
   _type: "rod";
@@ -297,16 +296,16 @@ export type GetAllRodsQueryResult = Array<{
   _updatedAt: string;
   _rev: string;
   name?: string;
-  slug?: Slug;
   image: {
     asset: {
+      url: string | null;
       metadata: SanityImageMetadata | null;
     } | null;
   } | null;
-  diameters?: Diameters;
+  diameters?: RodDiameters;
 }>;
 // Variable: getAllReelsQuery
-// Query:     *[_type == "reel"] {      ...,      image {        asset-> {          metadata        }      }    }  
+// Query: *[_type == "reel"] { ..., image { asset-> { url, metadata } } }
 export type GetAllReelsQueryResult = Array<{
   _id: string;
   _type: "reel";
@@ -314,15 +313,16 @@ export type GetAllReelsQueryResult = Array<{
   _updatedAt: string;
   _rev: string;
   name?: string;
-  slug?: Slug;
   image: {
     asset: {
+      url: string | null;
       metadata: SanityImageMetadata | null;
     } | null;
   } | null;
+  price?: number;
 }>;
 // Variable: getAllTwinesQuery
-// Query:     *[_type == "twine"] {      ...,      image {        asset-> {          metadata        }      }    }  
+// Query: *[_type == "twine"] { ..., image { asset-> { url, metadata } } }
 export type GetAllTwinesQueryResult = Array<{
   _id: string;
   _type: "twine";
@@ -330,9 +330,9 @@ export type GetAllTwinesQueryResult = Array<{
   _updatedAt: string;
   _rev: string;
   name?: string;
-  slug?: Slug;
   image: {
     asset: {
+      url: string | null;
       metadata: SanityImageMetadata | null;
     } | null;
   } | null;

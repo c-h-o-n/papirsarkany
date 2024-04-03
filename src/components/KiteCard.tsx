@@ -1,15 +1,17 @@
 import Link from 'next/link';
+import Image from 'next/image';
 
 import Card from './Card';
 import AddToCartButton from './AddToCartButton';
 import { currencyFormatter } from '@/lib/formatters';
+import { WithImageAsset } from '@/lib/types';
+import { Kite } from '@sanity/lib/sanity.types';
 
-import Image from 'next/image';
+type KiteCardProps = {
+  kite: WithImageAsset<Kite>;
+}
 
-import { getKiteStaticImageData } from '@/lib/kiteImages';
-import { GetAllKitesQueryResult } from '../../sanity/lib/sanity.types';
-
-export default function KiteCard({ kite }: { kite: GetAllKitesQueryResult[0] }) {
+export default function KiteCard({ kite }: KiteCardProps) {
   return (
     <div className="relative z-0 cursor-pointer">
       <Link href={`sarkanyok/${kite.slug?.current}`}>
@@ -24,9 +26,11 @@ export default function KiteCard({ kite }: { kite: GetAllKitesQueryResult[0] }) 
             )}
           </div>
 
+
+
           {kite.image && (
             <Image
-              src={kite.image.asset?.url || 'no-url'}
+              src={kite.image?.asset?.url || 'no-url'}
               width={kite.image.asset?.metadata?.dimensions?.width}
               height={kite.image.asset?.metadata?.dimensions?.height}
               placeholder="blur"
@@ -42,7 +46,7 @@ export default function KiteCard({ kite }: { kite: GetAllKitesQueryResult[0] }) 
           </h3>
 
           <div className="flex justify-end">
-            {/* <AddToCartButton product={kite} /> */}
+            <AddToCartButton product={kite} />
           </div>
         </Card>
       </Link>

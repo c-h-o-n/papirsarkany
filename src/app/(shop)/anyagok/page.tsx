@@ -1,16 +1,15 @@
 import MasonryContainer from '@/components/MasonryContainer';
 import ReelCard from '@/components/ReelCard';
 import RodCard from '@/components/RodCard';
-import TubeCard from '@/components/TubeCard';
 import TwineCard from '@/components/TwineCard';
-import { getReels, getRods, getTubes, getTwines } from '@/lib/db';
-import { ProductCategoryMap } from '@/lib/formatters';
+
+import { SanityCategoryMap } from '@/lib/formatters';
+import { getAllReels, getAllRods, getAllTwines } from '@/lib/sanity';
 
 export default async function Materials() {
-  const reels = await getReels({ orderBy: { price: 'asc' } });
-  const rods = await getRods({ orderBy: { name: 'asc' } });
-  const tubes = await getTubes({ orderBy: { name: 'asc' } });
-  const twines = await getTwines({ orderBy: { name: 'asc' } });
+  const reels = await getAllReels();
+  const rods = await getAllRods();
+  const twines = await getAllTwines();
 
   return (
     <div className="container space-y-8 p-8">
@@ -18,33 +17,10 @@ export default async function Materials() {
 
       {reels && reels.length > 0 && (
         <div className="space-y-4">
-          <h2 className="font-bold">{ProductCategoryMap['Zsinortartok']}</h2>
+          <h2 className="font-bold">{SanityCategoryMap['reel']}</h2>
           <MasonryContainer>
             {reels.map((reel) => (
-              <ReelCard reel={reel} key={reel.id} />
-            ))}
-          </MasonryContainer>
-        </div>
-      )}
-
-      {rods && rods.length && (
-        <div className="space-y-4">
-          <h2 className="font-bold">{ProductCategoryMap['PalcakRudak']}</h2>
-          <MasonryContainer>
-            {rods.map((rod) => (
-              <RodCard rod={rod} key={rod.id} />
-            ))}
-          </MasonryContainer>
-        </div>
-      )}
-
-      {tubes && tubes.length > 0 && (
-        <div className="space-y-4">
-          <h2 className="font-bold">{ProductCategoryMap['Csovek']}</h2>
-
-          <MasonryContainer>
-            {tubes.map((tube) => (
-              <TubeCard tube={tube} key={tube.id} />
+              <ReelCard reel={reel} key={reel._id} />
             ))}
           </MasonryContainer>
         </div>
@@ -52,11 +28,22 @@ export default async function Materials() {
 
       {twines && twines.length > 0 && (
         <div className="space-y-4">
-          <h2 className="font-bold">{ProductCategoryMap['Zsinorok']}</h2>
+          <h2 className="font-bold">{SanityCategoryMap['twine']}</h2>
 
           <MasonryContainer>
             {twines.map((twine) => (
-              <TwineCard twine={twine} key={twine.id} />
+              <TwineCard twine={twine} key={twine._id} />
+            ))}
+          </MasonryContainer>
+        </div>
+      )}
+
+      {rods && rods.length > 0 && (
+        <div className="space-y-4">
+          <h2 className="font-bold">{SanityCategoryMap['rod']}</h2>
+          <MasonryContainer>
+            {rods.map((rod) => (
+              <RodCard rod={rod} key={rod._id} />
             ))}
           </MasonryContainer>
         </div>

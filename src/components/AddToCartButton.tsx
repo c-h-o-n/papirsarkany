@@ -5,12 +5,13 @@ import { Products } from '@prisma/client';
 import Link from 'next/link';
 import { MouseEvent, useState } from 'react';
 import { createPortal } from 'react-dom';
+import { CartItem, Product } from '@/lib/types';
 
-type Props = {
-  product: Products & { price: number };
+type AddToCartProps = {
+  product: Product
 };
 
-export default function AddToCartButton({ product }: Props) {
+export default function AddToCartButton({ product }: AddToCartProps) {
   const addToCart = useCartStore((state) => state.addToCart);
   const [isShowAlert, setIsShowAlert] = useState(false);
 
@@ -20,7 +21,19 @@ export default function AddToCartButton({ product }: Props) {
     setIsShowAlert(true);
     setTimeout(() => setIsShowAlert(false), 3000);
 
-    addToCart({ ...product, quantity: 1 });
+    if(!product.name || !product.price) {
+      throw Error('No name or price provided')
+    }
+    
+    const cartItem: CartItem = {
+      _id: product._id,
+      name: product.name,
+      price: product.price,
+      image: product.image,
+      quantity: 1,
+    }
+
+    addToCart(cartItem);
   };
 
   return (
