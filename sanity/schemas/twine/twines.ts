@@ -1,5 +1,5 @@
 import { defineField, defineType } from 'sanity';
-import productFields from '../../productFields';
+import productFields from '../productFields';
 
 export default defineType({
   name: 'twine',
@@ -10,18 +10,7 @@ export default defineType({
     defineField({
       name: 'diameters',
       type: 'twineDiameters',
-      title: 'Átmérők'
-    })
+      title: 'Átmérők',
+    }),
   ],
 });
-
-
-
-const temp = {
-  "diameters":
-  [
-    {"name": "1mm", 
-    "pricePerMeter": 40
-  }],
-    "tensileStegth": "30kg"
-}

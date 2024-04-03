@@ -1,10 +1,10 @@
 import { defineArrayMember, defineType } from 'sanity';
 
 export default defineType({
-  name: 'diameters',
+  name: 'rodDiameters',
   type: 'array',
   title: 'Átmérők',
-  validation: (rule) => rule.required(),
+  validation: (rule) => rule.required().unique(),
   of: [
     defineArrayMember({
       type: 'object',
@@ -13,7 +13,7 @@ export default defineType({
           name: 'diameter',
           title: 'Átmérő',
           type: 'number',
-          description: 'mm-ben',
+          description: 'Rendelhető átmérő mm-ben.',
           validation: (rule) => rule.required().positive(),
         },
         {

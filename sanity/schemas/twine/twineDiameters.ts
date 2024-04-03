@@ -3,6 +3,7 @@ import { defineArrayMember, defineType } from 'sanity';
 export default defineType({
   name: 'twineDiameters',
   type: 'array',
+  validation: (rule) => rule.required().unique(),
   of: [
     defineArrayMember({
       type: 'object',
@@ -11,7 +12,7 @@ export default defineType({
           name: 'diameter',
           type: 'number',
           title: 'Átmérő',
-          description: 'mm-ben',
+          description: 'Rendelhető átmérő mm-ben.n',
           validation: (rule) => rule.required().positive(),
         },
         {

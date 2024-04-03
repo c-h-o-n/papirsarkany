@@ -1,5 +1,5 @@
 import { defineField, defineType } from 'sanity';
-import productFields from '../../productFields';
+import productFields from '../productFields';
 
 export default defineType({
   name: 'rod',
@@ -9,8 +9,8 @@ export default defineType({
     ...productFields,
     defineField({
       name: 'diameters',
-      type: 'diameters',
-      title: 'Átmérők'
+      type: 'rodDiameters',
+      title: 'Átmérők',
     })
   ],
 });
