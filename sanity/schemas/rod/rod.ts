@@ -1,4 +1,5 @@
 import { defineField, defineType } from 'sanity';
+
 import productFields from '../productFields';
 
 export default defineType({
