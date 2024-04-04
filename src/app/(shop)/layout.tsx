@@ -8,7 +8,6 @@ import './globals.css';
 import Navbar from '@/components/Navbar';
 import CartStoreRehydrate from '@/components/CartStoreRehydrate';
 import TruendoScript from '@/components/TruendoScript';
-import { client } from '@sanity/lib/client';
 
 const inter = Inter({ subsets: ['latin'] });
 

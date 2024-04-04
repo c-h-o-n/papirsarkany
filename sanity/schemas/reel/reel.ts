@@ -1,16 +1,18 @@
 import { defineField, defineType } from 'sanity';
+
 import productFields from '../productFields';
 
 export default defineType({
-  name: 'twine',
+  name: 'reel',
   type: 'document',
-  title: 'Zsinórok',
+  title: 'Zsinórtartók',
   fields: [
     ...productFields,
     defineField({
-      name: 'diameters',
-      type: 'twineDiameters',
-      title: 'Átmérők',
+      name: 'price',
+      type: 'number',
+      title: 'Ár',
+      validation: (rule) => rule.required().positive(),
     }),
-  ],
-});
+  ]
+})
