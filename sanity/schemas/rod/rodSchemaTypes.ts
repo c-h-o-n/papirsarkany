@@ -1,6 +1,6 @@
 import { SchemaTypeDefinition } from 'sanity';
-import rods from './rodDocument';
+import rod from './rod';
 import diameters from './diameters';
 import lengths from './lengths';
 
-export default [rods, diameters, lengths] satisfies SchemaTypeDefinition[];
+export default [rod, diameters, lengths] satisfies SchemaTypeDefinition[];

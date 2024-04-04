@@ -1,10 +1,15 @@
 import { type SchemaTypeDefinition } from 'sanity';
 
-import kiteTypes from './schemas/kite/kiteTypes';
-import rodTypes from './schemas/rod/rodTypes';
-import twineTypes from './schemas/twine/twineTypes';
-import reelTypes from './schemas/reel/reelTypes';
+import kiteSchemaTypes from './schemas/kite/kiteSchemaTypes';
+import rodSchemaTypes from './schemas/rod/rodSchemaTypes';
+import twineSchemaTypes from './schemas/twine/twineSchemaTypes';
+import reelSchemaTypes from './schemas/reel/reelSchemaTypes';
 
 export const schema: { types: SchemaTypeDefinition[] } = {
-  types: [...kiteTypes, ...rodTypes, ...reelTypes, ...twineTypes],
+  types: [
+    ...kiteSchemaTypes,
+    ...rodSchemaTypes,
+    ...reelSchemaTypes,
+    ...twineSchemaTypes,
+  ],
 };

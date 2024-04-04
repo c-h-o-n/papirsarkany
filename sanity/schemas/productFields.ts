@@ -1,6 +1,6 @@
-import { defineField, defineType, FieldDefinition } from 'sanity';
+import { defineField, FieldDefinition } from 'sanity';
 
-const productFields: FieldDefinition[] = [
+export default [
   defineField({
     name: 'name',
     type: 'string',
@@ -12,6 +12,4 @@ const productFields: FieldDefinition[] = [
     type: 'image',
     title: 'Kép',
   }),
-];
-
-export default productFields;
+] satisfies FieldDefinition[];
