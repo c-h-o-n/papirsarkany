@@ -4,7 +4,7 @@ import productFields from '../productFields';
 export default defineType({
   name: 'kite',
   type: 'document',
-  title: 'Egyzsinóros sárkány',
+  title: 'Sárkányok',
   fields: [
     ...productFields,
     defineField({
