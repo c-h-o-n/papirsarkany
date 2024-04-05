@@ -3,12 +3,19 @@
  */
 
 import { visionTool } from '@sanity/vision';
-import { defineConfig } from 'sanity';
+import { defineConfig, isDev } from 'sanity';
 import { structureTool } from 'sanity/structure';
 import { huHULocale } from '@sanity/locale-hu-hu';
 
 import { apiVersion, dataset, projectId } from './sanity/env';
 import { schema } from './sanity/schema';
+
+const devOnlyPlugins = [
+  visionTool({
+    defaultApiVersion: apiVersion,
+    title: 'Query Playground',
+  }),
+];
 
 export default defineConfig({
   basePath: '/admin',
@@ -19,7 +26,7 @@ export default defineConfig({
     structureTool({
       title: 'Struktúra',
     }),
-    visionTool({ defaultApiVersion: apiVersion, title: 'Query Playground' }),
     huHULocale(),
+    ...(isDev ? devOnlyPlugins : []),
   ],
 });
