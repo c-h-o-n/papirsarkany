@@ -9,7 +9,7 @@ import {
 } from '@sanity/lib/sanity.types';
 
 export async function getAllKites(): Promise<GetAllKitesQueryResult> {
-  const getAllKitesQuery = groq`*[_type == "kite"] { ..., image { asset -> { url, metadata } } }`;
+  const getAllKitesQuery = groq`*[_type == "kite"] { ..., image { asset -> { url, metadata } } } | order(price asc)`;
   return await client.fetch<GetAllKitesQueryResult>(getAllKitesQuery);
 }
 
