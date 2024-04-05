@@ -1,7 +1,6 @@
 import AddToCartButton from '@/components/AddToCartButton';
 
 import { currencyFormatter } from '@/lib/formatters';
-import { getKiteStaticImageData } from '@/lib/kiteImages';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { getAllKites, getKiteBySlug } from '@/lib/sanity';
