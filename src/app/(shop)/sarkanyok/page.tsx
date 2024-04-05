@@ -4,7 +4,6 @@ import { getAllKites } from '@/lib/sanity';
 
 export default async function Kites() {
   const kites = await getAllKites();
-  console.log({kites: kites.map(k => k._id)})
 
   return (
     <div className="container p-8">
