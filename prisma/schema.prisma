@@ -1,38 +1,11 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
-  provider     = "postgresql"
-  url          = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
   directUrl = env("DATABASE_URL_UNPOOLED")
-}
-
-enum Status {
-  Pending
-  Canceled
-  Fullfilled
-}
-
-enum Category {
-  Egyzsinoros  @map("Egyzsinóros")
-  PalcakRudak  @map("Pálcák és rudak")
-  Csovek       @map("Csövek")
-  Zsinorok     @map("Zsinórok")
-  Zsinortartok @map("Zsinórtartók")
-}
-
-enum ShippingMode {
-  PersonalPickup @map("Személyes átvétel")
-  Post           @map("Postai szállítás")
-}
-
-enum PaymentMode {
-  Cash     @map("Átvételkor készpénzel")
-  Transfer @map("Előreutalással")
 }
 
 model Customers {
@@ -61,20 +34,19 @@ model Orders {
   paymentMode  PaymentMode
   comment      String?
   createdAt    DateTime     @default(now()) @db.Timestamp(6)
-  Customers    Customers    @relation(fields: [customerId], references: [id])
   OrderItems   OrderItems[]
+  Customers    Customers    @relation(fields: [customerId], references: [id])
 
   @@index([customerId])
 }
 
 model OrderItems {
-  id        Int    @id @default(autoincrement())
+  id        Int      @id @default(autoincrement())
   orderId   Int
   productId String
   quantity  Int
-
-  orders   Orders?   @relation(fields: [orderId], references: [id])
-  products Products? @relation(fields: [productId], references: [id])
+  orders    Orders   @relation(fields: [orderId], references: [id])
+  products  Products @relation(fields: [productId], references: [id])
 
   @@index([orderId])
   @@index([productId])
@@ -89,4 +61,28 @@ model Products {
   category   Category
   properties Json?
   OrderItems OrderItems[]
+}
+
+enum Status {
+  Pending
+  Canceled
+  Fullfilled
+}
+
+enum Category {
+  Egyzsinoros  @map("Egyzsinóros")
+  PalcakRudak  @map("Pálcák és rudak")
+  Csovek       @map("Csövek")
+  Zsinorok     @map("Zsinórok")
+  Zsinortartok @map("Zsinórtartók")
+}
+
+enum ShippingMode {
+  PersonalPickup @map("Személyes átvétel")
+  Post           @map("Postai szállítás")
+}
+
+enum PaymentMode {
+  Cash     @map("Átvételkor készpénzel")
+  Transfer @map("Előreutalással")
 }
