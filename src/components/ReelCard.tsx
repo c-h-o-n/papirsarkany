@@ -25,7 +25,7 @@ export default function ReelCard({ reel }: Props) {
           height={reel.image.asset?.metadata?.dimensions?.height}
           placeholder="blur"
           blurDataURL={reel.image.asset?.metadata?.blurHash}
-          className="mx-auto mb-6 max-h-32 rounded-lg"
+          className="mx-auto mb-6 max-h-32 rounded-lg object-contain"
         />
       )}
 
