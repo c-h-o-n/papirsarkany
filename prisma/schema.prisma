@@ -41,40 +41,19 @@ model Orders {
 }
 
 model OrderItems {
-  id        Int      @id @default(autoincrement())
-  orderId   Int
+  id       Int    @id @default(autoincrement())
+  orderId  Int
   productId String
-  quantity  Int
-  orders    Orders   @relation(fields: [orderId], references: [id])
-  products  Products @relation(fields: [productId], references: [id])
+  quantity Int
+  orders   Orders @relation(fields: [orderId], references: [id])
 
   @@index([orderId])
-  @@index([productId])
-}
-
-model Products {
-  id         String       @id @default(uuid())
-  name       String
-  slug       String       @unique
-  imageUrl   String?
-  price      Int?
-  category   Category
-  properties Json?
-  OrderItems OrderItems[]
 }
 
 enum Status {
   Pending
   Canceled
   Fullfilled
-}
-
-enum Category {
-  Egyzsinoros  @map("Egyzsinóros")
-  PalcakRudak  @map("Pálcák és rudak")
-  Csovek       @map("Csövek")
-  Zsinorok     @map("Zsinórok")
-  Zsinortartok @map("Zsinórtartók")
 }
 
 enum ShippingMode {
