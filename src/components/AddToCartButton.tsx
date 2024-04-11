@@ -1,7 +1,6 @@
 'use client';
 
 import { useCartStore } from '@/store/useCartStore';
-import { Products } from '@prisma/client';
 import Link from 'next/link';
 import { MouseEvent, useState } from 'react';
 import { createPortal } from 'react-dom';

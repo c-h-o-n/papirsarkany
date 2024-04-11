@@ -1,4 +1,4 @@
-import { $Enums, Category } from '@prisma/client';
+import { $Enums } from '@prisma/client';
 import { ProductCategoryMapLiterals, ProductTypes } from './types';
 
 export function currencyFormatter(value: number): string {
