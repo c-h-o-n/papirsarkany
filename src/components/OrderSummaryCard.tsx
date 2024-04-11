@@ -43,7 +43,9 @@ export default function OrderSummaryCard({ layout = 'full' }: Props) {
                       alt={item.name}
                       width={128}
                       height={128}
-                      className="h-32 w-32 rounded-lg object-cover"
+                      placeholder="blur"
+                      blurDataURL={item.image.asset?.metadata?.blurHash}
+                      className="h-auto max-h-32 min-h-24 w-32 rounded-lg object-contain"
                     />
                   )}
                 </div>
@@ -93,7 +95,9 @@ export default function OrderSummaryCard({ layout = 'full' }: Props) {
                   alt={item.name}
                   width={128}
                   height={128}
-                  className="h-32 w-32 rounded-lg object-cover"
+                  placeholder="blur"
+                  blurDataURL={item.image.asset?.metadata?.blurHash}
+                  className="h-auto max-h-32 min-h-24 w-32 rounded-lg object-contain"
                 />
               )}
 

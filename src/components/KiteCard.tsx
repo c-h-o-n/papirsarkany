@@ -31,11 +31,11 @@ export default function KiteCard({ kite }: KiteCardProps) {
           {kite.image && (
             <Image
               src={kite.image?.asset?.url || 'no-url'}
+              alt={kite.name || 'no-name'}
               width={kite.image.asset?.metadata?.dimensions?.width}
               height={kite.image.asset?.metadata?.dimensions?.height}
               placeholder="blur"
               blurDataURL={kite.image.asset?.metadata?.blurHash}
-              alt={kite.name || 'no-name'}
               loading="lazy"
               className="mx-auto mb-6 rounded-lg object-cover"
             />
