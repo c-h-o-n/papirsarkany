@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build:analyze": "ANALYZE=true npm run build",
     "postbuild": "next-sitemap",
     "start": "next start",
     "lint": "next lint",
@@ -13,6 +14,7 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.1",
+    "@next/bundle-analyzer": "^14.2.0",
     "@prisma/client": "^5.3.1",
     "@sanity/locale-hu-hu": "^1.1.4",
     "@sanity/vision": "^3.36.0",
@@ -28,7 +30,7 @@
     "daisyui": "^4.7.2",
     "eslint": "8.48.0",
     "eslint-config-next": "^14.0.4",
-    "next": "^14.1.4",
+    "next": "^14.2.0",
     "next-sanity": "^7.1.4",
     "next-sitemap": "^4.2.3",
     "postcss": "^8.4.35",
