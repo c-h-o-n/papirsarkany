@@ -3,7 +3,7 @@
 import Link, { LinkProps } from 'next/link';
 import { ReactNode } from 'react';
 
-type MenuItemProps = LinkProps & {
+export type MenuItemProps = LinkProps & {
   children?: ReactNode;
 };
 
