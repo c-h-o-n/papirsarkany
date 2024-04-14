@@ -288,7 +288,7 @@ export type GetKiteBySlugQueryResult = {
   description?: string;
 } | null;
 // Variable: getAllRodsQuery
-// Query: *[_type == "rod"] { ..., image { asset-> { url, metadata } } }
+// Query: *[_type == "rod"] { ..., image { asset-> { url, metadata } } } | order(name asc)
 export type GetAllRodsQueryResult = Array<{
   _id: string;
   _type: "rod";
@@ -305,7 +305,7 @@ export type GetAllRodsQueryResult = Array<{
   diameters?: RodDiameters;
 }>;
 // Variable: getAllReelsQuery
-// Query: *[_type == "reel"] { ..., image { asset-> { url, metadata } } }
+// Query: *[_type == "reel"] { ..., image { asset-> { url, metadata } } } | order(name asc)
 export type GetAllReelsQueryResult = Array<{
   _id: string;
   _type: "reel";
@@ -322,7 +322,7 @@ export type GetAllReelsQueryResult = Array<{
   price?: number;
 }>;
 // Variable: getAllTwinesQuery
-// Query: *[_type == "twine"] { ..., image { asset-> { url, metadata } } }
+// Query: *[_type == "twine"] { ..., image { asset-> { url, metadata } } } | order(name asc)
 export type GetAllTwinesQueryResult = Array<{
   _id: string;
   _type: "twine";
