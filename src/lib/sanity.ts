@@ -23,19 +23,19 @@ export async function getKiteBySlug(
 }
 
 export async function getAllRods() {
-  const getAllRodsQuery = groq`*[_type == "rod"] { ..., image { asset-> { url, metadata } } }`;
+  const getAllRodsQuery = groq`*[_type == "rod"] { ..., image { asset-> { url, metadata } } } | order(name asc)`;
 
   return await client.fetch<GetAllRodsQueryResult>(getAllRodsQuery);
 }
 
 export async function getAllReels(): Promise<GetAllReelsQueryResult> {
-  const getAllReelsQuery = groq`*[_type == "reel"] { ..., image { asset-> { url, metadata } } }`;
+  const getAllReelsQuery = groq`*[_type == "reel"] { ..., image { asset-> { url, metadata } } } | order(name asc)`;
 
   return await client.fetch(getAllReelsQuery);
 }
 
 export async function getAllTwines(): Promise<GetAllTwinesQueryResult> {
-  const getAllTwinesQuery = groq`*[_type == "twine"] { ..., image { asset-> { url, metadata } } }`;
+  const getAllTwinesQuery = groq`*[_type == "twine"] { ..., image { asset-> { url, metadata } } } | order(name asc)`;
 
   return await client.fetch(getAllTwinesQuery);
 }
