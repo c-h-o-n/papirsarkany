@@ -12,9 +12,9 @@ export default defineType({
         {
           name: 'diameter',
           title: 'Átmérő',
-          type: 'number',
+          type: 'string',
           description: 'Rendelhető átmérő mm-ben.',
-          validation: (rule) => rule.required().positive(),
+          validation: (rule) => rule.required(),
         },
         {
           name: 'pricePerMeter',

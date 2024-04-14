@@ -2,7 +2,7 @@
 
 import Card from './Card';
 import AddToCartButton from './AddToCartButton';
-import { useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import { currencyFormatter, pricePerMeterFormatter } from '@/lib/formatters';
 import { RodDiameters, Rod } from '@sanity/lib/sanity.types';
 import { WithImageAsset } from '@/lib/types';
@@ -29,16 +29,16 @@ export default function RodCard({ rod }: Props) {
     getSelectedDiamaterFirstLength(selectedDiameter),
   );
 
-  const handleDiameterChange = (e: any) => {
-    const diamaterName = e.target.value as string;
+  const handleDiameterChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    const diamaterName = e.target.value;
 
     const newSelectedDiameter = rod.diameters?.find(
-      (diameter) => diameter.diameter === +diamaterName,
+      (diameter) => diameter.diameter === diamaterName,
     )!;
 
     setSelectedDiameter({
       _key: newSelectedDiameter._key,
-      diameter: +diamaterName,
+      diameter: diamaterName,
       pricePerMeter: newSelectedDiameter.pricePerMeter,
       lengths: newSelectedDiameter.lengths,
     });
@@ -67,12 +67,15 @@ export default function RodCard({ rod }: Props) {
             </label>
             <select
               className="d-select d-select-bordered"
+              value={selectedDiameter.diameter}
               onChange={(e) => {
                 handleDiameterChange(e);
               }}
             >
               {rod.diameters.map((diamater) => (
-                <option key={diamater._key}>{diamater.diameter}</option>
+                <option key={diamater._key} value={diamater.diameter}>
+                  {diamater.diameter} mm
+                </option>
               ))}
             </select>
           </div>
@@ -88,7 +91,7 @@ export default function RodCard({ rod }: Props) {
             >
               {selectedDiameter.lengths.map((length) => (
                 <option key={length} value={length}>
-                  {length}cm
+                  {length} cm
                 </option>
               ))}
             </select>
@@ -109,7 +112,7 @@ export default function RodCard({ rod }: Props) {
           product={{
             ...rod,
             _id: rod._id,
-            name: `${rod.name} (${selectedDiameter.diameter} - ${selectedLength}cm)`,
+            name: `${rod.name} (${selectedDiameter.diameter} mm - ${selectedLength} cm)`,
             price:
               (selectedDiameter.pricePerMeter || NaN) *
               Math.ceil((selectedLength || NaN) / 100),
