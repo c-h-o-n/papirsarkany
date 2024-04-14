@@ -34,7 +34,11 @@ export default function RodCard({ rod }: Props) {
 
     const newSelectedDiameter = rod.diameters?.find(
       (diameter) => diameter.diameter === diamaterName,
-    )!;
+    );
+
+    if(!newSelectedDiameter) {
+      throw Error('No diamater found.');
+    }
 
     setSelectedDiameter({
       _key: newSelectedDiameter._key,
@@ -56,7 +60,6 @@ export default function RodCard({ rod }: Props) {
 
   return (
     <div className="relative z-0">
-      {/* <Link href={`anyagok/${rod.slug}`}> */}
       <Card className="w-full space-y-3 p-5">
         <h3 className="font-bold">{rod.name}</h3>
 
@@ -119,7 +122,6 @@ export default function RodCard({ rod }: Props) {
           }}
         />
       </Card>
-      {/* </Link> */}
     </div>
   );
 }

@@ -1,6 +1,6 @@
 import { createOrder } from '@/lib/db';
 import { CartItem, FormSchemaObject, OrderMail } from '@/lib/types';
-import sgMail, { MailDataRequired } from '@sendgrid/mail';
+import sgMail, { MailDataRequired, ResponseError } from '@sendgrid/mail';
 import { NextResponse } from 'next/server';
 
 export async function POST(request: Request) {
@@ -41,7 +41,7 @@ export async function POST(request: Request) {
       .then(() => {
         console.log(`Vendor email is sent to ${VENDOR_EMAIL_ADDRESS}`);
       })
-      .catch((error: any) => {
+      .catch((error: ResponseError) => {
         console.error(error);
       });
 
@@ -52,7 +52,7 @@ export async function POST(request: Request) {
           `Customer email is sent to ${body.orderEmailData.contact.email}`,
         );
       })
-      .catch((error: any) => {
+      .catch((error: ResponseError) => {
         console.error(error);
       });
 

@@ -81,8 +81,14 @@ export const useCartStore = create(
       },
       decreaseItemQuantity(product) {
         const cart = get().cart;
+        
         const cartItem = cart.find((item) => isInCart(item, product));
-        if (cartItem?.quantity! > 1) {
+
+        if(!cartItem) {
+          throw Error('No cart item found.')
+        }
+
+        if (cartItem.quantity > 1) {
           const updatedCart = cart.map((item) =>
             isInCart(item, product)
               ? { ...item, quantity: item.quantity - 1 }
