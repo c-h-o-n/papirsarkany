@@ -120,7 +120,7 @@ export type Reel = {
 export type Lengths = Array<number>;
 
 export type RodDiameters = Array<{
-  diameter?: number;
+  diameter?: string;
   pricePerMeter?: number;
   lengths?: Lengths;
   _key: string;
@@ -242,7 +242,7 @@ export declare const internalGroqTypeReferenceTo: unique symbol;
 
 // Source: ./src/lib/sanity.ts
 // Variable: getAllKitesQuery
-// Query: *[_type == "kite"] { ..., image { asset -> { url, metadata } } }
+// Query: *[_type == "kite"] { ..., image { asset -> { url, metadata } } } | order(price asc)
 export type GetAllKitesQueryResult = Array<{
   _id: string;
   _type: "kite";
