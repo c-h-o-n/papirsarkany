@@ -91,7 +91,11 @@ export default function CheckoutStepper({ children }: CheckoutStepperProps) {
     }),
   ];
 
+
+  // FIXME define types for useForm
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const methods = useForm<any>({
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     resolver: yupResolver(schema[step] as any),
     defaultValues: { ...formData } as FormSchemaObject,
   });

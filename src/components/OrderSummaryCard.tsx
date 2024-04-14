@@ -1,12 +1,14 @@
 'use client';
 
+import Image from 'next/image';
+import { Fragment } from 'react';
+
+import { CartItem } from '@/lib/types';
+import { currencyFormatter } from '@/lib/formatters';
 import { useCartStore } from '@/store/useCartStore';
 import Card from './Card';
-import { currencyFormatter } from '@/lib/formatters';
 import ProductinCartCounter from './ProductInCartCounter';
-import { Fragment } from 'react';
 import TrashCanIcon from '@/assets/trash-can.svg';
-import Image from 'next/image';
 
 type Props = {
   layout?: 'full' | 'simplified' | 'definitive';
@@ -17,7 +19,7 @@ export default function OrderSummaryCard({ layout = 'full' }: Props) {
   const totalItems = useCartStore((state) => state.totalItems);
   const removeFromCart = useCartStore((state) => state.removeFromCart);
 
-  const onDeleteClick = (product: any) => {
+  const onDeleteClick = (product: CartItem) => {
     removeFromCart(product);
   };
 

@@ -1,7 +1,6 @@
 'use client';
 
 import { FormSchemaObject } from '@/lib/types';
-import { ChangeEvent } from 'react';
 import { useFormContext } from 'react-hook-form';
 
 export default function CheckoutShippingForm() {
