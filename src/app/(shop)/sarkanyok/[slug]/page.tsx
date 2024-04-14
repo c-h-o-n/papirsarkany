@@ -4,8 +4,6 @@ import { currencyFormatter } from '@/lib/formatters';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { getAllKites, getKiteBySlug } from '@/lib/sanity';
-import { type Kite } from '@sanity/lib/sanity.types';
-import { WithImageAsset } from '@/lib/types';
 
 type Params = {
   slug: string;

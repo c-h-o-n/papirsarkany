@@ -1,5 +1,4 @@
 import Card from './Card';
-import Link from 'next/link';
 import { currencyFormatter } from '@/lib/formatters';
 import AddToCartButton from './AddToCartButton';
 import { WithImageAsset } from '@/lib/types';

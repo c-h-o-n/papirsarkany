@@ -1,5 +1,5 @@
 import { $Enums } from '@prisma/client';
-import { ProductCategoryMapLiterals, ProductTypes } from './types';
+import { ProductTypes } from './types';
 
 export function currencyFormatter(value: number): string {
   const formatter = Intl.NumberFormat('hu', {

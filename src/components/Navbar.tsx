@@ -1,4 +1,4 @@
-import Link, { LinkProps } from 'next/link';
+import Link from 'next/link';
 
 import CartDropDown from './CartDropDown';
 import HomeIcon from '@/assets/home.svg';
@@ -8,7 +8,7 @@ import { randomUUID } from 'crypto';
 
 /**
  * leftItems: on `desktop` rendered on `left` side on `mobile` rendered at the `bottom`
- * 
+ *
  * rightItems: on `desktop` rendered on `right` side on `mobile` rendered at the `top`
  */
 const navbarItems: {
