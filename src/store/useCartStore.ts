@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 import { CartItem } from '@/lib/types';
 import { createJSONStorage, persist } from 'zustand/middleware';
+import { isInCart } from '@/lib/helpers';
 
 type State = {
   cart: CartItem[];
@@ -34,7 +35,7 @@ export const useCartStore = create(
         }
         const cart = get().cart;
         const cartItem = cart.find(
-          (item) => item._id === product._id && item.name === product.name,
+          (item) => isInCart(item, product) && item.name === product.name,
         );
 
         if (!cartItem) {
@@ -42,7 +43,7 @@ export const useCartStore = create(
         }
 
         const updatedCart = cart.map((item) =>
-          item._id === product._id ? { ...item, quantity } : item,
+          isInCart(item, product) ? { ...item, quantity } : item,
         );
 
         set((state) => ({
@@ -54,10 +55,10 @@ export const useCartStore = create(
       },
       addToCart(product) {
         const cart = get().cart;
-        const cartItem = cart.find((item) => item._id === product._id);
+        const cartItem = cart.find((item) => isInCart(item, product));
         if (cartItem) {
           const updatedCart = cart.map((item) =>
-            item._id === product._id
+            isInCart(item, product)
               ? { ...item, quantity: (item.quantity as number) + 1 }
               : item,
           );
@@ -80,10 +81,10 @@ export const useCartStore = create(
       },
       decreaseItemQuantity(product) {
         const cart = get().cart;
-        const cartItem = cart.find((item) => item._id === product._id);
+        const cartItem = cart.find((item) => isInCart(item, product));
         if (cartItem?.quantity! > 1) {
           const updatedCart = cart.map((item) =>
-            item._id === product._id
+            isInCart(item, product)
               ? { ...item, quantity: item.quantity - 1 }
               : item,
           );
@@ -99,7 +100,7 @@ export const useCartStore = create(
       },
       removeFromCart(product) {
         set((state) => ({
-          cart: state.cart.filter((item) => item._id !== product._id),
+          cart: state.cart.filter((item) => !isInCart(item, product)),
           totalItems: state.totalItems - product.quantity,
           totalPrice:
             state.totalPrice - (product.price) * product.quantity,
