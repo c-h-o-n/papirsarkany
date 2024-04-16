@@ -14,15 +14,16 @@ export default function AddToCartButton({ product }: AddToCartProps) {
   const addToCart = useCartStore((state) => state.addToCart);
   const [isShowAlert, setIsShowAlert] = useState(false);
 
-  const onclick = (e: MouseEvent) => {
+  const onClick = (e: MouseEvent) => {
     e.preventDefault();
+    
+    if(!product.name || !product.price) {
+      throw Error('No name or price provided')
+    }
 
     setIsShowAlert(true);
     setTimeout(() => setIsShowAlert(false), 3000);
 
-    if(!product.name || !product.price) {
-      throw Error('No name or price provided')
-    }
     
     const cartItem: CartItem = {
       _id: product._id,
@@ -49,7 +50,7 @@ export default function AddToCartButton({ product }: AddToCartProps) {
           document.body,
         )}
 
-      <button className="d-btn d-btn-primary uppercase" onClick={onclick}>
+      <button className="d-btn d-btn-primary uppercase" onClick={onClick}>
         Kosárba
       </button>
     </>
