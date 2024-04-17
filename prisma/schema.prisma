@@ -8,7 +8,7 @@ datasource db {
   directUrl = env("DATABASE_URL_UNPOOLED")
 }
 
-model Customers {
+model Customer {
   id                 Int      @id @default(autoincrement())
   email              String   @unique
   firstName          String
@@ -23,10 +23,10 @@ model Customers {
   billingAddress     String
   billingSubaddress  String
   createdAt          DateTime @default(now()) @db.Timestamp(6)
-  Orders             Orders[]
+  Orders             Order[]
 }
 
-model Orders {
+model Order {
   id           Int          @id @default(autoincrement())
   customerId   Int
   status       Status
@@ -34,18 +34,18 @@ model Orders {
   paymentMode  PaymentMode
   comment      String?
   createdAt    DateTime     @default(now()) @db.Timestamp(6)
-  OrderItems   OrderItems[]
-  Customers    Customers    @relation(fields: [customerId], references: [id])
+  OrderItems   OrderItem[]
+  Customers    Customer    @relation(fields: [customerId], references: [id])
 
   @@index([customerId])
 }
 
-model OrderItems {
+model OrderItem {
   id       Int    @id @default(autoincrement())
   orderId  Int
   productId String
   quantity Int
-  orders   Orders @relation(fields: [orderId], references: [id])
+  orders   Order @relation(fields: [orderId], references: [id])
 
   @@index([orderId])
 }

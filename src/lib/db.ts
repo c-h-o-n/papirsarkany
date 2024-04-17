@@ -11,7 +11,7 @@ export async function createOrder(
   products: CartItem[],
 ) {
   return await prisma.$transaction(async (tx) => {
-    const user = await tx.customers.upsert({
+    const user = await tx.customer.upsert({
       where: {
         email: orderForm.email!,
       },
@@ -45,7 +45,7 @@ export async function createOrder(
       },
     });
 
-    const order = await tx.orders.create({
+    const order = await tx.order.create({
       data: {
         customerId: user.id,
         status: 'Pending',
@@ -57,7 +57,7 @@ export async function createOrder(
       },
     });
 
-    const orderItemsToCreate: Prisma.OrderItemsUncheckedCreateInput[] = [];
+    const orderItemsToCreate: Prisma.OrderItemUncheckedCreateInput[] = [];
     for (const product of products) {
       orderItemsToCreate.push({
         productId: product._id,
@@ -66,7 +66,7 @@ export async function createOrder(
       });
     }
 
-    await tx.orderItems.createMany({
+    await tx.orderItem.createMany({
       data: orderItemsToCreate,
     });
 
