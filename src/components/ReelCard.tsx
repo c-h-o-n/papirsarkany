@@ -4,6 +4,7 @@ import AddToCartButton from './AddToCartButton';
 import { WithImageAsset } from '@/lib/types';
 import { Reel } from '@sanity/lib/sanity.types';
 import Image from 'next/image';
+import { MISSING_IMG_URL, NO_NAME } from '@/lib/constants';
 
 type Props = {
   reel: WithImageAsset<Reel>;
@@ -18,8 +19,8 @@ export default function ReelCard({ reel }: Props) {
 
       {reel.image && (
         <Image
-          src={reel.image.asset?.url || 'no-url'}
-          alt={reel.name || 'no-name'}
+          src={reel.image.asset?.url || MISSING_IMG_URL}
+          alt={reel.name || NO_NAME}
           width={reel.image.asset?.metadata?.dimensions?.width}
           height={reel.image.asset?.metadata?.dimensions?.height}
           placeholder="blur"
