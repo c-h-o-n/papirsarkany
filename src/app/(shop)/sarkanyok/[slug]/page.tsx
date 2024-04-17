@@ -4,6 +4,7 @@ import { currencyFormatter } from '@/lib/formatters';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { getAllKites, getKiteBySlug } from '@/lib/sanity';
+import { MISSING_IMG_URL, NO_NAME } from '@/lib/constants';
 
 type Params = {
   slug: string;
@@ -31,10 +32,10 @@ export default async function Kite({ params }: { params: Params }) {
         {kite.image && (
           <Image
             className="mx-auto rounded-lg object-cover md:w-fit md:h-full"
-            src={kite.image.asset?.url || 'no-url'}
+            src={kite.image.asset?.url || MISSING_IMG_URL}
             width={kite.image.asset?.metadata?.dimensions?.width}
             height={kite.image.asset?.metadata?.dimensions?.height}
-            alt={kite.name || 'no-name'}
+            alt={kite.name || NO_NAME}
             placeholder="blur"
             blurDataURL={kite.image.asset?.metadata?.blurHash}
           />

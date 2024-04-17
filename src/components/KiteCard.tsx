@@ -6,6 +6,7 @@ import AddToCartButton from './AddToCartButton';
 import { currencyFormatter } from '@/lib/formatters';
 import { WithImageAsset } from '@/lib/types';
 import { Kite } from '@sanity/lib/sanity.types';
+import { MISSING_IMG_URL, NO_NAME } from '@/lib/constants';
 
 type KiteCardProps = {
   kite: WithImageAsset<Kite>;
@@ -30,8 +31,8 @@ export default function KiteCard({ kite }: KiteCardProps) {
 
           {kite.image && (
             <Image
-              src={kite.image?.asset?.url || 'no-url'}
-              alt={kite.name || 'no-name'}
+              src={kite.image?.asset?.url || MISSING_IMG_URL}
+              alt={kite.name || NO_NAME}
               width={kite.image.asset?.metadata?.dimensions?.width}
               height={kite.image.asset?.metadata?.dimensions?.height}
               placeholder="blur"

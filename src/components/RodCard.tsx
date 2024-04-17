@@ -84,7 +84,7 @@ export default function RodCard({ rod }: Props) {
           </div>
 
           <div className="d-form-control w-full max-w-xs">
-            <label className="d-label">
+            <label className="d-label kite-">
               <span className="d-label-text font-bold">Hossz</span>
             </label>
             <select
