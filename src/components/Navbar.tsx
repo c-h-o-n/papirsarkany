@@ -17,7 +17,7 @@ const navbarItems: {
 } = {
   leftItems: [
     {
-      children: 'A vállalkozásró',
+      children: 'A vállalkozásról',
       href: '/#vallalkozas',
     },
     {
