@@ -9,6 +9,7 @@ import { useCartStore } from '@/store/useCartStore';
 import Card from './Card';
 import ProductinCartCounter from './ProductInCartCounter';
 import TrashCanIcon from '@/assets/trash-can.svg';
+import { MISSING_IMG_URL } from '@/lib/constants';
 
 type Props = {
   layout?: 'full' | 'simplified' | 'definitive';
@@ -41,7 +42,7 @@ export default function OrderSummaryCard({ layout = 'full' }: Props) {
                 <div>
                   {item.image && (
                     <Image
-                      src={item.image.asset?.url || 'no-url'}
+                      src={item.image.asset?.url || MISSING_IMG_URL}
                       alt={item.name}
                       width={128}
                       height={128}
@@ -93,7 +94,7 @@ export default function OrderSummaryCard({ layout = 'full' }: Props) {
             <div className="flex gap-2">
               {item.image && (
                 <Image
-                  src={item.image.asset?.url || 'no-url'}
+                  src={item.image.asset?.url || MISSING_IMG_URL}
                   alt={item.name}
                   width={128}
                   height={128}
