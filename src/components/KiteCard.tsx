@@ -10,7 +10,7 @@ import { MISSING_IMG_URL, NO_NAME } from '@/lib/constants';
 
 type KiteCardProps = {
   kite: WithImageAsset<Kite>;
-}
+};
 
 export default function KiteCard({ kite }: KiteCardProps) {
   return (
@@ -26,8 +26,6 @@ export default function KiteCard({ kite }: KiteCardProps) {
               </div>
             )}
           </div>
-
-
 
           {kite.image && (
             <Image

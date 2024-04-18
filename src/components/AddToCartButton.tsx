@@ -7,7 +7,7 @@ import { createPortal } from 'react-dom';
 import { CartItem, Product } from '@/lib/types';
 
 type AddToCartProps = {
-  product: Product
+  product: Product;
 };
 
 export default function AddToCartButton({ product }: AddToCartProps) {
@@ -16,22 +16,21 @@ export default function AddToCartButton({ product }: AddToCartProps) {
 
   const onClick = (e: MouseEvent) => {
     e.preventDefault();
-    
-    if(!product.name || !product.price) {
-      throw Error('No name or price provided')
+
+    if (!product.name || !product.price) {
+      throw Error('No name or price provided');
     }
 
     setIsShowAlert(true);
     setTimeout(() => setIsShowAlert(false), 3000);
 
-    
     const cartItem: CartItem = {
       _id: product._id,
       name: product.name,
       price: product.price,
       image: product.image,
       quantity: 1,
-    }
+    };
 
     addToCart(cartItem);
   };

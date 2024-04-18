@@ -58,9 +58,7 @@ export default function CheckoutPayingForm() {
           />
           <span className="d-label-text">Előreutalással</span>
         </label>
-        <span className="pl-9 text-gray-400">
-            11600006-00000000-76709302
-          </span>
+        <span className="pl-9 text-gray-400">11600006-00000000-76709302</span>
       </div>
 
       <span className="text-error">{errors.paymentOption?.message}</span>
@@ -126,7 +124,6 @@ export default function CheckoutPayingForm() {
               type="text"
               placeholder="Utca, házszám"
               className="d-input d-input-bordered"
-
               {...register('billingAddress')}
             />
             <label className="d-label">
