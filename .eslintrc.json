@@ -6,6 +6,7 @@
     "plugin:@typescript-eslint/recommended",
     "next/core-web-vitals"
   ],
+  "ignorePatterns": ["**/*.js"],
   "root": true,
   "rules": {}
 }
