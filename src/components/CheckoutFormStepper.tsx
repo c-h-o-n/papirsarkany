@@ -91,7 +91,6 @@ export default function CheckoutStepper({ children }: CheckoutStepperProps) {
     }),
   ];
 
-
   // FIXME define types for useForm
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const methods = useForm<any>({
@@ -176,7 +175,7 @@ export default function CheckoutStepper({ children }: CheckoutStepperProps) {
       <FormProvider {...methods}>
         <form
           onSubmit={methods.handleSubmit((data) => onSubmit(data))}
-          className='[&>h2]:py-2'
+          className="[&>h2]:py-2"
         >
           {Children.toArray(children)[step]}
         </form>

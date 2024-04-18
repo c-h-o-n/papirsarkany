@@ -36,7 +36,7 @@ export default function RodCard({ rod }: Props) {
       (diameter) => diameter.diameter === diamaterName,
     );
 
-    if(!newSelectedDiameter) {
+    if (!newSelectedDiameter) {
       throw Error('No diamater found.');
     }
 
@@ -84,7 +84,7 @@ export default function RodCard({ rod }: Props) {
           </div>
 
           <div className="d-form-control w-full max-w-xs">
-            <label className="d-label kite-">
+            <label className="kite- d-label">
               <span className="d-label-text font-bold">Hossz</span>
             </label>
             <select

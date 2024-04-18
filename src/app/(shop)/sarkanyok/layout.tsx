@@ -1,13 +1,5 @@
-import { ReactNode } from 'react'
+import { ReactNode } from 'react';
 
-export default function KiteLayout({
-  children,
-}: {
-  children: ReactNode
-}) {
-  return (
-    <div className='kite-pattern'>
-      {children}
-    </div>
-  )
+export default function KiteLayout({ children }: { children: ReactNode }) {
+  return <div className="kite-pattern">{children}</div>;
 }

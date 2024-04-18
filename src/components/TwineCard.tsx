@@ -1,7 +1,6 @@
 'use client';
 import { useState } from 'react';
 
-
 import AddToCartButton from './AddToCartButton';
 import { currencyFormatter, pricePerMeterFormatter } from '@/lib/formatters';
 import Card from './Card';
@@ -14,16 +13,16 @@ type Props = {
 
 export default function TwineCard({ twine }: Props) {
   const [selectedDiameter] = useState<TwineDiameters[number] | undefined>(
-    twine.diameters ? twine.diameters[0] : undefined
+    twine.diameters ? twine.diameters[0] : undefined,
   );
 
   const [length, setLength] = useState<number>(1);
 
-  if(!selectedDiameter) {
+  if (!selectedDiameter) {
     return;
   }
 
-  if(!twine.diameters) {
+  if (!twine.diameters) {
     return;
   }
 
@@ -62,7 +61,6 @@ export default function TwineCard({ twine }: Props) {
             </div>
           </div>
         </div>
-
         {selectedDiameter.pricePerMeter && (
           <h2>
             {currencyFormatter(
@@ -73,8 +71,6 @@ export default function TwineCard({ twine }: Props) {
             </span>
           </h2>
         )}
-
-
         <AddToCartButton
           product={{
             ...twine,
