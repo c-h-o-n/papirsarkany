@@ -1,9 +1,6 @@
 import { Prisma } from '@prisma/client';
 import prisma from './prisma';
-import {
-  CartItem,
-  FormSchemaObject,
-} from './types';
+import { CartItem, FormSchemaObject } from './types';
 import { prismaPaymentModemMap, prismaShippingModeMap } from './formatters';
 
 export async function createOrder(
@@ -73,4 +70,3 @@ export async function createOrder(
     return order;
   });
 }
-

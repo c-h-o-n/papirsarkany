@@ -66,7 +66,7 @@ export const useCartStore = create(
           set((state) => ({
             cart: updatedCart,
             totalItems: state.totalItems + 1,
-            totalPrice: state.totalPrice + (product.price),
+            totalPrice: state.totalPrice + product.price,
           }));
           return;
         }
@@ -76,16 +76,16 @@ export const useCartStore = create(
         set((state) => ({
           cart: updatedCart,
           totalItems: state.totalItems + 1,
-          totalPrice: state.totalPrice + (product.price),
+          totalPrice: state.totalPrice + product.price,
         }));
       },
       decreaseItemQuantity(product) {
         const cart = get().cart;
-        
+
         const cartItem = cart.find((item) => isInCart(item, product));
 
-        if(!cartItem) {
-          throw Error('No cart item found.')
+        if (!cartItem) {
+          throw Error('No cart item found.');
         }
 
         if (cartItem.quantity > 1) {
@@ -97,7 +97,7 @@ export const useCartStore = create(
           set((state) => ({
             cart: updatedCart,
             totalItems: state.totalItems - 1,
-            totalPrice: state.totalPrice - (product.price),
+            totalPrice: state.totalPrice - product.price,
           }));
           return;
         }
@@ -108,8 +108,7 @@ export const useCartStore = create(
         set((state) => ({
           cart: state.cart.filter((item) => !isInCart(item, product)),
           totalItems: state.totalItems - product.quantity,
-          totalPrice:
-            state.totalPrice - (product.price) * product.quantity,
+          totalPrice: state.totalPrice - product.price * product.quantity,
         }));
       },
       resetCart() {

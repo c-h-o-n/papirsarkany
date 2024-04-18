@@ -4,7 +4,7 @@ export default function Splash() {
   return (
     <section
       id="hello"
-      className="grid h-[calc(100vh-68px)] place-items-center sm:h-[calc(100vh-76px)] home-pattern"
+      className="home-pattern grid h-[calc(100vh-68px)] place-items-center sm:h-[calc(100vh-76px)]"
     >
       <div>
         <h1 className="hidden text-center font-bold min-[400px]:block ">
