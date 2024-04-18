@@ -27,11 +27,11 @@ export default async function Kite({ params }: { params: Params }) {
   }
 
   return (
-    <div className="space-y-8 p-8 md:space-y-0 md:flex md:gap-4">
+    <div className="h-full space-y-8 p-8 md:flex md:gap-4 md:space-y-0">
       <div className="md:flex-[3]">
         {kite.image && (
           <Image
-            className="mx-auto rounded-lg object-cover md:w-fit md:h-full"
+            className="mx-auto rounded-lg object-cover md:h-full md:w-fit"
             src={kite.image.asset?.url || MISSING_IMG_URL}
             width={kite.image.asset?.metadata?.dimensions?.width}
             height={kite.image.asset?.metadata?.dimensions?.height}
