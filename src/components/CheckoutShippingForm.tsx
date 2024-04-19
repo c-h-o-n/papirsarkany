@@ -1,7 +1,6 @@
 'use client';
 
 import { FormSchemaObject } from '@/lib/types';
-import { ChangeEvent } from 'react';
 import { useFormContext } from 'react-hook-form';
 
 export default function CheckoutShippingForm() {
@@ -80,7 +79,7 @@ export default function CheckoutShippingForm() {
         </label>
         <input
           type="text"
-          placeholder="+36123456789"
+          placeholder="+36201234567"
           className="d-input d-input-bordered"
           {...register('phoneNumber')}
         />
@@ -101,11 +100,17 @@ export default function CheckoutShippingForm() {
             {...register('shippingOption')}
             className="d-radio checked:d-radio-primary"
           />
-          <span className="d-label-text text-lg">Személyes átvétel</span>
+          <span className="d-label-text text-lg">
+            Személyes átvétel
+            <br />
+          </span>
           <span className="d-label-text flex-1 text-right text-lg font-bold">
-            Ingyenes
+            ingyenes
           </span>
         </label>
+        <span className="pl-9 text-gray-400">
+          2094 Nagykovácsi Kazal utca 6.
+        </span>
       </div>
 
       <div className="d-form-control">
@@ -118,7 +123,7 @@ export default function CheckoutShippingForm() {
           />
           <span className="d-label-text text-lg">Postai szállítás</span>
           <span className="d-label-text flex-1 text-right text-lg font-bold">
-            Postai szállítás költsége
+            postai szállítás költsége
           </span>
         </label>
       </div>

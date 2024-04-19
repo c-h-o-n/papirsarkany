@@ -1,26 +1,38 @@
 'use client';
 
 import { useCartStore } from '@/store/useCartStore';
-import { Products } from '@prisma/client';
 import Link from 'next/link';
 import { MouseEvent, useState } from 'react';
 import { createPortal } from 'react-dom';
+import { CartItem, Product } from '@/lib/types';
 
-type Props = {
-  product: Products & { price: number };
+type AddToCartProps = {
+  product: Product;
 };
 
-export default function AddToCartButton({ product }: Props) {
+export default function AddToCartButton({ product }: AddToCartProps) {
   const addToCart = useCartStore((state) => state.addToCart);
   const [isShowAlert, setIsShowAlert] = useState(false);
 
-  const onclick = (e: MouseEvent) => {
+  const onClick = (e: MouseEvent) => {
     e.preventDefault();
+
+    if (!product.name || !product.price) {
+      throw Error('No name or price provided');
+    }
 
     setIsShowAlert(true);
     setTimeout(() => setIsShowAlert(false), 3000);
 
-    addToCart({ ...product, quantity: 1 });
+    const cartItem: CartItem = {
+      _id: product._id,
+      name: product.name,
+      price: product.price,
+      image: product.image,
+      quantity: 1,
+    };
+
+    addToCart(cartItem);
   };
 
   return (
@@ -37,7 +49,7 @@ export default function AddToCartButton({ product }: Props) {
           document.body,
         )}
 
-      <button className="d-btn d-btn-primary uppercase" onClick={onclick}>
+      <button className="d-btn d-btn-primary uppercase" onClick={onClick}>
         Kosárba
       </button>
     </>
