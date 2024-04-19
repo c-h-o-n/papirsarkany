@@ -8,11 +8,7 @@ import { useStepperStore } from '@/store/useStepperStore';
 import { useCheckoutFormStore } from '@/store/useCheckoutFormStore';
 
 export default function CheckoutSummary() {
-  const {
-    register,
-    getValues,
-    formState: { errors },
-  } = useFormContext<FormSchemaObject>();
+  const { register, getValues } = useFormContext<FormSchemaObject>();
   const formValues = getValues();
 
   const isSubmitting = useCheckoutFormStore((state) => state.isSubmitting);
