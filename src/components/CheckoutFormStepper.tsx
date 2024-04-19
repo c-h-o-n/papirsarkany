@@ -46,7 +46,7 @@ export default function CheckoutStepper({ children }: CheckoutStepperProps) {
       phoneNumber: string()
         .required()
         .matches(
-          /^(?:\+36|06)(?:(?:20|30|31|32|33|34|35|36|70|71|72|73|74|75|76|77|78|79|90|91|92|93|94|95|96|97|99)\d{7})/,
+          /^(?:\+36|06)(?:(?:20|30|31|32|33|34|35|36|70|71|72|73|74|75|76|77|78|79|90|91|92|93|94|95|96|97|99)\d{7})$/,
           'Érvényes magyar telefonszámnak kell lennie pl.: +36201234567 vagy 06201234567',
         )
         .label('Telefonszám'),
