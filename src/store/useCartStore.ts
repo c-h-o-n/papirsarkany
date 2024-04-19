@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 import { CartItem } from '@/lib/types';
 import { createJSONStorage, persist } from 'zustand/middleware';
+import { isInCart } from '@/lib/helpers';
 
 type State = {
   cart: CartItem[];
@@ -33,14 +34,16 @@ export const useCartStore = create(
           return;
         }
         const cart = get().cart;
-        const cartItem = cart.find((item) => item.id === product.id);
+        const cartItem = cart.find(
+          (item) => isInCart(item, product) && item.name === product.name,
+        );
 
         if (!cartItem) {
           return;
         }
 
         const updatedCart = cart.map((item) =>
-          item.id === product.id ? { ...item, quantity } : item,
+          isInCart(item, product) ? { ...item, quantity } : item,
         );
 
         set((state) => ({
@@ -52,10 +55,10 @@ export const useCartStore = create(
       },
       addToCart(product) {
         const cart = get().cart;
-        const cartItem = cart.find((item) => item.id === product.id);
+        const cartItem = cart.find((item) => isInCart(item, product));
         if (cartItem) {
           const updatedCart = cart.map((item) =>
-            item.id === product.id
+            isInCart(item, product)
               ? { ...item, quantity: (item.quantity as number) + 1 }
               : item,
           );
@@ -78,10 +81,16 @@ export const useCartStore = create(
       },
       decreaseItemQuantity(product) {
         const cart = get().cart;
-        const cartItem = cart.find((item) => item.id === product.id);
-        if (cartItem?.quantity! > 1) {
+
+        const cartItem = cart.find((item) => isInCart(item, product));
+
+        if (!cartItem) {
+          throw Error('No cart item found.');
+        }
+
+        if (cartItem.quantity > 1) {
           const updatedCart = cart.map((item) =>
-            item.id === product.id
+            isInCart(item, product)
               ? { ...item, quantity: item.quantity - 1 }
               : item,
           );
@@ -97,7 +106,7 @@ export const useCartStore = create(
       },
       removeFromCart(product) {
         set((state) => ({
-          cart: state.cart.filter((item) => item.id !== product.id),
+          cart: state.cart.filter((item) => !isInCart(item, product)),
           totalItems: state.totalItems - product.quantity,
           totalPrice: state.totalPrice - product.price * product.quantity,
         }));

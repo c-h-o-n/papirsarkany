@@ -1,26 +1,36 @@
 'use client';
-import { Twine } from '@/lib/types';
+import { useState } from 'react';
+
 import AddToCartButton from './AddToCartButton';
 import { currencyFormatter, pricePerMeterFormatter } from '@/lib/formatters';
-import { useState } from 'react';
 import Card from './Card';
+import { WithImageAsset } from '@/lib/types';
+import { Twine, TwineDiameters } from '@sanity/lib/sanity.types';
 
 type Props = {
-  twine: Twine;
+  twine: WithImageAsset<Twine>;
 };
 
 export default function TwineCard({ twine }: Props) {
-  const [selectedDiameter] = useState<Twine['properties']['diameters'][number]>(
-    twine.properties.diameters[0],
+  const [selectedDiameter] = useState<TwineDiameters[number] | undefined>(
+    twine.diameters ? twine.diameters[0] : undefined,
   );
 
   const [length, setLength] = useState<number>(1);
+
+  if (!selectedDiameter) {
+    return;
+  }
+
+  if (!twine.diameters) {
+    return;
+  }
 
   return (
     <div className="relative z-0">
       <Card className="w-full space-y-3 p-5">
         <h3 className="font-bold">{twine.name}</h3>{' '}
-        <span>(szakítószilárdság: {twine.properties.tensileStegth})</span>
+        <span>(szakítószilárdság: {selectedDiameter.tensileStrength} kg)</span>
         <div className="flex gap-2">
           <div className="flex-shrink">
             <div className="d-form-control w-full max-w-xs">
@@ -28,8 +38,10 @@ export default function TwineCard({ twine }: Props) {
                 <span className="d-label-text font-bold">Átmérő</span>
               </label>
               <select className="d-select d-select-bordered">
-                {twine.properties.diameters.map((diamater) => (
-                  <option key={diamater.name}>{diamater.name}</option>
+                {twine.diameters.map((diamaterItem) => (
+                  <option key={diamaterItem._key}>
+                    {diamaterItem.diameter} mm
+                  </option>
                 ))}
               </select>
             </div>
@@ -49,20 +61,22 @@ export default function TwineCard({ twine }: Props) {
             </div>
           </div>
         </div>
-        <h2>
-          {currencyFormatter(
-            selectedDiameter.pricePerMeter * Math.ceil(length),
-          )}{' '}
-          <span className="text-base text-gray-400">
-            ({pricePerMeterFormatter(selectedDiameter.pricePerMeter)})
-          </span>
-        </h2>
+        {selectedDiameter.pricePerMeter && (
+          <h2>
+            {currencyFormatter(
+              selectedDiameter.pricePerMeter * Math.ceil(length),
+            )}{' '}
+            <span className="text-base text-gray-400">
+              ({pricePerMeterFormatter(selectedDiameter.pricePerMeter)})
+            </span>
+          </h2>
+        )}
         <AddToCartButton
           product={{
             ...twine,
-            id: `${twine.id}`,
-            name: `${twine.name} (${selectedDiameter.name} - ${length}m)`,
-            price: selectedDiameter.pricePerMeter * Math.ceil(length),
+            _id: twine._id,
+            name: `${twine.name} (${selectedDiameter.diameter} - ${length}m)`,
+            price: (selectedDiameter.pricePerMeter || NaN) * Math.ceil(length),
           }}
         />
       </Card>
