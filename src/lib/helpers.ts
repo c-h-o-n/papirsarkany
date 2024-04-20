@@ -5,3 +5,11 @@ export function isInCart(itemToCheck: CartItem, itemInCart: CartItem) {
     itemToCheck._id === itemInCart._id && itemToCheck.name === itemInCart.name
   );
 }
+
+export function blurActiveAnchorElement() {
+  const element = document.activeElement as HTMLAnchorElement;
+
+  if (element) {
+    element.blur();
+  }
+}

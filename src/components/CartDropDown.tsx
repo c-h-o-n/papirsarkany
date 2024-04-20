@@ -5,6 +5,7 @@ import Link from 'next/link';
 import CartIcon from '@/assets/cart.svg';
 import { currencyFormatter } from '@/lib/formatters';
 import { useCartStore } from '@/store/useCartStore';
+import { blurActiveAnchorElement } from '@/lib/helpers';
 
 export default function CartDropDown() {
   const totalItems = useCartStore((state) => state.totalItems);
@@ -39,7 +40,7 @@ export default function CartDropDown() {
             <Link
               href={'/kosar'}
               className="d-btn d-btn-primary d-btn-block uppercase"
-              onClick={(e) => e.currentTarget.blur()}
+              onClick={blurActiveAnchorElement}
             >
               Kosár
             </Link>
