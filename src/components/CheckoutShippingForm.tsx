@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { FormSchemaObject } from '@/lib/types';
-import { useFormContext } from 'react-hook-form';
+import { FormSchemaObject } from "@/lib/types";
+import { useFormContext } from "react-hook-form";
 
 export default function CheckoutShippingForm() {
   const {
@@ -12,10 +12,10 @@ export default function CheckoutShippingForm() {
   } = useFormContext<FormSchemaObject>();
 
   const copyShippingToBilling = () => {
-    setValue('billingPostcode', watch('shippingPostcode'));
-    setValue('billingCity', watch('shippingCity'));
-    setValue('billingAddress', watch('shippingAddress'));
-    setValue('billingSubaddress', watch('shippingSubaddress'));
+    setValue("billingPostcode", watch("shippingPostcode"));
+    setValue("billingCity", watch("shippingCity"));
+    setValue("billingAddress", watch("shippingAddress"));
+    setValue("billingSubaddress", watch("shippingSubaddress"));
   };
 
   return (
@@ -31,7 +31,7 @@ export default function CheckoutShippingForm() {
           type="text"
           placeholder="mail@papirsarkany.hu"
           className="d-input d-input-bordered"
-          {...register('email')}
+          {...register("email")}
         />
         <label className="d-label">
           <span className="d-label-text-alt text-error">
@@ -48,7 +48,7 @@ export default function CheckoutShippingForm() {
           <input
             type="text"
             className="d-input d-input-bordered"
-            {...register('lastName')}
+            {...register("lastName")}
           />
           <label className="d-label">
             <span className="d-label-text-alt text-error">
@@ -63,7 +63,7 @@ export default function CheckoutShippingForm() {
           <input
             type="text"
             className="d-input d-input-bordered"
-            {...register('firstName')}
+            {...register("firstName")}
           />
           <label className="d-label">
             <span className="d-label-text-alt text-error">
@@ -81,7 +81,7 @@ export default function CheckoutShippingForm() {
           type="text"
           placeholder="+36201234567"
           className="d-input d-input-bordered"
-          {...register('phoneNumber')}
+          {...register("phoneNumber")}
         />
         <label className="d-label">
           <span className="d-label-text-alt text-error">
@@ -97,7 +97,7 @@ export default function CheckoutShippingForm() {
           <input
             type="radio"
             value="Személyes átvétel"
-            {...register('shippingOption')}
+            {...register("shippingOption")}
             className="d-radio checked:d-radio-primary"
           />
           <span className="d-label-text text-lg">
@@ -118,7 +118,7 @@ export default function CheckoutShippingForm() {
           <input
             type="radio"
             value="Postai szállítás"
-            {...register('shippingOption')}
+            {...register("shippingOption")}
             className="d-radio checked:d-radio-primary"
           />
           <span className="d-label-text text-lg">Postai szállítás</span>
@@ -130,7 +130,7 @@ export default function CheckoutShippingForm() {
 
       <span className="text-error">{errors.shippingOption?.message}</span>
 
-      {watch('shippingOption') === 'Postai szállítás' && (
+      {watch("shippingOption") === "Postai szállítás" && (
         <>
           <div className="d-form-control">
             <label className="d-label">
@@ -139,7 +139,7 @@ export default function CheckoutShippingForm() {
             <input
               type="text"
               className="d-input d-input-bordered"
-              {...register('shippingPostcode')}
+              {...register("shippingPostcode")}
             />
             <label className="d-label">
               <span className="d-label-text-alt text-error">
@@ -155,7 +155,7 @@ export default function CheckoutShippingForm() {
             <input
               type="text"
               className="d-input d-input-bordered"
-              {...register('shippingCity')}
+              {...register("shippingCity")}
             />
             <label className="d-label">
               <span className="d-label-text-alt text-error">
@@ -172,7 +172,7 @@ export default function CheckoutShippingForm() {
               type="text"
               placeholder="Utca, házszám"
               className="d-input d-input-bordered"
-              {...register('shippingAddress')}
+              {...register("shippingAddress")}
             />
             <label className="d-label">
               <span className="d-label-text-alt text-error">
@@ -184,7 +184,7 @@ export default function CheckoutShippingForm() {
               type="text"
               placeholder="Emelet, ajtó, egyéb (opcionális)"
               className="d-input d-input-bordered"
-              {...register('shippingSubaddress')}
+              {...register("shippingSubaddress")}
             />
             <label className="d-label">
               <span className="d-label-text-alt text-error">

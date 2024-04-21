@@ -1,4 +1,4 @@
-import Script from 'next/script';
+import Script from "next/script";
 
 /**
  * Truendo is a Consent Management Platform.
@@ -7,7 +7,7 @@ import Script from 'next/script';
  * @returns Truendo banner integration script if NODE_ENV is production
  */
 export default function TruendoScript() {
-  if (process.env.NODE_ENV !== 'production') {
+  if (process.env.NODE_ENV !== "production") {
     return;
   }
 

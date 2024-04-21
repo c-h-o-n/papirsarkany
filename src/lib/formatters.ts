@@ -1,10 +1,10 @@
-import { $Enums } from '@prisma/client';
-import { ProductTypes } from './types';
+import { $Enums } from "@prisma/client";
+import { ProductTypes } from "./types";
 
 export function currencyFormatter(value: number): string {
-  const formatter = Intl.NumberFormat('hu', {
-    style: 'currency',
-    currency: 'HUF',
+  const formatter = Intl.NumberFormat("hu", {
+    style: "currency",
+    currency: "HUF",
     maximumFractionDigits: 0,
   });
 
@@ -12,22 +12,22 @@ export function currencyFormatter(value: number): string {
 }
 
 export function pricePerMeterFormatter(value: number): string {
-  return currencyFormatter(value) + ' / m';
+  return currencyFormatter(value) + " / m";
 }
 
 export const SanityCategoryMap: Record<ProductTypes, string> = {
-  kite: 'Egyzsinóros sárkány',
-  reel: 'Zsinórtartók',
-  rod: 'Pálcák, rudak és csövek',
-  twine: 'Zsinórok',
+  kite: "Egyzsinóros sárkány",
+  reel: "Zsinórtartók",
+  rod: "Pálcák, rudak és csövek",
+  twine: "Zsinórok",
 };
 
 export const prismaShippingModeMap: Record<string, $Enums.ShippingMode> = {
-  'Személyes átvétel': 'PersonalPickup',
-  'Postai szállítás': 'Post',
+  "Személyes átvétel": "PersonalPickup",
+  "Postai szállítás": "Post",
 };
 
 export const prismaPaymentModemMap: Record<string, $Enums.PaymentMode> = {
-  'Átvételkor készpénzel': 'Cash',
-  Előreutalással: 'Transfer',
+  "Átvételkor készpénzel": "Cash",
+  Előreutalással: "Transfer",
 };

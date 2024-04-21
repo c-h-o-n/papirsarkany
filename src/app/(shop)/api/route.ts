@@ -1,7 +1,7 @@
-import { createOrder } from '@/lib/db';
-import { CartItem, FormSchemaObject, OrderMail } from '@/lib/types';
-import sgMail, { MailDataRequired, ResponseError } from '@sendgrid/mail';
-import { NextResponse } from 'next/server';
+import { createOrder } from "@/lib/db";
+import { CartItem, FormSchemaObject, OrderMail } from "@/lib/types";
+import sgMail, { MailDataRequired, ResponseError } from "@sendgrid/mail";
+import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
   try {
@@ -12,16 +12,16 @@ export async function POST(request: Request) {
     };
     const order = await createOrder(body.data, body.cart);
 
-    sgMail.setApiKey(process.env.SENDGRID_API_KEY || 'no_key');
+    sgMail.setApiKey(process.env.SENDGRID_API_KEY || "no_key");
 
-    const vendorTemplateId = 'd-6eee94a3becb45d2b50e5f8d6a1ac491';
-    const customerTemplateId = 'd-c5e1d19e77f54103978a24ff6c90344f';
+    const vendorTemplateId = "d-6eee94a3becb45d2b50e5f8d6a1ac491";
+    const customerTemplateId = "d-c5e1d19e77f54103978a24ff6c90344f";
 
     const { VENDOR_EMAIL_ADDRESS } = process.env;
 
     const vendorMail: MailDataRequired = {
       to: VENDOR_EMAIL_ADDRESS,
-      from: 'mail@papirsarkany.hu',
+      from: "mail@papirsarkany.hu",
       templateId: vendorTemplateId,
       dynamicTemplateData: {
         ...body.orderEmailData,
@@ -31,7 +31,7 @@ export async function POST(request: Request) {
 
     const customerMail: MailDataRequired = {
       to: body.orderEmailData.contact.email,
-      from: 'mail@papirsarkany.hu',
+      from: "mail@papirsarkany.hu",
       templateId: customerTemplateId,
       dynamicTemplateData: body.orderEmailData,
     };

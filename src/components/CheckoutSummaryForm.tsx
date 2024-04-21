@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
-import { useFormContext } from 'react-hook-form';
-import Card from './Card';
-import OrderSummaryCard from './OrderSummaryCard';
-import { FormSchemaObject } from '@/lib/types';
-import { useStepperStore } from '@/store/useStepperStore';
-import { useCheckoutFormStore } from '@/store/useCheckoutFormStore';
+import { useFormContext } from "react-hook-form";
+import Card from "./Card";
+import OrderSummaryCard from "./OrderSummaryCard";
+import { FormSchemaObject } from "@/lib/types";
+import { useStepperStore } from "@/store/useStepperStore";
+import { useCheckoutFormStore } from "@/store/useCheckoutFormStore";
 
 export default function CheckoutSummary() {
   const { register, getValues } = useFormContext<FormSchemaObject>();
@@ -63,7 +63,7 @@ export default function CheckoutSummary() {
         </label>
         <textarea
           className="d-textarea d-textarea-bordered d-textarea-primary h-24"
-          {...register('comment')}
+          {...register("comment")}
         ></textarea>
         <label className="d-label justify-end">
           <span className="d-label-text-alt">
