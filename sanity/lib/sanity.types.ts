@@ -147,7 +147,14 @@ export type Rod = {
   diameters?: RodDiameters;
 };
 
-export type KiteMaterials = Array<"ripstop" | "\xFCvegsz\xE1las m\u0171anyag" | "fa" | "nylon" | "bambusz" | "pap\xEDr">;
+export type KiteMaterials = Array<
+  | "ripstop"
+  | "\xFCvegsz\xE1las m\u0171anyag"
+  | "fa"
+  | "nylon"
+  | "bambusz"
+  | "pap\xEDr"
+>;
 
 export type Kite = {
   _id: string;
@@ -171,7 +178,10 @@ export type Kite = {
   price?: number;
   size?: string;
   materials?: KiteMaterials;
-  windSpeed?: "gyeng\xE9t\u0151l a k\xF6zepes sz\xE9lig" | "gyeng\xE9t\u0151l az \xE9l\xE9nk sz\xE9lig" | "k\xF6zepest\u0151l az \xE9l\xE9nk sz\xE9lig";
+  windSpeed?:
+    | "gyeng\xE9t\u0151l a k\xF6zepes sz\xE9lig"
+    | "gyeng\xE9t\u0151l az \xE9l\xE9nk sz\xE9lig"
+    | "k\xF6zepest\u0151l az \xE9l\xE9nk sz\xE9lig";
   isBeginner?: boolean;
   description?: string;
 };
@@ -260,7 +270,10 @@ export type GetAllKitesQueryResult = Array<{
   price?: number;
   size?: string;
   materials?: KiteMaterials;
-  windSpeed?: "gyeng\xE9t\u0151l a k\xF6zepes sz\xE9lig" | "gyeng\xE9t\u0151l az \xE9l\xE9nk sz\xE9lig" | "k\xF6zepest\u0151l az \xE9l\xE9nk sz\xE9lig";
+  windSpeed?:
+    | "gyeng\xE9t\u0151l a k\xF6zepes sz\xE9lig"
+    | "gyeng\xE9t\u0151l az \xE9l\xE9nk sz\xE9lig"
+    | "k\xF6zepest\u0151l az \xE9l\xE9nk sz\xE9lig";
   isBeginner?: boolean;
   description?: string;
 }>;
@@ -283,7 +296,10 @@ export type GetKiteBySlugQueryResult = {
   price?: number;
   size?: string;
   materials?: KiteMaterials;
-  windSpeed?: "gyeng\xE9t\u0151l a k\xF6zepes sz\xE9lig" | "gyeng\xE9t\u0151l az \xE9l\xE9nk sz\xE9lig" | "k\xF6zepest\u0151l az \xE9l\xE9nk sz\xE9lig";
+  windSpeed?:
+    | "gyeng\xE9t\u0151l a k\xF6zepes sz\xE9lig"
+    | "gyeng\xE9t\u0151l az \xE9l\xE9nk sz\xE9lig"
+    | "k\xF6zepest\u0151l az \xE9l\xE9nk sz\xE9lig";
   isBeginner?: boolean;
   description?: string;
 } | null;
@@ -338,4 +354,3 @@ export type GetAllTwinesQueryResult = Array<{
   } | null;
   diameters?: TwineDiameters;
 }>;
-

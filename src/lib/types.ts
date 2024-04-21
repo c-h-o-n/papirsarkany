@@ -1,14 +1,14 @@
-import { Asserts, BooleanSchema, StringSchema, ObjectSchema } from 'yup';
-import { SanityImageMetadata } from '@sanity/lib/sanity.types';
+import { Asserts, BooleanSchema, StringSchema, ObjectSchema } from "yup";
+import { SanityImageMetadata } from "@sanity/lib/sanity.types";
 
 export type ProductCategoryMapLiterals =
-  | 'Egyzsinóros sárkány'
-  | 'Pálcák és rudak'
-  | 'Csövek'
-  | 'Zsinórok'
-  | 'Zsinórtartók';
+  | "Egyzsinóros sárkány"
+  | "Pálcák és rudak"
+  | "Csövek"
+  | "Zsinórok"
+  | "Zsinórtartók";
 
-export type WithImageAsset<T> = Omit<T, 'image'> & {
+export type WithImageAsset<T> = Omit<T, "image"> & {
   image: {
     asset: {
       url: string | null;
@@ -23,7 +23,7 @@ export type Product = WithImageAsset<{
   price?: number;
 }>;
 
-export type ProductTypes = 'kite' | 'rod' | 'reel' | 'twine';
+export type ProductTypes = "kite" | "rod" | "reel" | "twine";
 
 export type CartItem = Required<Product> & {
   quantity: number;
