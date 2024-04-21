@@ -1,7 +1,7 @@
-'use client'; // Error components must be Client Components
+"use client"; // Error components must be Client Components
 
-import { useEffect } from 'react';
-import RestartIcon from '@/assets/restart.svg';
+import { useEffect } from "react";
+import RestartIcon from "@/assets/restart.svg";
 export default function Error({
   error,
   reset,

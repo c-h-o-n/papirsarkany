@@ -1,10 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-'use client';
+"use client";
 
-import { useCartStore } from '@/store/useCartStore';
-import { useCheckoutFormStore } from '@/store/useCheckoutFormStore';
-import { useStepperStore } from '@/store/useStepperStore';
-import { useEffect } from 'react';
+import { useCartStore } from "@/store/useCartStore";
+import { useCheckoutFormStore } from "@/store/useCheckoutFormStore";
+import { useStepperStore } from "@/store/useStepperStore";
+import { useEffect } from "react";
 
 export default function SuccessfulOrder() {
   const resetCart = useCartStore((state) => state.resetCart);

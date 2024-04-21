@@ -1,20 +1,20 @@
-'use client';
+"use client";
 
-import Image from 'next/image';
-import { Fragment } from 'react';
+import Image from "next/image";
+import { Fragment } from "react";
 
-import { CartItem } from '@/lib/types';
-import { currencyFormatter } from '@/lib/formatters';
-import { useCartStore } from '@/store/useCartStore';
-import Card from './Card';
-import ProductinCartCounter from './ProductInCartCounter';
-import TrashCanIcon from '@/assets/trash-can.svg';
-import { MISSING_IMG_URL } from '@/lib/constants';
+import { CartItem } from "@/lib/types";
+import { currencyFormatter } from "@/lib/formatters";
+import { useCartStore } from "@/store/useCartStore";
+import Card from "./Card";
+import ProductinCartCounter from "./ProductInCartCounter";
+import TrashCanIcon from "@/assets/trash-can.svg";
+import { MISSING_IMG_URL } from "@/lib/constants";
 
 type Props = {
-  layout?: 'full' | 'simplified' | 'definitive';
+  layout?: "full" | "simplified" | "definitive";
 };
-export default function OrderSummaryCard({ layout = 'full' }: Props) {
+export default function OrderSummaryCard({ layout = "full" }: Props) {
   const cart = useCartStore((state) => state.cart);
   const totalPrice = useCartStore((state) => state.totalPrice);
   const totalItems = useCartStore((state) => state.totalItems);
@@ -32,7 +32,7 @@ export default function OrderSummaryCard({ layout = 'full' }: Props) {
     );
   }
 
-  if (layout === 'definitive') {
+  if (layout === "definitive") {
     return (
       <Card className="flex flex-1 flex-col gap-4 p-8">
         {cart.map((item) => (
@@ -75,7 +75,7 @@ export default function OrderSummaryCard({ layout = 'full' }: Props) {
 
         <div className="flex justify-between font-bold">
           <h3>
-            Összesen{' '}
+            Összesen{" "}
             <span className="text-base font-normal text-gray-400">
               {totalItems} db
             </span>
@@ -148,7 +148,7 @@ export default function OrderSummaryCard({ layout = 'full' }: Props) {
 
       <div className="flex justify-between font-bold">
         <h3>
-          Összesen{' '}
+          Összesen{" "}
           <span className="text-base font-normal text-gray-400">
             {totalItems} db
           </span>

@@ -1,20 +1,20 @@
-import { ReactNode } from 'react';
-import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
-import { Analytics } from '@vercel/analytics/react';
-import { SpeedInsights } from '@vercel/speed-insights/next';
-import getConfig from 'next/config';
+import { ReactNode } from "react";
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
+import getConfig from "next/config";
 
-import './globals.css';
-import Navbar from '@/components/Navbar';
-import CartStoreRehydrate from '@/components/CartStoreRehydrate';
-import TruendoScript from '@/components/TruendoScript';
+import "./globals.css";
+import Navbar from "@/components/Navbar";
+import CartStoreRehydrate from "@/components/CartStoreRehydrate";
+import TruendoScript from "@/components/TruendoScript";
 
-const inter = Inter({ subsets: ['latin'] });
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'papirsarkany.hu - Papírsárkány, sárkány, anyagok',
-  description: 'Papírsárkány árusítás 1984-óta.',
+  title: "papirsarkany.hu - Papírsárkány, sárkány, anyagok",
+  description: "Papírsárkány árusítás 1984-óta.",
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {

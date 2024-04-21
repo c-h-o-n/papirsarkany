@@ -1,10 +1,10 @@
-import { setLocale } from 'yup';
+import { setLocale } from "yup";
 
 setLocale({
   string: {
-    email: 'Érvénytelen email cím',
+    email: "Érvénytelen email cím",
   },
   mixed: {
-    required: 'Kötelező mező',
+    required: "Kötelező mező",
   },
 });

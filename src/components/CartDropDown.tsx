@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
+import Link from "next/link";
 
-import CartIcon from '@/assets/cart.svg';
-import { currencyFormatter } from '@/lib/formatters';
-import { useCartStore } from '@/store/useCartStore';
-import { blurActiveAnchorElement } from '@/lib/helpers';
+import CartIcon from "@/assets/cart.svg";
+import { currencyFormatter } from "@/lib/formatters";
+import { useCartStore } from "@/store/useCartStore";
+import { blurActiveAnchorElement } from "@/lib/helpers";
 
 export default function CartDropDown() {
   const totalItems = useCartStore((state) => state.totalItems);
@@ -38,7 +38,7 @@ export default function CartDropDown() {
           </span>
           <div className="d-card-actions">
             <Link
-              href={'/kosar'}
+              href={"/kosar"}
               className="d-btn d-btn-primary d-btn-block uppercase"
               onClick={blurActiveAnchorElement}
             >
