@@ -14,10 +14,9 @@ export default function Error({
     console.error(error);
   }, [error]);
 
-  console.log('error renders')
   return (
-    <div className='grid place-items-center'>
-      <div className='text-center space-y-8'>
+    <div className="grid place-items-center">
+      <div className="space-y-8 text-center">
         <h2>Hoppá, valahol elszakadt a eresztő zsinór!</h2>
         <button
           className="d-btn d-btn-outline d-btn-neutral"
