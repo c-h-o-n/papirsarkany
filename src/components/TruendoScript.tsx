@@ -7,7 +7,10 @@ import Script from "next/script";
  * @returns Truendo banner integration script if NODE_ENV is production
  */
 export default function TruendoScript() {
-  if (process.env.NODE_ENV !== "production") {
+  if (
+    process.env.NODE_ENV !== "production" &&
+    process.env.VERCEL_ENV !== "production"
+  ) {
     return;
   }
 
