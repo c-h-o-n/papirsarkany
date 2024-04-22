@@ -85,7 +85,7 @@ export const useCartStore = create(
         const cartItem = cart.find((item) => isInCart(item, product));
 
         if (!cartItem) {
-          throw Error("No cart item found.");
+          throw new Error("No cart item found.");
         }
 
         if (cartItem.quantity > 1) {

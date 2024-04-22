@@ -37,7 +37,7 @@ export default function RodCard({ rod }: Props) {
     );
 
     if (!newSelectedDiameter) {
-      throw Error("No diamater found.");
+      throw new Error("No diamater found.");
     }
 
     setSelectedDiameter({
