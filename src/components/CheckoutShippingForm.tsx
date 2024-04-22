@@ -29,7 +29,7 @@ export default function CheckoutShippingForm() {
         </label>
         <input
           type="text"
-          placeholder="mail@papirsarkany.hu"
+          placeholder={process.env.VENDOR_EMAIL_ADDRESS}
           className="d-input d-input-bordered"
           {...register("email")}
         />
