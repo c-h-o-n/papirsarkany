@@ -19,9 +19,13 @@ export async function POST(request: Request) {
 
     const { VENDOR_EMAIL_ADDRESS } = process.env;
 
+    if (!VENDOR_EMAIL_ADDRESS) {
+      throw Error("No vendor email provided.");
+    }
+
     const vendorMail: MailDataRequired = {
+      from: VENDOR_EMAIL_ADDRESS,
       to: VENDOR_EMAIL_ADDRESS,
-      from: "mail@papirsarkany.hu",
       templateId: vendorTemplateId,
       dynamicTemplateData: {
         ...body.orderEmailData,
@@ -30,8 +34,8 @@ export async function POST(request: Request) {
     };
 
     const customerMail: MailDataRequired = {
+      from: VENDOR_EMAIL_ADDRESS,
       to: body.orderEmailData.contact.email,
-      from: "mail@papirsarkany.hu",
       templateId: customerTemplateId,
       dynamicTemplateData: body.orderEmailData,
     };
