@@ -99,7 +99,7 @@ export default function Home() {
             <h1 className="text-center font-bold">Elérhetőség</h1>
 
             <div className=" text-center font-semibold">
-              <h4>mail@papirsarkany.hu</h4>
+              <h4>{process.env.VENDOR_EMAIL_ADDRESS}</h4>
               <h4>+36 30 9754 786</h4>
             </div>
 
