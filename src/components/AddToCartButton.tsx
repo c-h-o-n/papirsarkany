@@ -18,7 +18,7 @@ export default function AddToCartButton({ product }: AddToCartProps) {
     e.preventDefault();
 
     if (!product.name || !product.price) {
-      throw Error("No name or price provided");
+      throw new Error("No name or price provided");
     }
 
     setIsShowAlert(true);
