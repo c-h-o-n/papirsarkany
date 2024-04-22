@@ -4,16 +4,15 @@ export default function Splash() {
   return (
     <section
       id="hello"
-      className="home-pattern grid h-[calc(100vh-68px)] place-items-center sm:h-[calc(100vh-76px)]"
+      className="home-pattern grid h-[calc(100dvh-68px)] place-items-center sm:h-[calc(100dvh-72px)] lg:h-[calc(100dvh-76px)]"
     >
-      <div>
-        <h1 className="hidden text-center font-bold min-[400px]:block ">
-          www.papirsarkany.hu
-        </h1>
-        <Link href={"/sarkanyok"}>
-          <h2 className="text-wrap-balance text-center font-semibold">
-            Papírsárkány árusítás 1984-óta.
-          </h2>
+      <div className="space-y-8 px-2 text-center sm:px-4">
+        <h1 className="font-bold max-[369px]:text-2xl">www.papirsarkany.hu</h1>
+        <Link
+          href="/sarkanyok"
+          className="d-btn d-btn-primary d-btn-block min-[370px]:d-btn-lg "
+        >
+          Papírsárkány árusítás 1984-óta.
         </Link>
       </div>
     </section>
