@@ -1,5 +1,5 @@
-import { create } from 'zustand';
-import { FormSchemaObject } from '@/lib/types';
+import { create } from "zustand";
+import { FormSchemaObject } from "@/lib/types";
 
 type State = {
   formData: FormSchemaObject;
@@ -15,28 +15,28 @@ type Actions = {
 const initialState: State = {
   isSubmitting: false,
   formData: {
-    email: '',
-    firstName: '',
-    lastName: '',
-    phoneNumber: '',
+    email: "",
+    firstName: "",
+    lastName: "",
+    phoneNumber: "",
 
-    shippingOption: '',
+    shippingOption: "",
 
-    shippingPostcode: '',
-    shippingCity: '',
-    shippingAddress: '',
-    shippingSubaddress: '',
+    shippingPostcode: "",
+    shippingCity: "",
+    shippingAddress: "",
+    shippingSubaddress: "",
 
-    paymentOption: '',
+    paymentOption: "",
 
     isSameAdressAsShipping: true,
 
-    billingPostcode: '',
-    billingCity: '',
-    billingAddress: '',
-    billingSubaddress: '',
+    billingPostcode: "",
+    billingCity: "",
+    billingAddress: "",
+    billingSubaddress: "",
 
-    comment: '',
+    comment: "",
   },
 };
 

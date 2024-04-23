@@ -1,6 +1,6 @@
-import MasonryContainer from '@/components/MasonryContainer';
-import KiteCard from '@/components/KiteCard';
-import { getAllKites } from '@/lib/sanity';
+import MasonryContainer from "@/components/MasonryContainer";
+import KiteCard from "@/components/KiteCard";
+import { getAllKites } from "@/lib/sanity";
 
 export default async function Kites() {
   const kites = await getAllKites();

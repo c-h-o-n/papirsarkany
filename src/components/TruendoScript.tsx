@@ -1,13 +1,16 @@
-import Script from 'next/script';
+import Script from "next/script";
 
 /**
  * Truendo is a Consent Management Platform.
  * I use this provider to meet the GDPR requirements.
  * It injects a cookie banner to my sites.
- * @returns Truendo banner integration script if NODE_ENV is production
+ * @returns Truendo banner integration script if NODE_ENV and VERCEL_ENV is production
  */
 export default function TruendoScript() {
-  if (process.env.NODE_ENV !== 'production') {
+  if (
+    process.env.NODE_ENV !== "production" ||
+    process.env.VERCEL_ENV !== "production"
+  ) {
     return;
   }
 

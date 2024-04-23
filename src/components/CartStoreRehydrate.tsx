@@ -1,6 +1,6 @@
-'use client';
-import { useCartStore } from '@/store/useCartStore';
-import { useEffect } from 'react';
+"use client";
+import { useCartStore } from "@/store/useCartStore";
+import { useEffect } from "react";
 
 export default function CartStoreRehydrate() {
   useEffect(() => {

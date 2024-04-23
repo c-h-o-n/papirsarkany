@@ -1,20 +1,20 @@
-import { defineArrayMember, defineType } from 'sanity';
+import { defineArrayMember, defineType } from "sanity";
 
 export default defineType({
-  name: 'kiteMaterials',
-  type: 'array',
-  title: 'Anyagok',
+  name: "kiteMaterials",
+  type: "array",
+  title: "Anyagok",
   of: [
     defineArrayMember({
-      type: 'string',
+      type: "string",
       options: {
         list: [
-          'ripstop',
-          'üvegszálas műanyag',
-          'fa',
-          'nylon',
-          'bambusz',
-          'papír',
+          "ripstop",
+          "üvegszálas műanyag",
+          "fa",
+          "nylon",
+          "bambusz",
+          "papír",
         ],
       },
     }),

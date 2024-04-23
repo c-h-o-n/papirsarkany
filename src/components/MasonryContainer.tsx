@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { ReactNode } from 'react';
-import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
+import { ReactNode } from "react";
+import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
 
 type Props = {
   children: ReactNode;

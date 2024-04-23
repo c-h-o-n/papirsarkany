@@ -1,6 +1,6 @@
-import { CartItem } from '@/lib/types';
-import { useCartStore } from '@/store/useCartStore';
-import { ChangeEvent, FocusEvent, useEffect, useState } from 'react';
+import { CartItem } from "@/lib/types";
+import { useCartStore } from "@/store/useCartStore";
+import { ChangeEvent, FocusEvent, useEffect, useState } from "react";
 
 type Props = {
   cartItem: CartItem;
@@ -38,7 +38,7 @@ export default function ProductinCartCounter({ cartItem }: Props) {
   };
 
   const handleInputKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') {
+    if (e.key === "Enter") {
       e.currentTarget.blur();
       return;
     }
@@ -62,7 +62,7 @@ export default function ProductinCartCounter({ cartItem }: Props) {
       />
       <div
         className={`d-btn no-animation rounded-l-none ${
-          cartItem.quantity >= 999 && 'd-btn-disabled'
+          cartItem.quantity >= 999 && "d-btn-disabled"
         }`}
         onClick={() => addToCart(cartItem)}
       >
