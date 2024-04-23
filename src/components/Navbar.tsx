@@ -1,10 +1,10 @@
-import Link from 'next/link';
+import Link from "next/link";
 
-import CartDropDown from './CartDropDown';
-import HomeIcon from '@/assets/home.svg';
-import HamburgerIcon from '@/assets/hamburger.svg';
-import NavMenuItem, { MenuItemProps } from './NavMenuItem';
-import { randomUUID } from 'crypto';
+import CartDropDown from "./CartDropDown";
+import HomeIcon from "@/assets/home.svg";
+import HamburgerIcon from "@/assets/hamburger.svg";
+import NavMenuItem, { MenuItemProps } from "./NavMenuItem";
+import { randomUUID } from "crypto";
 
 /**
  * leftItems: on `desktop` rendered on `left` side on `mobile` rendered at the `bottom`
@@ -17,26 +17,26 @@ const navbarItems: {
 } = {
   leftItems: [
     {
-      children: 'A vállalkozásról',
-      href: '/#vallalkozas',
+      children: "A vállalkozásról",
+      href: "/#vallalkozas",
     },
     {
-      children: 'Sárkány készítés',
-      href: '/#sarkany-keszites',
+      children: "Sárkány készítés",
+      href: "/#sarkany-keszites",
     },
     {
-      children: 'Elérhetőség',
-      href: '/#elerhetoseg',
+      children: "Elérhetőség",
+      href: "/#elerhetoseg",
     },
   ],
   rightItems: [
     {
-      children: 'Sárkányok',
-      href: '/sarkanyok',
+      children: "Sárkányok",
+      href: "/sarkanyok",
     },
     {
-      children: 'Anyagok',
-      href: '/anyagok',
+      children: "Anyagok",
+      href: "/anyagok",
     },
   ],
 };
@@ -59,7 +59,7 @@ function DesktopNavbar() {
     <div className="d-navbar border-b-4 border-black bg-white">
       <div className="d-navbar-start gap-1">
         <Link
-          href={'/#hello'}
+          href={"/#hello"}
           className="d-btn d-btn-ghost py-1 text-xl normal-case hover:!bg-sky-200"
           aria-label="home"
         >
@@ -126,7 +126,7 @@ function MobileNavbar() {
 
       <div className="d-navbar-end">
         <Link
-          href={'/'}
+          href={"/"}
           className="d-btn d-btn-ghost normal-case min-[320px]:text-xl"
         >
           papirsarkany.hu

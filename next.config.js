@@ -1,12 +1,12 @@
-const fs = require('fs');
+const fs = require("fs");
 
 function getAppVersion() {
-  const { version } = JSON.parse(fs.readFileSync('./package.json'));
+  const { version } = JSON.parse(fs.readFileSync("./package.json"));
   return version;
 }
 
-const withBundleAnalyzer = require('@next/bundle-analyzer')({
-  enabled: process.env.ANALYZE === 'true',
+const withBundleAnalyzer = require("@next/bundle-analyzer")({
+  enabled: process.env.ANALYZE === "true",
 });
 
 /** @type {import('next').NextConfig} */
@@ -14,7 +14,7 @@ const nextConfig = {
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/,
-      use: ['@svgr/webpack'],
+      use: ["@svgr/webpack"],
     });
 
     return config;
@@ -25,9 +25,9 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: 'https',
-        hostname: 'cdn.sanity.io',
-        port: '',
+        protocol: "https",
+        hostname: "cdn.sanity.io",
+        port: "",
       },
     ],
   },

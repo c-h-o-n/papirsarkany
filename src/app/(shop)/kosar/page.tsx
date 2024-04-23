@@ -1,5 +1,5 @@
-import CheckoutLink from '@/components/CheckoutLink';
-import OrderSummaryCard from '@/components/OrderSummaryCard';
+import CheckoutLink from "@/components/CheckoutLink";
+import OrderSummaryCard from "@/components/OrderSummaryCard";
 
 export default function Cart() {
   return (
