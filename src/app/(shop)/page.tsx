@@ -1,11 +1,11 @@
-import Link from 'next/link';
+import Link from "next/link";
 
-import Splash from '@/components/Splash';
-import HomeSection from '@/components/HomeSection';
-import Card from '@/components/Card';
-import AboutBusinessIcon from '@/assets/about-business.svg';
-import ContactIcon from '@/assets/contact.svg';
-import CraftingIcon from '@/assets/crafting.svg';
+import Splash from "@/components/Splash";
+import HomeSection from "@/components/HomeSection";
+import Card from "@/components/Card";
+import AboutBusinessIcon from "@/assets/about-business.svg";
+import ContactIcon from "@/assets/contact.svg";
+import CraftingIcon from "@/assets/crafting.svg";
 
 export default function Home() {
   return (
@@ -25,10 +25,10 @@ export default function Home() {
                 Üzletem nincs, ezért postai utánvétellel szállítok, melynek
                 költsége a megrendelőt terheli.
                 <br />
-                Személyesen{' '}
+                Személyesen{" "}
                 <Link className="underline" href="#elerhetoseg">
                   Nagykovácsiban
-                </Link>{' '}
+                </Link>{" "}
                 (63-as BKV busszal megközelíthető) is vásárolhat
               </h4>
             </Card>
@@ -99,7 +99,7 @@ export default function Home() {
             <h1 className="text-center font-bold">Elérhetőség</h1>
 
             <div className=" text-center font-semibold">
-              <h4>mail@papirsarkany.hu</h4>
+              <h4>{process.env.VENDOR_EMAIL_ADDRESS}</h4>
               <h4>+36 30 9754 786</h4>
             </div>
 

@@ -1,7 +1,7 @@
-import { create } from 'zustand';
-import { CartItem } from '@/lib/types';
-import { createJSONStorage, persist } from 'zustand/middleware';
-import { isInCart } from '@/lib/helpers';
+import { create } from "zustand";
+import { CartItem } from "@/lib/types";
+import { createJSONStorage, persist } from "zustand/middleware";
+import { isInCart } from "@/lib/helpers";
 
 type State = {
   cart: CartItem[];
@@ -85,7 +85,7 @@ export const useCartStore = create(
         const cartItem = cart.find((item) => isInCart(item, product));
 
         if (!cartItem) {
-          throw Error('No cart item found.');
+          throw new Error("No cart item found.");
         }
 
         if (cartItem.quantity > 1) {
@@ -118,7 +118,7 @@ export const useCartStore = create(
       },
     }),
     {
-      name: 'cart-storage',
+      name: "cart-storage",
       storage: createJSONStorage(() => sessionStorage),
       skipHydration: true,
     },

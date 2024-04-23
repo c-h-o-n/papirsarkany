@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import { useCartStore } from '@/store/useCartStore';
-import Link from 'next/link';
-import { MouseEvent, useState } from 'react';
-import { createPortal } from 'react-dom';
-import { CartItem, Product } from '@/lib/types';
+import { useCartStore } from "@/store/useCartStore";
+import Link from "next/link";
+import { MouseEvent, useState } from "react";
+import { createPortal } from "react-dom";
+import { CartItem, Product } from "@/lib/types";
 
 type AddToCartProps = {
   product: Product;
@@ -18,7 +18,7 @@ export default function AddToCartButton({ product }: AddToCartProps) {
     e.preventDefault();
 
     if (!product.name || !product.price) {
-      throw Error('No name or price provided');
+      throw new Error("No name or price provided");
     }
 
     setIsShowAlert(true);

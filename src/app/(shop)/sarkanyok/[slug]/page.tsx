@@ -1,10 +1,10 @@
-import AddToCartButton from '@/components/AddToCartButton';
+import AddToCartButton from "@/components/AddToCartButton";
 
-import { currencyFormatter } from '@/lib/formatters';
-import Image from 'next/image';
-import { notFound } from 'next/navigation';
-import { getAllKites, getKiteBySlug } from '@/lib/sanity';
-import { MISSING_IMG_URL, NO_NAME } from '@/lib/constants';
+import { currencyFormatter } from "@/lib/formatters";
+import Image from "next/image";
+import { notFound } from "next/navigation";
+import { getAllKites, getKiteBySlug } from "@/lib/sanity";
+import { MISSING_IMG_URL, NO_NAME } from "@/lib/constants";
 
 type Params = {
   slug: string;
@@ -68,7 +68,7 @@ export default async function Kite({ params }: { params: Params }) {
           {kite.materials && kite.materials?.length > 0 && (
             <h3>
               <b>Anyagok: </b>
-              {kite.materials.join(', ')}
+              {kite.materials.join(", ")}
             </h3>
           )}
           {kite.windSpeed && (
