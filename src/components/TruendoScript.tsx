@@ -1,5 +1,7 @@
 import Script from "next/script";
 
+import { isProdEnv } from "@/lib/helpers";
+
 /**
  * Truendo is a Consent Management Platform.
  * I use this provider to meet the GDPR requirements.
@@ -7,10 +9,7 @@ import Script from "next/script";
  * @returns Truendo banner integration script if NODE_ENV and VERCEL_ENV is production
  */
 export default function TruendoScript() {
-  if (
-    process.env.NODE_ENV !== "production" ||
-    process.env.VERCEL_ENV !== "production"
-  ) {
+  if (!isProdEnv()) {
     return;
   }
 
