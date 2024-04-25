@@ -1,15 +1,16 @@
 import { createOrder } from "@/lib/db";
+import { sendEmail, setSendgridApiKey } from "@/lib/email";
+import { isProdEnv } from '@/lib/helpers';
 import { CartItem, FormSchemaObject, OrderMail } from "@/lib/types";
-import sgMail, { MailDataRequired, ResponseError } from "@sendgrid/mail";
+import { MailDataRequired } from "@sendgrid/mail";
 import { NextResponse } from "next/server";
 
+setSendgridApiKey();
+
 export async function POST(request: Request) {
-  const { VENDOR_EMAIL_ADDRESS, SENDGRID_API_KEY } = process.env;
+  const { VENDOR_EMAIL_ADDRESS } = process.env;
 
   try {
-    if (!SENDGRID_API_KEY) {
-      throw new Error("Missing sendgrid API key.");
-    }
     if (!VENDOR_EMAIL_ADDRESS) {
       throw new Error("Missing vendor email.");
     }
@@ -19,15 +20,14 @@ export async function POST(request: Request) {
       cart: CartItem[];
       orderEmailData: OrderMail;
     };
-    const order = await createOrder(body.data, body.cart);
 
-    sgMail.setApiKey(SENDGRID_API_KEY);
+    const order = await createOrder(body.data, body.cart);
 
     const vendorTemplateId = "d-6eee94a3becb45d2b50e5f8d6a1ac491";
     const customerTemplateId = "d-c5e1d19e77f54103978a24ff6c90344f";
 
     const vendorMail: MailDataRequired = {
-      from: VENDOR_EMAIL_ADDRESS,
+      from: "mail@papirsarkany.hu",
       to: VENDOR_EMAIL_ADDRESS,
       templateId: vendorTemplateId,
       dynamicTemplateData: {
@@ -37,39 +37,32 @@ export async function POST(request: Request) {
     };
 
     const customerMail: MailDataRequired = {
-      from: VENDOR_EMAIL_ADDRESS,
+      from: "mail@papirsarkany.hu",
       to: body.orderEmailData.contact.email,
+      replyTo: VENDOR_EMAIL_ADDRESS,
       templateId: customerTemplateId,
       dynamicTemplateData: body.orderEmailData,
     };
 
-    await sgMail
-      .send(vendorMail)
-      .then(() => {
-        console.log(`Vendor email is sent to ${VENDOR_EMAIL_ADDRESS}`);
-      })
-      .catch((error: ResponseError) => {
-        console.error(error);
-      });
-
-    await sgMail
-      .send(customerMail)
-      .then(() => {
-        console.log(
-          `Customer email is sent to ${body.orderEmailData.contact.email}`,
-        );
-      })
-      .catch((error: ResponseError) => {
-        console.error(error);
-      });
+    await sendEmail(vendorMail);
+    await sendEmail(customerMail);
 
     return NextResponse.json(body);
   } catch (error) {
     console.error(error);
-    NextResponse.json(
+    
+    if(isProdEnv()) {
+      await sendEmail({
+        from: "mail@papirsarkany.hu",
+        to: "balint.ducsai@gmail.com",
+        subject: 'error in papirsarkany.hu/api',
+        text: `Error caught in url papirsarkany/api. \nreason: ${error}`,
+      });
+    }
+
+    return NextResponse.json(
       { error: `Internal Server Error reason: ${error}}` },
       { status: 500 },
     );
-    return;
   }
 }
