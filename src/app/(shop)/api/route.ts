@@ -27,7 +27,7 @@ export async function POST(request: Request) {
     const customerTemplateId = "d-c5e1d19e77f54103978a24ff6c90344f";
 
     const vendorMail: MailDataRequired = {
-      from: "mail@papirsarkany.hu",
+      from: "mail.papirsarkany@gmail.com",
       to: VENDOR_EMAIL_ADDRESS,
       templateId: vendorTemplateId,
       dynamicTemplateData: {
@@ -37,7 +37,7 @@ export async function POST(request: Request) {
     };
 
     const customerMail: MailDataRequired = {
-      from: "mail@papirsarkany.hu",
+      from: "mail.papirsarkany@gmail.com",
       to: body.orderEmailData.contact.email,
       replyTo: VENDOR_EMAIL_ADDRESS,
       templateId: customerTemplateId,
