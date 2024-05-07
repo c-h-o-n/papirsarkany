@@ -186,12 +186,6 @@ export type Kite = {
   description?: string;
 };
 
-export type Slug = {
-  _type: "slug";
-  current?: string;
-  source?: string;
-};
-
 export type SanityImageCrop = {
   _type: "sanity.imageCrop";
   top?: number;
@@ -248,7 +242,23 @@ export type SanityImageMetadata = {
   hasAlpha?: boolean;
   isOpaque?: boolean;
 };
+
+export type MediaTag = {
+  _id: string;
+  _type: "media.tag";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name?: Slug;
+};
+
+export type Slug = {
+  _type: "slug";
+  current?: string;
+  source?: string;
+};
 export declare const internalGroqTypeReferenceTo: unique symbol;
+
 
 // Source: ./src/lib/sanity.ts
 // Variable: getAllKitesQuery
@@ -277,6 +287,7 @@ export type GetAllKitesQueryResult = Array<{
   isBeginner?: boolean;
   description?: string;
 }>;
+
 // Variable: getKiteBySlugQuery
 // Query: *[_type == "kite" && slug.current == $slug] { ..., image { asset-> { url, metadata } } }[0]
 export type GetKiteBySlugQueryResult = {
@@ -303,6 +314,7 @@ export type GetKiteBySlugQueryResult = {
   isBeginner?: boolean;
   description?: string;
 } | null;
+
 // Variable: getAllRodsQuery
 // Query: *[_type == "rod"] { ..., image { asset-> { url, metadata } } } | order(name asc)
 export type GetAllRodsQueryResult = Array<{
@@ -320,6 +332,7 @@ export type GetAllRodsQueryResult = Array<{
   } | null;
   diameters?: RodDiameters;
 }>;
+
 // Variable: getAllReelsQuery
 // Query: *[_type == "reel"] { ..., image { asset-> { url, metadata } } } | order(name asc)
 export type GetAllReelsQueryResult = Array<{
@@ -337,6 +350,7 @@ export type GetAllReelsQueryResult = Array<{
   } | null;
   price?: number;
 }>;
+
 // Variable: getAllTwinesQuery
 // Query: *[_type == "twine"] { ..., image { asset-> { url, metadata } } } | order(name asc)
 export type GetAllTwinesQueryResult = Array<{
@@ -354,3 +368,5 @@ export type GetAllTwinesQueryResult = Array<{
   } | null;
   diameters?: TwineDiameters;
 }>;
+
+
