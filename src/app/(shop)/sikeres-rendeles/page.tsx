@@ -6,12 +6,19 @@ import { useCheckoutFormStore } from "@/store/useCheckoutFormStore";
 import { useStepperStore } from "@/store/useStepperStore";
 import { useEffect } from "react";
 
+let didInit = false;
+
 export default function SuccessfulOrder() {
   const resetCart = useCartStore((state) => state.resetCart);
   const resetFormData = useCheckoutFormStore((state) => state.resetFormData);
   const resetStepper = useStepperStore((state) => state.resetStepper);
 
   useEffect(() => {
+    if (didInit) {
+      return;
+    }
+
+    didInit = true;
     resetCart();
     resetFormData();
     resetStepper();
