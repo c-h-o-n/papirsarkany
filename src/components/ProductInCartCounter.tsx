@@ -1,40 +1,45 @@
 import { CartItem } from "@/lib/types";
 import { useCartStore } from "@/store/useCartStore";
-import { ChangeEvent, FocusEvent, useEffect, useState } from "react";
+import { ChangeEvent, FocusEvent, useState } from "react";
 
-type Props = {
+type ProductinCartCounterProps = {
   cartItem: CartItem;
   value: number;
 };
-export default function ProductinCartCounter({ cartItem }: Props) {
-  const [temporaryValue, setTemporaryValue] = useState(
-    cartItem.quantity.toString(),
-  );
 
-  useEffect(() => {
-    setTemporaryValue(cartItem.quantity.toString());
-  }, [cartItem.quantity]);
-
+export default function ProductinCartCounter({
+  cartItem,
+}: ProductinCartCounterProps) {
+  const setItemQuantity = useCartStore((state) => state.setItemQuantity);
+  const addToCart = useCartStore((state) => state.addToCart);
   const decreaseItemQuantity = useCartStore(
     (state) => state.decreaseItemQuantity,
   );
-  const addToCart = useCartStore((state) => state.addToCart);
-  const setItem = useCartStore((state) => state.setItemQuantity);
+
+  const [temporaryQuantityValue, setTemporaryQuantityValue] = useState(
+    cartItem.quantity,
+  );
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setTemporaryValue(e.target.value);
+    const newQuantity = parseInt(e.target.value);
+    setTemporaryQuantityValue(newQuantity);
   };
 
+  console.log({cartItem: cartItem.quantity, temporaryQuantityValue})
+
   const handleBlur = (e: FocusEvent<HTMLInputElement>) => {
+    const newQuantity = parseInt(e.target.value);
+
     if (
-      +e.target.value < 1 ||
-      +e.target.value > 999 ||
+      newQuantity < 1 ||
+      newQuantity > 999 ||
       !Number.isInteger(+e.target.value)
     ) {
-      setTemporaryValue(cartItem.quantity.toString());
+      setTemporaryQuantityValue(cartItem.quantity);
       return;
     }
-    setItem(cartItem, +e.target.value);
+    setItemQuantity(cartItem, newQuantity);
+    setTemporaryQuantityValue(newQuantity);
   };
 
   const handleInputKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -44,18 +49,28 @@ export default function ProductinCartCounter({ cartItem }: Props) {
     }
   };
 
+  const handleDecreaseButtonClick = () => {
+    decreaseItemQuantity(cartItem);
+    setTemporaryQuantityValue((currentValue) => currentValue - 1);
+  };
+
+  const handleIncreaseButtonClick = () => {
+    addToCart(cartItem);
+    setTemporaryQuantityValue((currentValue) => currentValue + 1);
+  };
+
   return (
     <div className="flex items-center">
       <div
         className="d-btn no-animation rounded-r-none"
-        onClick={() => decreaseItemQuantity(cartItem)}
+        onClick={() => handleDecreaseButtonClick()}
       >
         -
       </div>
       <input
         type="number"
         className="h-12 w-12 bg-base-200 text-center"
-        value={temporaryValue}
+        value={temporaryQuantityValue.toString()}
         onChange={handleChange}
         onBlur={handleBlur}
         onKeyDown={handleInputKeyPress}
@@ -64,7 +79,7 @@ export default function ProductinCartCounter({ cartItem }: Props) {
         className={`d-btn no-animation rounded-l-none ${
           cartItem.quantity >= 999 && "d-btn-disabled"
         }`}
-        onClick={() => addToCart(cartItem)}
+        onClick={() => handleIncreaseButtonClick()}
       >
         +
       </div>
