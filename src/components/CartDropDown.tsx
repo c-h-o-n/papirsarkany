@@ -13,7 +13,7 @@ export default function CartDropDown() {
 
   return (
     <div className="d-dropdown p-0 sm:d-dropdown-end">
-      <label tabIndex={0} className="d-btn d-btn-circle d-btn-ghost">
+      <label tabIndex={0} className="d-btn d-btn-circle d-btn-ghost" data-pw-e2e="cart-dropdown">
         <div className="d-indicator">
           <CartIcon
             className="h-5 w-5"
