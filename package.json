@@ -10,7 +10,9 @@
     "start": "next start",
     "lint": "next lint",
     "format": "prettier src --write",
-    "typegen": "rm -rf ./sanity/schema.json && npx sanity schema extract --path sanity/schema.json && npx sanity typegen generate"
+    "typegen": "rm -rf ./sanity/schema.json && npx sanity schema extract --path sanity/schema.json && npx sanity typegen generate",
+    "test": "playwright test",
+    "test:report": "playwright test && playwright show-report"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.4",
@@ -32,7 +34,7 @@
     "daisyui": "^4.10.2",
     "eslint": "^8.57.0",
     "eslint-config-next": "^14.2.2",
-    "next": "^14.2.2",
+    "next": "^14.2.3",
     "next-sanity": "^9.0.14",
     "next-sitemap": "^4.2.3",
     "postcss": "^8.4.38",
@@ -53,6 +55,7 @@
     "zustand": "^4.5.2"
   },
   "devDependencies": {
+    "@playwright/test": "^1.44.0",
     "prisma": "^5.12.1"
   }
 }
