@@ -19,6 +19,7 @@ export default function SuccessfulOrder() {
     }
 
     didInit = true;
+
     resetCart();
     resetFormData();
     resetStepper();

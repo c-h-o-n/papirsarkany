@@ -122,7 +122,9 @@ export default function CheckoutStepper({ children }: CheckoutStepperProps) {
         }
         router.push("/sikeres-rendeles");
       })
-      .catch((error) => alert(`Hiba történt a rendelés leadásakor. \n(${error})`))
+      .catch((error) =>
+        alert(`Hiba történt a rendelés leadásakor. \n(${error})`),
+      )
       .finally(() => {
         setIsSubmitting(false);
       });
