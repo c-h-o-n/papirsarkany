@@ -1,6 +1,6 @@
 import { createOrder } from "@/lib/db";
 import { sendEmail, setSendgridApiKey } from "@/lib/email";
-import { isProdEnv } from '@/lib/helpers';
+import { isProdEnv } from "@/lib/helpers";
 import { CartItem, FormSchemaObject, OrderMail } from "@/lib/types";
 import { MailDataRequired } from "@sendgrid/mail";
 import { NextResponse } from "next/server";
@@ -50,12 +50,12 @@ export async function POST(request: Request) {
     return NextResponse.json(body);
   } catch (error) {
     console.error(error);
-    
-    if(isProdEnv()) {
+
+    if (isProdEnv()) {
       await sendEmail({
         from: "mail@papirsarkany.hu",
         to: "balint.ducsai@gmail.com",
-        subject: 'error in papirsarkany.hu/api',
+        subject: "error in papirsarkany.hu/api",
         text: `Error caught in url papirsarkany/api. \nreason: ${error}`,
       });
     }

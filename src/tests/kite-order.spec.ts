@@ -88,6 +88,8 @@ test("Kite order", async ({ page, browserName, isMobile }) => {
   });
 
   // Only runs in Chrome Desktop to avoid sending multiple emails.
+  // CHECK when should this functionality be checked? My assumption is in PR CI pipelines. (maybe process.env.CI)
+  // ! This will never run since isProdEnv will always be false when tests run
   if (browserName === "chromium" && !isMobile && isProdEnv()) {
     await test.step("Place the order", async () => {
       // finish order

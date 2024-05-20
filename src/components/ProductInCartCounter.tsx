@@ -25,8 +25,6 @@ export default function ProductinCartCounter({
     setTemporaryQuantityValue(newQuantity);
   };
 
-  console.log({cartItem: cartItem.quantity, temporaryQuantityValue})
-
   const handleBlur = (e: FocusEvent<HTMLInputElement>) => {
     const newQuantity = parseInt(e.target.value);
 
