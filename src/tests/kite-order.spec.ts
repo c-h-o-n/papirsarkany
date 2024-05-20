@@ -1,13 +1,24 @@
-import { test } from "@playwright/test";
+import { isProdEnv } from "@/lib/helpers";
+import { expect, test } from "@playwright/test";
 
 test("Kite order", async ({ page, browserName, isMobile }) => {
   await test.step("Add kites to the cart", async () => {
-    await page.goto("https://papirsarkany.vercel.app/sarkanyok");
-    // await page.goto("http://127.0.0.1:3000/sarkanyok");
+    // await page.goto("https://papirsarkany.vercel.app/sarkanyok");
+    await page.goto("http://127.0.0.1:3000/sarkanyok");
 
     // add to cart
     await page.getByText("Kosárba").first().click();
     await page.getByText("Kosárba").nth(2).click();
+
+    const cartItemIndicatorInnerText = await page
+      .getByTestId("cart-dropdown")
+      .first()
+      .locator(".d-indicator")
+      .innerText();
+    expect(
+      cartItemIndicatorInnerText,
+      'Cart item quantity indicator should be equal to "2".',
+    ).toEqual("2");
   });
 
   await test.step('Navigate to "/kosar" (cart) page', async () => {
@@ -21,9 +32,24 @@ test("Kite order", async ({ page, browserName, isMobile }) => {
   await test.step("Modify cart items", async () => {
     // increase kite-01 quantity
     await page.getByText("+").first().click();
-    
+
+    const spinButtonInputValue = await page
+      .getByRole("spinbutton")
+      .first()
+      .inputValue();
+    expect(
+      spinButtonInputValue,
+      "First cart item quantity should be equal to 2.",
+    ).toEqual("2");
+
     // remove kite-02
     await page.getByText("-").nth(2).click();
+
+    const numberOfSpinButtons = await page.getByRole("spinbutton").count();
+    expect(
+      numberOfSpinButtons,
+      "Number of unique kites should be equal to 1 in the cart.",
+    ).toEqual(1);
   });
 
   await test.step("Fill out the order form", async () => {
@@ -62,7 +88,7 @@ test("Kite order", async ({ page, browserName, isMobile }) => {
   });
 
   // Only runs in Chrome Desktop to avoid sending multiple emails.
-  if (browserName === "chromium" && !isMobile) {
+  if (browserName === "chromium" && !isMobile && isProdEnv()) {
     await test.step("Place the order", async () => {
       // finish order
       await page.getByRole("button", { name: "Megrendelem" }).click();
