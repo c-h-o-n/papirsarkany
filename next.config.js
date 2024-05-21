@@ -1,11 +1,12 @@
-const fs = require("fs");
+import { readFileSync } from "fs";
+import NextBundleAnalyzer from '@next/bundle-analyzer'
 
 function getAppVersion() {
-  const { version } = JSON.parse(fs.readFileSync("./package.json"));
+  const { version } = JSON.parse(readFileSync("./package.json"));
   return version;
 }
 
-const withBundleAnalyzer = require("@next/bundle-analyzer")({
+const withBundleAnalyzer = NextBundleAnalyzer({
   enabled: process.env.ANALYZE === "true",
 });
 
@@ -33,4 +34,4 @@ const nextConfig = {
   },
 };
 
-module.exports = withBundleAnalyzer(nextConfig);
+export default withBundleAnalyzer(nextConfig);

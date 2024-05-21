@@ -1,10 +1,10 @@
 /** @type {import('next-sitemap').IConfig} */
-module.exports = {
+export default {
   siteUrl: process.env.SITE_URL,
   generateRobotsTxt: true, // (optional)
   changefreq: "monthly",
   priority: 1,
-  exclude: ["/admin", "/admin/*", '/penztar'],
+  exclude: ["/admin", "/admin/*", "/penztar"],
   robotsTxtOptions: {
     policies: [
       {
