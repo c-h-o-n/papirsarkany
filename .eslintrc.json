@@ -8,5 +8,7 @@
   ],
   "ignorePatterns": ["**/*.js"],
   "root": true,
-  "rules": {}
+  "rules": {
+    "@typescript-eslint/no-unused-vars": "warn"
+  }
 }
