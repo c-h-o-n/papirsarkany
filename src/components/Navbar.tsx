@@ -1,10 +1,11 @@
+"use client";
 import Link from "next/link";
+import useMedia from "use-media";
 
 import CartDropDown from "./CartDropDown";
 import HomeIcon from "@/assets/home.svg";
 import HamburgerIcon from "@/assets/hamburger.svg";
 import NavMenuItem, { MenuItemProps } from "./NavMenuItem";
-import { randomUUID } from "crypto";
 
 /**
  * leftItems: on `desktop` rendered on `left` side on `mobile` rendered at the `bottom`
@@ -42,12 +43,21 @@ const navbarItems: {
 };
 
 export default function Navbar() {
+  const isDesktop = useMedia({ minWidth: `768px` });
+
+  if (isDesktop) {
+    return (
+      <div className="sticky top-0 z-10">
+        <div>
+          <DesktopNavbar />
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="sticky top-0 z-10">
-      <div className="hidden md:block">
-        <DesktopNavbar />
-      </div>
-      <div className="block md:hidden">
+      <div>
         <MobileNavbar />
       </div>
     </div>
@@ -67,7 +77,7 @@ function DesktopNavbar() {
         </Link>
         <ul className="d-menu d-menu-horizontal flex-nowrap gap-2 text-base font-extrabold">
           {navbarItems.leftItems.map((navbarItem) => (
-            <NavMenuItem key={randomUUID()} href={navbarItem.href}>
+            <NavMenuItem key={crypto.randomUUID()} href={navbarItem.href}>
               {navbarItem.children}
             </NavMenuItem>
           ))}
@@ -76,7 +86,7 @@ function DesktopNavbar() {
       <div className="d-navbar-end">
         <ul className="d-menu d-menu-horizontal gap-2 text-base font-extrabold">
           {navbarItems.rightItems.map((navbarItem) => (
-            <NavMenuItem key={randomUUID()} href={navbarItem.href}>
+            <NavMenuItem key={crypto.randomUUID()} href={navbarItem.href}>
               {navbarItem.children}
             </NavMenuItem>
           ))}
@@ -106,13 +116,13 @@ function MobileNavbar() {
             className="d-menu d-dropdown-content z-[1] mt-5 w-52 rounded-box bg-base-100 p-2 shadow"
           >
             {navbarItems.rightItems.map((navbarItem) => (
-              <NavMenuItem key={randomUUID()} href={navbarItem.href}>
+              <NavMenuItem key={crypto.randomUUID()} href={navbarItem.href}>
                 {navbarItem.children}
               </NavMenuItem>
             ))}
             <div className="d-divider m-0"></div>
             {navbarItems.leftItems.map((navbarItem) => (
-              <NavMenuItem key={randomUUID()} href={navbarItem.href}>
+              <NavMenuItem key={crypto.randomUUID()} href={navbarItem.href}>
                 {navbarItem.children}
               </NavMenuItem>
             ))}

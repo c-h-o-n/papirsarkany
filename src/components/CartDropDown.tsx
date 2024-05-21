@@ -12,7 +12,7 @@ export default function CartDropDown() {
   const totalPrice = useCartStore((state) => state.totalPrice);
 
   return (
-    <div className="d-dropdown p-0 sm:d-dropdown-end">
+    <div className="d-dropdown d-dropdown-rigdht p-0 md:d-dropdown-end">
       <label
         tabIndex={0}
         className="d-btn d-btn-circle d-btn-ghost"
