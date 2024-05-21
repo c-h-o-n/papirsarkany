@@ -10,15 +10,15 @@ test("Kite order", async ({ page, browserName, isMobile }) => {
     await page.getByText("Kosárba").first().click();
     await page.getByText("Kosárba").nth(2).click();
 
-    const cartItemIndicatorInnerText = await page
+    const cartItemIndicator = await page
       .getByTestId("cart-dropdown")
       .first()
       .locator(".d-indicator")
-      .innerText();
-    expect(
-      cartItemIndicatorInnerText,
+
+    await expect(
+      cartItemIndicator,
       'Cart item quantity indicator should be equal to "2".',
-    ).toEqual("2");
+    ).toHaveText("2");
   });
 
   await test.step('Navigate to "/kosar" (cart) page', async () => {
@@ -33,23 +33,24 @@ test("Kite order", async ({ page, browserName, isMobile }) => {
     // increase kite-01 quantity
     await page.getByText("+").first().click();
 
-    const spinButtonInputValue = await page
+    const spinButton = await page
       .getByRole("spinbutton")
       .first()
-      .inputValue();
-    expect(
-      spinButtonInputValue,
+
+    await expect(
+      spinButton,
       "First cart item quantity should be equal to 2.",
-    ).toEqual("2");
+    ).toHaveValue("2");
 
     // remove kite-02
     await page.getByText("-").nth(2).click();
 
-    const numberOfSpinButtons = await page.getByRole("spinbutton").count();
-    expect(
-      numberOfSpinButtons,
+    const spinButtons = await page.getByRole("spinbutton");
+
+    await expect(
+      spinButtons,
       "Number of unique kites should be equal to 1 in the cart.",
-    ).toEqual(1);
+    ).toHaveCount(1);
   });
 
   await test.step("Fill out the order form", async () => {
