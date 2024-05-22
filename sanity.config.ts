@@ -1,15 +1,32 @@
 /**
  * This configuration is used to for the Sanity Studio that’s mounted on the `/app/admin/[[...index]]/page.tsx` route
  */
-
+import { huHULocale } from '@sanity/locale-hu-hu';
 import { visionTool } from '@sanity/vision';
-
+import { defineConfig, isDev } from 'sanity';
+import { media } from 'sanity-plugin-media';
+import { structureTool } from 'sanity/structure';
 import { apiVersion, dataset, projectId } from './sanity/env';
 import { schema } from './sanity/schema';
 
-export const devOnlyPlugins = [
+const devOnlyPlugins = [
   visionTool({
     defaultApiVersion: apiVersion,
     title: 'Query Playground',
   }),
 ];
+
+export default defineConfig({
+  basePath: '/admin',
+  projectId,
+  dataset,
+  schema,
+  plugins: [
+    structureTool({
+      title: 'Struktúra',
+    }),
+    huHULocale(),
+    media(),
+    ...(isDev ? devOnlyPlugins : []),
+  ],
+});
