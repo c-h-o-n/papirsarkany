@@ -6,6 +6,7 @@ import CartDropDown from "./CartDropDown";
 import HomeIcon from "@/assets/home.svg";
 import HamburgerIcon from "@/assets/hamburger.svg";
 import NavMenuItem, { MenuItemProps } from "./NavMenuItem";
+import twConfig from '@/lib/tailwind-theme.preval';
 
 /**
  * leftItems: on `desktop` rendered on `left` side on `mobile` rendered at the `bottom`
@@ -43,7 +44,7 @@ const navbarItems: {
 };
 
 export default function Navbar() {
-  const isDesktop = useMedia({ minWidth: `768px` });
+  const isDesktop = useMedia({ minWidth: twConfig.screens.md });
 
   if (isDesktop) {
     return (

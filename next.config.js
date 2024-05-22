@@ -1,14 +1,20 @@
 import { readFileSync } from "fs";
-import NextBundleAnalyzer from '@next/bundle-analyzer'
+import NextBundleAnalyzer from "@next/bundle-analyzer";
+import createNextPluginPreval from "next-plugin-preval/config.js";
 
-function getAppVersion() {
+const getAppVersion = () => {
   const { version } = JSON.parse(readFileSync("./package.json"));
   return version;
-}
+};
+
+const withNextPluginPreval = createNextPluginPreval();
 
 const withBundleAnalyzer = NextBundleAnalyzer({
   enabled: process.env.ANALYZE === "true",
 });
+
+const withPlugins = (nextConfig) =>
+  withNextPluginPreval(withBundleAnalyzer(nextConfig));
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -34,4 +40,4 @@ const nextConfig = {
   },
 };
 
-export default withBundleAnalyzer(nextConfig);
+export default withPlugins(nextConfig);
