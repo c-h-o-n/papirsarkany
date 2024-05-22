@@ -1,6 +1,8 @@
 import { Asserts, BooleanSchema, StringSchema, ObjectSchema } from "yup";
 import { SanityImageMetadata } from "@sanity/lib/sanity.types";
 
+import { MenuItemProps } from '@/components/NavMenuItem';
+
 export type ProductCategoryMapLiterals =
   | "Egyzsinóros sárkány"
   | "Pálcák és rudak"
@@ -97,3 +99,14 @@ export type OrderMail = NewOrder & {
   }[];
   total: string;
 };
+
+
+/**
+ * leftItems: on `desktop` rendered on `left` side on `mobile` rendered at the `bottom`
+ *
+ * rightItems: on `desktop` rendered on `right` side on `mobile` rendered at the `top`
+ */
+export type NavbarItems = {
+  leftItems: MenuItemProps[];
+  rightItems: MenuItemProps[];
+}
