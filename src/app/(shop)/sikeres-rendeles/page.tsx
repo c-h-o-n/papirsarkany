@@ -1,10 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-"use client";
+'use client';
 
-import { useCartStore } from "@/store/useCartStore";
-import { useCheckoutFormStore } from "@/store/useCheckoutFormStore";
-import { useStepperStore } from "@/store/useStepperStore";
-import { useEffect } from "react";
+import { useCartStore } from '@/store/useCartStore';
+import { useCheckoutFormStore } from '@/store/useCheckoutFormStore';
+import { useStepperStore } from '@/store/useStepperStore';
+import { useEffect } from 'react';
 
 let didInit = false;
 
@@ -26,10 +26,10 @@ export default function SuccessfulOrder() {
   }, []);
 
   return (
-    <div className="grid items-center text-center">
+    <div className='grid items-center text-center'>
       <div>
-        <h1 className="font-bold">Sikeres rendelés!</h1>
-        <div className="">Hamarosan felveszem önnel a kapcsolatot.</div>
+        <h1 className='font-bold'>Sikeres rendelés!</h1>
+        <div className=''>Hamarosan felveszem önnel a kapcsolatot.</div>
       </div>
     </div>
   );

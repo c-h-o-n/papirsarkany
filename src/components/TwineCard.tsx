@@ -1,11 +1,11 @@
-"use client";
-import { useState } from "react";
+'use client';
+import { useState } from 'react';
 
-import AddToCartButton from "./AddToCartButton";
-import { currencyFormatter, pricePerMeterFormatter } from "@/lib/formatters";
-import Card from "./Card";
-import { WithImageAsset } from "@/lib/types";
-import { Twine, TwineDiameters } from "@sanity/lib/sanity.types";
+import AddToCartButton from './AddToCartButton';
+import { currencyFormatter, pricePerMeterFormatter } from '@/lib/formatters';
+import Card from './Card';
+import { WithImageAsset } from '@/lib/types';
+import { Twine, TwineDiameters } from '@sanity/lib/sanity.types';
 
 type Props = {
   twine: WithImageAsset<Twine>;
@@ -27,17 +27,17 @@ export default function TwineCard({ twine }: Props) {
   }
 
   return (
-    <div className="relative z-0">
-      <Card className="w-full space-y-3 p-5">
-        <h3 className="font-bold">{twine.name}</h3>{" "}
+    <div className='relative z-0'>
+      <Card className='w-full space-y-3 p-5'>
+        <h3 className='font-bold'>{twine.name}</h3>{' '}
         <span>(szakítószilárdság: {selectedDiameter.tensileStrength} kg)</span>
-        <div className="flex gap-2">
-          <div className="flex-shrink">
-            <div className="d-form-control w-full max-w-xs">
-              <label className="d-label">
-                <span className="d-label-text font-bold">Átmérő</span>
+        <div className='flex gap-2'>
+          <div className='flex-shrink'>
+            <div className='d-form-control w-full max-w-xs'>
+              <label className='d-label'>
+                <span className='d-label-text font-bold'>Átmérő</span>
               </label>
-              <select className="d-select d-select-bordered">
+              <select className='d-select d-select-bordered'>
                 {twine.diameters.map((diamaterItem) => (
                   <option key={diamaterItem._key}>
                     {diamaterItem.diameter} mm
@@ -47,15 +47,15 @@ export default function TwineCard({ twine }: Props) {
             </div>
           </div>
 
-          <div className="self-end">
-            <div className="d-join rounded-r-full outline-offset-2 focus-within:outline focus-within:outline-2 focus-within:outline-base-300">
+          <div className='self-end'>
+            <div className='d-join rounded-r-full outline-offset-2 focus-within:outline focus-within:outline-2 focus-within:outline-base-300'>
               <input
-                type="number"
-                className="d-input d-join-item d-input-bordered w-full !outline-none"
-                placeholder="hossz"
+                type='number'
+                className='d-input d-join-item d-input-bordered w-full !outline-none'
+                placeholder='hossz'
                 onChange={(e) => setLength(+e.target.value)}
               />
-              <span className="d-join-item inline-flex items-center justify-center rounded-r-full bg-base-200 px-4 ">
+              <span className='d-join-item inline-flex items-center justify-center rounded-r-full bg-base-200 px-4 '>
                 m
               </span>
             </div>
@@ -65,8 +65,8 @@ export default function TwineCard({ twine }: Props) {
           <h2>
             {currencyFormatter(
               selectedDiameter.pricePerMeter * Math.ceil(length),
-            )}{" "}
-            <span className="text-base text-gray-400">
+            )}{' '}
+            <span className='text-base text-gray-400'>
               ({pricePerMeterFormatter(selectedDiameter.pricePerMeter)})
             </span>
           </h2>

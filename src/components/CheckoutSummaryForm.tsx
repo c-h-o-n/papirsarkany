@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import { useFormContext } from "react-hook-form";
-import Card from "./Card";
-import OrderSummaryCard from "./OrderSummaryCard";
-import { FormSchemaObject } from "@/lib/types";
-import { useStepperStore } from "@/store/useStepperStore";
-import { useCheckoutFormStore } from "@/store/useCheckoutFormStore";
+import { useFormContext } from 'react-hook-form';
+import Card from './Card';
+import OrderSummaryCard from './OrderSummaryCard';
+import { FormSchemaObject } from '@/lib/types';
+import { useStepperStore } from '@/store/useStepperStore';
+import { useCheckoutFormStore } from '@/store/useCheckoutFormStore';
 
 export default function CheckoutSummary() {
   const { register, getValues } = useFormContext<FormSchemaObject>();
@@ -15,15 +15,15 @@ export default function CheckoutSummary() {
   const prevStep = useStepperStore((state) => state.prevStep);
 
   return (
-    <div className="space-y-6">
-      <h1 className="text-center font-bold">Rendelés összegzése</h1>
+    <div className='space-y-6'>
+      <h1 className='text-center font-bold'>Rendelés összegzése</h1>
 
-      <OrderSummaryCard layout="definitive" />
+      <OrderSummaryCard layout='definitive' />
 
-      <div className="max-w  grid grid-cols-1 gap-4 md:grid-cols-3">
-        <Card className="mx-auto w-full max-w-xs p-6">
+      <div className='max-w  grid grid-cols-1 gap-4 md:grid-cols-3'>
+        <Card className='mx-auto w-full max-w-xs p-6'>
           <div>
-            <h4 className=" font-bold underline">Elérhetőség</h4>
+            <h4 className=' font-bold underline'>Elérhetőség</h4>
             <div>
               {formValues.lastName} {formValues.firstName}
             </div>
@@ -32,9 +32,9 @@ export default function CheckoutSummary() {
           </div>
         </Card>
 
-        <Card className="mx-auto w-full max-w-xs p-6">
+        <Card className='mx-auto w-full max-w-xs p-6'>
           <div>
-            <h4 className=" font-bold underline">Szállítás</h4>
+            <h4 className=' font-bold underline'>Szállítás</h4>
             <div>{formValues.shippingOption}</div>
             <div>
               {formValues.shippingPostcode} {formValues.shippingCity}
@@ -44,9 +44,9 @@ export default function CheckoutSummary() {
           </div>
         </Card>
 
-        <Card className="mx-auto w-full max-w-xs p-6">
+        <Card className='mx-auto w-full max-w-xs p-6'>
           <div>
-            <h4 className=" font-bold underline">Fizetés</h4>
+            <h4 className=' font-bold underline'>Fizetés</h4>
             <div>{formValues.paymentOption}</div>
             <div>
               {formValues.billingPostcode} {formValues.billingCity}
@@ -57,36 +57,36 @@ export default function CheckoutSummary() {
         </Card>
       </div>
 
-      <div className="d-form-control">
-        <label className="d-label">
-          <span className="d-labels-text text-lg">Megjegyzés</span>
+      <div className='d-form-control'>
+        <label className='d-label'>
+          <span className='d-labels-text text-lg'>Megjegyzés</span>
         </label>
         <textarea
-          className="d-textarea d-textarea-bordered d-textarea-primary h-24"
-          {...register("comment")}
+          className='d-textarea d-textarea-bordered d-textarea-primary h-24'
+          {...register('comment')}
         ></textarea>
-        <label className="d-label justify-end">
-          <span className="d-label-text-alt">
+        <label className='d-label justify-end'>
+          <span className='d-label-text-alt'>
             14 napos elállási jog fentartva a rendelés leadásától számítva.
           </span>
         </label>
       </div>
 
-      <div className="flex flex-wrap justify-between gap-4">
+      <div className='flex flex-wrap justify-between gap-4'>
         <button
-          type="button"
-          className="d-btn d-btn-outline d-btn-neutral uppercase max-sm:d-btn-block"
+          type='button'
+          className='d-btn d-btn-outline d-btn-neutral uppercase max-sm:d-btn-block'
           onClick={prevStep}
         >
           Vissza
         </button>
         <button
-          type="submit"
+          type='submit'
           className={`d-btn d-btn-success uppercase max-sm:d-btn-block`}
           disabled={isSubmitting}
         >
           {isSubmitting && (
-            <span className="d-loading d-loading-spinner"></span>
+            <span className='d-loading d-loading-spinner'></span>
           )}
           Megrendelem
         </button>
