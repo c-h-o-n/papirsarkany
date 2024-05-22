@@ -1,6 +1,6 @@
-import Script from "next/script";
+import Script from 'next/script';
 
-import { isProdEnv } from "@/lib/helpers";
+import { isProdEnv } from '@/lib/helpers';
 
 /**
  * Truendo is a Consent Management Platform.
@@ -15,10 +15,10 @@ export default function TruendoScript() {
 
   return (
     <Script
-      id="truendoAutoBlock"
-      type="text/javascript"
-      src="https://cdn.priv.center/pc/truendo_cmp.pid.js"
-      data-siteid="88306c5c-ce8c-45d7-8daf-47e99864c1b8"
+      id='truendoAutoBlock'
+      type='text/javascript'
+      src='https://cdn.priv.center/pc/truendo_cmp.pid.js'
+      data-siteid='88306c5c-ce8c-45d7-8daf-47e99864c1b8'
     />
   );
 }

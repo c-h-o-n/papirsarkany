@@ -1,6 +1,6 @@
-import { CartItem } from "@/lib/types";
-import { useCartStore } from "@/store/useCartStore";
-import { ChangeEvent, FocusEvent, useState } from "react";
+import { CartItem } from '@/lib/types';
+import { useCartStore } from '@/store/useCartStore';
+import { ChangeEvent, FocusEvent, useState } from 'react';
 
 type ProductinCartCounterProps = {
   cartItem: CartItem;
@@ -41,7 +41,7 @@ export default function ProductinCartCounter({
   };
 
   const handleInputKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter") {
+    if (e.key === 'Enter') {
       e.currentTarget.blur();
       return;
     }
@@ -58,16 +58,16 @@ export default function ProductinCartCounter({
   };
 
   return (
-    <div className="flex items-center">
+    <div className='flex items-center'>
       <div
-        className="d-btn no-animation rounded-r-none"
+        className='d-btn no-animation rounded-r-none'
         onClick={() => handleDecreaseButtonClick()}
       >
         -
       </div>
       <input
-        type="number"
-        className="h-12 w-12 bg-base-200 text-center"
+        type='number'
+        className='h-12 w-12 bg-base-200 text-center'
         value={temporaryQuantityValue.toString()}
         onChange={handleChange}
         onBlur={handleBlur}
@@ -75,7 +75,7 @@ export default function ProductinCartCounter({
       />
       <div
         className={`d-btn no-animation rounded-l-none ${
-          cartItem.quantity >= 999 && "d-btn-disabled"
+          cartItem.quantity >= 999 && 'd-btn-disabled'
         }`}
         onClick={() => handleIncreaseButtonClick()}
       >
