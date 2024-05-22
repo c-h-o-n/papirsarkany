@@ -1,7 +1,8 @@
 'use client';
 
 import { currencyFormatter } from '@/lib/formatters';
-import { FormSchemaObject, FormSchemaArray, OrderMail } from '@/lib/types';
+import { FormSchemaArray, FormSchemaObject, OrderMail } from '@/lib/types';
+import '@/lib/yupConfig';
 import { useCartStore } from '@/store/useCartStore';
 import { useCheckoutFormStore } from '@/store/useCheckoutFormStore';
 import { useStepperStore } from '@/store/useStepperStore';
@@ -10,7 +11,6 @@ import { redirect, useRouter } from 'next/navigation';
 import { Children, ReactNode } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { boolean, object, string } from 'yup';
-import '@/lib/yupConfig';
 
 type CheckoutStepperProps = {
   children: ReactNode;

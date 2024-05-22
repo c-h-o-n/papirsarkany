@@ -1,7 +1,7 @@
-import { create } from 'zustand';
-import { CartItem } from '@/lib/types';
-import { createJSONStorage, persist } from 'zustand/middleware';
 import { isInCart } from '@/lib/helpers';
+import { CartItem } from '@/lib/types';
+import { create } from 'zustand';
+import { createJSONStorage, persist } from 'zustand/middleware';
 
 type State = {
   cart: CartItem[];

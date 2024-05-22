@@ -1,14 +1,14 @@
-import { ReactNode } from 'react';
-import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
+import type { Metadata } from 'next';
 import getConfig from 'next/config';
+import { Inter } from 'next/font/google';
+import { ReactNode } from 'react';
 
-import './globals.css';
-import Navbar from '@/components/Navbar';
 import CartStoreRehydrate from '@/components/CartStoreRehydrate';
+import Navbar from '@/components/Navbar';
 import TruendoScript from '@/components/TruendoScript';
+import './globals.css';
 
 const inter = Inter({ subsets: ['latin'] });
 

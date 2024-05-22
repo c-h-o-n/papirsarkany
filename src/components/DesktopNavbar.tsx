@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
-import CartDropDown from './CartDropDown';
 import HomeIcon from '@/assets/home.svg';
+import CartDropDown from './CartDropDown';
 import NavMenuItem from './NavMenuItem';
 
 import { NavbarItems } from '@/lib/types';

@@ -1,11 +1,11 @@
 'use client';
 import { useState } from 'react';
 
-import AddToCartButton from './AddToCartButton';
 import { currencyFormatter, pricePerMeterFormatter } from '@/lib/formatters';
-import Card from './Card';
 import { WithImageAsset } from '@/lib/types';
 import { Twine, TwineDiameters } from '@sanity/lib/sanity.types';
+import AddToCartButton from './AddToCartButton';
+import Card from './Card';
 
 type Props = {
   twine: WithImageAsset<Twine>;

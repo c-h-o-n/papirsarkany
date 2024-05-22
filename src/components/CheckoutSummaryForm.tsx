@@ -1,11 +1,11 @@
 'use client';
 
+import { FormSchemaObject } from '@/lib/types';
+import { useCheckoutFormStore } from '@/store/useCheckoutFormStore';
+import { useStepperStore } from '@/store/useStepperStore';
 import { useFormContext } from 'react-hook-form';
 import Card from './Card';
 import OrderSummaryCard from './OrderSummaryCard';
-import { FormSchemaObject } from '@/lib/types';
-import { useStepperStore } from '@/store/useStepperStore';
-import { useCheckoutFormStore } from '@/store/useCheckoutFormStore';
 
 export default function CheckoutSummary() {
   const { register, getValues } = useFormContext<FormSchemaObject>();
