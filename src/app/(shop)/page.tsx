@@ -1,11 +1,11 @@
 import Link from 'next/link';
 
-import Splash from '@/components/Splash';
-import HomeSection from '@/components/HomeSection';
-import Card from '@/components/Card';
 import AboutBusinessIcon from '@/assets/about-business.svg';
 import ContactIcon from '@/assets/contact.svg';
 import CraftingIcon from '@/assets/crafting.svg';
+import Card from '@/components/Card';
+import HomeSection from '@/components/HomeSection';
+import Splash from '@/components/Splash';
 
 export default function Home() {
   return (

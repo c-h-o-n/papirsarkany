@@ -1,10 +1,10 @@
 'use client';
 
+import { CartItem, Product } from '@/lib/types';
 import { useCartStore } from '@/store/useCartStore';
 import Link from 'next/link';
 import { MouseEvent, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { CartItem, Product } from '@/lib/types';
 
 type AddToCartProps = {
   product: Product;

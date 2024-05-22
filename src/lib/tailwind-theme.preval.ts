@@ -1,7 +1,7 @@
+import { pick } from 'lodash';
 import preval from 'next-plugin-preval';
 import resolveConfig from 'tailwindcss/resolveConfig';
 import tailwindConfig from '../../tailwind.config';
-import { pick } from 'lodash';
 
 const fullConfig = resolveConfig(tailwindConfig);
 /**

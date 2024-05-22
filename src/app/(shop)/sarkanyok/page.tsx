@@ -1,5 +1,5 @@
-import MasonryContainer from '@/components/MasonryContainer';
 import KiteCard from '@/components/KiteCard';
+import MasonryContainer from '@/components/MasonryContainer';
 import { getAllKites } from '@/lib/sanity';
 
 export default async function Kites() {
