@@ -1,4 +1,4 @@
-import { CartItem } from "./types";
+import { CartItem } from './types';
 
 export function isInCart(itemToCheck: CartItem, itemInCart: CartItem) {
   return (
@@ -16,7 +16,7 @@ export function blurActiveAnchorElement() {
 
 export function isProdEnv() {
   return (
-    process.env.NODE_ENV === "production" &&
-    process.env.VERCEL_ENV === "production"
+    process.env.NODE_ENV === 'production' &&
+    process.env.VERCEL_ENV === 'production'
   );
 }

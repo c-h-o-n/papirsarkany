@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import { useCartStore } from "@/store/useCartStore";
-import Link from "next/link";
+import { useCartStore } from '@/store/useCartStore';
+import Link from 'next/link';
 
 export default function CheckoutLink() {
   const totalCartItems = useCartStore((state) => state.totalItems);
@@ -10,9 +10,9 @@ export default function CheckoutLink() {
     return;
   }
   return (
-    <div className="flex justify-end">
-      <Link href={"/penztar"}>
-        <button className="d-btn d-btn-primary uppercase">
+    <div className='flex justify-end'>
+      <Link href={'/penztar'}>
+        <button className='d-btn d-btn-primary uppercase'>
           Tovább a fizetéshez
         </button>
       </Link>

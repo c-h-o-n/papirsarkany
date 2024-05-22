@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React, { ReactNode } from 'react';
 
 type IconProps = {
   children: ReactNode;
@@ -30,15 +30,15 @@ const HomeSection = (props: Props) => {
 
   return (
     <section id={props.id} className={`py-12 ${props.className}`}>
-      {Icon && <div className="flex justify-center px-12 pb-12">{Icon}</div>}
+      {Icon && <div className='flex justify-center px-12 pb-12'>{Icon}</div>}
 
-      <div className="space-y-8">{Content}</div>
+      <div className='space-y-8'>{Content}</div>
     </section>
   );
 };
 
 const Icon = (props: IconProps) => (
-  <div className="max-w-[12rem] flex-1">{props.children}</div>
+  <div className='max-w-[12rem] flex-1'>{props.children}</div>
 );
 const Content = (props: ContentProps) => <>{props.children}</>;
 

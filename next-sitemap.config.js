@@ -2,15 +2,15 @@
 export default {
   siteUrl: process.env.SITE_URL,
   generateRobotsTxt: true, // (optional)
-  changefreq: "monthly",
+  changefreq: 'monthly',
   priority: 1,
-  exclude: ["/admin", "/admin/*", "/penztar"],
+  exclude: ['/admin', '/admin/*', '/penztar'],
   robotsTxtOptions: {
     policies: [
       {
-        userAgent: "*",
-        allow: "/",
-        disallow: "/admin/",
+        userAgent: '*',
+        allow: '/',
+        disallow: '/admin/',
       },
     ],
   },

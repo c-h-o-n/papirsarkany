@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 body {
-  color: theme("colors.base-content");
-  background: theme("colors.base-100");
+  color: theme('colors.base-content');
+  background: theme('colors.base-100');
 }
 
 @layer components {
@@ -69,7 +69,7 @@ input::-webkit-inner-spin-button {
   margin: 0;
 }
 
-input[type="number"] {
+input[type='number'] {
   -moz-appearance: textfield; /* Firefox */
   appearance: none;
 }
