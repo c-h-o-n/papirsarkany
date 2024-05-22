@@ -1,17 +1,16 @@
-
 import Link from "next/link";
 
 import CartDropDown from "./CartDropDown";
 import HomeIcon from "@/assets/home.svg";
 import NavMenuItem from "./NavMenuItem";
 
-import { NavbarItems } from '@/lib/types';
+import { NavbarItems } from "@/lib/types";
 
 type DesktopNavbarProps = {
-  navbarItems: NavbarItems
-}
+  navbarItems: NavbarItems;
+};
 
-export default function DesktopNavbar({navbarItems}: DesktopNavbarProps) {
+export default function DesktopNavbar({ navbarItems }: DesktopNavbarProps) {
   return (
     <div className="d-navbar border-b-4 border-black bg-white">
       <div className="d-navbar-start gap-1">
