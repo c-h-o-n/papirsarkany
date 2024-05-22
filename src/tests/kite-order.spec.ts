@@ -13,7 +13,7 @@ test("Kite order", async ({ page, browserName, isMobile }) => {
     const cartItemIndicator = await page
       .getByTestId("cart-dropdown")
       .first()
-      .locator(".d-indicator")
+      .locator(".d-indicator");
 
     await expect(
       cartItemIndicator,
@@ -33,9 +33,7 @@ test("Kite order", async ({ page, browserName, isMobile }) => {
     // increase kite-01 quantity
     await page.getByText("+").first().click();
 
-    const spinButton = await page
-      .getByRole("spinbutton")
-      .first()
+    const spinButton = await page.getByRole("spinbutton").first();
 
     await expect(
       spinButton,
