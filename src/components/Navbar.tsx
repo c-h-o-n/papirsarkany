@@ -2,9 +2,9 @@
 import useMedia from 'use-media';
 
 import twConfig from '@/lib/tailwind-theme.preval';
+import { NavbarItems } from '@/lib/types';
 import DesktopNavbar from './DesktopNavbar';
 import MobileNavbar from './MobileNavbar';
-import { NavbarItems } from '@/lib/types';
 
 export const navbarItems: NavbarItems = {
   leftItems: [

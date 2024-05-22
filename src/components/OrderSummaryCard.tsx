@@ -3,13 +3,13 @@
 import Image from 'next/image';
 import { Fragment } from 'react';
 
-import { CartItem } from '@/lib/types';
+import TrashCanIcon from '@/assets/trash-can.svg';
+import { MISSING_IMG_URL } from '@/lib/constants';
 import { currencyFormatter } from '@/lib/formatters';
+import { CartItem } from '@/lib/types';
 import { useCartStore } from '@/store/useCartStore';
 import Card from './Card';
 import ProductinCartCounter from './ProductInCartCounter';
-import TrashCanIcon from '@/assets/trash-can.svg';
-import { MISSING_IMG_URL } from '@/lib/constants';
 
 type Props = {
   layout?: 'full' | 'simplified' | 'definitive';

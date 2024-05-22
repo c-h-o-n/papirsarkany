@@ -1,10 +1,10 @@
 import AddToCartButton from '@/components/AddToCartButton';
 
+import { MISSING_IMG_URL, NO_NAME } from '@/lib/constants';
 import { currencyFormatter } from '@/lib/formatters';
+import { getAllKites, getKiteBySlug } from '@/lib/sanity';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
-import { getAllKites, getKiteBySlug } from '@/lib/sanity';
-import { MISSING_IMG_URL, NO_NAME } from '@/lib/constants';
 
 type Params = {
   slug: string;

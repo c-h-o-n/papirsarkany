@@ -1,5 +1,5 @@
-import { readFileSync } from 'fs';
 import NextBundleAnalyzer from '@next/bundle-analyzer';
+import { readFileSync } from 'fs';
 import createNextPluginPreval from 'next-plugin-preval/config.js';
 
 const getAppVersion = () => {

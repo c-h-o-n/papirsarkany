@@ -4,8 +4,8 @@ import Link from 'next/link';
 
 import CartIcon from '@/assets/cart.svg';
 import { currencyFormatter } from '@/lib/formatters';
-import { useCartStore } from '@/store/useCartStore';
 import { blurActiveAnchorElement } from '@/lib/helpers';
+import { useCartStore } from '@/store/useCartStore';
 
 export default function CartDropDown() {
   const totalItems = useCartStore((state) => state.totalItems);

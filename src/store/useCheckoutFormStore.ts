@@ -1,5 +1,5 @@
-import { create } from 'zustand';
 import { FormSchemaObject } from '@/lib/types';
+import { create } from 'zustand';
 
 type State = {
   formData: FormSchemaObject;

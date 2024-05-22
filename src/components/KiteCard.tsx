@@ -1,12 +1,12 @@
-import Link from 'next/link';
 import Image from 'next/image';
+import Link from 'next/link';
 
-import Card from './Card';
-import AddToCartButton from './AddToCartButton';
+import { MISSING_IMG_URL, NO_NAME } from '@/lib/constants';
 import { currencyFormatter } from '@/lib/formatters';
 import { WithImageAsset } from '@/lib/types';
 import { Kite } from '@sanity/lib/sanity.types';
-import { MISSING_IMG_URL, NO_NAME } from '@/lib/constants';
+import AddToCartButton from './AddToCartButton';
+import Card from './Card';
 
 type KiteCardProps = {
   kite: WithImageAsset<Kite>;

@@ -1,6 +1,6 @@
-import type { Config } from 'tailwindcss';
 import daisyui from 'daisyui';
 import theme from 'daisyui/src/theming/themes';
+import type { Config } from 'tailwindcss';
 
 const lightTheme = theme.light;
 

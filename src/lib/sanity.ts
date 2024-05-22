@@ -1,4 +1,3 @@
-import { groq } from 'next-sanity';
 import { client } from '@sanity/lib/client';
 import {
   GetAllKitesQueryResult,
@@ -7,6 +6,7 @@ import {
   GetAllTwinesQueryResult,
   GetKiteBySlugQueryResult,
 } from '@sanity/lib/sanity.types';
+import { groq } from 'next-sanity';
 
 export async function getAllKites(): Promise<GetAllKitesQueryResult> {
   const getAllKitesQuery = groq`*[_type == "kite"] { ..., image { asset -> { url, metadata } } } | order(price asc)`;

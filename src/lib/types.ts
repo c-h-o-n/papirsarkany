@@ -1,5 +1,5 @@
-import { Asserts, BooleanSchema, StringSchema, ObjectSchema } from 'yup';
 import { SanityImageMetadata } from '@sanity/lib/sanity.types';
+import { Asserts, BooleanSchema, ObjectSchema, StringSchema } from 'yup';
 
 import { MenuItemProps } from '@/components/NavMenuItem';
 

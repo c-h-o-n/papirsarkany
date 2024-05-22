@@ -1,10 +1,10 @@
-import Card from './Card';
+import { MISSING_IMG_URL, NO_NAME } from '@/lib/constants';
 import { currencyFormatter } from '@/lib/formatters';
-import AddToCartButton from './AddToCartButton';
 import { WithImageAsset } from '@/lib/types';
 import { Reel } from '@sanity/lib/sanity.types';
 import Image from 'next/image';
-import { MISSING_IMG_URL, NO_NAME } from '@/lib/constants';
+import AddToCartButton from './AddToCartButton';
+import Card from './Card';
 
 type Props = {
   reel: WithImageAsset<Reel>;
