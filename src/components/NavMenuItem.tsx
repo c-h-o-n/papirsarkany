@@ -12,7 +12,7 @@ export default function NavMenuItem(props: MenuItemProps) {
   const { children } = props;
 
   return (
-    <li className='text-sm lg:text-base'>
+    <li className="text-sm lg:text-base">
       <Link {...props} onClick={blurActiveAnchorElement}>
         {children}
       </Link>

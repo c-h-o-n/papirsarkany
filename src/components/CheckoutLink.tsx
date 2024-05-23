@@ -10,9 +10,9 @@ export default function CheckoutLink() {
     return;
   }
   return (
-    <div className='flex justify-end'>
+    <div className="flex justify-end">
       <Link href={'/penztar'}>
-        <button className='d-btn d-btn-primary uppercase'>
+        <button className="d-btn d-btn-primary uppercase">
           Tovább a fizetéshez
         </button>
       </Link>
