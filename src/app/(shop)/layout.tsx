@@ -22,17 +22,17 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 
   return (
     <html
-      lang='hu'
-      className='scroll-pt-[68px] scroll-smooth sm:scroll-pt-[72px]'
+      lang="hu"
+      className="scroll-pt-[68px] scroll-smooth sm:scroll-pt-[72px]"
       data-app-version={publicRuntimeConfig.appVersion}
     >
       <head>
         <TruendoScript />
       </head>
       <body className={`${inter.className} `}>
-        <div className='flex min-h-screen flex-col'>
+        <div className="flex min-h-screen flex-col">
           <Navbar />
-          <main className='grid flex-1 bg-sky-100'>
+          <main className="grid flex-1 bg-sky-100">
             {children}
             <Analytics />
             <SpeedInsights />

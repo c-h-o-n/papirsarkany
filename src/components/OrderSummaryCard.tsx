@@ -26,7 +26,7 @@ export default function OrderSummaryCard({ layout = 'full' }: Props) {
 
   if (cart.length < 1) {
     return (
-      <div className='text-center'>
+      <div className="text-center">
         <h1>Üres a kosarad.</h1>
       </div>
     );
@@ -34,11 +34,11 @@ export default function OrderSummaryCard({ layout = 'full' }: Props) {
 
   if (layout === 'definitive') {
     return (
-      <Card className='flex flex-1 flex-col gap-4 p-8'>
+      <Card className="flex flex-1 flex-col gap-4 p-8">
         {cart.map((item) => (
           <Fragment key={item._id}>
-            <div className='flex items-center justify-between'>
-              <div className='flex  gap-2'>
+            <div className="flex items-center justify-between">
+              <div className="flex  gap-2">
                 <div>
                   {item.image && (
                     <Image
@@ -46,37 +46,37 @@ export default function OrderSummaryCard({ layout = 'full' }: Props) {
                       alt={item.name}
                       width={128}
                       height={128}
-                      placeholder='blur'
+                      placeholder="blur"
                       blurDataURL={item.image.asset?.metadata?.blurHash}
-                      className='h-auto max-h-32 min-h-24 w-32 rounded-lg object-contain'
+                      className="h-auto max-h-32 min-h-24 w-32 rounded-lg object-contain"
                     />
                   )}
                 </div>
 
                 <div>
-                  <h3 className='font-bold'>{item.name}</h3>
+                  <h3 className="font-bold">{item.name}</h3>
 
-                  <span className='text-sm font-normal text-gray-400'>
+                  <span className="text-sm font-normal text-gray-400">
                     {item.quantity} db
                   </span>
                 </div>
               </div>
-              <div className='flex items-center gap-4'>
+              <div className="flex items-center gap-4">
                 {item.price && (
-                  <h3 className='font-bold'>
+                  <h3 className="font-bold">
                     {currencyFormatter(item.price * item.quantity)}
                   </h3>
                 )}
               </div>
             </div>
-            <div className='d-divider'></div>
+            <div className="d-divider"></div>
           </Fragment>
         ))}
 
-        <div className='flex justify-between font-bold'>
+        <div className="flex justify-between font-bold">
           <h3>
             Összesen{' '}
-            <span className='text-base font-normal text-gray-400'>
+            <span className="text-base font-normal text-gray-400">
               {totalItems} db
             </span>
           </h3>
@@ -87,35 +87,35 @@ export default function OrderSummaryCard({ layout = 'full' }: Props) {
   }
 
   return (
-    <Card className='flex flex-1 flex-col gap-4 p-8'>
+    <Card className="flex flex-1 flex-col gap-4 p-8">
       {cart.map((item) => (
         <Fragment key={item._id}>
-          <div className='flex items-center justify-between gap-2'>
-            <div className='flex gap-2'>
+          <div className="flex items-center justify-between gap-2">
+            <div className="flex gap-2">
               {item.image && (
                 <Image
                   src={item.image.asset?.url || MISSING_IMG_URL}
                   alt={item.name}
                   width={128}
                   height={128}
-                  placeholder='blur'
+                  placeholder="blur"
                   blurDataURL={item.image.asset?.metadata?.blurHash}
-                  className='h-auto max-h-32 min-h-24 w-32 rounded-lg object-contain'
+                  className="h-auto max-h-32 min-h-24 w-32 rounded-lg object-contain"
                 />
               )}
 
               <div>
-                <h3 className='font-bold'>{item.name}</h3>
+                <h3 className="font-bold">{item.name}</h3>
                 {item.price && (
-                  <h4 className='block font-bold md:hidden'>
+                  <h4 className="block font-bold md:hidden">
                     {currencyFormatter(item.price * item.quantity)}
                   </h4>
                 )}
               </div>
             </div>
-            <div className='hidden flex-1 items-center justify-end gap-4 md:flex '>
+            <div className="hidden flex-1 items-center justify-end gap-4 md:flex ">
               {item.price && (
-                <h4 className=' font-bold'>
+                <h4 className=" font-bold">
                   {currencyFormatter(item.price * item.quantity)}
                 </h4>
               )}
@@ -125,31 +125,31 @@ export default function OrderSummaryCard({ layout = 'full' }: Props) {
               </div>
 
               <button
-                className='d-btn d-btn-square d-btn-error'
+                className="d-btn d-btn-square d-btn-error"
                 onClick={() => onDeleteClick(item)}
               >
-                <TrashCanIcon className='h-6 w-6' />
+                <TrashCanIcon className="h-6 w-6" />
               </button>
             </div>
           </div>
-          <div className='flex justify-between gap-4 md:hidden'>
+          <div className="flex justify-between gap-4 md:hidden">
             <ProductinCartCounter value={item.quantity} cartItem={item} />
 
             <button
-              className='d-btn d-btn-square d-btn-error'
+              className="d-btn d-btn-square d-btn-error"
               onClick={() => onDeleteClick(item)}
             >
-              <TrashCanIcon className='h-6 w-6' />
+              <TrashCanIcon className="h-6 w-6" />
             </button>
           </div>
-          <div className='d-divider'></div>
+          <div className="d-divider"></div>
         </Fragment>
       ))}
 
-      <div className='flex justify-between font-bold'>
+      <div className="flex justify-between font-bold">
         <h3>
           Összesen{' '}
-          <span className='text-base font-normal text-gray-400'>
+          <span className="text-base font-normal text-gray-400">
             {totalItems} db
           </span>
         </h3>

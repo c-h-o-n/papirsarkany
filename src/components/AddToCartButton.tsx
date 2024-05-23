@@ -39,9 +39,9 @@ export default function AddToCartButton({ product }: AddToCartProps) {
     <>
       {isShowAlert &&
         createPortal(
-          <Link href='/kosar'>
-            <div className='d-toast d-toast-end d-toast-bottom z-50'>
-              <div className='d-alert d-alert-success'>
+          <Link href="/kosar">
+            <div className="d-toast d-toast-end d-toast-bottom z-50">
+              <div className="d-alert d-alert-success">
                 <span>Sikeresen hozzádva a kosárhoz.</span>
               </div>
             </div>
@@ -49,7 +49,7 @@ export default function AddToCartButton({ product }: AddToCartProps) {
           document.body,
         )}
 
-      <button className='d-btn d-btn-primary uppercase' onClick={onClick}>
+      <button className="d-btn d-btn-primary uppercase" onClick={onClick}>
         Kosárba
       </button>
     </>
