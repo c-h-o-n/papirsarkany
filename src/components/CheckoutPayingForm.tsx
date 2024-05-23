@@ -34,47 +34,47 @@ export default function CheckoutPayingForm() {
 
   return (
     <>
-      <h2 className='underline underline-offset-8'>Fizetés</h2>
+      <h2 className="underline underline-offset-8">Fizetés</h2>
 
-      <div className='d-form-control'>
-        <label className='d-label cursor-pointer justify-start gap-x-2'>
+      <div className="d-form-control">
+        <label className="d-label cursor-pointer justify-start gap-x-2">
           <input
-            type='radio'
-            value='Átvételkor készpénzel'
+            type="radio"
+            value="Átvételkor készpénzel"
             {...register('paymentOption')}
-            className='d-radio checked:d-radio-primary'
+            className="d-radio checked:d-radio-primary"
           />
-          <span className='d-label-text'>Átvételkor készpénzel</span>
+          <span className="d-label-text">Átvételkor készpénzel</span>
         </label>
       </div>
 
-      <div className='d-form-control'>
-        <label className='d-label cursor-pointer justify-start gap-x-2'>
+      <div className="d-form-control">
+        <label className="d-label cursor-pointer justify-start gap-x-2">
           <input
-            type='radio'
-            value='Előreutalással'
+            type="radio"
+            value="Előreutalással"
             {...register('paymentOption')}
-            className='d-radio checked:d-radio-primary'
+            className="d-radio checked:d-radio-primary"
           />
-          <span className='d-label-text'>Előreutalással</span>
+          <span className="d-label-text">Előreutalással</span>
         </label>
-        <span className='pl-9 text-gray-400'>11600006-00000000-76709302</span>
+        <span className="pl-9 text-gray-400">11600006-00000000-76709302</span>
       </div>
 
-      <span className='text-error'>{errors.paymentOption?.message}</span>
+      <span className="text-error">{errors.paymentOption?.message}</span>
 
-      <h2 className='underline underline-offset-8'>Számlázási cím</h2>
+      <h2 className="underline underline-offset-8">Számlázási cím</h2>
 
       {getValues('shippingOption') === 'Postai szállítás' && (
-        <div className='d-form-control'>
-          <label className='d-label cursor-pointer justify-start gap-x-2'>
+        <div className="d-form-control">
+          <label className="d-label cursor-pointer justify-start gap-x-2">
             <input
               {...register('isSameAdressAsShipping')}
               onChange={(e) => onIsSameAdressAsShippingChange(e)}
-              type='checkbox'
-              className='d-checkbox checked:d-checkbox-primary'
+              type="checkbox"
+              className="d-checkbox checked:d-checkbox-primary"
             />
-            <span className='d-label-text'>
+            <span className="d-label-text">
               A számlázási adataim megegyeznek a szállítási címemmel
             </span>
           </label>
@@ -86,77 +86,77 @@ export default function CheckoutPayingForm() {
       {(getValues('shippingOption') === 'Személyes átvétel' ||
         !watch('isSameAdressAsShipping')) && (
         <>
-          <div className='d-form-control'>
-            <label className='d-label'>
-              <span className='d-label-text text-lg'>Irányítószám</span>
+          <div className="d-form-control">
+            <label className="d-label">
+              <span className="d-label-text text-lg">Irányítószám</span>
             </label>
             <input
-              type='text'
-              className='d-input d-input-bordered'
+              type="text"
+              className="d-input d-input-bordered"
               {...register('billingPostcode')}
             />
-            <label className='d-label'>
-              <span className='d-label-text-alt text-error'>
+            <label className="d-label">
+              <span className="d-label-text-alt text-error">
                 {errors.billingPostcode?.message}
               </span>
             </label>
           </div>
-          <div className='d-form-control'>
-            <label className='d-label'>
-              <span className='d-label-text text-lg'>Város</span>
+          <div className="d-form-control">
+            <label className="d-label">
+              <span className="d-label-text text-lg">Város</span>
             </label>
             <input
-              type='text'
-              className='d-input d-input-bordered'
+              type="text"
+              className="d-input d-input-bordered"
               {...register('billingCity')}
             />
-            <label className='d-label'>
-              <span className='d-label-text-alt text-error'>
+            <label className="d-label">
+              <span className="d-label-text-alt text-error">
                 {errors.billingCity?.message}
               </span>
             </label>
           </div>
-          <div className='d-form-control'>
-            <label className='d-label'>
-              <span className='d-label-text text-lg'>Cím</span>
+          <div className="d-form-control">
+            <label className="d-label">
+              <span className="d-label-text text-lg">Cím</span>
             </label>
             <input
-              type='text'
-              placeholder='Utca, házszám'
-              className='d-input d-input-bordered'
+              type="text"
+              placeholder="Utca, házszám"
+              className="d-input d-input-bordered"
               {...register('billingAddress')}
             />
-            <label className='d-label'>
-              <span className='d-label-text-alt text-error'>
+            <label className="d-label">
+              <span className="d-label-text-alt text-error">
                 {errors.billingAddress?.message}
               </span>
             </label>
 
             <input
-              type='text'
-              placeholder='Emelet, ajtó, egyéb (opcionális)'
-              className='d-input d-input-bordered'
+              type="text"
+              placeholder="Emelet, ajtó, egyéb (opcionális)"
+              className="d-input d-input-bordered"
               {...register('billingSubaddress')}
             />
-            <label className='d-label'>
-              <span className='d-label-text-alt text-error'>
+            <label className="d-label">
+              <span className="d-label-text-alt text-error">
                 {errors.billingSubaddress?.message}
               </span>
             </label>
           </div>
         </>
       )}
-      <div className='flex flex-wrap justify-between gap-4'>
+      <div className="flex flex-wrap justify-between gap-4">
         <button
-          type='button'
-          className='d-btn d-btn-outline d-btn-neutral uppercase max-sm:d-btn-block'
+          type="button"
+          className="d-btn d-btn-outline d-btn-neutral uppercase max-sm:d-btn-block"
           onClick={prevStep}
         >
           Vissza
         </button>
         <button
-          type='submit'
-          className='d-btn d-btn-primary uppercase max-sm:d-btn-block'
+          type="submit"
+          className="d-btn d-btn-primary uppercase max-sm:d-btn-block"
         >
           Tovább
         </button>

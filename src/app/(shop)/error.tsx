@@ -15,17 +15,17 @@ export default function Error({
   }, [error]);
 
   return (
-    <div className='grid place-items-center'>
-      <div className='space-y-8 text-center'>
+    <div className="grid place-items-center">
+      <div className="space-y-8 text-center">
         <h2>Hoppá, valahol elszakadt a eresztő zsinór!</h2>
         <button
-          className='d-btn d-btn-outline d-btn-neutral'
+          className="d-btn d-btn-outline d-btn-neutral"
           onClick={
             // Attempt to recover by trying to re-render the segment
             () => reset()
           }
         >
-          <RestartIcon className='h-6 w-6' />
+          <RestartIcon className="h-6 w-6" />
           Próbáld újra
         </button>
       </div>

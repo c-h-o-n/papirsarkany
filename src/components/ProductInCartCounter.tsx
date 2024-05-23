@@ -58,16 +58,16 @@ export default function ProductinCartCounter({
   };
 
   return (
-    <div className='flex items-center'>
+    <div className="flex items-center">
       <div
-        className='d-btn no-animation rounded-r-none'
+        className="d-btn no-animation rounded-r-none"
         onClick={() => handleDecreaseButtonClick()}
       >
         -
       </div>
       <input
-        type='number'
-        className='h-12 w-12 bg-base-200 text-center'
+        type="number"
+        className="h-12 w-12 bg-base-200 text-center"
         value={temporaryQuantityValue.toString()}
         onChange={handleChange}
         onBlur={handleBlur}

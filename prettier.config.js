@@ -2,7 +2,6 @@
 const config = {
   plugins: ['prettier-plugin-tailwindcss', 'prettier-plugin-organize-imports'],
   singleQuote: true,
-  jsxSingleQuote: true,
 };
 
 export default config;

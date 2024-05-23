@@ -59,17 +59,17 @@ export default function RodCard({ rod }: Props) {
   }
 
   return (
-    <div className='relative z-0'>
-      <Card className='w-full space-y-3 p-5'>
-        <h3 className='font-bold'>{rod.name}</h3>
+    <div className="relative z-0">
+      <Card className="w-full space-y-3 p-5">
+        <h3 className="font-bold">{rod.name}</h3>
 
-        <div className='flex gap-2'>
-          <div className='d-form-control w-full max-w-xs'>
-            <label className='d-label'>
-              <span className='d-label-text font-bold'>Átmérő</span>
+        <div className="flex gap-2">
+          <div className="d-form-control w-full max-w-xs">
+            <label className="d-label">
+              <span className="d-label-text font-bold">Átmérő</span>
             </label>
             <select
-              className='d-select d-select-bordered'
+              className="d-select d-select-bordered"
               value={selectedDiameter.diameter}
               onChange={(e) => {
                 handleDiameterChange(e);
@@ -83,12 +83,12 @@ export default function RodCard({ rod }: Props) {
             </select>
           </div>
 
-          <div className='d-form-control w-full max-w-xs'>
-            <label className='kite- d-label'>
-              <span className='d-label-text font-bold'>Hossz</span>
+          <div className="d-form-control w-full max-w-xs">
+            <label className="kite- d-label">
+              <span className="d-label-text font-bold">Hossz</span>
             </label>
             <select
-              className='d-select d-select-bordered w-full max-w-xs'
+              className="d-select d-select-bordered w-full max-w-xs"
               onChange={(e) => setSelectedLength(+e.target.value)}
               value={selectedLength}
             >
@@ -105,7 +105,7 @@ export default function RodCard({ rod }: Props) {
             {currencyFormatter(
               selectedDiameter.pricePerMeter * Math.ceil(selectedLength / 100),
             )}{' '}
-            <span className='text-base text-gray-400'>
+            <span className="text-base text-gray-400">
               ({pricePerMeterFormatter(selectedDiameter.pricePerMeter)})
             </span>
           </h2>
