@@ -162,7 +162,7 @@ export default function CheckoutStepper({ children }: CheckoutStepperProps) {
       })),
     };
 
-    return fetch('/api', {
+    return fetch('/api/route', {
       method: 'POST',
       body: JSON.stringify({ data, cart, orderEmailData }),
       headers: {
