@@ -1,8 +1,6 @@
 import daisyui from 'daisyui';
-import theme from 'daisyui/src/theming/themes';
 import type { Config } from 'tailwindcss';
-
-const lightTheme = theme.light;
+import daisyuiConfig from './daisyui.config';
 
 const config: Config = {
   content: [
@@ -17,21 +15,6 @@ const config: Config = {
     },
   },
   plugins: [daisyui],
-  daisyui: {
-    prefix: 'd-',
-    themes: [
-      {
-        light: {
-          ...lightTheme,
-          primary: '#0ea5e9',
-          'primary-content': '#ffffff',
-
-          'success-content': '#f8f8f8',
-
-          error: '#ef5258',
-        },
-      },
-    ],
-  },
+  daisyui: { ...daisyuiConfig },
 };
 export default config;
