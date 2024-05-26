@@ -55,8 +55,8 @@ export async function POST(request: Request) {
       await sendEmail({
         from: 'mail@papirsarkany.hu',
         to: 'balint.ducsai@gmail.com',
-        subject: 'error in papirsarkany.hu/api',
-        text: `Error caught in url papirsarkany/api. \nreason: ${error}`,
+        subject: 'error detected in papirsarkany.hu/api/order',
+        text: `Error caught in url papirsarkany/api/order. \nreason: ${error}`,
       });
     }
 
