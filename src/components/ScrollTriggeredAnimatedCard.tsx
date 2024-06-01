@@ -10,7 +10,7 @@ type AnimatedCardProps = {
 
 export default function ScrollTriggeredAnimatedCard({
   children,
-  className
+  className,
 }: AnimatedCardProps) {
   return (
     <LazyMotion
@@ -34,9 +34,7 @@ export default function ScrollTriggeredAnimatedCard({
           },
         }}
       >
-        <Card className={className}>
-          {children}
-        </Card>
+        <Card className={className}>{children}</Card>
       </m.div>
     </LazyMotion>
   );
