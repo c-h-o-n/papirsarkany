@@ -1,7 +1,8 @@
 'use client';
-import { LazyMotion, m } from 'framer-motion';
+import { m } from 'framer-motion';
 import { ReactNode } from 'react';
 import Card from './Card';
+import LazyLoadFramerMotion from './LazyLoadFramerMotion';
 
 type AnimatedCardProps = {
   children: ReactNode;
@@ -13,9 +14,7 @@ export default function ScrollTriggeredAnimatedCard({
   className,
 }: AnimatedCardProps) {
   return (
-    <LazyMotion
-      features={async () => (await import('@/lib/animation-features')).default}
-    >
+    <LazyLoadFramerMotion>
       <m.div
         initial="offscreen"
         whileInView="onscreen"
@@ -36,6 +35,6 @@ export default function ScrollTriggeredAnimatedCard({
       >
         <Card className={className}>{children}</Card>
       </m.div>
-    </LazyMotion>
+    </LazyLoadFramerMotion>
   );
 }
