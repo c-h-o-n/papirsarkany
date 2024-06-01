@@ -1,5 +1,4 @@
 'use client';
-// import { motion } from 'framer-motion';
 import { LazyMotion, m } from 'framer-motion';
 import { ReactNode } from 'react';
 
@@ -23,12 +22,10 @@ export default function AnimatedCard({
         viewport={{ amount: 0.33, once: true }}
         variants={{
           offscreen: {
-            y: 200,
-            opacity: 0,
+            scale: 0.33,
           },
           onscreen: {
-            opacity: 1,
-            y: 0,
+            scale: 1,
             transition: {
               type: 'spring',
               bounce: 0.4,
