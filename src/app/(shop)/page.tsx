@@ -4,8 +4,8 @@ import AboutBusinessIcon from '@/assets/about-business.svg';
 import ContactIcon from '@/assets/contact.svg';
 import CraftingIcon from '@/assets/crafting.svg';
 import HomeSection from '@/components/HomeSection';
-import Splash from '@/components/Splash';
 import ScrollTriggeredAnimatedCard from '@/components/ScrollTriggeredAnimatedCard';
+import Splash from '@/components/Splash';
 
 export default function Home() {
   return (
