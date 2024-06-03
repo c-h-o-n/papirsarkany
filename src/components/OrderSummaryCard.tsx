@@ -38,7 +38,7 @@ export default function OrderSummaryCard({ layout = 'full' }: Props) {
         {cart.map((item) => (
           <Fragment key={item._id}>
             <div className="flex items-center justify-between">
-              <div className="flex  gap-2">
+              <div className="flex gap-2">
                 <div>
                   {item.image && (
                     <Image
@@ -113,9 +113,9 @@ export default function OrderSummaryCard({ layout = 'full' }: Props) {
                 )}
               </div>
             </div>
-            <div className="hidden flex-1 items-center justify-end gap-4 md:flex ">
+            <div className="hidden flex-1 items-center justify-end gap-4 md:flex">
               {item.price && (
-                <h4 className=" font-bold">
+                <h4 className="font-bold">
                   {currencyFormatter(item.price * item.quantity)}
                 </h4>
               )}

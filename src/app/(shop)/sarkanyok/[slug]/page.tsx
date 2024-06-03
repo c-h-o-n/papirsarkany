@@ -45,7 +45,7 @@ export default async function Kite({ params }: { params: Params }) {
         <div className="text-center md:text-left">
           <h1 className="font-bold">{kite.name}</h1>
           {kite.isBeginner && (
-            <h3 className=" font-bold text-primary underline underline-offset-8">
+            <h3 className="font-bold text-primary underline underline-offset-8">
               Kezdőknek ajánlott!
             </h3>
           )}

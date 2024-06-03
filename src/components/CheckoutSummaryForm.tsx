@@ -20,10 +20,10 @@ export default function CheckoutSummary() {
 
       <OrderSummaryCard layout="definitive" />
 
-      <div className="max-w  grid grid-cols-1 gap-4 md:grid-cols-3">
+      <div className="max-w grid grid-cols-1 gap-4 md:grid-cols-3">
         <Card className="mx-auto w-full max-w-xs p-6">
           <div>
-            <h4 className=" font-bold underline">Elérhetőség</h4>
+            <h4 className="font-bold underline">Elérhetőség</h4>
             <div>
               {formValues.lastName} {formValues.firstName}
             </div>
@@ -34,7 +34,7 @@ export default function CheckoutSummary() {
 
         <Card className="mx-auto w-full max-w-xs p-6">
           <div>
-            <h4 className=" font-bold underline">Szállítás</h4>
+            <h4 className="font-bold underline">Szállítás</h4>
             <div>{formValues.shippingOption}</div>
             <div>
               {formValues.shippingPostcode} {formValues.shippingCity}
@@ -46,7 +46,7 @@ export default function CheckoutSummary() {
 
         <Card className="mx-auto w-full max-w-xs p-6">
           <div>
-            <h4 className=" font-bold underline">Fizetés</h4>
+            <h4 className="font-bold underline">Fizetés</h4>
             <div>{formValues.paymentOption}</div>
             <div>
               {formValues.billingPostcode} {formValues.billingCity}
