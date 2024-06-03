@@ -17,7 +17,7 @@ export default function KiteCard({ kite }: KiteCardProps) {
   return (
     <div className="relative z-0 cursor-pointer">
       <Link href={`sarkanyok/${kite.slug?.current}`}>
-        <HoverAnimatedCard className="w-full space-y-3 p-5">
+        <HoverAnimatedCard className="w-full space-y-3 p-3 sm:p-4 md:p-5">
           <div>
             <h3 className="text-center font-bold">{kite.name}</h3>
 
