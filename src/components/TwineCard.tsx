@@ -55,7 +55,7 @@ export default function TwineCard({ twine }: Props) {
                 placeholder="hossz"
                 onChange={(e) => setLength(+e.target.value)}
               />
-              <span className="d-join-item inline-flex items-center justify-center rounded-r-full bg-base-200 px-4 ">
+              <span className="d-join-item inline-flex items-center justify-center rounded-r-full bg-base-200 px-4">
                 m
               </span>
             </div>

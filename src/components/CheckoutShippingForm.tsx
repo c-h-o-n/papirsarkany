@@ -93,7 +93,7 @@ export default function CheckoutShippingForm() {
       <h2 className="underline underline-offset-8">Szállítás</h2>
 
       <div className="d-form-control">
-        <label className="d-label cursor-pointer justify-start gap-x-2 ">
+        <label className="d-label cursor-pointer justify-start gap-x-2">
           <input
             type="radio"
             value="Személyes átvétel"
