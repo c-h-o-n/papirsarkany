@@ -1,9 +1,9 @@
 import Link from 'next/link';
 
 import HamburgerIcon from '@/assets/hamburger.svg';
-import { NavbarItems } from '@/lib/types';
 import CartDropDown from './CartDropDown';
 import NavMenuItem from './NavMenuItem';
+import { NavbarItems } from './Navbar';
 
 type MobileNavbarProps = {
   navbarItems: NavbarItems;

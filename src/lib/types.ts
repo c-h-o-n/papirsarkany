@@ -1,15 +1,6 @@
 import { SanityImageMetadata } from '@sanity/lib/sanity.types';
 import { Asserts, BooleanSchema, ObjectSchema, StringSchema } from 'yup';
 
-import { MenuItemProps } from '@/components/NavMenuItem';
-
-export type ProductCategoryMapLiterals =
-  | 'Egyzsinóros sárkány'
-  | 'Pálcák és rudak'
-  | 'Csövek'
-  | 'Zsinórok'
-  | 'Zsinórtartók';
-
 export type WithImageAsset<T> = Omit<T, 'image'> & {
   image: {
     asset: {
@@ -98,14 +89,4 @@ export type OrderMail = NewOrder & {
     quantity: string;
   }[];
   total: string;
-};
-
-/**
- * leftItems: on `desktop` rendered on `left` side on `mobile` rendered at the `bottom`
- *
- * rightItems: on `desktop` rendered on `right` side on `mobile` rendered at the `top`
- */
-export type NavbarItems = {
-  leftItems: MenuItemProps[];
-  rightItems: MenuItemProps[];
 };
