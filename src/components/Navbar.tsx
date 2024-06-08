@@ -2,9 +2,19 @@
 import useMedia from 'use-media';
 
 import twConfig from '@/lib/tailwind-theme.preval';
-import { NavbarItems } from '@/lib/types';
 import DesktopNavbar from './DesktopNavbar';
 import MobileNavbar from './MobileNavbar';
+import { MenuItemProps } from './NavMenuItem';
+
+/**
+ * leftItems: on `desktop` rendered on `left` side on `mobile` rendered at the `bottom`
+ *
+ * rightItems: on `desktop` rendered on `right` side on `mobile` rendered at the `top`
+ */
+export type NavbarItems = {
+  leftItems: MenuItemProps[];
+  rightItems: MenuItemProps[];
+};
 
 export const navbarItems: NavbarItems = {
   leftItems: [

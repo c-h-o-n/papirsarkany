@@ -3,8 +3,7 @@ import Link from 'next/link';
 import HomeIcon from '@/assets/home.svg';
 import CartDropDown from './CartDropDown';
 import NavMenuItem from './NavMenuItem';
-
-import { NavbarItems } from '@/lib/types';
+import { NavbarItems } from './Navbar';
 
 type DesktopNavbarProps = {
   navbarItems: NavbarItems;
