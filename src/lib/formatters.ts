@@ -5,6 +5,7 @@ export function currencyFormatter(value: number): string {
   const formatter = Intl.NumberFormat('hu', {
     style: 'currency',
     currency: 'HUF',
+    useGrouping: true,
     maximumFractionDigits: 0,
   });
 
