@@ -21,6 +21,9 @@ export default function CheckoutStepper({ children }: CheckoutStepperProps) {
 
   const cart = useCartStore((state) => state.cart);
   const totalPrice = useCartStore((state) => state.totalPrice);
+  const resetCart = useCartStore((state) => state.resetCart);
+  const resetFormData = useCheckoutFormStore((state) => state.resetFormData);
+  const resetStepper = useStepperStore((state) => state.resetStepper);
 
   const formData = useCheckoutFormStore((state) => state.formData);
   const setFormData = useCheckoutFormStore((state) => state.setFormData);
@@ -99,7 +102,7 @@ export default function CheckoutStepper({ children }: CheckoutStepperProps) {
     defaultValues: { ...formData } as FormSchemaObject,
   });
 
-  const onSubmit = async (data: FormSchemaObject) => {
+  const onSubmit = (data: FormSchemaObject) => {
     setFormData(data);
 
     if (!isLast) {
@@ -120,6 +123,12 @@ export default function CheckoutStepper({ children }: CheckoutStepperProps) {
         if (res.status !== 200) {
           return;
         }
+
+        resetCart();
+        resetFormData();
+        resetStepper();
+      })
+      .then(() => {
         router.push('/sikeres-rendeles');
       })
       .catch((error) =>
@@ -162,7 +171,7 @@ export default function CheckoutStepper({ children }: CheckoutStepperProps) {
       })),
     };
 
-    return fetch('/api/route', {
+    return fetch('/api/order', {
       method: 'POST',
       body: JSON.stringify({ data, cart, orderEmailData }),
       headers: {
