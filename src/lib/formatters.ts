@@ -28,7 +28,7 @@ export const prismaShippingModeMap: Record<string, $Enums.ShippingMode> = {
   'Postai szállítás': 'Post',
 };
 
-export const prismaPaymentModemMap: Record<string, $Enums.PaymentMode> = {
+export const prismaPaymentModeMap: Record<string, $Enums.PaymentMode> = {
   'Átvételkor készpénzel': 'Cash',
   Előreutalással: 'Transfer',
 };
