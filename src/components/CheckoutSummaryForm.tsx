@@ -84,6 +84,7 @@ export default function CheckoutSummary() {
           type="submit"
           className={`d-btn d-btn-success uppercase max-sm:d-btn-block`}
           disabled={isSubmitting}
+          onMouseEnter={() => router.prefetch('/sikeres-rendeles')}
         >
           {isSubmitting && (
             <span className="d-loading d-loading-spinner"></span>
