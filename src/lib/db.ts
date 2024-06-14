@@ -1,5 +1,5 @@
 import { Prisma } from '@prisma/client';
-import { prismaPaymentModemMap, prismaShippingModeMap } from './formatters';
+import { prismaPaymentModeMap, prismaShippingModeMap } from './formatters';
 import prisma from './prisma';
 import { CartItem, FormSchemaObject } from './types';
 
@@ -47,7 +47,7 @@ export async function createOrder(
         customerId: user.id,
         status: 'Pending',
         shippingMode: prismaShippingModeMap[orderForm.shippingOption!],
-        paymentMode: prismaPaymentModemMap[orderForm.paymentOption!],
+        paymentMode: prismaPaymentModeMap[orderForm.paymentOption!],
         comment: orderForm.comment!,
 
         createdAt: new Date(),
