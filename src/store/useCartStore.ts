@@ -1,15 +1,19 @@
-import { isInCart } from '@/lib/helpers';
-import { CartItem } from '@/lib/types';
+import 'client-only';
 import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
 
+import { isInCart } from '@/lib/helpers';
+import { CartItem } from '@/lib/types';
+
 type State = {
+  _hasHydrated: boolean;
   cart: CartItem[];
   totalItems: number;
   totalPrice: number;
 };
 
 type Actions = {
+  setHasHydrated: (hasHydrated: boolean) => void;
   addToCart: (item: CartItem) => void;
   removeFromCart: (item: CartItem) => void;
   decreaseItemQuantity: (item: CartItem) => void;
@@ -18,6 +22,7 @@ type Actions = {
 };
 
 const initialState: State = {
+  _hasHydrated: false,
   cart: [],
   totalItems: 0,
   totalPrice: 0,
@@ -26,9 +31,16 @@ const initialState: State = {
 export const useCartStore = create(
   persist<State & Actions>(
     (set, get) => ({
+      _hasHydrated: initialState._hasHydrated,
       cart: initialState.cart,
       totalItems: initialState.totalItems,
+      shippingFee: initialState.shippingFee,
       totalPrice: initialState.totalPrice,
+      setHasHydrated: (state) => {
+        set({
+          _hasHydrated: state,
+        });
+      },
       setItemQuantity(product, quantity) {
         if (quantity < 1 || quantity > 999) {
           return;
@@ -112,12 +124,16 @@ export const useCartStore = create(
         }));
       },
       resetCart() {
-        set(() => ({
+        set((state) => ({
           ...initialState,
+          _hasHydrated: state._hasHydrated,
         }));
       },
     }),
     {
+      onRehydrateStorage: () => (state) => {
+        state?.setHasHydrated(true);
+      },
       name: 'cart-storage',
       storage: createJSONStorage(() => sessionStorage),
       skipHydration: true,

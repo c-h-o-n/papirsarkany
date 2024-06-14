@@ -19,6 +19,7 @@ type CheckoutStepperProps = {
 export default function CheckoutStepper({ children }: CheckoutStepperProps) {
   const router = useRouter();
 
+  const hasHydrated = useCartStore(state => state._hasHydrated);
   const cart = useCartStore((state) => state.cart);
   const totalPrice = useCartStore((state) => state.totalPrice);
   const resetCart = useCartStore((state) => state.resetCart);
@@ -35,10 +36,11 @@ export default function CheckoutStepper({ children }: CheckoutStepperProps) {
   const step = useStepperStore((state) => state.step);
   const nextStep = useStepperStore((state) => state.nextStep);
 
-  if (cart.length < 1) {
-    redirect('/kosar');
+  if (hasHydrated) {
+    if (cart.length < 1) {
+      redirect('/kosar');
+    }
   }
-
   const isLast = step === Children.count(children) - 1;
 
   const schema: FormSchemaArray = [
