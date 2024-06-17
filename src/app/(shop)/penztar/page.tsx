@@ -1,5 +1,5 @@
-import CheckoutFormStepper from '@/components/CheckoutFormStepper';
 import CheckoutBillingForm from '@/components/CheckoutBillingForm';
+import CheckoutFormStepper from '@/components/CheckoutFormStepper';
 import CheckoutShippingForm from '@/components/CheckoutShippingForm';
 import CheckoutSummary from '@/components/CheckoutSummaryForm';
 
