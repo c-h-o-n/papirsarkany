@@ -1,4 +1,8 @@
 'use client';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { redirect, useRouter } from 'next/navigation';
+import { Children, ReactNode } from 'react';
+import { FormProvider, useForm } from 'react-hook-form';
 
 import formSchema from '@/lib/form-schema';
 import { currencyFormatter } from '@/lib/formatters';
@@ -6,10 +10,7 @@ import { FormSchemaObject, OrderMail } from '@/lib/types';
 import '@/lib/yupConfig';
 import { useCartStore } from '@/store/useCartStore';
 import { useCheckoutFormStore } from '@/store/useCheckoutFormStore';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { redirect, useRouter } from 'next/navigation';
-import { Children, ReactNode } from 'react';
-import { FormProvider, useForm } from 'react-hook-form';
+import Steps from './Steps';
 
 type CheckoutStepperProps = {
   children: ReactNode;
@@ -140,8 +141,11 @@ export default function CheckoutStepper({ children }: CheckoutStepperProps) {
       <FormProvider {...methods}>
         <form
           onSubmit={handleSubmit(async (data) => await onSubmit(data))}
-          className="[&>h2]:py-2"
+          className="[&>h2]:py-2 space-y-4"
         >
+          <div className="mx-auto max-w-screen-md">
+            <Steps />
+          </div>
           {Children.toArray(children)[step]}
         </form>
       </FormProvider>

@@ -13,6 +13,7 @@ type Actions = {
   setFormValues: (formData: Partial<FormSchemaObject>) => void;
   nextStep: () => void;
   prevStep: () => void;
+  setStep: (step: number) => void;
   resetForm: () => void;
 };
 
@@ -56,6 +57,9 @@ export const useCheckoutFormStore = create<State & Actions>((set) => ({
   },
   prevStep() {
     set((state) => ({ step: state.step - 1 }));
+  },
+  setStep(step) {
+    set(() => ({ step }));
   },
   resetForm() {
     set(() => ({
