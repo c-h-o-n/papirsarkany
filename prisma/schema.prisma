@@ -59,6 +59,7 @@ enum Status {
 enum ShippingMode {
   PersonalPickup @map("Személyes átvétel")
   Post           @map("Postai szállítás")
+  Foxpost           @map("Foxpost automatába")
 }
 
 enum PaymentMode {
