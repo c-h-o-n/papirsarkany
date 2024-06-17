@@ -7,10 +7,11 @@ export default function Cart() {
       <h1 className="text-center font-bold">Kosár tartalma</h1>
 
       <div className="grid flex-1 items-center">
-        <OrderSummaryCard />
+        <div className="space-y-4">
+          <OrderSummaryCard />
+          <CheckoutLink />
+        </div>
       </div>
-
-      <CheckoutLink />
     </div>
   );
 }
