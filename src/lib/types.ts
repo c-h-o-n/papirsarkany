@@ -1,5 +1,6 @@
 import { SanityImageMetadata } from '@sanity/lib/sanity.types';
 import { Asserts, BooleanSchema, ObjectSchema, StringSchema } from 'yup';
+import { MixedSchema } from 'yup/lib/mixed';
 
 export type WithImageAsset<T> = Omit<T, 'image'> & {
   image: {
@@ -29,7 +30,7 @@ export type FormSchemaArray = [
     lastName: StringSchema;
     phoneNumber: StringSchema;
 
-    shippingOption: StringSchema;
+    shippingOption: MixedSchema<ShippingOptionLabel | null>;
 
     shippingPostcode: StringSchema;
     shippingCity: StringSchema;
@@ -38,7 +39,7 @@ export type FormSchemaArray = [
   }>,
   ObjectSchema<{
     isSameAdressAsShipping: BooleanSchema;
-    paymentOption: StringSchema;
+    paymentOption: MixedSchema<BillingOptionLabel | null>;
     billingPostcode: StringSchema;
     billingCity: StringSchema;
     billingAddress: StringSchema;
@@ -53,6 +54,13 @@ export type FormSchemaObject = Asserts<FormSchemaArray[0]> &
   Asserts<FormSchemaArray[1]> &
   Asserts<FormSchemaArray[2]>;
 
+export type ShippingOptionLabel =
+  | 'Személyes átvétel'
+  | 'Postai szállítás'
+  | 'Foxpost automatába';
+
+export type BillingOptionLabel = 'Átvételkor készpénzel' | 'Előreutalással';
+
 export type NewOrder = {
   contact: {
     email: string;
@@ -61,8 +69,8 @@ export type NewOrder = {
     phone: string;
   };
 
-  shippingOption: string;
-  paymentOption: string;
+  shippingOption: ShippingOptionLabel;
+  paymentOption: BillingOptionLabel;
 
   shipping: {
     postcode: string;
@@ -90,3 +98,48 @@ export type OrderMail = NewOrder & {
   }[];
   total: string;
 };
+
+export interface FoxpostSelectMessageData {
+  place_id: number;
+  operator_id: string;
+  name: string;
+  vapt: string;
+  olapt: string;
+  japt: string;
+  ssapt: string;
+  sdapt: string;
+  group: string;
+  address: string;
+  zip: string;
+  city: string;
+  street: string;
+  findme: string;
+  geolat: number;
+  geolng: number;
+  allowed2: string;
+  depot: string;
+  load: string;
+  isOutdoor: boolean;
+  apmType: string;
+  substitutes?:
+    | ({
+        place_id: number;
+        operator_id: string;
+      } | null)[]
+    | null;
+  open: {
+    hetfo: string;
+    kedd: string;
+    szerda: string;
+    csutortok: string;
+    pentek: string;
+    szombat: string;
+    vasarnap: string;
+  };
+  fillEmptyList?:
+    | {
+        emptying: string;
+        filling: string;
+      }[]
+    | null;
+}

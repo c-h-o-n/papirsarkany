@@ -1,4 +1,3 @@
-import 'client-only';
 import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
 
@@ -9,6 +8,7 @@ type State = {
   _hasHydrated: boolean;
   cart: CartItem[];
   totalItems: number;
+  shippingFee: number;
   totalPrice: number;
 };
 
@@ -18,6 +18,7 @@ type Actions = {
   removeFromCart: (item: CartItem) => void;
   decreaseItemQuantity: (item: CartItem) => void;
   setItemQuantity: (item: CartItem, quantity: number) => void;
+  setShippingFee: (shippingFee: number) => void;
   resetCart: () => void;
 };
 
@@ -25,6 +26,7 @@ const initialState: State = {
   _hasHydrated: false,
   cart: [],
   totalItems: 0,
+  shippingFee: 0,
   totalPrice: 0,
 };
 
@@ -62,7 +64,7 @@ export const useCartStore = create(
           cart: updatedCart,
           totalItems: state.totalItems + (quantity - product.quantity),
           totalPrice:
-            state.totalPrice + product.price * (quantity - product.quantity),
+            state.totalPrice + product.price * (quantity - product.quantity) + state.shippingFee,
         }));
       },
       addToCart(product) {
@@ -78,7 +80,7 @@ export const useCartStore = create(
           set((state) => ({
             cart: updatedCart,
             totalItems: state.totalItems + 1,
-            totalPrice: state.totalPrice + product.price,
+            totalPrice: state.totalPrice + product.price + state.shippingFee,
           }));
           return;
         }
@@ -88,7 +90,7 @@ export const useCartStore = create(
         set((state) => ({
           cart: updatedCart,
           totalItems: state.totalItems + 1,
-          totalPrice: state.totalPrice + product.price,
+          totalPrice: state.totalPrice + product.price + state.shippingFee,
         }));
       },
       decreaseItemQuantity(product) {
@@ -109,7 +111,7 @@ export const useCartStore = create(
           set((state) => ({
             cart: updatedCart,
             totalItems: state.totalItems - 1,
-            totalPrice: state.totalPrice - product.price,
+            totalPrice: state.totalPrice - product.price + state.shippingFee,
           }));
           return;
         }
@@ -120,8 +122,13 @@ export const useCartStore = create(
         set((state) => ({
           cart: state.cart.filter((item) => !isInCart(item, product)),
           totalItems: state.totalItems - product.quantity,
-          totalPrice: state.totalPrice - product.price * product.quantity,
+          totalPrice: state.totalPrice - product.price * product.quantity + state.shippingFee,
         }));
+      },
+      setShippingFee(shippingFee) {
+        set({
+          shippingFee,
+        });
       },
       resetCart() {
         set((state) => ({
