@@ -64,7 +64,9 @@ export const useCartStore = create(
           cart: updatedCart,
           totalItems: state.totalItems + (quantity - product.quantity),
           totalPrice:
-            state.totalPrice + product.price * (quantity - product.quantity) + state.shippingFee,
+            state.totalPrice +
+            product.price * (quantity - product.quantity) +
+            state.shippingFee,
         }));
       },
       addToCart(product) {
@@ -122,7 +124,10 @@ export const useCartStore = create(
         set((state) => ({
           cart: state.cart.filter((item) => !isInCart(item, product)),
           totalItems: state.totalItems - product.quantity,
-          totalPrice: state.totalPrice - product.price * product.quantity + state.shippingFee,
+          totalPrice:
+            state.totalPrice -
+            product.price * product.quantity +
+            state.shippingFee,
         }));
       },
       setShippingFee(shippingFee) {
