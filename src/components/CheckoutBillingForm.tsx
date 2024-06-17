@@ -1,5 +1,4 @@
 'use client';
-
 import { FormSchemaObject } from '@/lib/types';
 import { useCheckoutFormStore } from '@/store/useCheckoutFormStore';
 import { useFormContext } from 'react-hook-form';
@@ -29,7 +28,7 @@ export default function CheckoutPayingForm() {
   // };
 
   return (
-    <div className='max-w-screen-sm mx-auto'>
+    <div className="max-w-screen-sm mx-auto">
       <h2 className="underline underline-offset-8">Fizetés</h2>
 
       <div className="d-form-control">
@@ -40,7 +39,9 @@ export default function CheckoutPayingForm() {
             {...register('paymentOption')}
             className="d-radio checked:d-radio-primary"
           />
-          <span className="d-label-text text-lg font-bold">Átvételkor készpénzel</span>
+          <span className="d-label-text text-lg font-bold">
+            Átvételkor készpénzel
+          </span>
         </label>
       </div>
 
@@ -53,9 +54,9 @@ export default function CheckoutPayingForm() {
             className="d-radio checked:d-radio-primary"
           />
           <span className="d-label-text text-lg font-bold">Előreutalással</span>
-        <span className="pl-8 d-label-text text-gray-400 select-text text-lg basis-full">
-          11600006-00000000-76709302
-        </span>
+          <span className="pl-8 d-label-text text-gray-400 select-text text-lg basis-full">
+            11600006-00000000-76709302
+          </span>
         </label>
       </div>
 
