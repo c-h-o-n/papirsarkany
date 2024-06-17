@@ -37,7 +37,6 @@ export default function CheckoutShippingForm() {
   return (
     <>
       <div className="max-w-screen-sm mx-auto">
-        <h1 className="text-center font-bold">Pénztár</h1>
         <h2 className="underline underline-offset-8">Elérhetőség</h2>
         <div className="d-form-control">
           <label className="d-label">
