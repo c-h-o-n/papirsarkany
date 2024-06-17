@@ -1,18 +1,23 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
+import { useFormContext } from 'react-hook-form';
+
 import { FormSchemaObject } from '@/lib/types';
 import { useCheckoutFormStore } from '@/store/useCheckoutFormStore';
-import { useStepperStore } from '@/store/useStepperStore';
-import { useFormContext } from 'react-hook-form';
 import Card from './Card';
 import OrderSummaryCard from './OrderSummaryCard';
 
 export default function CheckoutSummary() {
-  const { register, getValues } = useFormContext<FormSchemaObject>();
+  const router = useRouter();
+  const {
+    register,
+    getValues,
+    formState: { isSubmitting },
+  } = useFormContext<FormSchemaObject>();
   const formValues = getValues();
 
-  const isSubmitting = useCheckoutFormStore((state) => state.isSubmitting);
-  const prevStep = useStepperStore((state) => state.prevStep);
+  const prevStep = useCheckoutFormStore((state) => state.prevStep);
 
   return (
     <div className="space-y-6">
@@ -36,11 +41,20 @@ export default function CheckoutSummary() {
           <div>
             <h4 className="font-bold underline">Szállítás</h4>
             <div>{formValues.shippingOption}</div>
-            <div>
-              {formValues.shippingPostcode} {formValues.shippingCity}
-            </div>
-            <div>{formValues.shippingAddress}</div>
-            <div>{formValues.shippingSubaddress}</div>
+            {formValues.shippingOption === 'Személyes átvétel' ? (
+              <>
+                <div>2094 Nagykovácsi</div>
+                <div>Kazal utca 6.</div>
+              </>
+            ) : (
+              <>
+                <div>
+                  {formValues.shippingPostcode} {formValues.shippingCity}
+                </div>
+                <div>{formValues.shippingAddress}</div>
+                <div>{formValues.shippingSubaddress}</div>
+              </>
+            )}
           </div>
         </Card>
 

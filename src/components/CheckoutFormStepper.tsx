@@ -1,16 +1,15 @@
 'use client';
 
+import formSchema from '@/lib/form-schema';
 import { currencyFormatter } from '@/lib/formatters';
-import { FormSchemaArray, FormSchemaObject, OrderMail } from '@/lib/types';
+import { FormSchemaObject, OrderMail } from '@/lib/types';
 import '@/lib/yupConfig';
 import { useCartStore } from '@/store/useCartStore';
 import { useCheckoutFormStore } from '@/store/useCheckoutFormStore';
-import { useStepperStore } from '@/store/useStepperStore';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { redirect, useRouter } from 'next/navigation';
 import { Children, ReactNode } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
-import { boolean, object, string } from 'yup';
 
 type CheckoutStepperProps = {
   children: ReactNode;
@@ -19,94 +18,40 @@ type CheckoutStepperProps = {
 export default function CheckoutStepper({ children }: CheckoutStepperProps) {
   const router = useRouter();
 
-  const hasHydrated = useCartStore(state => state._hasHydrated);
+  const hasHydrated = useCartStore((state) => state._hasHydrated);
   const cart = useCartStore((state) => state.cart);
   const totalPrice = useCartStore((state) => state.totalPrice);
   const resetCart = useCartStore((state) => state.resetCart);
-  const resetFormData = useCheckoutFormStore((state) => state.resetFormData);
-  const resetStepper = useStepperStore((state) => state.resetStepper);
 
-  const formData = useCheckoutFormStore((state) => state.formData);
-  const setFormData = useCheckoutFormStore((state) => state.setFormData);
-  const isSubmitting = useCheckoutFormStore((state) => state.isSubmitting);
-  const setIsSubmitting = useCheckoutFormStore(
-    (state) => state.setIsSubmitting,
-  );
+  const step = useCheckoutFormStore((state) => state.step);
+  const nextStep = useCheckoutFormStore((state) => state.nextStep);
+  const formValues = useCheckoutFormStore((state) => state.formValues);
+  const setFormData = useCheckoutFormStore((state) => state.setFormValues);
+  const resetForm = useCheckoutFormStore((state) => state.resetForm);
 
-  const step = useStepperStore((state) => state.step);
-  const nextStep = useStepperStore((state) => state.nextStep);
-
-  if (hasHydrated) {
-    if (cart.length < 1) {
-      redirect('/kosar');
-    }
-  }
   const isLast = step === Children.count(children) - 1;
-
-  const schema: FormSchemaArray = [
-    object({
-      email: string().required().email().label('Email'),
-      firstName: string().required().label('Keresztnév'),
-      lastName: string().required().label('Vezetéknév'),
-      phoneNumber: string()
-        .required()
-        .matches(
-          /^(?:\+36|06)(?:(?:20|30|31|32|33|34|35|36|70|71|72|73|74|75|76|77|78|79|90|91|92|93|94|95|96|97|99)\d{7})$/,
-          'Érvényes magyar telefonszámnak kell lennie pl.: +36201234567 vagy 06201234567',
-        )
-        .label('Telefonszám'),
-      shippingOption: string()
-        .required(({ label }) => `Kérlek válassz egy ${label.toLowerCase()}ot`)
-        .ensure()
-        .label('Szállitási mód'),
-
-      shippingPostcode: string()
-        .when('shippingOption', {
-          is: 'Postai szállítás',
-          then: (schema) => schema.required(),
-        })
-        .label('Irányítószám'),
-      shippingCity: string()
-        .when('shippingOption', {
-          is: 'Postai szállítás',
-          then: (schema) => schema.required(),
-        })
-        .label('Város'),
-      shippingAddress: string()
-        .when('shippingOption', {
-          is: 'Postai szállítás',
-          then: (schema) => schema.required(),
-        })
-        .label('Cím'),
-      shippingSubaddress: string().label('Másodlagos cím'),
-    }),
-    object({
-      paymentOption: string()
-        .required(({ label }) => `Kérlek válassz egy ${label.toLowerCase()}ot`)
-        .ensure()
-        .label('Fizetési mód'),
-      isSameAdressAsShipping: boolean().default(true),
-      billingPostcode: string().required().label('Irányítószám'),
-      billingCity: string().required().label('Város'),
-      billingAddress: string().required().label('Cím'),
-      billingSubaddress: string().label('Másodlagos cím'),
-    }),
-    object({
-      comment: string(),
-    }),
-  ];
 
   // FIXME define types for useForm
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const methods = useForm<any>({
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    resolver: yupResolver(schema[step] as any),
-    defaultValues: { ...formData } as FormSchemaObject,
+    resolver: yupResolver(formSchema[step] as any),
+    defaultValues: {
+      ...formValues,
+    } as FormSchemaObject,
   });
 
-  const onSubmit = (data: FormSchemaObject) => {
-    setFormData(data);
+  const {
+    formState: { isSubmitting },
+    handleSubmit,
+    watch,
+  } = methods;
 
+  watch((s) => {
+    setFormData(s);
+  });
+
+  const onSubmit = async (data: FormSchemaObject) => {
     if (!isLast) {
       nextStep();
       return;
@@ -116,29 +61,30 @@ export default function CheckoutStepper({ children }: CheckoutStepperProps) {
       return;
     }
 
-    setIsSubmitting(true);
-    sendOrder(data)
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error(res.statusText);
-        }
-        if (res.status !== 200) {
-          return;
-        }
+    try {
+      const res = await sendOrder(data);
 
-        resetCart();
-        resetFormData();
-        resetStepper();
-      })
-      .then(() => {
-        router.push('/sikeres-rendeles');
-      })
-      .catch((error) =>
-        alert(`Hiba történt a rendelés leadásakor. \n(${error})`),
-      )
-      .finally(() => {
-        setIsSubmitting(false);
-      });
+      if (!res.ok) {
+        throw new Error(res.statusText);
+      }
+      if (res.status !== 200) {
+        return;
+      }
+
+      await resetFormStores();
+
+      router.push('/sikeres-rendeles');
+    } catch (error) {
+      alert(`Hiba történt a rendelés leadásakor. \n(${error})`);
+    }
+  };
+
+  const resetFormStores = (): Promise<void> => {
+    return new Promise((resolve) => {
+      resetCart();
+      resetForm();
+      resolve();
+    });
   };
 
   const sendOrder = (data: FormSchemaObject) => {
@@ -183,11 +129,17 @@ export default function CheckoutStepper({ children }: CheckoutStepperProps) {
     });
   };
 
+  if (hasHydrated) {
+    if (cart.length < 1) {
+      redirect('/kosar');
+    }
+  }
+
   return (
-    <div className={`container p-8 ${!isLast && 'max-w-screen-md'}`}>
+    <div className={`container py-8 ${!isLast && 'max-w-screen-xl'}`}>
       <FormProvider {...methods}>
         <form
-          onSubmit={methods.handleSubmit((data) => onSubmit(data))}
+          onSubmit={handleSubmit(async (data) => await onSubmit(data))}
           className="[&>h2]:py-2"
         >
           {Children.toArray(children)[step]}

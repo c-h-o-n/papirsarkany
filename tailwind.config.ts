@@ -13,6 +13,11 @@ const config: Config = {
       center: true,
       padding: '2rem',
     },
+    extend: {
+      colors: {
+        'foxpost-red': '#a82220'
+      }
+    }
   },
   plugins: [daisyui],
   daisyui: { ...daisyuiConfig },
