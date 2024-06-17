@@ -10,7 +10,7 @@ import { FormSchemaObject, OrderMail } from '@/lib/types';
 import '@/lib/yupConfig';
 import { useCartStore } from '@/store/useCartStore';
 import { useCheckoutFormStore } from '@/store/useCheckoutFormStore';
-import Steps from './Steps';
+import StepProgress from './StepProgress';
 
 type CheckoutStepperProps = {
   children: ReactNode;
@@ -144,7 +144,7 @@ export default function CheckoutStepper({ children }: CheckoutStepperProps) {
           className="[&>h2]:py-2 space-y-4"
         >
           <div className="mx-auto max-w-screen-md">
-            <Steps />
+            <StepProgress />
           </div>
           {Children.toArray(children)[step]}
         </form>
