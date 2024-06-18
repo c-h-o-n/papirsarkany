@@ -21,7 +21,6 @@ export async function generateStaticParams(): Promise<Partial<Params>[]> {
 export default async function Kite({ params }: { params: Params }) {
   const kite = await getKiteBySlug(params.slug);
 
-  // TODO remove this after BUG is fixed in not-found.tsx
   if (!kite) {
     notFound();
   }
