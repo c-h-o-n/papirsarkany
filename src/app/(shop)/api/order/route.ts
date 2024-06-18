@@ -1,6 +1,6 @@
 import { createOrder } from '@/lib/db';
 import { sendEmail, setSendgridApiKey } from '@/lib/email';
-import { isProdEnv } from '@/lib/helpers';
+import { isPreviewEnv, isProdEnv } from '@/lib/helpers';
 import { CartItem, FormSchemaObject, OrderMail } from '@/lib/types';
 import { MailDataRequired } from '@sendgrid/mail';
 import { NextResponse } from 'next/server';
@@ -44,8 +44,10 @@ export async function POST(request: Request) {
       dynamicTemplateData: body.orderEmailData,
     };
 
-    await sendEmail(vendorMail);
-    await sendEmail(customerMail);
+    if (isProdEnv() || isPreviewEnv()) {
+      await sendEmail(vendorMail);
+      await sendEmail(customerMail);
+    }
 
     return NextResponse.json(body);
   } catch (error) {
