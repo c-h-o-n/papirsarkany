@@ -32,7 +32,6 @@ export default function CartDropDown() {
       </label>
 
       <div
-        tabIndex={0}
         className="d-card d-dropdown-content d-card-compact z-[1] mt-5 w-52 bg-base-100 shadow"
       >
         <div className="d-card-body">
