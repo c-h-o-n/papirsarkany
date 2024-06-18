@@ -1,11 +1,5 @@
 import NextBundleAnalyzer from '@next/bundle-analyzer';
-import { readFileSync } from 'fs';
 import createNextPluginPreval from 'next-plugin-preval/config.js';
-
-const getAppVersion = () => {
-  const { version } = JSON.parse(readFileSync('./package.json'));
-  return version;
-};
 
 const withNextPluginPreval = createNextPluginPreval();
 
@@ -25,9 +19,6 @@ const nextConfig = {
     });
 
     return config;
-  },
-  publicRuntimeConfig: {
-    appVersion: getAppVersion(),
   },
   images: {
     remotePatterns: [
