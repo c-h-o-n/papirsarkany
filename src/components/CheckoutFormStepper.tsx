@@ -130,10 +130,12 @@ export default function CheckoutStepper({ children }: CheckoutStepperProps) {
     });
   };
 
-  if (hasHydrated) {
-    if (cart.length < 1) {
-      redirect('/kosar');
-    }
+  if (!hasHydrated) {
+    return;
+  }
+
+  if (cart.length < 1) {
+    redirect('/kosar');
   }
 
   return (
