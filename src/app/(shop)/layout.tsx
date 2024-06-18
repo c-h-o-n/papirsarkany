@@ -1,10 +1,10 @@
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import type { Metadata } from 'next';
-import getConfig from 'next/config';
 import { Inter } from 'next/font/google';
 import { ReactNode } from 'react';
 
+import AppVersionScript from '@/components/AppVersionScript';
 import CartStoreRehydrate from '@/components/CartStoreRehydrate';
 import Navbar from '@/components/Navbar';
 import TruendoScript from '@/components/TruendoScript';
@@ -18,16 +18,14 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
-  const { publicRuntimeConfig } = getConfig();
-
   return (
     <html
       lang="hu"
       className="scroll-pt-[68px] scroll-smooth sm:scroll-pt-[72px]"
-      data-app-version={publicRuntimeConfig.appVersion}
     >
       <head>
         <TruendoScript />
+        <AppVersionScript />
       </head>
       <body className={`${inter.className} `}>
         <div className="flex min-h-screen flex-col">
