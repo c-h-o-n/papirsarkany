@@ -1,17 +1,17 @@
 'use client';
-import { m } from 'framer-motion';
+import { HTMLMotionProps, m } from 'framer-motion';
 import { ReactNode } from 'react';
 import Card from './Card';
 import LazyLoadFramerMotion from './LazyLoadFramerMotion';
 
-type HoverAnimatedCardProps = {
-  children: ReactNode;
-  className?: string;
+type HoverAnimatedCardProps = HTMLMotionProps<'div'> & {
+  children?: ReactNode;
 };
 
 export default function HoverAnimatedCard({
   children,
   className,
+  ...props
 }: HoverAnimatedCardProps) {
   return (
     <LazyLoadFramerMotion>
@@ -28,6 +28,7 @@ export default function HoverAnimatedCard({
         whileTap={{
           scale: 0.95,
         }}
+        {...props}
       >
         <Card className={className}>{children}</Card>
       </m.div>
