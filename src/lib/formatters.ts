@@ -1,6 +1,6 @@
 import { $Enums } from '@prisma/client';
 
-import { BillingOptionLabel, ProductTypes, ShippingOptionLabel } from './types';
+import { BillingOptionValue, ProductTypes, ShippingOptionValue } from './types';
 
 export function currencyFormatter(value: number): string {
   const formatter = Intl.NumberFormat('hu', {
@@ -25,7 +25,7 @@ export const SanityCategoryMap: Record<ProductTypes, string> = {
 };
 
 export const prismaShippingModeMap: Record<
-  ShippingOptionLabel,
+  ShippingOptionValue,
   $Enums.ShippingMode
 > = {
   'Személyes átvétel': 'PersonalPickup',
@@ -34,9 +34,10 @@ export const prismaShippingModeMap: Record<
 };
 
 export const prismaPaymentModeMap: Record<
-  BillingOptionLabel,
+  BillingOptionValue,
   $Enums.PaymentMode
 > = {
   'Átvételkor készpénzel': 'Cash',
   Előreutalással: 'Transfer',
+  "Átvételkor bankártyával": 'Card'
 };
