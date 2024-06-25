@@ -93,6 +93,12 @@ export type Twine = {
     crop?: SanityImageCrop;
     _type: 'image';
   };
+  packageInfo?: {
+    x?: number;
+    y?: number;
+    z?: number;
+    weight?: number;
+  };
   diameters?: TwineDiameters;
 };
 
@@ -113,6 +119,12 @@ export type Reel = {
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
     _type: 'image';
+  };
+  packageInfo?: {
+    x?: number;
+    y?: number;
+    z?: number;
+    weight?: number;
   };
   price?: number;
 };
@@ -144,6 +156,12 @@ export type Rod = {
     crop?: SanityImageCrop;
     _type: 'image';
   };
+  packageInfo?: {
+    x?: number;
+    y?: number;
+    z?: number;
+    weight?: number;
+  };
   diameters?: RodDiameters;
 };
 
@@ -173,6 +191,12 @@ export type Kite = {
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
     _type: 'image';
+  };
+  packageInfo?: {
+    x?: number;
+    y?: number;
+    z?: number;
+    weight?: number;
   };
   slug?: Slug;
   price?: number;
@@ -259,6 +283,7 @@ export type Slug = {
 };
 export declare const internalGroqTypeReferenceTo: unique symbol;
 
+
 // Source: ./src/lib/sanity.ts
 // Variable: getAllKitesQuery
 // Query: *[_type == "kite"] { ..., image { asset -> { url, metadata } } } | order(price asc)
@@ -275,6 +300,12 @@ export type GetAllKitesQueryResult = Array<{
       metadata: SanityImageMetadata | null;
     } | null;
   } | null;
+  packageInfo?: {
+    x?: number;
+    y?: number;
+    z?: number;
+    weight?: number;
+  };
   slug?: Slug;
   price?: number;
   size?: string;
@@ -302,6 +333,12 @@ export type GetKiteBySlugQueryResult = {
       metadata: SanityImageMetadata | null;
     } | null;
   } | null;
+  packageInfo?: {
+    x?: number;
+    y?: number;
+    z?: number;
+    weight?: number;
+  };
   slug?: Slug;
   price?: number;
   size?: string;
@@ -329,6 +366,12 @@ export type GetAllRodsQueryResult = Array<{
       metadata: SanityImageMetadata | null;
     } | null;
   } | null;
+  packageInfo?: {
+    x?: number;
+    y?: number;
+    z?: number;
+    weight?: number;
+  };
   diameters?: RodDiameters;
 }>;
 
@@ -347,6 +390,12 @@ export type GetAllReelsQueryResult = Array<{
       metadata: SanityImageMetadata | null;
     } | null;
   } | null;
+  packageInfo?: {
+    x?: number;
+    y?: number;
+    z?: number;
+    weight?: number;
+  };
   price?: number;
 }>;
 
@@ -365,5 +414,13 @@ export type GetAllTwinesQueryResult = Array<{
       metadata: SanityImageMetadata | null;
     } | null;
   } | null;
+  packageInfo?: {
+    x?: number;
+    y?: number;
+    z?: number;
+    weight?: number;
+  };
   diameters?: TwineDiameters;
 }>;
+
+
