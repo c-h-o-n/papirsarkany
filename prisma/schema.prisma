@@ -8,6 +8,24 @@ datasource db {
   directUrl = env("DATABASE_URL_UNPOOLED")
 }
 
+enum Status {
+  Pending
+  Canceled
+  Fullfilled
+}
+
+enum ShippingMode {
+  PersonalPickup @map("Személyes átvétel")
+  Post           @map("Postai szállítás")
+  Foxpost        @map("Foxpost automatába")
+}
+
+enum PaymentMode {
+  Cash     @map("Átvételkor készpénzel")
+  Card     @map("Átvételkor bankártyával")
+  Transfer @map("Előreutalással")
+}
+
 model Customer {
   id                 Int      @id @default(autoincrement())
   email              String   @unique
@@ -35,34 +53,17 @@ model Order {
   comment      String?
   createdAt    DateTime     @default(now()) @db.Timestamp(6)
   OrderItems   OrderItem[]
-  Customers    Customer    @relation(fields: [customerId], references: [id])
+  Customers    Customer     @relation(fields: [customerId], references: [id])
 
   @@index([customerId])
 }
 
 model OrderItem {
-  id       Int    @id @default(autoincrement())
-  orderId  Int
+  id        Int    @id @default(autoincrement())
+  orderId   Int
   productId String
-  quantity Int
-  orders   Order @relation(fields: [orderId], references: [id])
+  quantity  Int
+  orders    Order  @relation(fields: [orderId], references: [id])
 
   @@index([orderId])
-}
-
-enum Status {
-  Pending
-  Canceled
-  Fullfilled
-}
-
-enum ShippingMode {
-  PersonalPickup @map("Személyes átvétel")
-  Post           @map("Postai szállítás")
-  Foxpost           @map("Foxpost automatába")
-}
-
-enum PaymentMode {
-  Cash     @map("Átvételkor készpénzel")
-  Transfer @map("Előreutalással")
 }
