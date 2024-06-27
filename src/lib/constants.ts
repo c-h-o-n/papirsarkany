@@ -10,14 +10,14 @@ export const LOCAL_PICKUP_ADDRESS = {
   shippingAddress: 'Kazal utca 6.',
 } as const;
 
-export const FOXPOST_PACKAGE_CONSTRAINST: readonly FoxpostPackageInfoCategoryConstraints[] =
+export const FOXPOST_PACKAGE_CONSTRAINST =
   [
     { x: 5, y: 33, z: 53, weight: 5, category: 'XS' },
     { x: 11.5, y: 36, z: 61, weight: 15, category: 'S' },
     { x: 19.5, y: 36, z: 61, weight: 25, category: 'M' },
     { x: 37.5, y: 36, z: 61, weight: 25, category: 'L' },
     { x: 60, y: 36, z: 61, weight: 25, category: 'XL' },
-  ];
+  ] as const satisfies readonly FoxpostPackageInfoCategoryConstraints[];
 
 export const FOXPOST_PACKAGE_HANDLING_FEES = [
   {
@@ -30,4 +30,4 @@ export const FOXPOST_PACKAGE_HANDLING_FEES = [
     fee: 1.2,
     feeType: 'percentage',
   },
-];
+] as const;
