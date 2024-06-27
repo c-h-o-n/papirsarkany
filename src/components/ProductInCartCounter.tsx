@@ -11,7 +11,10 @@ export default function ProductinCartCounter({
   cartItem,
 }: ProductinCartCounterProps) {
   const setItemQuantity = useCartStore((state) => state.setItemQuantity);
-  const addToCart = useCartStore((state) => state.addToCart);
+
+  const increaseItemQuantity = useCartStore(
+    (state) => state.increaseItemQuantity,
+  );
   const decreaseItemQuantity = useCartStore(
     (state) => state.decreaseItemQuantity,
   );
@@ -53,7 +56,7 @@ export default function ProductinCartCounter({
   };
 
   const handleIncreaseButtonClick = () => {
-    addToCart(cartItem);
+    increaseItemQuantity(cartItem);
     setTemporaryQuantityValue((currentValue) => currentValue + 1);
   };
 

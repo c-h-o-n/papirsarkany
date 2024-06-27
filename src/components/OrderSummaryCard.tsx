@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { Fragment } from 'react';
 
 import TrashCanIcon from '@/assets/trash-can.svg';
+import useCart from '@/hooks/useCart';
 import { MISSING_IMG_URL } from '@/lib/constants';
 import { currencyFormatter } from '@/lib/formatters';
 import { CartItem } from '@/lib/types';
@@ -11,14 +12,21 @@ import { useCartStore } from '@/store/useCartStore';
 import Card from './Card';
 import ProductinCartCounter from './ProductInCartCounter';
 
-type Props = {
-  layout?: 'full' | 'simplified' | 'definitive';
+type OrderSummaryCard = {
+  layout?: 'full' | 'definitive';
 };
-export default function OrderSummaryCard({ layout = 'full' }: Props) {
+
+export default function OrderSummaryCard({
+  layout = 'full',
+}: OrderSummaryCard) {
   const cart = useCartStore((state) => state.cart);
-  const totalPrice = useCartStore((state) => state.totalPrice);
-  const totalItems = useCartStore((state) => state.totalItems);
+  const shippingFee = useCartStore((state) => state.shippingFee);
+  const billingFee = useCartStore((state) => state.billingFee);
   const removeFromCart = useCartStore((state) => state.removeFromCart);
+
+  const { getTotalItemCount, getTotalPrice } = useCart();
+
+  const totalPrice = getTotalPrice();
 
   const onDeleteClick = (product: CartItem) => {
     removeFromCart(product);
@@ -73,11 +81,28 @@ export default function OrderSummaryCard({ layout = 'full' }: Props) {
           </Fragment>
         ))}
 
+        {(Boolean(shippingFee) || Boolean(billingFee)) && (
+          <div>
+            {Boolean(shippingFee) && (
+              <div className="flex justify-between font-bold">
+                <h5>Szállítás</h5>
+                <h5>+{currencyFormatter(shippingFee)}</h5>
+              </div>
+            )}
+            {Boolean(billingFee) && (
+              <div className="flex justify-between font-bold">
+                <h5>Kezelési díj</h5>
+                <h5>+{currencyFormatter(billingFee)}</h5>
+              </div>
+            )}
+          </div>
+        )}
+
         <div className="flex justify-between font-bold">
           <h3>
             Összesen{' '}
             <span className="text-base font-normal text-gray-400">
-              {totalItems} db
+              {getTotalItemCount()} db
             </span>
           </h3>
           <h3>{currencyFormatter(totalPrice)}</h3>
@@ -150,7 +175,7 @@ export default function OrderSummaryCard({ layout = 'full' }: Props) {
         <h3>
           Összesen{' '}
           <span className="text-base font-normal text-gray-400">
-            {totalItems} db
+            {getTotalItemCount()} db
           </span>
         </h3>
         <h3>{currencyFormatter(totalPrice)}</h3>

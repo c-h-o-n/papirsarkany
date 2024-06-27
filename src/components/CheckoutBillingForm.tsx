@@ -1,64 +1,64 @@
 'use client';
-import { FormSchemaObject } from '@/lib/types';
+import useCart from '@/hooks/useCart';
+import { getHandlingFee } from '@/lib/foxpost-package-size';
+import {
+  BillingOptionValue,
+  FormSchemaObject,
+  ShippingOptionValue,
+} from '@/lib/types';
 import { useCheckoutFormStore } from '@/store/useCheckoutFormStore';
 import { useFormContext } from 'react-hook-form';
+import BillingOptionRadioInput from './BillingOptionRadioInput';
 
 export default function CheckoutPayingForm() {
   const {
     register,
     formState: { errors },
+    getValues,
   } = useFormContext<FormSchemaObject>();
 
   const prevStep = useCheckoutFormStore((state) => state.prevStep);
 
-  // const onIsSameAdressAsShippingChange = (e: ChangeEvent<HTMLInputElement>) => {
-  //   if (e.target.checked) {
-  //     setValue('billingPostcode', watch('shippingPostcode'));
-  //     setValue('billingCity', watch('shippingCity'));
-  //     setValue('billingAddress', watch('shippingAddress'));
-  //     setValue('billingSubaddress', watch('shippingSubaddress'));
-  //     setValue('isSameAdressAsShipping', true);
-  //   } else {
-  //     setValue('billingPostcode', '');
-  //     setValue('billingCity', '');
-  //     setValue('billingAddress', '');
-  //     setValue('billingSubaddress', '');
-  //     setValue('isSameAdressAsShipping', false);
-  //   }
-  // };
+  const { getTotalPrice } = useCart();
+
+  const shippingBillingMap: Record<
+    ShippingOptionValue,
+    { billingOptionValue: BillingOptionValue; billingFee?: number | null }[]
+  > = {
+    'Személyes átvétel': [
+      { billingOptionValue: 'Előreutalással', billingFee: undefined },
+      { billingOptionValue: 'Átvételkor készpénzel', billingFee: undefined },
+    ],
+    'Foxpost automatába': [
+      { billingOptionValue: 'Előreutalással', billingFee: undefined },
+      {
+        billingOptionValue: 'Átvételkor bankártyával',
+        billingFee: getHandlingFee(getTotalPrice()),
+      },
+    ],
+    'Postai szállítás': [],
+  };
+
+  const selectedShippingOption = getValues('shippingOption');
+
+  if (!selectedShippingOption) {
+    throw new Error('Érvénytelen szállitási mód');
+  }
 
   return (
     <div className="max-w-screen-sm mx-auto">
       <h2 className="underline underline-offset-8">Fizetés</h2>
 
-      <div className="d-form-control">
-        <label className="d-label cursor-pointer justify-start gap-x-2">
-          <input
-            type="radio"
-            value="Átvételkor készpénzel"
-            {...register('paymentOption')}
-            className="d-radio checked:d-radio-primary"
+      {shippingBillingMap[selectedShippingOption].map(
+        ({ billingOptionValue, billingFee }) => (
+          <BillingOptionRadioInput
+            key={crypto.randomUUID()}
+            value={billingOptionValue}
+            billingFee={billingFee}
+            isDisabled={billingFee === null}
           />
-          <span className="d-label-text text-lg font-bold">
-            Átvételkor készpénzel
-          </span>
-        </label>
-      </div>
-
-      <div className="d-form-control">
-        <label className="d-label cursor-pointer justify-start gap-x-2 flex-wrap">
-          <input
-            type="radio"
-            value="Előreutalással"
-            {...register('paymentOption')}
-            className="d-radio checked:d-radio-primary"
-          />
-          <span className="d-label-text text-lg font-bold">Előreutalással</span>
-          <span className="pl-8 d-label-text text-gray-400 select-text text-lg basis-full">
-            11600006-00000000-76709302
-          </span>
-        </label>
-      </div>
+        ),
+      )}
 
       <span className="text-error">{errors.paymentOption?.message}</span>
 

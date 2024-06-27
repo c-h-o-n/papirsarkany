@@ -47,8 +47,8 @@ const formSchema: FormSchemaArray = [
     paymentOption: mixed()
       .required(({ label }) => `Kérlek válassz egy ${label.toLowerCase()}ot`)
       .oneOf(
-        ['Előreutalással', 'Átvételkor készpénzel'],
-        'Érvénytelen szállítási mód',
+        ['Előreutalással', 'Átvételkor készpénzel', 'Átvételkor bankártyával'],
+        'Érvénytelen fizetési mód',
       )
       .label('Fizetési mód'),
     isSameAdressAsShipping: boolean().default(true),

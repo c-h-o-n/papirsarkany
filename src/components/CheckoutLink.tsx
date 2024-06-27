@@ -1,12 +1,11 @@
 'use client';
 
-import { useCartStore } from '@/store/useCartStore';
+import useCart from '@/hooks/useCart';
 import Link from 'next/link';
 
 export default function CheckoutLink() {
-  const totalCartItems = useCartStore((state) => state.totalItems);
-
-  if (totalCartItems < 1) {
+  const { getTotalItemCount } = useCart();
+  if (getTotalItemCount() < 1) {
     return;
   }
   return (

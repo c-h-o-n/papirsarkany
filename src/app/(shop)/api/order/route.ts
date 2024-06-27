@@ -6,7 +6,7 @@ import { MailDataRequired } from '@sendgrid/mail';
 import { NextResponse } from 'next/server';
 
 setSendgridApiKey();
-
+// TODO check if shipping is LOCAL_PICKUP_ADDRESS
 export async function POST(request: Request) {
   const { VENDOR_EMAIL_ADDRESS } = process.env;
 

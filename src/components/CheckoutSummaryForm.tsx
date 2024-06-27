@@ -41,20 +41,11 @@ export default function CheckoutSummary() {
           <div>
             <h4 className="font-bold underline">Szállítás</h4>
             <div>{formValues.shippingOption}</div>
-            {formValues.shippingOption === 'Személyes átvétel' ? (
-              <>
-                <div>2094 Nagykovácsi</div>
-                <div>Kazal utca 6.</div>
-              </>
-            ) : (
-              <>
-                <div>
-                  {formValues.shippingPostcode} {formValues.shippingCity}
-                </div>
-                <div>{formValues.shippingAddress}</div>
-                <div>{formValues.shippingSubaddress}</div>
-              </>
-            )}
+            <div>
+              {formValues.shippingPostcode} {formValues.shippingCity}
+            </div>
+            <div>{formValues.shippingAddress}</div>
+            <div>{formValues.shippingSubaddress}</div>
           </div>
         </Card>
 
