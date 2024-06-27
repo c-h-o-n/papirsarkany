@@ -15,11 +15,20 @@ export type Product = WithImageAsset<{
   _id: string;
   name?: string;
   price?: number;
+  packageInfo?: {
+    x?: number;
+    y?: number;
+    z?: number;
+    weight?: number;
+  };
 }>;
 
+type DeepRequired<T> = Required<{
+  [K in keyof T]: T[K] extends Required<T[K]> ? T[K] : DeepRequired<T[K]>;
+}>;
 export type ProductTypes = 'kite' | 'rod' | 'reel' | 'twine';
 
-export type CartItem = Required<Product> & {
+export type CartItem = DeepRequired<Product> & {
   quantity: number;
 };
 
@@ -30,7 +39,7 @@ export type FormSchemaArray = [
     lastName: StringSchema;
     phoneNumber: StringSchema;
 
-    shippingOption: MixedSchema<ShippingOptionLabel | null>;
+    shippingOption: MixedSchema<ShippingOptionValue | null>;
 
     shippingPostcode: StringSchema;
     shippingCity: StringSchema;
@@ -39,7 +48,7 @@ export type FormSchemaArray = [
   }>,
   ObjectSchema<{
     isSameAdressAsShipping: BooleanSchema;
-    paymentOption: MixedSchema<BillingOptionLabel | null>;
+    paymentOption: MixedSchema<BillingOptionValue | null>;
     billingPostcode: StringSchema;
     billingCity: StringSchema;
     billingAddress: StringSchema;
@@ -54,12 +63,15 @@ export type FormSchemaObject = Asserts<FormSchemaArray[0]> &
   Asserts<FormSchemaArray[1]> &
   Asserts<FormSchemaArray[2]>;
 
-export type ShippingOptionLabel =
+export type ShippingOptionValue =
   | 'Személyes átvétel'
   | 'Postai szállítás'
   | 'Foxpost automatába';
 
-export type BillingOptionLabel = 'Átvételkor készpénzel' | 'Előreutalással';
+export type BillingOptionValue =
+  | 'Átvételkor készpénzel'
+  | 'Előreutalással'
+  | 'Átvételkor bankártyával';
 
 export type NewOrder = {
   contact: {
@@ -69,8 +81,8 @@ export type NewOrder = {
     phone: string;
   };
 
-  shippingOption: ShippingOptionLabel;
-  paymentOption: BillingOptionLabel;
+  shippingOption: ShippingOptionValue;
+  paymentOption: BillingOptionValue;
 
   shipping: {
     postcode: string;
@@ -99,7 +111,7 @@ export type OrderMail = NewOrder & {
   total: string;
 };
 
-export interface FoxpostSelectMessageData {
+export type FoxpostSelectMessageData = {
   place_id: number;
   operator_id: string;
   name: string;
@@ -142,4 +154,10 @@ export interface FoxpostSelectMessageData {
         filling: string;
       }[]
     | null;
-}
+};
+
+export type FoxpostPackageHandlingFees = {
+  range: number[];
+  fee: number;
+  feeType: string;
+}[];

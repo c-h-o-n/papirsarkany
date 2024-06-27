@@ -24,7 +24,12 @@ export default function FoxpostMap({ hideMap }: FoxpostMapProps) {
       setValue('shippingCity', apt.city);
       setValue('shippingAddress', apt.street);
 
-      trigger();
+      trigger([
+        'shippingOption',
+        'shippingPostcode',
+        'shippingCity',
+        'shippingAddress',
+      ]);
 
       hideMap();
     }

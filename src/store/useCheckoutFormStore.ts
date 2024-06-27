@@ -45,7 +45,7 @@ const initialState: State = {
   },
 };
 /**
- * To persist form state when user navigates to other pages during checkout and form got unmounted.
+ * To persist form state when user navigates to other pages during checkout and the checkout form got unmounted.
  */
 export const useCheckoutFormStore = create<State & Actions>((set) => ({
   ...initialState,

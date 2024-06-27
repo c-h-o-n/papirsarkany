@@ -93,7 +93,7 @@ test('Kite order', async ({ page, browserName, isMobile }) => {
     await test.step('Place the order', async () => {
       // finish order
       await page.getByRole('button', { name: 'Megrendelem' }).click();
-      // TODO check if cart, form and stepper is reset and user redirected to the '/sikere-rendeles' page
+      // TODO check if cart, form and stepper did reset and user redirected to the '/sikere-rendeles' page
       await page.goto('https://papirsarkany.vercel.app/sikeres-rendeles');
     });
   }

@@ -1,13 +1,19 @@
 'use client';
 import { AnimatePresence, m } from 'framer-motion';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 
-import { currencyFormatter } from '@/lib/formatters';
+import { LOCAL_PICKUP_ADDRESS } from '@/lib/constants';
+import {
+  getTotalPackageInfo,
+  isFitInMaxLimit,
+  packageMaxLimit,
+} from '@/lib/foxpost-package-size';
 import { FormSchemaObject } from '@/lib/types';
 import { useCartStore } from '@/store/useCartStore';
 import FoxpostMap from './FoxpostMap';
 import LazyLoadFramerMotion from './LazyLoadFramerMotion';
+import ShippingOptionRadioInput from './ShippingOptionRadioInput';
 
 export default function CheckoutShippingForm() {
   const {
@@ -15,25 +21,46 @@ export default function CheckoutShippingForm() {
     watch,
     setValue,
     trigger,
+    getValues,
     formState: { errors },
   } = useFormContext<FormSchemaObject>();
-  const shippingFee = useCartStore((state) => state.shippingFee);
-
-  const onPersonalPickupClick = () => {
-    setValue('shippingPostcode', '');
-    setValue('shippingCity', '');
-    setValue('shippingAddress', '');
-
-    trigger();
-  };
-
-  const hasShippingSchemaRequiredError = Boolean(
-    errors.shippingPostcode?.type === 'required' ||
-      errors.shippingCity?.type === 'required' ||
-      errors.shippingAddress?.type === 'required',
-  );
+  const cart = useCartStore((state) => state.cart);
 
   const [isShowFoxpostMap, setIsShowFoxpostMap] = useState(false);
+
+  const totalPackageSize = useMemo(() => getTotalPackageInfo(cart), [cart]);
+
+  const isFitInFoxpostLimit = isFitInMaxLimit(totalPackageSize);
+
+  const onPersonalPickupClick = () => {
+    setValue('shippingPostcode', LOCAL_PICKUP_ADDRESS.shippingPostcode);
+    setValue('shippingCity', LOCAL_PICKUP_ADDRESS.shippingCity);
+    setValue('shippingAddress', LOCAL_PICKUP_ADDRESS.shippingAddress);
+
+    trigger([
+      'shippingOption',
+      'shippingPostcode',
+      'shippingCity',
+      'shippingAddress',
+    ]);
+  };
+
+  const onFoxpostPickupClick = () => {
+    const { shippingPostcode, shippingCity, shippingAddress } = getValues();
+
+    if (
+      shippingPostcode === LOCAL_PICKUP_ADDRESS.shippingPostcode &&
+      shippingCity === LOCAL_PICKUP_ADDRESS.shippingCity &&
+      shippingAddress === LOCAL_PICKUP_ADDRESS.shippingAddress
+    ) {
+      setValue('shippingPostcode', '');
+      setValue('shippingCity', '');
+      setValue('shippingAddress', '');
+    }
+
+    setIsShowFoxpostMap(true);
+  };
+
   return (
     <>
       <div className="max-w-screen-sm mx-auto">
@@ -103,56 +130,27 @@ export default function CheckoutShippingForm() {
           </label>
         </div>
         <h2 className="underline underline-offset-8">Szállítás</h2>
-        <div className="d-form-control">
-          <label className="d-label cursor-pointer justify-start gap-x-2 flex-wrap">
-            <input
-              type="radio"
-              value="Személyes átvétel"
-              {...register('shippingOption')}
-              className="d-radio checked:d-radio-primary"
-              onClick={onPersonalPickupClick}
-            />
-            <span className="d-label-text text-lg font-bold">
-              Személyes átvétel
-              <br />
-            </span>
-            <span className="d-label-text flex-1 text-right text-lg font-bold">
-              ingyenes
-            </span>
-            {watch('shippingOption') === 'Személyes átvétel' && (
-              <span className="pl-8 d-label-text text-lg basis-full select-text">
-                2094 Nagykovácsi Kazal utca 6.
-              </span>
-            )}
-          </label>
-        </div>
-        <div className="d-form-control">
-          <label className="d-label cursor-pointer justify-start gap-x-2 flex-wrap">
-            <input
-              type="radio"
-              value="Foxpost automatába"
-              {...register('shippingOption')}
-              className="d-radio checked:d-radio-primary"
-              onClick={() => setIsShowFoxpostMap(true)}
-            />
-            <span className="d-label-text text-lg text-foxpost-red font-bold">
-              Foxpost automatába
-            </span>
-            <span className="d-label-text flex-1 text-right text-lg font-bold">
-              {/* TODO calculate foxpost shippingfee */}+
-              {currencyFormatter(shippingFee || 666)}
-            </span>
-            <div className="pl-8 basis-full">
-              <span className="d-label-text-alt text-error">
-                {hasShippingSchemaRequiredError && 'Válassz egy automatát!'}
-              </span>
-              <span className="d-label-text text-lg select-text">
-                {watch('shippingOption') === 'Foxpost automatába' &&
-                  `${watch('shippingPostcode')} ${watch('shippingCity')} ${watch('shippingAddress')}`}
-              </span>
-            </div>
-          </label>
-        </div>
+        <ShippingOptionRadioInput
+          label={'Személyes átvétel'}
+          onClick={onPersonalPickupClick}
+          value="Személyes átvétel"
+        />
+        <ShippingOptionRadioInput
+          label={
+            <>
+              <div className="text-foxpost-red">Foxpost automatába </div>
+              {!isFitInFoxpostLimit && (
+                <div className="font-normal text-sm sm:text-lg">
+                  {`maximum ${packageMaxLimit.weight}kg és (${packageMaxLimit.x}x${packageMaxLimit.y}x${packageMaxLimit.z}cm-ig)`}
+                </div>
+              )}
+            </>
+          }
+          shippingFee={899}
+          onClick={onFoxpostPickupClick}
+          value="Foxpost automatába"
+          isDisabled={!isFitInFoxpostLimit}
+        />
         <span className="text-error">{errors.shippingOption?.message}</span>
       </div>
       <LazyLoadFramerMotion>

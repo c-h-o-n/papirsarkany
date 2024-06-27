@@ -1,9 +1,10 @@
 'use client';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { redirect, useRouter } from 'next/navigation';
-import { Children, ReactNode } from 'react';
+import { Children, ReactNode, useEffect } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 
+import useCart from '@/hooks/useCart';
 import formSchema from '@/lib/form-schema';
 import { currencyFormatter } from '@/lib/formatters';
 import { FormSchemaObject, OrderMail } from '@/lib/types';
@@ -21,14 +22,16 @@ export default function CheckoutStepper({ children }: CheckoutStepperProps) {
 
   const hasHydrated = useCartStore((state) => state._hasHydrated);
   const cart = useCartStore((state) => state.cart);
-  const totalPrice = useCartStore((state) => state.totalPrice);
+
   const resetCart = useCartStore((state) => state.resetCart);
+  const setShippingFee = useCartStore((state) => state.setShippingFee);
+  const setBillingFee = useCartStore((state) => state.setBillingFee);
+
+  const { getTotalPrice } = useCart();
 
   const step = useCheckoutFormStore((state) => state.step);
+  const setStep = useCheckoutFormStore((state) => state.setStep);
   const nextStep = useCheckoutFormStore((state) => state.nextStep);
-  const formValues = useCheckoutFormStore((state) => state.formValues);
-  const setFormData = useCheckoutFormStore((state) => state.setFormValues);
-  const resetForm = useCheckoutFormStore((state) => state.resetForm);
 
   const isLast = step === Children.count(children) - 1;
 
@@ -38,19 +41,44 @@ export default function CheckoutStepper({ children }: CheckoutStepperProps) {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     resolver: yupResolver(formSchema[step] as any),
     defaultValues: {
-      ...formValues,
+      email: '',
+      firstName: '',
+      lastName: '',
+      phoneNumber: '',
+
+      shippingOption: null,
+
+      shippingPostcode: '',
+      shippingCity: '',
+      shippingAddress: '',
+      shippingSubaddress: '',
+
+      paymentOption: null,
+
+      isSameAdressAsShipping: true,
+
+      billingPostcode: '',
+      billingCity: '',
+      billingAddress: '',
+      billingSubaddress: '',
+
+      comment: '',
     } as FormSchemaObject,
   });
 
   const {
     formState: { isSubmitting },
     handleSubmit,
-    watch,
+    reset,
   } = methods;
 
-  watch((s) => {
-    setFormData(s);
-  });
+  useEffect(() => {
+    return () => {
+      setStep(0);
+      setShippingFee(0);
+      setBillingFee(0);
+    };
+  }, [setBillingFee, setShippingFee, setStep]);
 
   const onSubmit = async (data: FormSchemaObject) => {
     if (!isLast) {
@@ -83,7 +111,7 @@ export default function CheckoutStepper({ children }: CheckoutStepperProps) {
   const resetFormStores = (): Promise<void> => {
     return new Promise((resolve) => {
       resetCart();
-      resetForm();
+      reset();
       resolve();
     });
   };
@@ -112,7 +140,7 @@ export default function CheckoutStepper({ children }: CheckoutStepperProps) {
       },
       comment: data.comment!,
       subject: 'papirsarkany.hu - Köszönöm rendelését!',
-      total: currencyFormatter(totalPrice),
+      total: currencyFormatter(getTotalPrice()),
       products: cart.map((product) => ({
         name: product.name,
         price: currencyFormatter(product.price),
