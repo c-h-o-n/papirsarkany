@@ -1,12 +1,12 @@
 import { createOrder } from '@/lib/db';
 import { sendEmail, setSendgridApiKey } from '@/lib/email';
-import { isPreviewEnv, isProdEnv } from '@/lib/helpers';
+import { isPreviewEnv, isProdEnv, normalizeFormData } from '@/lib/helpers';
 import { CartItem, FormSchemaObject, OrderMail } from '@/lib/types';
 import { MailDataRequired } from '@sendgrid/mail';
 import { NextResponse } from 'next/server';
 
 setSendgridApiKey();
-// TODO check if shipping is LOCAL_PICKUP_ADDRESS
+// TODO check if shipping personal pickup
 export async function POST(request: Request) {
   const { VENDOR_EMAIL_ADDRESS } = process.env;
 
@@ -20,8 +20,11 @@ export async function POST(request: Request) {
       cart: CartItem[];
       orderEmailData: OrderMail;
     };
+    const { cart, data, orderEmailData } = body;
 
-    const order = await createOrder(body.data, body.cart);
+    const normalizedData = normalizeFormData(data);
+
+    const order = await createOrder(normalizedData, cart);
 
     const vendorTemplateId = 'd-6eee94a3becb45d2b50e5f8d6a1ac491';
     const customerTemplateId = 'd-c5e1d19e77f54103978a24ff6c90344f';
@@ -31,17 +34,17 @@ export async function POST(request: Request) {
       to: VENDOR_EMAIL_ADDRESS,
       templateId: vendorTemplateId,
       dynamicTemplateData: {
-        ...body.orderEmailData,
+        ...orderEmailData,
         subject: `Rendelés #${order.id}`,
       } as OrderMail,
     };
 
     const customerMail: MailDataRequired = {
       from: 'mail.papirsarkany@gmail.com',
-      to: body.orderEmailData.contact.email,
+      to: orderEmailData.contact.email,
       replyTo: VENDOR_EMAIL_ADDRESS,
       templateId: customerTemplateId,
-      dynamicTemplateData: body.orderEmailData,
+      dynamicTemplateData: orderEmailData,
     };
 
     if (isProdEnv() || isPreviewEnv()) {

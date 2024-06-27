@@ -46,13 +46,9 @@ export default function CheckoutShippingForm() {
   };
 
   const onFoxpostPickupClick = () => {
-    const { shippingPostcode, shippingCity, shippingAddress } = getValues();
+    const { shippingOption } = getValues();
 
-    if (
-      shippingPostcode === LOCAL_PICKUP_ADDRESS.shippingPostcode &&
-      shippingCity === LOCAL_PICKUP_ADDRESS.shippingCity &&
-      shippingAddress === LOCAL_PICKUP_ADDRESS.shippingAddress
-    ) {
+    if (shippingOption !== 'Foxpost automatába') {
       setValue('shippingPostcode', '');
       setValue('shippingCity', '');
       setValue('shippingAddress', '');
