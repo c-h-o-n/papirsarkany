@@ -1,5 +1,7 @@
-import { FormSchemaObject } from '@/lib/types';
+import 'client-only';
 import { create } from 'zustand';
+
+import { FormSchemaObject } from '@/lib/types';
 
 type State = {
   /**
