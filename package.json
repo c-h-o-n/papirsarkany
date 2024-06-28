@@ -9,7 +9,7 @@
     "build:analyze": "ANALYZE=true npm run build",
     "postbuild": "next-sitemap",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "next lint && tsc --noEmit",
     "format": "prettier src --write",
     "typegen": "rm -rf ./sanity/schema.json && npx sanity schema extract --path sanity/schema.json && npx sanity typegen generate",
     "test": "playwright test",
