@@ -4,9 +4,10 @@ import { isPreviewEnv, isProdEnv, normalizeFormData } from '@/lib/helpers';
 import { CartItem, FormSchemaObject, OrderMail } from '@/lib/types';
 import { MailDataRequired } from '@sendgrid/mail';
 import { NextResponse } from 'next/server';
+import { DeepRequired } from 'react-hook-form';
 
 setSendgridApiKey();
-// TODO check if shipping personal pickup
+
 export async function POST(request: Request) {
   const { VENDOR_EMAIL_ADDRESS } = process.env;
 
@@ -22,7 +23,8 @@ export async function POST(request: Request) {
     };
     const { cart, data, orderEmailData } = body;
 
-    const normalizedData = normalizeFormData(data);
+    // TODO validate data (yup) before normalizing
+    const normalizedData = normalizeFormData(data) as DeepRequired<FormSchemaObject>;
 
     const order = await createOrder(normalizedData, cart);
 

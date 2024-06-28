@@ -1,4 +1,5 @@
 import { SanityImageMetadata } from '@sanity/lib/sanity.types';
+import { DeepRequired } from 'react-hook-form';
 import { Asserts, BooleanSchema, ObjectSchema, StringSchema } from 'yup';
 import { MixedSchema } from 'yup/lib/mixed';
 
@@ -23,9 +24,6 @@ export type Product = WithImageAsset<{
   };
 }>;
 
-type DeepRequired<T> = Required<{
-  [K in keyof T]: T[K] extends Required<T[K]> ? T[K] : DeepRequired<T[K]>;
-}>;
 export type ProductTypes = 'kite' | 'rod' | 'reel' | 'twine';
 
 export type CartItem = DeepRequired<Product> & {
