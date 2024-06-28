@@ -1,7 +1,11 @@
 import { SanityImageMetadata } from '@sanity/lib/sanity.types';
-import { DeepRequired } from 'react-hook-form';
 import { Asserts, BooleanSchema, ObjectSchema, StringSchema } from 'yup';
 import { MixedSchema } from 'yup/lib/mixed';
+
+
+export type NullableDeepRequired<T> = Required<{
+  [K in keyof T]: T[K] extends Required<T[K]> ? T[K] : NullableDeepRequired<T[K]>
+}>
 
 export type WithImageAsset<T> = Omit<T, 'image'> & {
   image: {
@@ -14,7 +18,7 @@ export type WithImageAsset<T> = Omit<T, 'image'> & {
 
 export type Product = WithImageAsset<{
   _id: string;
-  name?: string;
+  name?: string ; 
   price?: number;
   packageInfo?: {
     x?: number;
@@ -24,9 +28,10 @@ export type Product = WithImageAsset<{
   };
 }>;
 
+
 export type ProductTypes = 'kite' | 'rod' | 'reel' | 'twine';
 
-export type CartItem = DeepRequired<Product> & {
+export type CartItem = NullableDeepRequired<Product> & {
   quantity: number;
 };
 
@@ -66,10 +71,7 @@ export type ShippingOptionValue =
   | 'Postai szállítás'
   | 'Foxpost automatába';
 
-export type BillingOptionValue =
-  | 'Átvételkor készpénzel'
-  | 'Előreutalással'
-  | 'Átvételkor bankártyával';
+export type BillingOptionValue = 'Átvételkor készpénzel' | 'Előreutalással' | 'Átvételkor bankártyával';
 
 export type NewOrder = {
   contact: {
@@ -152,10 +154,11 @@ export type FoxpostSelectMessageData = {
         filling: string;
       }[]
     | null;
-};
+}
+
 
 export type FoxpostPackageHandlingFees = {
   range: number[];
   fee: number;
   feeType: string;
-}[];
+}[]

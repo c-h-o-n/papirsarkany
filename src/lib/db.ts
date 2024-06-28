@@ -1,9 +1,8 @@
 import { Prisma } from '@prisma/client';
-import { DeepRequired } from 'react-hook-form';
-
 import { prismaPaymentModeMap, prismaShippingModeMap } from './formatters';
 import prisma from './prisma';
 import { CartItem, FormSchemaObject } from './types';
+import { DeepRequired } from 'react-hook-form';
 
 export async function createOrder(
   orderForm: DeepRequired<FormSchemaObject>,
