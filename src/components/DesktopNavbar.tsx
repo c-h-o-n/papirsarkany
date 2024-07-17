@@ -22,7 +22,10 @@ export default function DesktopNavbar({ navbarItems }: DesktopNavbarProps) {
         </Link>
         <ul className="d-menu d-menu-horizontal flex-nowrap gap-2 text-base font-extrabold">
           {navbarItems.leftItems.map((navbarItem) => (
-            <NavMenuItem key={crypto.randomUUID()} href={navbarItem.href}>
+            <NavMenuItem
+              key={navbarItem.href.toString()}
+              href={navbarItem.href}
+            >
               {navbarItem.children}
             </NavMenuItem>
           ))}
@@ -31,7 +34,10 @@ export default function DesktopNavbar({ navbarItems }: DesktopNavbarProps) {
       <div className="d-navbar-end">
         <ul className="d-menu d-menu-horizontal gap-2 text-base font-extrabold">
           {navbarItems.rightItems.map((navbarItem) => (
-            <NavMenuItem key={crypto.randomUUID()} href={navbarItem.href}>
+            <NavMenuItem
+              key={navbarItem.href.toString()}
+              href={navbarItem.href}
+            >
               {navbarItem.children}
             </NavMenuItem>
           ))}
