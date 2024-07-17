@@ -52,7 +52,7 @@ export default function CheckoutPayingForm() {
       {shippingBillingMap[selectedShippingOption].map(
         ({ billingOptionValue, billingFee }) => (
           <BillingOptionRadioInput
-            key={crypto.randomUUID()}
+            key={billingOptionValue}
             value={billingOptionValue}
             billingFee={billingFee}
             isDisabled={billingFee === null}

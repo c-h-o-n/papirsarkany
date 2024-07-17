@@ -26,13 +26,19 @@ export default function MobileNavbar({ navbarItems }: MobileNavbarProps) {
             className="d-menu d-dropdown-content z-[1] mt-5 w-52 rounded-box bg-base-100 p-2 shadow"
           >
             {navbarItems.rightItems.map((navbarItem) => (
-              <NavMenuItem key={crypto.randomUUID()} href={navbarItem.href}>
+              <NavMenuItem
+                key={navbarItem.href.toString()}
+                href={navbarItem.href}
+              >
                 {navbarItem.children}
               </NavMenuItem>
             ))}
             <div className="d-divider m-0"></div>
             {navbarItems.leftItems.map((navbarItem) => (
-              <NavMenuItem key={crypto.randomUUID()} href={navbarItem.href}>
+              <NavMenuItem
+                key={navbarItem.href.toString()}
+                href={navbarItem.href}
+              >
                 {navbarItem.children}
               </NavMenuItem>
             ))}

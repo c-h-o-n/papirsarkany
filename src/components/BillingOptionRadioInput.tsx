@@ -23,10 +23,7 @@ export default function BillingOptionRadioInput({
   };
 
   return (
-    <div
-      className={`d-form-control ${isDisabled && 'opacity-30'}`}
-      key={crypto.randomUUID()}
-    >
+    <div className={`d-form-control ${isDisabled && 'opacity-30'}`}>
       <label className="d-label cursor-pointer justify-start gap-x-2">
         <input
           type="radio"
