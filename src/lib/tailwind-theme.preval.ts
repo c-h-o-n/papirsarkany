@@ -1,4 +1,5 @@
-import { pick } from 'lodash';
+// TODO remove
+import pick from 'just-pick'
 import preval from 'next-plugin-preval';
 import resolveConfig from 'tailwindcss/resolveConfig';
 import tailwindConfig from '../../tailwind.config';
