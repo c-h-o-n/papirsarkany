@@ -10,6 +10,9 @@ export type PackageInfo = {
   x: number;
   y: number;
   z: number;
+  /**
+   * weight in grams
+   */
   weight: number;
 };
 
@@ -23,7 +26,7 @@ export const packageMaxLimit =
 export function isFitInMaxLimit(packageInfo: PackageInfo): boolean {
   const { x: cx, y: cy, z: cz } = packageMaxLimit;
   return (
-    packageInfo.weight <= 25 &&
+    packageInfo.weight <= 25 * 1000 &&
     packageInfo.x <= cx &&
     packageInfo.y <= cy &&
     packageInfo.z <= cz

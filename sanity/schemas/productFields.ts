@@ -40,7 +40,7 @@ export default [
         name: 'weight',
         type: 'number',
         title: 'Súly',
-        description: 'A csomag súlya kg-ban.',
+        description: 'A csomag súlya g-ban.',
 
         validation: (rule) => rule.required(),
       },
