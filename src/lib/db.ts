@@ -1,15 +1,31 @@
 import { Prisma } from '@prisma/client';
 import { prismaPaymentModeMap, prismaShippingModeMap } from './formatters';
 import prisma from './prisma';
-import { CartItem, FormSchemaObject } from './types';
-import { DeepRequired } from 'react-hook-form';
+import { BillingOptionValue, CartItem, ShippingOptionValue, ValidatedOrderForm } from './types';
 
 export async function createOrder(
-  orderForm: DeepRequired<FormSchemaObject>,
+  orderForm: ValidatedOrderForm,
   products: CartItem[],
 ) {
+
+
   return await prisma.$transaction(async (tx) => {
     const user = await tx.customer.upsert({
+      create: {
+        email: orderForm.email,
+        firstName: orderForm.firstName,
+        lastName: orderForm.lastName,
+        phone: orderForm.phoneNumber,
+
+        shippingPostcode: orderForm.shippingPostcode,
+        shippingCity: orderForm.shippingCity,
+        shippingAddress: orderForm.shippingAddress,
+        shippingSubaddress: orderForm.shippingSubaddress,
+        billingPostcode: orderForm.billingPostcode,
+        billingCity: orderForm.billingCity,
+        billingAddress: orderForm.billingAddress,
+        billingSubaddress: orderForm.billingSubaddress,
+      },
       where: {
         email: orderForm.email,
       },
@@ -18,28 +34,6 @@ export async function createOrder(
         firstName: orderForm.firstName,
         lastName: orderForm.lastName,
         phone: orderForm.phoneNumber,
-        shippingPostcode: orderForm.shippingPostcode,
-        shippingCity: orderForm.shippingCity,
-        shippingAddress: orderForm.shippingAddress,
-        shippingSubaddress: orderForm.shippingSubaddress,
-        billingPostcode: orderForm.billingPostcode,
-        billingCity: orderForm.billingCity,
-        billingAddress: orderForm.billingAddress,
-        billingSubaddress: orderForm.billingSubaddress,
-      },
-      create: {
-        email: orderForm.email,
-        firstName: orderForm.firstName,
-        lastName: orderForm.lastName,
-        phone: orderForm.phoneNumber,
-        shippingPostcode: orderForm.shippingPostcode,
-        shippingCity: orderForm.shippingCity,
-        shippingAddress: orderForm.shippingAddress,
-        shippingSubaddress: orderForm.shippingSubaddress,
-        billingPostcode: orderForm.billingPostcode,
-        billingCity: orderForm.billingCity,
-        billingAddress: orderForm.billingAddress,
-        billingSubaddress: orderForm.billingSubaddress,
       },
     });
 
@@ -47,11 +41,18 @@ export async function createOrder(
       data: {
         customerId: user.id,
         status: 'Pending',
-        shippingMode: prismaShippingModeMap[orderForm.shippingOption!],
-        paymentMode: prismaPaymentModeMap[orderForm.paymentOption!],
-        comment: orderForm.comment!,
+        shippingMode: prismaShippingModeMap[orderForm.shippingOption as ShippingOptionValue],
+        paymentMode: prismaPaymentModeMap[orderForm.paymentOption as BillingOptionValue],
+        comment: orderForm.comment,
 
-        createdAt: new Date(),
+        shippingPostcode: orderForm.shippingPostcode,
+        shippingCity: orderForm.shippingCity,
+        shippingAddress: orderForm.shippingAddress,
+        shippingSubaddress: orderForm.shippingSubaddress,
+        billingPostcode: orderForm.billingPostcode,
+        billingCity: orderForm.billingCity,
+        billingAddress: orderForm.billingAddress,
+        billingSubaddress: orderForm.billingSubaddress,
       },
     });
 
