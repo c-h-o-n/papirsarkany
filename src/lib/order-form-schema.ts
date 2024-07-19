@@ -1,9 +1,8 @@
 import { boolean, mixed, object, string } from 'yup';
 
-import { FormSchemaArray } from '@/lib/types';
 import '@/lib/yupConfig';
 
-const formSchema: FormSchemaArray = [
+export const formSchemaArray = [
   object({
     email: string().required().email().label('Email'),
     firstName: string().required().label('Keresztnév'),
@@ -60,6 +59,11 @@ const formSchema: FormSchemaArray = [
   object({
     comment: string(),
   }),
-];
+] as const;
 
-export default formSchema;
+
+export const mergedFormSchemaObject = formSchemaArray.reduce(
+  (acc, schema) => acc.shape(schema.fields),
+  object()
+) as typeof formSchemaArray[0] & typeof formSchemaArray[1] & typeof formSchemaArray[2];
+

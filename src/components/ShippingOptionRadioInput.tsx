@@ -1,5 +1,5 @@
 import { currencyFormatter } from '@/lib/formatters';
-import { FormSchemaObject, ShippingOptionValue } from '@/lib/types';
+import { OrderFormSchemaObject, ShippingOptionValue } from '@/lib/types';
 import { useCartStore } from '@/store/useCartStore';
 import { MouseEventHandler, ReactNode } from 'react';
 import { useFormContext } from 'react-hook-form';
@@ -26,7 +26,7 @@ export default function ShippingOptionRadioInput({
     watch,
     formState: { errors },
     getValues,
-  } = useFormContext<FormSchemaObject>();
+  } = useFormContext<OrderFormSchemaObject>();
   const setShippingFee = useCartStore((state) => state.setShippingFee);
 
   const onInputClick: MouseEventHandler<HTMLInputElement> = (e) => {
