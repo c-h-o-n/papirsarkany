@@ -3,7 +3,7 @@ import useCart from '@/hooks/useCart';
 import { getHandlingFee } from '@/lib/foxpost-package-size';
 import {
   BillingOptionValue,
-  FormSchemaObject,
+  OrderFormSchemaObject,
   ShippingOptionValue,
 } from '@/lib/types';
 import { useCheckoutFormStore } from '@/store/useCheckoutFormStore';
@@ -15,7 +15,7 @@ export default function CheckoutPayingForm() {
     register,
     formState: { errors },
     getValues,
-  } = useFormContext<FormSchemaObject>();
+  } = useFormContext<OrderFormSchemaObject>();
 
   const prevStep = useCheckoutFormStore((state) => state.prevStep);
 

@@ -5,9 +5,8 @@ import { Children, ReactNode, useEffect } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 
 import useCart from '@/hooks/useCart';
-import formSchema from '@/lib/form-schema';
-import { currencyFormatter } from '@/lib/formatters';
-import { FormSchemaObject, OrderMail } from '@/lib/types';
+import { formSchemaArray } from '@/lib/order-form-schema';
+import { OrderFormRequestBody, OrderFormSchemaObject } from '@/lib/types';
 import '@/lib/yupConfig';
 import { useCartStore } from '@/store/useCartStore';
 import { useCheckoutFormStore } from '@/store/useCheckoutFormStore';
@@ -39,7 +38,7 @@ export default function CheckoutStepper({ children }: CheckoutStepperProps) {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const methods = useForm<any>({
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    resolver: yupResolver(formSchema[step] as any),
+    resolver: yupResolver(formSchemaArray[step] as any),
     defaultValues: {
       email: '',
       firstName: '',
@@ -63,7 +62,7 @@ export default function CheckoutStepper({ children }: CheckoutStepperProps) {
       billingSubaddress: '',
 
       comment: '',
-    } as FormSchemaObject,
+    } as OrderFormSchemaObject,
   });
 
   const {
@@ -80,7 +79,7 @@ export default function CheckoutStepper({ children }: CheckoutStepperProps) {
     };
   }, [setBillingFee, setShippingFee, setStep]);
 
-  const onSubmit = async (data: FormSchemaObject) => {
+  const onSubmit = async (data: OrderFormSchemaObject) => {
     if (!isLast) {
       nextStep();
       return;
@@ -116,41 +115,15 @@ export default function CheckoutStepper({ children }: CheckoutStepperProps) {
     });
   };
 
-  const sendOrder = (data: FormSchemaObject) => {
-    const orderEmailData: OrderMail = {
-      contact: {
-        email: data.email!,
-        firstName: data.firstName!,
-        lastName: data.lastName!,
-        phone: data.phoneNumber!,
-      },
-      shippingOption: data.shippingOption!,
-      shipping: {
-        postcode: data.shippingPostcode!,
-        city: data.shippingCity!,
-        address: data.shippingAddress!,
-        subaddress: data.shippingSubaddress!,
-      },
-      paymentOption: data.paymentOption!,
-      billing: {
-        postcode: data.billingPostcode!,
-        city: data.billingCity!,
-        address: data.billingAddress!,
-        subaddress: data.billingSubaddress!,
-      },
-      comment: data.comment!,
-      subject: 'papirsarkany.hu - Köszönöm rendelését!',
-      total: currencyFormatter(getTotalPrice()),
-      products: cart.map((product) => ({
-        name: product.name,
-        price: currencyFormatter(product.price),
-        quantity: product.quantity.toString(),
-      })),
-    };
-
+  const sendOrder = (formData: OrderFormSchemaObject) => {
+    const totalPrice = getTotalPrice();
     return fetch('/api/order', {
       method: 'POST',
-      body: JSON.stringify({ data, cart, orderEmailData }),
+      body: JSON.stringify({
+        formData,
+        cart,
+        totalPrice,
+      } satisfies OrderFormRequestBody),
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
