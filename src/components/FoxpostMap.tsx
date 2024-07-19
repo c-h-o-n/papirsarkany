@@ -2,7 +2,7 @@
 import { useEffect } from 'react';
 import { useFormContext } from 'react-hook-form';
 
-import { FormSchemaObject, FoxpostSelectMessageData } from '@/lib/types';
+import { OrderFormSchemaObject, FoxpostSelectMessageData } from '@/lib/types';
 import Card from './Card';
 
 type FoxpostMapProps = {
@@ -10,7 +10,7 @@ type FoxpostMapProps = {
 };
 
 export default function FoxpostMap({ hideMap }: FoxpostMapProps) {
-  const { setValue, trigger, register } = useFormContext<FormSchemaObject>();
+  const { setValue, trigger, register } = useFormContext<OrderFormSchemaObject>();
 
   useEffect(() => {
     function receiveMessage(event: MessageEvent) {

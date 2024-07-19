@@ -2,10 +2,16 @@ import { SanityImageMetadata } from '@sanity/lib/sanity.types';
 import { Asserts, BooleanSchema, ObjectSchema, StringSchema } from 'yup';
 import { MixedSchema } from 'yup/lib/mixed';
 
+import { validateOrderForm } from './helpers';
 
+/**
+ * All properties must be  NOT undefined values
+ */
 export type NullableDeepRequired<T> = Required<{
-  [K in keyof T]: T[K] extends Required<T[K]> ? T[K] : NullableDeepRequired<T[K]>
-}>
+  [K in keyof T]: T[K] extends Required<T[K]>
+    ? T[K]
+    : NullableDeepRequired<T[K]>;
+}>;
 
 export type WithImageAsset<T> = Omit<T, 'image'> & {
   image: {
@@ -18,7 +24,7 @@ export type WithImageAsset<T> = Omit<T, 'image'> & {
 
 export type Product = WithImageAsset<{
   _id: string;
-  name?: string ; 
+  name?: string;
   price?: number;
   packageInfo?: {
     x?: number;
@@ -28,14 +34,15 @@ export type Product = WithImageAsset<{
   };
 }>;
 
-
 export type ProductTypes = 'kite' | 'rod' | 'reel' | 'twine';
 
 export type CartItem = NullableDeepRequired<Product> & {
   quantity: number;
 };
 
-export type FormSchemaArray = [
+export type ValidatedOrderForm = Awaited<ReturnType<typeof validateOrderForm>>;
+
+export type OrderFormSchemaArray = [
   ObjectSchema<{
     email: StringSchema;
     firstName: StringSchema;
@@ -62,16 +69,25 @@ export type FormSchemaArray = [
   }>,
 ];
 
-export type FormSchemaObject = Asserts<FormSchemaArray[0]> &
-  Asserts<FormSchemaArray[1]> &
-  Asserts<FormSchemaArray[2]>;
+export type OrderFormSchemaObject = Asserts<OrderFormSchemaArray[0]> &
+  Asserts<OrderFormSchemaArray[1]> &
+  Asserts<OrderFormSchemaArray[2]>;
+
+export type OrderFormRequestBody = {
+  formData: OrderFormSchemaObject;
+  cart: CartItem[];
+  totalPrice: number;
+};
 
 export type ShippingOptionValue =
   | 'Személyes átvétel'
   | 'Postai szállítás'
   | 'Foxpost automatába';
 
-export type BillingOptionValue = 'Átvételkor készpénzel' | 'Előreutalással' | 'Átvételkor bankártyával';
+export type BillingOptionValue =
+  | 'Átvételkor készpénzel'
+  | 'Előreutalással'
+  | 'Átvételkor bankártyával';
 
 export type NewOrder = {
   contact: {
@@ -85,20 +101,20 @@ export type NewOrder = {
   paymentOption: BillingOptionValue;
 
   shipping: {
-    postcode: string;
-    city: string;
-    address: string;
-    subaddress: string;
+    postcode?: string;
+    city?: string;
+    address?: string;
+    subaddress?: string;
   };
 
   billing: {
     postcode: string;
     city: string;
     address: string;
-    subaddress: string;
+    subaddress?: string;
   };
 
-  comment: string;
+  comment?: string;
 };
 
 export type OrderMail = NewOrder & {
@@ -154,11 +170,10 @@ export type FoxpostSelectMessageData = {
         filling: string;
       }[]
     | null;
-}
-
+};
 
 export type FoxpostPackageHandlingFees = {
   range: number[];
   fee: number;
   feeType: string;
-}[]
+}[];

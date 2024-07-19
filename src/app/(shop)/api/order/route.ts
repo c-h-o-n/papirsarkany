@@ -1,10 +1,16 @@
 import { createOrder } from '@/lib/db';
 import { sendEmail, setSendgridApiKey } from '@/lib/email';
-import { isPreviewEnv, isProdEnv, normalizeFormData } from '@/lib/helpers';
-import { CartItem, FormSchemaObject, OrderMail } from '@/lib/types';
+import { currencyFormatter } from '@/lib/formatters';
+import {
+  isPreviewEnv,
+  isProdEnv,
+  normalizeOrderForm,
+  validateOrderForm,
+} from '@/lib/helpers';
+import { OrderFormRequestBody, OrderMail } from '@/lib/types';
 import { MailDataRequired } from '@sendgrid/mail';
 import { NextResponse } from 'next/server';
-import { DeepRequired } from 'react-hook-form';
+import { ValidationError } from 'yup';
 
 setSendgridApiKey();
 
@@ -16,17 +22,45 @@ export async function POST(request: Request) {
       throw new Error('Missing vendor email.');
     }
 
-    const body = (await request.json()) as {
-      data: FormSchemaObject;
-      cart: CartItem[];
-      orderEmailData: OrderMail;
+    const body = (await request.json()) as OrderFormRequestBody;
+    const { cart, formData, totalPrice } = body;
+
+    const validatedFormData = await validateOrderForm(formData);
+
+    const normalizedFormData = normalizeOrderForm(validatedFormData);
+
+    const order = await createOrder(normalizedFormData, cart);
+
+    const orderEmailData: OrderMail = {
+      contact: {
+        email: normalizedFormData.email,
+        firstName: normalizedFormData.firstName,
+        lastName: normalizedFormData.lastName,
+        phone: normalizedFormData.phoneNumber,
+      },
+      shippingOption: normalizedFormData.shippingOption,
+      shipping: {
+        postcode: normalizedFormData.shippingPostcode,
+        city: normalizedFormData.shippingCity,
+        address: normalizedFormData.shippingAddress,
+        subaddress: normalizedFormData.shippingSubaddress,
+      },
+      paymentOption: normalizedFormData.paymentOption,
+      billing: {
+        postcode: normalizedFormData.billingPostcode,
+        city: normalizedFormData.billingCity,
+        address: normalizedFormData.billingAddress,
+        subaddress: normalizedFormData.billingSubaddress,
+      },
+      comment: normalizedFormData.comment,
+      subject: 'papirsarkany.hu - Köszönöm rendelését!',
+      products: cart.map((product) => ({
+        name: product.name,
+        price: currencyFormatter(product.price),
+        quantity: product.quantity.toString(),
+      })),
+      total: currencyFormatter(totalPrice),
     };
-    const { cart, data, orderEmailData } = body;
-
-    // TODO validate data (yup) before normalizing
-    const normalizedData = normalizeFormData(data) as DeepRequired<FormSchemaObject>;
-
-    const order = await createOrder(normalizedData, cart);
 
     const vendorTemplateId = 'd-6eee94a3becb45d2b50e5f8d6a1ac491';
     const customerTemplateId = 'd-c5e1d19e77f54103978a24ff6c90344f';
@@ -67,9 +101,19 @@ export async function POST(request: Request) {
       });
     }
 
-    return NextResponse.json(
-      { error: `Internal Server Error reason: ${error}}` },
-      { status: 500 },
-    );
+    switch (true) {
+      case error instanceof ValidationError:
+        return NextResponse.json(
+          {
+            error: `Validation error: ${error.params?.label || error.path} ${error.errors.join(',')}`,
+          },
+          { status: 403 },
+        );
+      default:
+        return NextResponse.json(
+          { error: `Internal Server Error reason: ${error}}` },
+          { status: 500 },
+        );
+    }
   }
 }

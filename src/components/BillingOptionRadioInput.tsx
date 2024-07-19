@@ -1,5 +1,5 @@
 import { currencyFormatter } from '@/lib/formatters';
-import { BillingOptionValue, FormSchemaObject } from '@/lib/types';
+import { BillingOptionValue, OrderFormSchemaObject } from '@/lib/types';
 import { useCartStore } from '@/store/useCartStore';
 import { useFormContext } from 'react-hook-form';
 
@@ -14,7 +14,7 @@ export default function BillingOptionRadioInput({
   value,
   billingFee,
 }: BillingOptionRadioInputProps) {
-  const { register } = useFormContext<FormSchemaObject>();
+  const { register } = useFormContext<OrderFormSchemaObject>();
 
   const setBillingFee = useCartStore((state) => state.setBillingFee);
 

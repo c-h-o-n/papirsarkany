@@ -1,4 +1,5 @@
-import { FormSchemaObject } from './types';
+import { mergedFormSchemaObject } from './order-form-schema';
+import { OrderFormSchemaObject, ValidatedOrderForm } from './types';
 
 export function blurActiveAnchorElement() {
   const element = document.activeElement as HTMLAnchorElement;
@@ -22,21 +23,25 @@ export function isPreviewEnv() {
   );
 }
 
-export function normalizeFormData(
-  data: FormSchemaObject,
-): FormSchemaObject {
+export async function validateOrderForm(data: OrderFormSchemaObject) {
+  return await mergedFormSchemaObject.validate(data);
+}
+
+export function normalizeOrderForm(
+  data: ValidatedOrderForm,
+): ValidatedOrderForm {
   const { shippingOption, ...restData } = data;
-  
+
   if (shippingOption === 'Személyes átvétel') {
     return {
       ...restData,
       shippingOption,
-      shippingPostcode: '',
-      shippingCity: '',
-      shippingAddress: '',
-      shippingSubaddress: '',
+      shippingPostcode: undefined,
+      shippingCity: undefined,
+      shippingAddress: undefined,
+      shippingSubaddress: undefined,
     };
   }
-  
+
   return data;
 }

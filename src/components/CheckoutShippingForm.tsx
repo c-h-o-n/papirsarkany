@@ -9,7 +9,7 @@ import {
   isFitInMaxLimit,
   packageMaxLimit,
 } from '@/lib/foxpost-package-size';
-import { FormSchemaObject } from '@/lib/types';
+import { OrderFormSchemaObject } from '@/lib/types';
 import { useCartStore } from '@/store/useCartStore';
 import FoxpostMap from './FoxpostMap';
 import LazyLoadFramerMotion from './LazyLoadFramerMotion';
@@ -23,7 +23,7 @@ export default function CheckoutShippingForm() {
     trigger,
     getValues,
     formState: { errors },
-  } = useFormContext<FormSchemaObject>();
+  } = useFormContext<OrderFormSchemaObject>();
   const cart = useCartStore((state) => state.cart);
 
   const [isShowFoxpostMap, setIsShowFoxpostMap] = useState(false);
@@ -146,6 +146,10 @@ export default function CheckoutShippingForm() {
           onClick={onFoxpostPickupClick}
           value="Foxpost automatába"
           isDisabled={!isFitInFoxpostLimit}
+        />
+        <ShippingOptionRadioInput 
+          label='Postai szállítás'
+          value='Postai szállítás'
         />
         <span className="text-error">{errors.shippingOption?.message}</span>
       </div>
