@@ -1,14 +1,17 @@
 import { Prisma } from '@prisma/client';
 import { prismaPaymentModeMap, prismaShippingModeMap } from './formatters';
 import prisma from './prisma';
-import { BillingOptionValue, CartItem, ShippingOptionValue, ValidatedOrderForm } from './types';
+import {
+  BillingOptionValue,
+  CartItem,
+  ShippingOptionValue,
+  ValidatedOrderForm,
+} from './types';
 
 export async function createOrder(
   orderForm: ValidatedOrderForm,
   products: CartItem[],
 ) {
-
-
   return await prisma.$transaction(async (tx) => {
     const user = await tx.customer.upsert({
       create: {
@@ -41,8 +44,12 @@ export async function createOrder(
       data: {
         customerId: user.id,
         status: 'Pending',
-        shippingMode: prismaShippingModeMap[orderForm.shippingOption as ShippingOptionValue],
-        paymentMode: prismaPaymentModeMap[orderForm.paymentOption as BillingOptionValue],
+        shippingMode:
+          prismaShippingModeMap[
+            orderForm.shippingOption as ShippingOptionValue
+          ],
+        paymentMode:
+          prismaPaymentModeMap[orderForm.paymentOption as BillingOptionValue],
         comment: orderForm.comment,
 
         shippingPostcode: orderForm.shippingPostcode,
