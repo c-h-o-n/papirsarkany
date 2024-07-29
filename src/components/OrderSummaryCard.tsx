@@ -47,7 +47,7 @@ export default function OrderSummaryCard({
           <Fragment key={item._id}>
             <div className="flex items-center justify-between">
               <div className="flex gap-2">
-                <div>
+                <div className="hidden min-[390px]:block flex-shrink-0">
                   {item.image && (
                     <Image
                       src={item.image.asset?.url || MISSING_IMG_URL}
@@ -56,7 +56,7 @@ export default function OrderSummaryCard({
                       height={128}
                       placeholder="blur"
                       blurDataURL={item.image.asset?.metadata?.blurHash}
-                      className="h-auto max-h-32 min-h-24 w-32 rounded-lg object-contain"
+                      className="h-auto max-h-32 min-h-24 w-32 rounded-lg object-contain "
                     />
                   )}
                 </div>
@@ -99,7 +99,7 @@ export default function OrderSummaryCard({
         )}
 
         <div className="flex justify-between font-bold">
-          <h3>
+          <h3 className='text-balance'>
             Összesen{' '}
             <span className="text-base font-normal text-gray-400">
               {getTotalItemCount()} db

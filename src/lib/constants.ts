@@ -17,7 +17,7 @@ export const FOXPOST_PACKAGE_CONSTRAINST =
     { x: 19.5, y: 36, z: 61, weight: 25 * 1000, category: 'M' },
     { x: 37.5, y: 36, z: 61, weight: 25 * 1000, category: 'L' },
     { x: 60, y: 36, z: 61, weight: 25 * 1000, category: 'XL' },
-  ] as const satisfies readonly FoxpostPackageInfoCategoryConstraints[];
+  ] as const satisfies FoxpostPackageInfoCategoryConstraints[];
 
 export const FOXPOST_PACKAGE_HANDLING_FEES = [
   {
