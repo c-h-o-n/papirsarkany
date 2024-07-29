@@ -187,7 +187,7 @@ export default function CheckoutShippingForm() {
             label="Postai szállítás"
             value="Postai szállítás"
             onClick={onPostOptionClick}
-            shippingFee={'+ szállitási költség'}
+            shippingFee={'szállítási költség'}
           />
           <span className="text-error">{errors.shippingOption?.message}</span>
           {watch('shippingOption') === 'Postai szállítás' && (

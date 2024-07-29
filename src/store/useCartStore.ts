@@ -2,12 +2,12 @@ import 'client-only';
 import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
 
-import { CartItem } from '@/lib/types';
+import { CartItem, ShippingFee } from '@/lib/types';
 
 type State = {
   _hasHydrated: boolean;
   cart: CartItem[];
-  shippingFee: number;
+  shippingFee: ShippingFee;
   billingFee: number;
 };
 
@@ -18,7 +18,7 @@ type Actions = {
   increaseItemQuantity: (item: CartItem) => void;
   decreaseItemQuantity: (item: CartItem) => void;
   setItemQuantity: (item: CartItem, quantity: number) => void;
-  setShippingFee: (shippingFee: number) => void;
+  setShippingFee: (shippingFee: ShippingFee) => void;
   setBillingFee: (billingFee: number) => void;
   resetCart: () => void;
 };

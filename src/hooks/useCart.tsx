@@ -8,7 +8,9 @@ import { useCartStore } from '@/store/useCartStore';
  */
 export default function useCart() {
   const cart = useCartStore((state) => state.cart);
-  const shippingFee = useCartStore((state) => state.shippingFee);
+  const shippingFeeAsNumber = useCartStore((state) =>
+    typeof state.shippingFee === 'number' ? state.shippingFee : 0,
+  );
   const billingFee = useCartStore((state) => state.billingFee);
 
   const isInCart = (itemToCheck: CartItem): boolean => {
@@ -24,7 +26,7 @@ export default function useCart() {
         (total, cartItem) => total + cartItem.price * cartItem.quantity,
         0,
       ) +
-      shippingFee +
+      shippingFeeAsNumber +
       billingFee
     );
   };
