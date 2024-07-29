@@ -1,12 +1,17 @@
-import { currencyFormatter } from '@/lib/formatters';
-import { OrderFormSchemaObject, ShippingOptionValue } from '@/lib/types';
-import { useCartStore } from '@/store/useCartStore';
 import { MouseEventHandler, ReactNode } from 'react';
 import { useFormContext } from 'react-hook-form';
 
+import { formatShippingFee } from '@/lib/helpers';
+import {
+  OrderFormSchemaObject,
+  ShippingFee,
+  ShippingOptionValue,
+} from '@/lib/types';
+import { useCartStore } from '@/store/useCartStore';
+
 type ShippingOptionRadioInputProps = {
   label: Exclude<ReactNode, string> | ShippingOptionValue;
-  shippingFee?: number | string;
+  shippingFee?: ShippingFee;
   value: ShippingOptionValue;
   isDisabled?: boolean;
   missingShippingInfoErrorMessage?: string;
@@ -30,23 +35,15 @@ export default function ShippingOptionRadioInput({
   const setShippingFee = useCartStore((state) => state.setShippingFee);
 
   const onInputClick: MouseEventHandler<HTMLInputElement> = (e) => {
-    if (typeof shippingFee === 'number') {
-      setShippingFee(shippingFee);
-    } else {
+    if (!shippingFee) {
       setShippingFee(0);
+    } else {
+      setShippingFee(shippingFee);
     }
 
     if (onClick) {
       onClick(e);
     }
-  };
-
-  const formattedShippingFee = () => {
-    if (typeof shippingFee === 'number') {
-      return `+${currencyFormatter(shippingFee)}`;
-    }
-
-    return shippingFee;
   };
 
   const hasShippingSchemaRequiredError = Boolean(
@@ -69,7 +66,7 @@ export default function ShippingOptionRadioInput({
         <span className="d-label-text text-lg font-bold">{label}</span>
         {shippingFee && (
           <span className="d-label-text flex-1 text-right text-lg font-bold">
-            {formattedShippingFee()}
+            {formatShippingFee(shippingFee)}
           </span>
         )}
         {watch('shippingOption') === value && (

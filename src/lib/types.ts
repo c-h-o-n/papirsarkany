@@ -79,6 +79,8 @@ export type OrderFormRequestBody = {
   totalPrice: number;
 };
 
+export type ShippingFee = number | 'szállítási költség';
+
 export type ShippingOptionValue =
   | 'Személyes átvétel'
   | 'Postai szállítás'
