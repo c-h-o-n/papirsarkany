@@ -39,5 +39,5 @@ export const prismaPaymentModeMap: Record<
 > = {
   'Átvételkor készpénzel': 'Cash',
   Előreutalással: 'Transfer',
-  "Átvételkor bankártyával": 'Card'
+  'Átvételkor bankártyával': 'Card',
 };

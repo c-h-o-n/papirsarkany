@@ -61,9 +61,9 @@ export const formSchemaArray = [
   }),
 ] as const;
 
-
 export const mergedFormSchemaObject = formSchemaArray.reduce(
   (acc, schema) => acc.shape(schema.fields),
-  object()
-) as typeof formSchemaArray[0] & typeof formSchemaArray[1] & typeof formSchemaArray[2];
-
+  object(),
+) as (typeof formSchemaArray)[0] &
+  (typeof formSchemaArray)[1] &
+  (typeof formSchemaArray)[2];

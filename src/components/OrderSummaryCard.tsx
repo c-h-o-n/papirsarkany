@@ -28,7 +28,7 @@ export default function OrderSummaryCard({
   const { getTotalItemCount, getTotalPrice } = useCart();
 
   const totalPrice = getTotalPrice();
-  
+
   const onDeleteClick = (product: CartItem) => {
     removeFromCart(product);
   };
