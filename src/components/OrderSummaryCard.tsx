@@ -7,6 +7,7 @@ import TrashCanIcon from '@/assets/trash-can.svg';
 import useCart from '@/hooks/useCart';
 import { MISSING_IMG_URL } from '@/lib/constants';
 import { currencyFormatter } from '@/lib/formatters';
+import { formatShippingFee } from '@/lib/helpers';
 import { CartItem } from '@/lib/types';
 import { useCartStore } from '@/store/useCartStore';
 import Card from './Card';
@@ -27,7 +28,7 @@ export default function OrderSummaryCard({
   const { getTotalItemCount, getTotalPrice } = useCart();
 
   const totalPrice = getTotalPrice();
-
+  
   const onDeleteClick = (product: CartItem) => {
     removeFromCart(product);
   };
@@ -86,7 +87,7 @@ export default function OrderSummaryCard({
             {Boolean(shippingFee) && (
               <div className="flex justify-between font-bold">
                 <h5>Szállítás</h5>
-                <h5>+{currencyFormatter(shippingFee)}</h5>
+                <h5>{formatShippingFee(shippingFee)}</h5>
               </div>
             )}
             {Boolean(billingFee) && (
@@ -99,7 +100,7 @@ export default function OrderSummaryCard({
         )}
 
         <div className="flex justify-between font-bold">
-          <h3 className='text-balance'>
+          <h3 className="text-balance">
             Összesen{' '}
             <span className="text-base font-normal text-gray-400">
               {getTotalItemCount()} db

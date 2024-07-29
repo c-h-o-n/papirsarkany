@@ -1,5 +1,10 @@
+import { currencyFormatter } from './formatters';
 import { mergedFormSchemaObject } from './order-form-schema';
-import { OrderFormSchemaObject, ValidatedOrderForm } from './types';
+import {
+  OrderFormSchemaObject,
+  ShippingFee,
+  ValidatedOrderForm,
+} from './types';
 
 export function blurActiveAnchorElement() {
   const element = document.activeElement as HTMLAnchorElement;
@@ -44,4 +49,12 @@ export function normalizeOrderForm(
   }
 
   return data;
+}
+
+export function formatShippingFee(shippingFee: ShippingFee) {
+  if (typeof shippingFee === 'number') {
+    return `+${currencyFormatter(shippingFee)}`;
+  }
+
+  return `+${shippingFee}`;
 }
