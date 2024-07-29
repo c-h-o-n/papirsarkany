@@ -6,7 +6,7 @@ import { useFormContext } from 'react-hook-form';
 
 type ShippingOptionRadioInputProps = {
   label: Exclude<ReactNode, string> | ShippingOptionValue;
-  shippingFee?: number;
+  shippingFee?: number | string;
   value: ShippingOptionValue;
   isDisabled?: boolean;
   missingShippingInfoErrorMessage?: string;
@@ -30,11 +30,23 @@ export default function ShippingOptionRadioInput({
   const setShippingFee = useCartStore((state) => state.setShippingFee);
 
   const onInputClick: MouseEventHandler<HTMLInputElement> = (e) => {
-    setShippingFee(shippingFee || 0);
+    if (typeof shippingFee === 'number') {
+      setShippingFee(shippingFee);
+    } else {
+      setShippingFee(0);
+    }
 
     if (onClick) {
       onClick(e);
     }
+  };
+
+  const formattedShippingFee = () => {
+    if (typeof shippingFee === 'number') {
+      return `+${currencyFormatter(shippingFee)}`;
+    }
+
+    return shippingFee;
   };
 
   const hasShippingSchemaRequiredError = Boolean(
@@ -50,14 +62,14 @@ export default function ShippingOptionRadioInput({
           type="radio"
           value={value}
           {...register('shippingOption')}
-          className="d-radio checked:d-radio-primary disabled:opacity-100"
+          className="d-radio border-black checked:d-radio-primary disabled:opacity-100"
           disabled={isDisabled}
           onClick={onInputClick}
         />
         <span className="d-label-text text-lg font-bold">{label}</span>
         {shippingFee && (
           <span className="d-label-text flex-1 text-right text-lg font-bold">
-            +{currencyFormatter(shippingFee)}
+            {formattedShippingFee()}
           </span>
         )}
         {watch('shippingOption') === value && (

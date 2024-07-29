@@ -29,7 +29,7 @@ export default function BillingOptionRadioInput({
           type="radio"
           value={value}
           {...register('paymentOption')}
-          className="d-radio checked:d-radio-primary"
+          className="d-radio border-black checked:d-radio-primary"
           onClick={() => onInputClick(billingFee)}
           disabled={isDisabled}
         />

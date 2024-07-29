@@ -7,6 +7,7 @@ import {
   ShippingOptionValue,
 } from '@/lib/types';
 import { useCheckoutFormStore } from '@/store/useCheckoutFormStore';
+import { ChangeEvent } from 'react';
 import { useFormContext } from 'react-hook-form';
 import BillingOptionRadioInput from './BillingOptionRadioInput';
 
@@ -15,6 +16,8 @@ export default function CheckoutPayingForm() {
     register,
     formState: { errors },
     getValues,
+    setValue,
+    trigger,
   } = useFormContext<OrderFormSchemaObject>();
 
   const prevStep = useCheckoutFormStore((state) => state.prevStep);
@@ -36,7 +39,16 @@ export default function CheckoutPayingForm() {
         billingFee: getHandlingFee(getTotalPrice()),
       },
     ],
-    'Postai szállítás': [],
+    'Postai szállítás': [
+      {
+        billingOptionValue: 'Előreutalással',
+        billingFee: undefined,
+      },
+      {
+        billingOptionValue: 'Átvételkor készpénzel',
+        billingFee: undefined,
+      },
+    ],
   };
 
   const selectedShippingOption = getValues('shippingOption');
@@ -45,6 +57,29 @@ export default function CheckoutPayingForm() {
     throw new Error('Érvénytelen szállitási mód');
   }
 
+  const onIsSameAdressAsShippingChange = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.checked) {
+      syncShippingAndBilling();
+      setValue('isSameAdressAsShipping', true);
+    } else {
+      setValue('billingPostcode', '');
+      setValue('billingCity', '');
+      setValue('billingAddress', '');
+      setValue('billingSubaddress', '');
+      setValue('isSameAdressAsShipping', false);
+    }
+
+    trigger(['isSameAdressAsShipping']);
+  };
+
+  const syncShippingAndBilling = () => {
+    if (getValues('isSameAdressAsShipping')) {
+      setValue('billingPostcode', getValues('shippingPostcode'));
+      setValue('billingCity', getValues('shippingCity'));
+      setValue('billingAddress', getValues('shippingAddress'));
+      setValue('billingSubaddress', getValues('shippingSubaddress'));
+    }
+  };
   return (
     <div className="max-w-screen-sm mx-auto">
       <h2 className="underline underline-offset-8">Fizetés</h2>
@@ -64,8 +99,8 @@ export default function CheckoutPayingForm() {
 
       <h2 className="underline underline-offset-8">Számlázási cím</h2>
 
-      {/* {getValues('shippingOption') === 'Postai szállítás' && (
-        <div className="d-form-control">
+      {getValues('shippingOption') === 'Postai szállítás' && (
+        <div className="d-form-control pt-4">
           <label className="d-label cursor-pointer justify-start gap-x-2">
             <input
               {...register('isSameAdressAsShipping')}
@@ -78,66 +113,70 @@ export default function CheckoutPayingForm() {
             </span>
           </label>
         </div>
-      )} */}
+      )}
 
-      <div className="d-form-control">
-        <label className="d-label">
-          <span className="d-label-text text-lg">Irányítószám</span>
-        </label>
-        <input
-          type="text"
-          className="d-input d-input-bordered"
-          {...register('billingPostcode')}
-        />
-        <label className="d-label">
-          <span className="d-label-text-alt text-error">
-            {errors.billingPostcode?.message}
-          </span>
-        </label>
-      </div>
-      <div className="d-form-control">
-        <label className="d-label">
-          <span className="d-label-text text-lg">Város</span>
-        </label>
-        <input
-          type="text"
-          className="d-input d-input-bordered"
-          {...register('billingCity')}
-        />
-        <label className="d-label">
-          <span className="d-label-text-alt text-error">
-            {errors.billingCity?.message}
-          </span>
-        </label>
-      </div>
-      <div className="d-form-control">
-        <label className="d-label">
-          <span className="d-label-text text-lg">Cím</span>
-        </label>
-        <input
-          type="text"
-          placeholder="Utca, házszám"
-          className="d-input d-input-bordered"
-          {...register('billingAddress')}
-        />
-        <label className="d-label">
-          <span className="d-label-text-alt text-error">
-            {errors.billingAddress?.message}
-          </span>
-        </label>
-
-        <input
-          type="text"
-          placeholder="Emelet, ajtó, egyéb (opcionális)"
-          className="d-input d-input-bordered"
-          {...register('billingSubaddress')}
-        />
-        <label className="d-label">
-          <span className="d-label-text-alt text-error">
-            {errors.billingSubaddress?.message}
-          </span>
-        </label>
-      </div>
+      {(getValues('shippingOption') !== 'Postai szállítás' ||
+        !getValues('isSameAdressAsShipping')) && (
+        <>
+          <div className="d-form-control">
+            <label className="d-label">
+              <span className="d-label-text text-lg">Irányítószám</span>
+            </label>
+            <input
+              type="text"
+              className="d-input d-input-bordered"
+              {...register('billingPostcode')}
+            />
+            <label className="d-label">
+              <span className="d-label-text-alt text-error">
+                {errors.billingPostcode?.message}
+              </span>
+            </label>
+          </div>
+          <div className="d-form-control">
+            <label className="d-label">
+              <span className="d-label-text text-lg">Város</span>
+            </label>
+            <input
+              type="text"
+              className="d-input d-input-bordered"
+              {...register('billingCity')}
+            />
+            <label className="d-label">
+              <span className="d-label-text-alt text-error">
+                {errors.billingCity?.message}
+              </span>
+            </label>
+          </div>
+          <div className="d-form-control">
+            <label className="d-label">
+              <span className="d-label-text text-lg">Cím</span>
+            </label>
+            <input
+              type="text"
+              placeholder="Utca, házszám"
+              className="d-input d-input-bordered"
+              {...register('billingAddress')}
+            />
+            <label className="d-label">
+              <span className="d-label-text-alt text-error">
+                {errors.billingAddress?.message}
+              </span>
+            </label>
+            <input
+              type="text"
+              placeholder="Emelet, ajtó, egyéb (opcionális)"
+              className="d-input d-input-bordered"
+              {...register('billingSubaddress')}
+            />
+            <label className="d-label">
+              <span className="d-label-text-alt text-error">
+                {errors.billingSubaddress?.message}
+              </span>
+            </label>
+          </div>
+        </>
+      )}
 
       <div className="flex flex-wrap justify-between gap-4">
         <button
@@ -150,6 +189,7 @@ export default function CheckoutPayingForm() {
         <button
           type="submit"
           className="d-btn d-btn-primary uppercase max-sm:d-btn-block"
+          onClick={() => syncShippingAndBilling()}
         >
           Tovább
         </button>
