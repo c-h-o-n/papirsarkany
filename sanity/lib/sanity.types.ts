@@ -281,12 +281,32 @@ export type Slug = {
   current?: string;
   source?: string;
 };
+
+export type AllSanitySchemaTypes =
+  | SanityImagePaletteSwatch
+  | SanityImagePalette
+  | SanityImageDimensions
+  | SanityFileAsset
+  | Geopoint
+  | TwineDiameters
+  | Twine
+  | Reel
+  | Lengths
+  | RodDiameters
+  | Rod
+  | KiteMaterials
+  | Kite
+  | SanityImageCrop
+  | SanityImageHotspot
+  | SanityImageAsset
+  | SanityAssetSourceData
+  | SanityImageMetadata
+  | MediaTag
+  | Slug;
 export declare const internalGroqTypeReferenceTo: unique symbol;
-
-
-// Source: ./src/lib/sanity.ts
+// Source: ./src/lib/cms.ts
 // Variable: getAllKitesQuery
-// Query: *[_type == "kite"] { ..., image { asset -> { url, metadata } } } | order(price asc)
+// Query: *[_type == 'kite'] { ..., image { asset -> { url, metadata } } } | order(price asc)
 export type GetAllKitesQueryResult = Array<{
   _id: string;
   _type: 'kite';
@@ -317,9 +337,8 @@ export type GetAllKitesQueryResult = Array<{
   isBeginner?: boolean;
   description?: string;
 }>;
-
 // Variable: getKiteBySlugQuery
-// Query: *[_type == "kite" && slug.current == $slug] { ..., image { asset-> { url, metadata } } }[0]
+// Query: *[_type == 'kite' && slug.current == $slug] { ..., image { asset-> { url, metadata } } }[0]
 export type GetKiteBySlugQueryResult = {
   _id: string;
   _type: 'kite';
@@ -350,9 +369,8 @@ export type GetKiteBySlugQueryResult = {
   isBeginner?: boolean;
   description?: string;
 } | null;
-
 // Variable: getAllRodsQuery
-// Query: *[_type == "rod"] { ..., image { asset-> { url, metadata } } } | order(name asc)
+// Query: *[_type == 'rod'] { ..., image { asset-> { url, metadata } } } | order(name asc)
 export type GetAllRodsQueryResult = Array<{
   _id: string;
   _type: 'rod';
@@ -374,9 +392,8 @@ export type GetAllRodsQueryResult = Array<{
   };
   diameters?: RodDiameters;
 }>;
-
 // Variable: getAllReelsQuery
-// Query: *[_type == "reel"] { ..., image { asset-> { url, metadata } } } | order(name asc)
+// Query: *[_type == 'reel'] { ..., image { asset-> { url, metadata } } } | order(name asc)
 export type GetAllReelsQueryResult = Array<{
   _id: string;
   _type: 'reel';
@@ -398,9 +415,8 @@ export type GetAllReelsQueryResult = Array<{
   };
   price?: number;
 }>;
-
 // Variable: getAllTwinesQuery
-// Query: *[_type == "twine"] { ..., image { asset-> { url, metadata } } } | order(name asc)
+// Query: *[_type == 'twine'] { ..., image { asset-> { url, metadata } } } | order(name asc)
 export type GetAllTwinesQueryResult = Array<{
   _id: string;
   _type: 'twine';
@@ -422,5 +438,3 @@ export type GetAllTwinesQueryResult = Array<{
   };
   diameters?: TwineDiameters;
 }>;
-
-
