@@ -11,7 +11,7 @@
     "start": "next start",
     "lint": "next lint && tsc --noEmit",
     "format": "prettier src --write",
-    "typegen": "rm -rf ./sanity/schema.json && npx sanity schema extract --path sanity/schema.json && npx sanity typegen generate",
+    "typegen": "rimraf ./sanity/schema.json && npx sanity schema extract --path sanity/schema.json && npx sanity typegen generate",
     "test": "playwright test",
     "test:report": "playwright test && playwright show-report"
   },
@@ -63,6 +63,7 @@
   },
   "devDependencies": {
     "@playwright/test": "^1.44.0",
-    "prisma": "^5.15.1"
+    "prisma": "^5.15.1",
+    "rimraf": "^6.0.1"
   }
 }
