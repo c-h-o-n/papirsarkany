@@ -20,12 +20,12 @@ export const FOXPOST_PACKAGE_CONSTRAINST = [
 
 export const FOXPOST_PACKAGE_HANDLING_FEES = [
   {
-    range: [5, 10000],
+    priceRange: [5, 10000],
     fee: 150,
     feeType: 'flat',
   },
   {
-    range: [10001, 300000],
+    priceRange: [10001, 300000],
     fee: 1.2,
     feeType: 'percentage',
   },
