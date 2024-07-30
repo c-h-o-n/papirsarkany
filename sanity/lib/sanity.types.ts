@@ -304,7 +304,7 @@ export type AllSanitySchemaTypes =
   | MediaTag
   | Slug;
 export declare const internalGroqTypeReferenceTo: unique symbol;
-// Source: ./src/lib/cms.ts
+// Source: ./src/lib/queries.ts
 // Variable: getAllKitesQuery
 // Query: *[_type == 'kite'] { ..., image { asset -> { url, metadata } } } | order(price asc)
 export type GetAllKitesQueryResult = Array<{
