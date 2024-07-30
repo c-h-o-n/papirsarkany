@@ -69,7 +69,7 @@ export function getTotalPackageInfo(cartItem: CartItem[]): PackageInfo {
 
 export function getHandlingFee(amount: number) {
   const feeInfo = FOXPOST_PACKAGE_HANDLING_FEES.find(
-    (fee) => amount >= fee.range[0] && amount <= fee.range[1],
+    (fee) => amount >= fee.priceRange[0] && amount <= fee.priceRange[1],
   );
 
   if (feeInfo) {
