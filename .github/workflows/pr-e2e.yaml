@@ -5,10 +5,12 @@ on:
     types: [opened, synchronize, reopened]
 
 jobs:
-  test:
+  playwright-e2e-test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
-
+    env: 
+      NEXT_PUBLIC_SANITY_DATASET: ${{ vars.NEXT_PUBLIC_SANITY_DATASET }}
+      
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
