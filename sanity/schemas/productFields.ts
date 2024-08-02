@@ -33,7 +33,7 @@ export default [
       {
         name: 'z',
         type: 'number',
-        description: 'A csomag megassága cm-ben.',
+        description: 'A csomag magassága cm-ben.',
         validation: (rule) => rule.required(),
       },
       {
