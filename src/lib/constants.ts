@@ -1,4 +1,7 @@
-import { FoxpostPackageInfoCategoryConstraints } from './foxpost-package-size';
+import {
+  FoxpostPackageHandlingFees,
+  FoxpostPackageInfoCategoryConstraints,
+} from './types';
 
 export const MISSING_IMG_URL = '/missing-image.svg';
 
@@ -18,6 +21,10 @@ export const FOXPOST_PACKAGE_CONSTRAINST = [
   { x: 60, y: 36, z: 61, weight: 25 * 1000, category: 'XL' },
 ] as const satisfies FoxpostPackageInfoCategoryConstraints[];
 
+
+export const FOXPOST_PACKAGE_MAX_LIMIT =
+  FOXPOST_PACKAGE_CONSTRAINST[FOXPOST_PACKAGE_CONSTRAINST.length - 1];
+
 export const FOXPOST_PACKAGE_HANDLING_FEES = [
   {
     priceRange: [5, 10000],
@@ -29,4 +36,4 @@ export const FOXPOST_PACKAGE_HANDLING_FEES = [
     fee: 1.2,
     feeType: 'percentage',
   },
-] as const;
+] as const satisfies FoxpostPackageHandlingFees;
