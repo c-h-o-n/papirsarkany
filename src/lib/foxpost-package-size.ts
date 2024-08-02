@@ -4,7 +4,7 @@ import {
 } from './constants';
 import { CartItem } from './types';
 
-type PackageInfoCategory = 'XS' | 'S' | 'M' | 'L' | 'XL';
+export type PackageInfoCategory = 'XS' | 'S' | 'M' | 'L' | 'XL';
 
 export type PackageInfo = {
   x: number;
@@ -53,8 +53,8 @@ export function getFoxpostPackageSizeCategory(
   );
 }
 
-export function getTotalPackageInfo(cartItem: CartItem[]): PackageInfo {
-  return cartItem.reduce(
+export function getTotalPackageInfo(cart: CartItem[]): PackageInfo {
+  return cart.reduce(
     (total, current) => {
       return {
         x: total.x + current.packageInfo.x * current.quantity,
