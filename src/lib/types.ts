@@ -2,7 +2,6 @@ import { SanityImageMetadata } from '@sanity/lib/sanity.types';
 import { Asserts, BooleanSchema, ObjectSchema, StringSchema } from 'yup';
 import { MixedSchema } from 'yup/lib/mixed';
 
-import { PackageInfoCategory } from './foxpost-package-size';
 import { validateOrderForm } from './helpers';
 
 /**
@@ -177,11 +176,37 @@ export type FoxpostSelectMessageData = {
     | null;
 };
 
+export type PackageInfo = {
+  /**
+   * length in cm,
+   */
+  x: number;
+  /**
+   * width in cm
+   */
+  y: number;
+  /**
+   * height in cm
+   */
+  z: number;
+  /**
+   * weight in grams
+   */
+  weight: number;
+};
+
 export type FoxpostPackageHandlingFees = {
-  range: number[];
+  priceRange: number[];
   fee: number;
   feeType: string;
 }[];
+
+export type FoxpostPackageSize = 'XS' | 'S' | 'M' | 'L' | 'XL';
+
+export type FoxpostPackageInfoCategoryConstraints = PackageInfo & {
+  category: FoxpostPackageSize;
+};
+
 
 /**
  * Represents the data required for processing a Foxpost package with a destination code.
@@ -228,7 +253,7 @@ export type FoxpostCreateParcelRequestBody = {
    * Foxpost's warehouse processes.
    * Possible values: ["XS", "S", "M", "L", "XL"]
    */
-  size: PackageInfoCategory;
+  size: FoxpostPackageSize;
 
   /**
    * Optional. A text comment related to the package (e.g., what the package contains).

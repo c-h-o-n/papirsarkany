@@ -1,11 +1,11 @@
+import { MailDataRequired } from '@sendgrid/mail';
+import { NextResponse } from 'next/server';
+import { ValidationError } from 'yup';
+
 import { createOrder } from '@/lib/db';
 import { sendEmail, setSendgridApiKey } from '@/lib/email';
 import { currencyFormatter } from '@/lib/formatters';
-import { createParcel } from '@/lib/foxpost';
-import {
-  getFoxpostPackageSizeCategory,
-  getTotalPackageInfo,
-} from '@/lib/foxpost-package-size';
+import { createParcel, getFoxpostPackageSize, getTotalPackageInfo } from '@/lib/foxpost';
 import {
   isPreviewEnv,
   isProdEnv,
@@ -13,9 +13,6 @@ import {
   validateOrderForm,
 } from '@/lib/helpers';
 import { OrderMail, OrderRequestBody } from '@/lib/types';
-import { MailDataRequired } from '@sendgrid/mail';
-import { NextResponse } from 'next/server';
-import { ValidationError } from 'yup';
 
 setSendgridApiKey();
 
@@ -106,7 +103,7 @@ export async function POST(request: Request) {
         recipientEmail: normalizedFormData.email,
         recipientName: fullName,
         recipientPhone: normalizedFormData.phoneNumber,
-        size: getFoxpostPackageSizeCategory(getTotalPackageInfo(cart)) || 'M',
+        size: getFoxpostPackageSize(getTotalPackageInfo(cart)) || 'M',
       });
 
       const foxpostResponseBody = (await foxpostResponse.json()) as {
