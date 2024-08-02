@@ -1,13 +1,18 @@
 import { createOrder } from '@/lib/db';
 import { sendEmail, setSendgridApiKey } from '@/lib/email';
 import { currencyFormatter } from '@/lib/formatters';
+import { createParcel } from '@/lib/foxpost';
+import {
+  getFoxpostPackageSizeCategory,
+  getTotalPackageInfo,
+} from '@/lib/foxpost-package-size';
 import {
   isPreviewEnv,
   isProdEnv,
   normalizeOrderForm,
   validateOrderForm,
 } from '@/lib/helpers';
-import { OrderFormRequestBody, OrderMail } from '@/lib/types';
+import { OrderMail, OrderRequestBody } from '@/lib/types';
 import { MailDataRequired } from '@sendgrid/mail';
 import { NextResponse } from 'next/server';
 import { ValidationError } from 'yup';
@@ -22,9 +27,10 @@ export async function POST(request: Request) {
       throw new Error('Missing vendor email.');
     }
 
-    const body = (await request.json()) as OrderFormRequestBody;
-    const { cart, formData, totalPrice } = body;
+    const body = (await request.json()) as OrderRequestBody;
+    const { cart, formData, totalPrice, foxpostOperatorId } = body;
 
+    // TODO move this into a middleware
     const validatedFormData = await validateOrderForm(formData);
 
     const normalizedFormData = normalizeOrderForm(validatedFormData);
@@ -82,6 +88,31 @@ export async function POST(request: Request) {
       templateId: customerTemplateId,
       dynamicTemplateData: orderEmailData,
     };
+
+    if (
+      normalizedFormData.shippingOption === 'Foxpost automatába' &&
+      foxpostOperatorId &&
+      isProdEnv()
+    ) {
+      const foxpostResponse = await createParcel({
+        cod: totalPrice,
+        destination: foxpostOperatorId,
+        recipientEmail: normalizedFormData.email,
+        recipientName: `${normalizedFormData.lastName} ${normalizedFormData.firstName}`,
+        recipientPhone: normalizedFormData.phoneNumber,
+        size: getFoxpostPackageSizeCategory(getTotalPackageInfo(cart)) || 'M',
+      });
+
+      const foxpostResponseBody = (await foxpostResponse.json()) as {
+        valid: boolean;
+        parsels: unknown[];
+      };
+
+      if (!foxpostResponse.ok || !foxpostResponseBody.valid) {
+        console.log('body is not valid');
+        throw new Error(foxpostResponse.statusText);
+      }
+    }
 
     if (isProdEnv() || isPreviewEnv()) {
       await sendEmail(vendorMail);

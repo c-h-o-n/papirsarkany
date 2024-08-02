@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { useFormContext } from 'react-hook-form';
 
 import { FoxpostSelectMessageData, OrderFormSchemaObject } from '@/lib/types';
+import { useFoxpostParcelBoxStore } from '@/store/useFoxpostParcelBoxStore';
 import Card from './Card';
 
 type FoxpostMapProps = {
@@ -12,6 +13,8 @@ type FoxpostMapProps = {
 export default function FoxpostMap({ hideMap }: FoxpostMapProps) {
   const { setValue, trigger, register } =
     useFormContext<OrderFormSchemaObject>();
+
+  const setFoxpostData = useFoxpostParcelBoxStore((state) => state.setFoxpostData);
 
   useEffect(() => {
     function receiveMessage(event: MessageEvent) {
@@ -32,6 +35,10 @@ export default function FoxpostMap({ hideMap }: FoxpostMapProps) {
         'shippingAddress',
       ]);
 
+      setFoxpostData({
+        destination: apt.operator_id,
+      });
+
       hideMap();
     }
 
@@ -40,7 +47,7 @@ export default function FoxpostMap({ hideMap }: FoxpostMapProps) {
     return () => {
       window.removeEventListener('message', receiveMessage);
     };
-  }, [hideMap, setValue, trigger]);
+  }, [hideMap, setFoxpostData, setValue, trigger]);
 
   return (
     <>

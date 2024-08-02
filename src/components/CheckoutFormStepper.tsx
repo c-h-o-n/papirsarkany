@@ -6,11 +6,12 @@ import { FormProvider, useForm } from 'react-hook-form';
 
 import useCart from '@/hooks/useCart';
 import { formSchemaArray } from '@/lib/order-form-schema';
-import { OrderFormRequestBody, OrderFormSchemaObject } from '@/lib/types';
+import { OrderRequestBody, OrderFormSchemaObject } from '@/lib/types';
 import '@/lib/yupConfig';
 import { useCartStore } from '@/store/useCartStore';
 import { useCheckoutFormStore } from '@/store/useCheckoutFormStore';
 import StepProgress from './StepProgress';
+import { useFoxpostParcelBoxStore } from '@/store/useFoxpostParcelBoxStore';
 
 type CheckoutStepperProps = {
   children: ReactNode;
@@ -31,6 +32,8 @@ export default function CheckoutStepper({ children }: CheckoutStepperProps) {
   const step = useCheckoutFormStore((state) => state.step);
   const setStep = useCheckoutFormStore((state) => state.setStep);
   const nextStep = useCheckoutFormStore((state) => state.nextStep);
+
+  const foxpostOperatorId = useFoxpostParcelBoxStore((state) => state.destination)
 
   const isLast = step === Children.count(children) - 1;
 
@@ -123,7 +126,8 @@ export default function CheckoutStepper({ children }: CheckoutStepperProps) {
         formData,
         cart,
         totalPrice,
-      } satisfies OrderFormRequestBody),
+        foxpostOperatorId
+      } satisfies OrderRequestBody),
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
