@@ -94,11 +94,17 @@ export async function POST(request: Request) {
       foxpostOperatorId &&
       isProdEnv()
     ) {
+      const cod =
+        normalizedFormData.paymentOption === 'Átvételkor bankártyával'
+          ? totalPrice
+          : 0;
+      const fullName = `${normalizedFormData.lastName} ${normalizedFormData.firstName}`;
+
       const foxpostResponse = await createParcel({
-        cod: totalPrice,
+        cod,
         destination: foxpostOperatorId,
         recipientEmail: normalizedFormData.email,
-        recipientName: `${normalizedFormData.lastName} ${normalizedFormData.firstName}`,
+        recipientName: fullName,
         recipientPhone: normalizedFormData.phoneNumber,
         size: getFoxpostPackageSizeCategory(getTotalPackageInfo(cart)) || 'M',
       });
