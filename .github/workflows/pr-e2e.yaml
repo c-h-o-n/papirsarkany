@@ -8,9 +8,20 @@ jobs:
   playwright-e2e-test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
-    env: 
+
+    environment: 'Preview'
+    env:
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      DATABASE_URL_UNPOOLED: ${{ secrets.DATABASE_URL_UNPOOLED }}
+      VENDOR_EMAIL_ADDRESS: ${{ secrets.VENDOR_EMAIL_ADDRESS }}
+      SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
       NEXT_PUBLIC_SANITY_DATASET: ${{ vars.NEXT_PUBLIC_SANITY_DATASET }}
-      
+      NEXT_PUBLIC_SANITY_PROJECT_ID: ${{ vars.NEXT_PUBLIC_SANITY_DATASET }}
+      FOXPOST_API_URL: ${{ secrets.FOXPOST_API_URL }}
+      FOXPOST_API_USERNAME: ${{ secrets.FOXPOST_API_USERNAME }}
+      FOXPOST_API_PASSWORD: ${{ secrets.FOXPOST_API_PASSWORD }}
+      FOXPOST_API_KEY: ${{ secrets.FOXPOST_API_KEY }}
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
