@@ -3,17 +3,13 @@ import { AnimatePresence, m } from 'framer-motion';
 import { useMemo, useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 
-import { LOCAL_PICKUP_ADDRESS } from '@/lib/constants';
-import {
-  getTotalPackageInfo,
-  isFitInMaxLimit,
-  packageMaxLimit,
-} from '@/lib/foxpost-package-size';
+import { FOXPOST_PACKAGE_MAX_LIMIT, LOCAL_PICKUP_ADDRESS } from '@/lib/constants';
 import { OrderFormSchemaObject } from '@/lib/types';
 import { useCartStore } from '@/store/useCartStore';
 import FoxpostMap from './FoxpostMap';
 import LazyLoadFramerMotion from './LazyLoadFramerMotion';
 import ShippingOptionRadioInput from './ShippingOptionRadioInput';
+import { getTotalPackageInfo, isFitInMaxLimit } from '@/lib/foxpost';
 
 export default function CheckoutShippingForm() {
   const {
@@ -147,7 +143,7 @@ export default function CheckoutShippingForm() {
                 <div className="text-foxpost-red">Foxpost automatába </div>
                 {!isFitInFoxpostLimit && (
                   <div className="font-normal text-sm sm:text-lg">
-                    {`maximum ${packageMaxLimit.weight}kg és (${packageMaxLimit.x}x${packageMaxLimit.y}x${packageMaxLimit.z}cm-ig)`}
+                    {`maximum ${FOXPOST_PACKAGE_MAX_LIMIT.weight}kg és (${FOXPOST_PACKAGE_MAX_LIMIT.x}x${FOXPOST_PACKAGE_MAX_LIMIT.y}x${FOXPOST_PACKAGE_MAX_LIMIT.z}cm-ig)`}
                   </div>
                 )}
               </>

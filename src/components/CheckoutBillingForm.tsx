@@ -1,14 +1,15 @@
 'use client';
+import { ChangeEvent } from 'react';
+import { useFormContext } from 'react-hook-form';
+
 import useCart from '@/hooks/useCart';
-import { getHandlingFee } from '@/lib/foxpost-package-size';
+import { getHandlingFee } from '@/lib/foxpost';
 import {
   BillingOptionValue,
   OrderFormSchemaObject,
   ShippingOptionValue,
 } from '@/lib/types';
 import { useCheckoutFormStore } from '@/store/useCheckoutFormStore';
-import { ChangeEvent } from 'react';
-import { useFormContext } from 'react-hook-form';
 import BillingOptionRadioInput from './BillingOptionRadioInput';
 
 export default function CheckoutPayingForm() {
