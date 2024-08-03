@@ -25,9 +25,6 @@ export default function HoverAnimatedCard({
             duration: 0.8,
           },
         }}
-        whileTap={{
-          scale: 0.95,
-        }}
         {...props}
       >
         <Card className={className}>{children}</Card>
