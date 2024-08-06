@@ -94,7 +94,10 @@ export default function AddToCartButton({ product }: AddToCartProps) {
           )
         : undefined}
 
-      <button className="d-btn d-btn-primary uppercase" onClick={onClick}>
+      <button
+        className="d-btn d-btn-primary uppercase active:!scale-105"
+        onClick={onClick}
+      >
         Kosárba
       </button>
     </>
