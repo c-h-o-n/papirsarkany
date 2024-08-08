@@ -2,8 +2,6 @@
 import { ChangeEvent } from 'react';
 import { useFormContext } from 'react-hook-form';
 
-import useCart from '@/hooks/useCart';
-import { getHandlingFee } from '@/lib/foxpost';
 import {
   BillingOptionValue,
   OrderFormSchemaObject,
@@ -23,8 +21,6 @@ export default function CheckoutPayingForm() {
 
   const prevStep = useCheckoutFormStore((state) => state.prevStep);
 
-  const { getTotalPrice } = useCart();
-
   const shippingBillingMap: Record<
     ShippingOptionValue,
     { billingOptionValue: BillingOptionValue; billingFee?: number | null }[]
@@ -37,7 +33,7 @@ export default function CheckoutPayingForm() {
       { billingOptionValue: 'Előreutalással', billingFee: undefined },
       {
         billingOptionValue: 'Átvételkor bankártyával',
-        billingFee: getHandlingFee(getTotalPrice()),
+        billingFee: undefined,
       },
     ],
     'Postai szállítás': [

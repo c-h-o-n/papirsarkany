@@ -3,13 +3,17 @@ import { AnimatePresence, m } from 'framer-motion';
 import { useMemo, useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 
-import { FOXPOST_PACKAGE_MAX_LIMIT, LOCAL_PICKUP_ADDRESS } from '@/lib/constants';
+import {
+  FOXPOST_PACKAGE_MAX_LIMIT,
+  FOXPOST_SHIPPING_FEE,
+  LOCAL_PICKUP_ADDRESS,
+} from '@/lib/constants';
+import { getTotalPackageInfo, isFitInMaxLimit } from '@/lib/foxpost';
 import { OrderFormSchemaObject } from '@/lib/types';
 import { useCartStore } from '@/store/useCartStore';
 import FoxpostMap from './FoxpostMap';
 import LazyLoadFramerMotion from './LazyLoadFramerMotion';
 import ShippingOptionRadioInput from './ShippingOptionRadioInput';
-import { getTotalPackageInfo, isFitInMaxLimit } from '@/lib/foxpost';
 
 export default function CheckoutShippingForm() {
   const {
@@ -148,7 +152,7 @@ export default function CheckoutShippingForm() {
                 )}
               </>
             }
-            shippingFee={899}
+            shippingFee={FOXPOST_SHIPPING_FEE}
             onClick={onFoxpostOptionClick}
             value="Foxpost automatába"
             isDisabled={!isFitInFoxpostLimit}
