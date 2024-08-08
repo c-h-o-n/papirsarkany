@@ -1,6 +1,5 @@
 import {
   FOXPOST_PACKAGE_CONSTRAINST,
-  FOXPOST_PACKAGE_HANDLING_FEES,
   FOXPOST_PACKAGE_MAX_LIMIT,
 } from './constants';
 import {
@@ -17,11 +16,15 @@ const {
   FOXPOST_API_URL,
 } = process.env;
 
+if(!FOXPOST_API_KEY) {
+  throw new Error('Missing Foxpost API key.')
+}
+
 const foxpostHeaders = new Headers({
   Authorization:
     'Basic ' + btoa(FOXPOST_API_USERNAME + ':' + FOXPOST_API_PASSWORD),
   'Content-Type': 'application/json',
-  'Api-key': FOXPOST_API_KEY || 'missing-api-key',
+  'Api-key': FOXPOST_API_KEY,
 });
 
 export function createParcel(body: FoxpostCreateParcelRequestBody) {
@@ -76,16 +79,3 @@ export function getTotalPackageInfo(cart: CartItem[]): PackageInfo {
   );
 }
 
-export function getHandlingFee(amount: number) {
-  const feeInfo = FOXPOST_PACKAGE_HANDLING_FEES.find(
-    (fee) => amount >= fee.priceRange[0] && amount <= fee.priceRange[1],
-  );
-
-  if (feeInfo) {
-    return feeInfo.feeType === 'flat'
-      ? feeInfo.fee
-      : (feeInfo.fee / 100) * amount;
-  }
-
-  return null;
-}
