@@ -1,5 +1,6 @@
 import {
   FOXPOST_PACKAGE_CONSTRAINST,
+  FOXPOST_PACKAGE_HANDLING_FEES,
   FOXPOST_PACKAGE_MAX_LIMIT,
 } from './constants';
 import {
@@ -80,3 +81,14 @@ export function getTotalPackageInfo(cart: CartItem[]): PackageInfo {
   );
 }
 
+export function getHandlingFee(amount: number) {
+  const feeInfo = FOXPOST_PACKAGE_HANDLING_FEES.find(
+    (fee) => amount >= fee.priceRange[0] && amount <= fee.priceRange[1],
+  );
+  if (feeInfo) {
+    return feeInfo.feeType === 'flat'
+      ? feeInfo.fee
+      : (feeInfo.fee / 100) * amount;
+  }
+  return null;
+}
