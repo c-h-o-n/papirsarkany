@@ -16,15 +16,16 @@ const {
   FOXPOST_API_URL,
 } = process.env;
 
-if(!FOXPOST_API_KEY) {
-  throw new Error('Missing Foxpost API key.')
-}
+// LATER blocked by lack of Foxpost sandbox mode
+// if(!FOXPOST_API_KEY) {
+//   throw new Error('Missing Foxpost API key.')
+// }
 
 const foxpostHeaders = new Headers({
   Authorization:
     'Basic ' + btoa(FOXPOST_API_USERNAME + ':' + FOXPOST_API_PASSWORD),
   'Content-Type': 'application/json',
-  'Api-key': FOXPOST_API_KEY,
+  'Api-key': FOXPOST_API_KEY || 'missing-api-key',
 });
 
 export function createParcel(body: FoxpostCreateParcelRequestBody) {
