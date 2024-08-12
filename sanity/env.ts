@@ -1,5 +1,7 @@
+import 'dotenv/config';
+
 export const apiVersion =
-  process.env.NEXT_PUBLIC_SANITY_API_VERSION || '2024-03-19';
+  process.env.NEXT_PUBLIC_SANITY_API_VERSION || '2024-05-23';
 
 export const dataset = assertValue(
   process.env.NEXT_PUBLIC_SANITY_DATASET,
@@ -12,6 +14,8 @@ export const projectId = assertValue(
 );
 
 export const useCdn = false;
+
+export const token = process.env.SANITY_API_TOKEN;
 
 function assertValue<T>(v: T | undefined, errorMessage: string): T {
   if (v === undefined) {
