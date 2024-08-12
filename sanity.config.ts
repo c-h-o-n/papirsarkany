@@ -17,9 +17,13 @@ const devOnlyPlugins = [
 ];
 
 export default defineConfig({
+  title: dataset,
   basePath: '/admin',
   projectId,
   dataset,
+  scheduledPublishing: {
+    enabled: false
+  },
   schema,
   plugins: [
     structureTool({
