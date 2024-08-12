@@ -8,8 +8,8 @@ jobs:
   playwright-e2e-test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
-
     environment: 'Preview'
+    if: github.event.deployment_status.state == 'success'
     env:
       DATABASE_URL: ${{ secrets.DATABASE_URL }}
       DATABASE_URL_UNPOOLED: ${{ secrets.DATABASE_URL_UNPOOLED }}
