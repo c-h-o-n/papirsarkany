@@ -21,7 +21,7 @@ jobs:
       FOXPOST_API_USERNAME: ${{ secrets.FOXPOST_API_USERNAME }}
       FOXPOST_API_PASSWORD: ${{ secrets.FOXPOST_API_PASSWORD }}
       FOXPOST_API_KEY: ${{ secrets.FOXPOST_API_KEY }}
-
+      PLAYWRIGHT_TEST_BASE_URL: ${{ github.event.deployment_status.target_url }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
