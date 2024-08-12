@@ -14,7 +14,9 @@ export default function FoxpostMap({ hideMap }: FoxpostMapProps) {
   const { setValue, trigger, register } =
     useFormContext<OrderFormSchemaObject>();
 
-  const setFoxpostData = useFoxpostParcelBoxStore((state) => state.setFoxpostData);
+  const setFoxpostData = useFoxpostParcelBoxStore(
+    (state) => state.setFoxpostData,
+  );
 
   useEffect(() => {
     function receiveMessage(event: MessageEvent) {
