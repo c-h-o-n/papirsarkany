@@ -1,10 +1,9 @@
-import { isProdEnv } from '@/lib/helpers';
 import { expect, test } from '@playwright/test';
 
 test('Kite order', async ({ page, browserName, isMobile }) => {
   await test.step('Add kites to the cart', async () => {
     // await page.goto("https://papirsarkany.vercel.app/sarkanyok");
-    await page.goto('http://127.0.0.1:3000/sarkanyok');
+    await page.goto('/sarkanyok');
 
     // add to cart
     await page.getByText('Kosárba').first().click();
@@ -92,7 +91,7 @@ test('Kite order', async ({ page, browserName, isMobile }) => {
       // finish order
       await page.getByRole('button', { name: 'Megrendelem' }).click();
       // TODO check if cart, form and stepper did reset and user redirected to the '/sikeres-rendeles' page
-      await page.goto('https://papirsarkany.vercel.app/sikeres-rendeles');
+      await page.goto('/sikeres-rendeles');
     });
   }
 });
