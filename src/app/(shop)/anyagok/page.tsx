@@ -3,8 +3,8 @@ import ReelCard from '@/components/ReelCard';
 import RodCard from '@/components/RodCard';
 import TwineCard from '@/components/TwineCard';
 
-import { SanityCategoryMap } from '@/lib/formatters';
 import { getAllReels, getAllRods, getAllTwines } from '@/lib/cms';
+import { SanityCategoryMap } from '@/lib/formatters';
 
 export default async function Materials() {
   const reels = await getAllReels();

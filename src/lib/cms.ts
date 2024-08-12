@@ -8,10 +8,10 @@ import {
 } from '@sanity/lib/sanity.types';
 import {
   getAllKitesQuery,
-  getKiteBySlugQuery,
-  getAllRodsQuery,
   getAllReelsQuery,
+  getAllRodsQuery,
   getAllTwinesQuery,
+  getKiteBySlugQuery,
 } from './queries';
 
 export async function getAllKites(): Promise<GetAllKitesQueryResult> {
