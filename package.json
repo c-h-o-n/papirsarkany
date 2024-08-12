@@ -13,6 +13,7 @@
     "format": "prettier src --write",
     "test": "playwright test",
     "test:report": "playwright test && playwright show-report",
+    "test:ui": "playwright test --ui",
     "sanity:typegen": "rimraf ./sanity/schema.json && npx sanity schema extract --path sanity/schema.json && npx sanity typegen generate",
     "sanity:publish": "npx tsx sanity/lib/actions/publish-all-modified.ts"
   },
