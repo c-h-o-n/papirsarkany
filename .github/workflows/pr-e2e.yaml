@@ -1,8 +1,6 @@
 name: Run E2E Tests
 
 on:
-  pull_request:
-    types: [opened, synchronize, reopened]
   deployment_status:
 
 jobs:
