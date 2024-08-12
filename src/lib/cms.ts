@@ -15,7 +15,7 @@ import {
 } from './queries';
 
 export async function getAllKites(): Promise<GetAllKitesQueryResult> {
-  return await client.fetch<GetAllKitesQueryResult>(getAllKitesQuery);
+  return await client.fetch(getAllKitesQuery);
 }
 
 export async function getKiteBySlug(
@@ -29,8 +29,8 @@ export async function getKiteBySlug(
   );
 }
 
-export async function getAllRods() {
-  return await client.fetch<GetAllRodsQueryResult>(getAllRodsQuery);
+export async function getAllRods(): Promise<GetAllRodsQueryResult> {
+  return await client.fetch(getAllRodsQuery);
 }
 
 export async function getAllReels(): Promise<GetAllReelsQueryResult> {
