@@ -64,7 +64,7 @@ test('Kite order', async ({ page, browserName, isMobile }) => {
     await page.locator('input[name="firstName"]').fill('János');
     await page.locator('input[name="firstName"]').press('Tab');
     await page.getByPlaceholder('+').fill('+36201234567');
-    await page.getByLabel('Személyes átvételingyenes').check();
+    await page.getByLabel('Személyes átvétel').check();
 
     // proceed to shipping info
     await page.getByRole('button', { name: 'Tovább' }).click();
@@ -87,13 +87,11 @@ test('Kite order', async ({ page, browserName, isMobile }) => {
   });
 
   // Only runs in Chrome Desktop to avoid sending multiple emails.
-  // CHECK when should this functionality be checked? My assumption is in PR CI pipelines. (maybe process.env.CI)
-  // ! This will never run since isProdEnv will always be false when tests run
-  if (browserName === 'chromium' && !isMobile && isProdEnv()) {
+  if (browserName === 'chromium' && !isMobile && process.env.CI) {
     await test.step('Place the order', async () => {
       // finish order
       await page.getByRole('button', { name: 'Megrendelem' }).click();
-      // TODO check if cart, form and stepper did reset and user redirected to the '/sikere-rendeles' page
+      // TODO check if cart, form and stepper did reset and user redirected to the '/sikeres-rendeles' page
       await page.goto('https://papirsarkany.vercel.app/sikeres-rendeles');
     });
   }
