@@ -4,19 +4,10 @@ on:
   deployment_status:
 
 jobs:
-  find-pr:
-    runs-on: ubuntu-latest
-    outputs:
-      pr_found: ${{ steps.PR.outputs.pr_found }}
-    steps:
-      - name: Get Current Pull Request
-        uses: 8BitJonny/gh-get-current-pr@3.0.0
-
   playwright-e2e-test:
-    needs: find-pr
+    if: github.event.deployment_status.state == 'success' && (github.ref == 'refs/heads/main' || github.base_ref == 'refs/heads/develop')
     timeout-minutes: 60
     runs-on: ubuntu-latest
-    if: needs.find-pr.outputs.pr_found == 'true' &&  github.event.deployment_status.state == 'success'
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
