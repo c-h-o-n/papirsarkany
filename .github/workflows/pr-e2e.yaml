@@ -2,15 +2,17 @@ name: Run E2E Tests
 
 on:
   deployment_status:
-    types: [success]
 
 jobs:
   playwright-e2e-test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
     if: |
-      (github.ref == 'refs/heads/main') ||
-      (github.ref == 'refs/heads/develop' && github.event.deployment.pull_requests != null && github.event.deployment.pull_requests.length > 0)
+      github.event.deployment_status.state == 'success' &&
+      (
+        (github.ref == 'refs/heads/main') ||
+        (github.ref == 'refs/heads/develop' && github.event.deployment.pull_requests != null && github.event.deployment.pull_requests.length > 0)
+      )
     env:
       PLAYWRIGHT_TEST_BASE_URL: ${{ github.event.deployment_status.target_url }}
     steps:
