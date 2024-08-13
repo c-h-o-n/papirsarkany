@@ -4,22 +4,22 @@ on:
   deployment_status:
 
 jobs:
-  check-pr:
+  get-pr:
     if: ${{ github.event.deployment.pull_requests != 'Production' }}
     runs-on: ubuntu-latest
     outputs:
-      pr_found: ${{ steps.check_pr.outputs.pr_found }}
+      pr_found: ${{ steps.get_pr.outputs.pr_found }}
     steps:
       - name: Get Current Pull Request
-        id: check_pr
+        id: get_pr
         uses: 8BitJonny/gh-get-current-pr@3.0.0
 
-      - run: echo "PR url - ${{ steps.check_pr.outputs.pr_url }}"
-        if: ${{ steps.check_pr.outputs.pr_found == 'true' }}
+      - run: echo "PR url - ${{ steps.get_pr.outputs.pr_url }}"
+        if: ${{ steps.get_pr.outputs.pr_found == 'true' }}
 
   playwright-e2e-test:
-    needs: check-pr
-    if: ${{ github.event.deployment_status.state == 'success' && (needs.check-pr.outputs.pr_found == 'true' || github.event.deployment.pull_requests == 'Production') }}
+    needs: get-pr
+    if: ${{ github.event.deployment_status.state == 'success' && (needs.get-pr.outputs.pr_found == 'true' || github.event.deployment.pull_requests == 'Production') }}
     timeout-minutes: 60
     runs-on: ubuntu-latest
     steps:
