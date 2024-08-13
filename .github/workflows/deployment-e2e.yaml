@@ -7,7 +7,7 @@ jobs:
   find-pr:
     runs-on: ubuntu-latest
     outputs:
-      pr_found: ${{ steps.check.outputs.pr_found }}
+      pr_found: ${{ steps.PR.outputs.pr_found }}
     steps:
       - name: Get Current Pull Request
         uses: 8BitJonny/gh-get-current-pr@3.0.0
@@ -16,7 +16,7 @@ jobs:
     needs: find-pr
     timeout-minutes: 60
     runs-on: ubuntu-latest
-    if: needs.find-pr.outputs.pr_found != 'true' &&  github.event.deployment_status.state == 'success'
+    if: needs.find-pr.outputs.pr_found == 'true' &&  github.event.deployment_status.state == 'success'
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
