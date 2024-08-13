@@ -11,7 +11,7 @@ jobs:
       github.event.deployment_status.state == 'success' &&
       (
         (github.ref == 'refs/heads/main') ||
-        (github.ref == 'refs/heads/develop' && github.event.deployment.pull_requests != null && github.event.deployment.pull_requests.length > 0)
+        (github.ref == 'refs/heads/develop' && github.event.deployment.pull_requests != null)
       )
     env:
       PLAYWRIGHT_TEST_BASE_URL: ${{ github.event.deployment_status.target_url }}
