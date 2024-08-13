@@ -2,25 +2,16 @@ name: Run E2E Tests
 
 on:
   deployment_status:
+    types: [success]
 
 jobs:
   playwright-e2e-test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
-    environment: 'Preview'
-    if: github.event.deployment_status.state == 'success'
-
+    if: |
+      (github.ref == 'refs/heads/main') ||
+      (github.ref == 'refs/heads/develop' && github.event.deployment.pull_requests != null && github.event.deployment.pull_requests.length > 0)
     env:
-      DATABASE_URL: ${{ secrets.DATABASE_URL }}
-      DATABASE_URL_UNPOOLED: ${{ secrets.DATABASE_URL_UNPOOLED }}
-      VENDOR_EMAIL_ADDRESS: ${{ secrets.VENDOR_EMAIL_ADDRESS }}
-      SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
-      NEXT_PUBLIC_SANITY_DATASET: ${{ vars.NEXT_PUBLIC_SANITY_DATASET }}
-      NEXT_PUBLIC_SANITY_PROJECT_ID: ${{ vars.NEXT_PUBLIC_SANITY_PROJECT_ID }}
-      FOXPOST_API_URL: ${{ secrets.FOXPOST_API_URL }}
-      FOXPOST_API_USERNAME: ${{ secrets.FOXPOST_API_USERNAME }}
-      FOXPOST_API_PASSWORD: ${{ secrets.FOXPOST_API_PASSWORD }}
-      FOXPOST_API_KEY: ${{ secrets.FOXPOST_API_KEY }}
       PLAYWRIGHT_TEST_BASE_URL: ${{ github.event.deployment_status.target_url }}
     steps:
       - name: Checkout code
