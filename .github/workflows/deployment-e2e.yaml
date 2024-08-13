@@ -5,7 +5,7 @@ on:
 
 jobs:
   playwright-e2e-test:
-    if: github.event.deployment_status.state == 'success' && (github.ref == 'refs/heads/main' || github.base_ref == 'refs/heads/develop')
+    if: ${{ github.event.deployment_status.state == 'success' && ( github.ref == 'refs/heads/main' || github.base_ref == 'refs/heads/develop' ) }}
     timeout-minutes: 60
     runs-on: ubuntu-latest
     steps:
