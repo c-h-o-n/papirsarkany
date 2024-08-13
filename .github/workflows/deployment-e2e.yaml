@@ -5,6 +5,7 @@ on:
 
 jobs:
   check-pr:
+    if: ${{ github.event.deployment.pull_requests != 'Production' }}
     runs-on: ubuntu-latest
     outputs:
       pr_found: ${{ steps.check_pr.outputs.pr_found }}
@@ -13,7 +14,7 @@ jobs:
         id: check_pr
         uses: 8BitJonny/gh-get-current-pr@3.0.0
 
-      - run: echo "Your PR number is ${{ steps.check_pr.outputs.number }} and its JSON is ${{ steps.check_pr.outputs.pr }}"
+      - run: echo "PR url - ${{ steps.check_pr.outputs.pr.html_url }}"
         if: ${{ steps.check_pr.outputs.pr_found == 'true' }}
 
   playwright-e2e-test:
