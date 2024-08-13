@@ -11,8 +11,10 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
 
-      - run: echo "gh refs ${{ github.ref }} ${{ github.base_ref}}"
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
