@@ -18,7 +18,7 @@ jobs:
 
   playwright-e2e-test:
     needs: check-pr
-    if: ${{ github.event.deployment_status.state == 'success' && (needs.check-pr.outputs.pr_found == 'true' || github.event.deployment.pull_requests === 'Production') }}
+    if: ${{ github.event.deployment_status.state == 'success' && (needs.check-pr.outputs.pr_found == 'true' || github.event.deployment.pull_requests == 'Production') }}
     timeout-minutes: 60
     runs-on: ubuntu-latest
     steps:
