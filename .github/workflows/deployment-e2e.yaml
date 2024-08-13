@@ -11,8 +11,6 @@ jobs:
     steps:
       - name: Get Current Pull Request
         uses: 8BitJonny/gh-get-current-pr@3.0.0
-      - run: echo "Your PR number is ${{ steps.PR.outputs.number }} and its JSON is ${{ steps.PR.outputs.pr }}"
-
 
   playwright-e2e-test:
     needs: find-pr
