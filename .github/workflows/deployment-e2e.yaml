@@ -14,7 +14,7 @@ jobs:
         id: check_pr
         uses: 8BitJonny/gh-get-current-pr@3.0.0
 
-      - run: echo "PR url - ${{ steps.check_pr.outputs.pr.html_url }}"
+      - run: echo "PR url - ${{ fromJson(steps.check_pr.outputs.pr).html_url }}"
         if: ${{ steps.check_pr.outputs.pr_found == 'true' }}
 
   playwright-e2e-test:
