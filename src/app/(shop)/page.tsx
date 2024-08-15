@@ -1,11 +1,11 @@
-import Link from "next/link";
+import Link from 'next/link';
 
-import Splash from "@/components/Splash";
-import HomeSection from "@/components/HomeSection";
-import Card from "@/components/Card";
-import AboutBusinessIcon from "@/assets/about-business.svg";
-import ContactIcon from "@/assets/contact.svg";
-import CraftingIcon from "@/assets/crafting.svg";
+import AboutBusinessIcon from '@/assets/about-business.svg';
+import ContactIcon from '@/assets/contact.svg';
+import CraftingIcon from '@/assets/crafting.svg';
+import HomeSection from '@/components/HomeSection';
+import ScrollTriggeredAnimatedCard from '@/components/ScrollTriggeredAnimatedCard';
+import Splash from '@/components/Splash';
 
 export default function Home() {
   return (
@@ -20,20 +20,20 @@ export default function Home() {
           <HomeSection.Content>
             <h1 className="text-center font-bold">A vállalkozásról</h1>
 
-            <Card className="p-5 text-center font-semibold sm:p-10">
+            <ScrollTriggeredAnimatedCard className="p-5 text-center font-semibold sm:p-10">
               <h4>
                 Üzletem nincs, ezért postai utánvétellel szállítok, melynek
                 költsége a megrendelőt terheli.
                 <br />
-                Személyesen{" "}
+                Személyesen{' '}
                 <Link className="underline" href="#elerhetoseg">
                   Nagykovácsiban
-                </Link>{" "}
+                </Link>{' '}
                 (63-as BKV busszal megközelíthető) is vásárolhat
               </h4>
-            </Card>
+            </ScrollTriggeredAnimatedCard>
 
-            <Card className="p-5 text-center font-semibold sm:p-10">
+            <ScrollTriggeredAnimatedCard className="p-5 text-center font-semibold sm:p-10">
               <h4>
                 Sárkányaim repülési és nyolc napos pénzvisszafizetési
                 garanciával kaphatók.
@@ -46,9 +46,9 @@ export default function Home() {
               </h4>
 
               <h4>Mindenkinek kellemes sárkányeresztést kívánok</h4>
-            </Card>
+            </ScrollTriggeredAnimatedCard>
 
-            <Card className="p-5 text-center sm:p-10">
+            <ScrollTriggeredAnimatedCard className="p-5 text-center sm:p-10">
               <h2 className="font-bold">Ducsai Barnabás</h2>
               <h5>
                 <b>Adószám:</b> 61090938-1-33
@@ -56,7 +56,7 @@ export default function Home() {
               <h5>
                 <b>Számlaszám:</b> Erste Bank 11600006-00000000-76709302
               </h5>
-            </Card>
+            </ScrollTriggeredAnimatedCard>
           </HomeSection.Content>
         </HomeSection>
 
@@ -69,16 +69,16 @@ export default function Home() {
               Sárkányépítő foglalkozások
             </h1>
 
-            <Card className="p-5 text-center font-semibold sm:p-10">
+            <ScrollTriggeredAnimatedCard className="p-5 text-center font-semibold sm:p-10">
               <h4>
                 A sárkánykészítés és -repítés régebben mindennapos dolog volt a
                 gyerekek hétköznapjaiban. Ez a &quot;tudomány&quot; apáról fiúra
                 szállt, illetve a nagyobbaktól lesték el a kisebbek. A gyerekek
                 mára elfelejtették ezt a szép régi játékot.
               </h4>
-            </Card>
+            </ScrollTriggeredAnimatedCard>
 
-            <Card className="p-5 text-center font-semibold sm:p-10">
+            <ScrollTriggeredAnimatedCard className="p-5 text-center font-semibold sm:p-10">
               <h4>
                 Vállalom sárkányépítő foglalkozások vezetését
                 gyerekrendezvények, -intézmények és céges rendezvények számára.
@@ -86,7 +86,7 @@ export default function Home() {
                 Anyagot biztosítok. (Szelet a megrendelő biztosít.) Ár egyedi
                 megállapodás alapján.
               </h4>
-            </Card>
+            </ScrollTriggeredAnimatedCard>
           </HomeSection.Content>
         </HomeSection>
 
@@ -98,7 +98,7 @@ export default function Home() {
           <HomeSection.Content>
             <h1 className="text-center font-bold">Elérhetőség</h1>
 
-            <div className=" text-center font-semibold">
+            <div className="text-center font-semibold">
               <h4>{process.env.VENDOR_EMAIL_ADDRESS}</h4>
               <h4>+36 30 9754 786</h4>
             </div>

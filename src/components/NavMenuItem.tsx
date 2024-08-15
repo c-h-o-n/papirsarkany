@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import { blurActiveAnchorElement } from "@/lib/helpers";
-import Link, { LinkProps } from "next/link";
-import { ReactNode } from "react";
+import { blurActiveAnchorElement } from '@/lib/helpers';
+import Link, { LinkProps } from 'next/link';
+import { ReactNode } from 'react';
 
 export type MenuItemProps = LinkProps & {
   children?: ReactNode;

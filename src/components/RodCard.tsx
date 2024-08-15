@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import Card from "./Card";
-import AddToCartButton from "./AddToCartButton";
-import { ChangeEvent, useState } from "react";
-import { currencyFormatter, pricePerMeterFormatter } from "@/lib/formatters";
-import { RodDiameters, Rod } from "@sanity/lib/sanity.types";
-import { WithImageAsset } from "@/lib/types";
+import { currencyFormatter, pricePerMeterFormatter } from '@/lib/formatters';
+import { WithImageAsset } from '@/lib/types';
+import { Rod, RodDiameters } from '@sanity/lib/sanity.types';
+import { ChangeEvent, useState } from 'react';
+import AddToCartButton from './AddToCartButton';
+import Card from './Card';
 
 type Props = {
   rod: WithImageAsset<Rod>;
@@ -37,7 +37,7 @@ export default function RodCard({ rod }: Props) {
     );
 
     if (!newSelectedDiameter) {
-      throw new Error("No diamater found.");
+      throw new Error('No diamater found.');
     }
 
     setSelectedDiameter({
@@ -104,7 +104,7 @@ export default function RodCard({ rod }: Props) {
           <h2>
             {currencyFormatter(
               selectedDiameter.pricePerMeter * Math.ceil(selectedLength / 100),
-            )}{" "}
+            )}{' '}
             <span className="text-base text-gray-400">
               ({pricePerMeterFormatter(selectedDiameter.pricePerMeter)})
             </span>

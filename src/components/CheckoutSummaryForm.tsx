@@ -1,18 +1,23 @@
-"use client";
+'use client';
 
-import { useFormContext } from "react-hook-form";
-import Card from "./Card";
-import OrderSummaryCard from "./OrderSummaryCard";
-import { FormSchemaObject } from "@/lib/types";
-import { useStepperStore } from "@/store/useStepperStore";
-import { useCheckoutFormStore } from "@/store/useCheckoutFormStore";
+import { useRouter } from 'next/navigation';
+import { useFormContext } from 'react-hook-form';
+
+import { OrderFormSchemaObject } from '@/lib/types';
+import { useCheckoutFormStore } from '@/store/useCheckoutFormStore';
+import Card from './Card';
+import OrderSummaryCard from './OrderSummaryCard';
 
 export default function CheckoutSummary() {
-  const { register, getValues } = useFormContext<FormSchemaObject>();
+  const router = useRouter();
+  const {
+    register,
+    getValues,
+    formState: { isSubmitting },
+  } = useFormContext<OrderFormSchemaObject>();
   const formValues = getValues();
 
-  const isSubmitting = useCheckoutFormStore((state) => state.isSubmitting);
-  const prevStep = useStepperStore((state) => state.prevStep);
+  const prevStep = useCheckoutFormStore((state) => state.prevStep);
 
   return (
     <div className="space-y-6">
@@ -20,10 +25,10 @@ export default function CheckoutSummary() {
 
       <OrderSummaryCard layout="definitive" />
 
-      <div className="max-w  grid grid-cols-1 gap-4 md:grid-cols-3">
+      <div className="max-w grid grid-cols-1 gap-4 md:grid-cols-3">
         <Card className="mx-auto w-full max-w-xs p-6">
           <div>
-            <h4 className=" font-bold underline">Elérhetőség</h4>
+            <h4 className="font-bold underline">Elérhetőség</h4>
             <div>
               {formValues.lastName} {formValues.firstName}
             </div>
@@ -34,7 +39,7 @@ export default function CheckoutSummary() {
 
         <Card className="mx-auto w-full max-w-xs p-6">
           <div>
-            <h4 className=" font-bold underline">Szállítás</h4>
+            <h4 className="font-bold underline">Szállítás</h4>
             <div>{formValues.shippingOption}</div>
             <div>
               {formValues.shippingPostcode} {formValues.shippingCity}
@@ -46,7 +51,7 @@ export default function CheckoutSummary() {
 
         <Card className="mx-auto w-full max-w-xs p-6">
           <div>
-            <h4 className=" font-bold underline">Fizetés</h4>
+            <h4 className="font-bold underline">Fizetés</h4>
             <div>{formValues.paymentOption}</div>
             <div>
               {formValues.billingPostcode} {formValues.billingCity}
@@ -63,7 +68,7 @@ export default function CheckoutSummary() {
         </label>
         <textarea
           className="d-textarea d-textarea-bordered d-textarea-primary h-24"
-          {...register("comment")}
+          {...register('comment')}
         ></textarea>
         <label className="d-label justify-end">
           <span className="d-label-text-alt">
@@ -84,6 +89,7 @@ export default function CheckoutSummary() {
           type="submit"
           className={`d-btn d-btn-success uppercase max-sm:d-btn-block`}
           disabled={isSubmitting}
+          onMouseEnter={() => router.prefetch('/sikeres-rendeles')}
         >
           {isSubmitting && (
             <span className="d-loading d-loading-spinner"></span>

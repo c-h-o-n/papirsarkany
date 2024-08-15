@@ -1,75 +1,106 @@
-"use client";
+'use client';
+import { ChangeEvent } from 'react';
+import { useFormContext } from 'react-hook-form';
 
-import { FormSchemaObject } from "@/lib/types";
-import { useStepperStore } from "@/store/useStepperStore";
-import { ChangeEvent } from "react";
-import { useFormContext } from "react-hook-form";
+import {
+  BillingOptionValue,
+  OrderFormSchemaObject,
+  ShippingOptionValue,
+} from '@/lib/types';
+import { useCheckoutFormStore } from '@/store/useCheckoutFormStore';
+import BillingOptionRadioInput from './BillingOptionRadioInput';
 
 export default function CheckoutPayingForm() {
   const {
     register,
+    formState: { errors },
     getValues,
     setValue,
-    watch,
-    formState: { errors },
-  } = useFormContext<FormSchemaObject>();
+    trigger,
+  } = useFormContext<OrderFormSchemaObject>();
 
-  const prevStep = useStepperStore((state) => state.prevStep);
+  const prevStep = useCheckoutFormStore((state) => state.prevStep);
+
+  const shippingBillingMap: Record<
+    ShippingOptionValue,
+    { billingOptionValue: BillingOptionValue; billingFee?: number | null }[]
+  > = {
+    'Személyes átvétel': [
+      { billingOptionValue: 'Előreutalással', billingFee: undefined },
+      { billingOptionValue: 'Átvételkor készpénzel', billingFee: undefined },
+    ],
+    'Foxpost automatába': [
+      { billingOptionValue: 'Előreutalással', billingFee: undefined },
+      {
+        billingOptionValue: 'Átvételkor bankártyával',
+        billingFee: undefined,
+      },
+    ],
+    'Postai szállítás': [
+      {
+        billingOptionValue: 'Előreutalással',
+        billingFee: undefined,
+      },
+      {
+        billingOptionValue: 'Átvételkor készpénzel',
+        billingFee: undefined,
+      },
+    ],
+  };
+
+  const selectedShippingOption = getValues('shippingOption');
+
+  if (!selectedShippingOption) {
+    throw new Error('Érvénytelen szállitási mód');
+  }
 
   const onIsSameAdressAsShippingChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.checked) {
-      setValue("billingPostcode", watch("shippingPostcode"));
-      setValue("billingCity", watch("shippingCity"));
-      setValue("billingAddress", watch("shippingAddress"));
-      setValue("billingSubaddress", watch("shippingSubaddress"));
-      setValue("isSameAdressAsShipping", true);
+      syncShippingAndBilling();
+      setValue('isSameAdressAsShipping', true);
     } else {
-      setValue("billingPostcode", "");
-      setValue("billingCity", "");
-      setValue("billingAddress", "");
-      setValue("billingSubaddress", "");
-      setValue("isSameAdressAsShipping", false);
+      setValue('billingPostcode', '');
+      setValue('billingCity', '');
+      setValue('billingAddress', '');
+      setValue('billingSubaddress', '');
+      setValue('isSameAdressAsShipping', false);
     }
+
+    trigger(['isSameAdressAsShipping']);
   };
 
+  const syncShippingAndBilling = () => {
+    if (getValues('isSameAdressAsShipping')) {
+      setValue('billingPostcode', getValues('shippingPostcode'));
+      setValue('billingCity', getValues('shippingCity'));
+      setValue('billingAddress', getValues('shippingAddress'));
+      setValue('billingSubaddress', getValues('shippingSubaddress'));
+    }
+  };
   return (
-    <>
+    <div className="max-w-screen-sm mx-auto">
       <h2 className="underline underline-offset-8">Fizetés</h2>
 
-      <div className="d-form-control">
-        <label className="d-label cursor-pointer justify-start gap-x-2">
-          <input
-            type="radio"
-            value="Átvételkor készpénzel"
-            {...register("paymentOption")}
-            className="d-radio checked:d-radio-primary"
+      {shippingBillingMap[selectedShippingOption].map(
+        ({ billingOptionValue, billingFee }) => (
+          <BillingOptionRadioInput
+            key={billingOptionValue}
+            value={billingOptionValue}
+            billingFee={billingFee}
+            isDisabled={billingFee === null}
           />
-          <span className="d-label-text">Átvételkor készpénzel</span>
-        </label>
-      </div>
-
-      <div className="d-form-control">
-        <label className="d-label cursor-pointer justify-start gap-x-2">
-          <input
-            type="radio"
-            value="Előreutalással"
-            {...register("paymentOption")}
-            className="d-radio checked:d-radio-primary"
-          />
-          <span className="d-label-text">Előreutalással</span>
-        </label>
-        <span className="pl-9 text-gray-400">11600006-00000000-76709302</span>
-      </div>
+        ),
+      )}
 
       <span className="text-error">{errors.paymentOption?.message}</span>
 
       <h2 className="underline underline-offset-8">Számlázási cím</h2>
 
-      {getValues("shippingOption") === "Postai szállítás" && (
-        <div className="d-form-control">
+      {getValues('shippingOption') === 'Postai szállítás' && (
+        <div className="d-form-control pt-4">
           <label className="d-label cursor-pointer justify-start gap-x-2">
             <input
-              {...register("isSameAdressAsShipping")}
+              {...register('isSameAdressAsShipping')}
               onChange={(e) => onIsSameAdressAsShippingChange(e)}
               type="checkbox"
               className="d-checkbox checked:d-checkbox-primary"
@@ -80,11 +111,9 @@ export default function CheckoutPayingForm() {
           </label>
         </div>
       )}
-      {getValues("shippingOption") === "Személyes átvétel" ||
-        !watch("isSameAdressAsShipping")}
 
-      {(getValues("shippingOption") === "Személyes átvétel" ||
-        !watch("isSameAdressAsShipping")) && (
+      {(getValues('shippingOption') !== 'Postai szállítás' ||
+        !getValues('isSameAdressAsShipping')) && (
         <>
           <div className="d-form-control">
             <label className="d-label">
@@ -93,7 +122,7 @@ export default function CheckoutPayingForm() {
             <input
               type="text"
               className="d-input d-input-bordered"
-              {...register("billingPostcode")}
+              {...register('billingPostcode')}
             />
             <label className="d-label">
               <span className="d-label-text-alt text-error">
@@ -108,7 +137,7 @@ export default function CheckoutPayingForm() {
             <input
               type="text"
               className="d-input d-input-bordered"
-              {...register("billingCity")}
+              {...register('billingCity')}
             />
             <label className="d-label">
               <span className="d-label-text-alt text-error">
@@ -124,19 +153,18 @@ export default function CheckoutPayingForm() {
               type="text"
               placeholder="Utca, házszám"
               className="d-input d-input-bordered"
-              {...register("billingAddress")}
+              {...register('billingAddress')}
             />
             <label className="d-label">
               <span className="d-label-text-alt text-error">
                 {errors.billingAddress?.message}
               </span>
             </label>
-
             <input
               type="text"
               placeholder="Emelet, ajtó, egyéb (opcionális)"
               className="d-input d-input-bordered"
-              {...register("billingSubaddress")}
+              {...register('billingSubaddress')}
             />
             <label className="d-label">
               <span className="d-label-text-alt text-error">
@@ -146,6 +174,7 @@ export default function CheckoutPayingForm() {
           </div>
         </>
       )}
+
       <div className="flex flex-wrap justify-between gap-4">
         <button
           type="button"
@@ -157,10 +186,11 @@ export default function CheckoutPayingForm() {
         <button
           type="submit"
           className="d-btn d-btn-primary uppercase max-sm:d-btn-block"
+          onClick={() => syncShippingAndBilling()}
         >
           Tovább
         </button>
       </div>
-    </>
+    </div>
   );
 }

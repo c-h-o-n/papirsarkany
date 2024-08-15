@@ -1,56 +1,65 @@
-import { Prisma } from "@prisma/client";
-import prisma from "./prisma";
-import { CartItem, FormSchemaObject } from "./types";
-import { prismaPaymentModemMap, prismaShippingModeMap } from "./formatters";
+import { Prisma } from '@prisma/client';
+import { prismaPaymentModeMap, prismaShippingModeMap } from './formatters';
+import prisma from './prisma';
+import {
+  BillingOptionValue,
+  CartItem,
+  ShippingOptionValue,
+  ValidatedOrderForm,
+} from './types';
 
 export async function createOrder(
-  orderForm: FormSchemaObject,
+  orderForm: ValidatedOrderForm,
   products: CartItem[],
 ) {
   return await prisma.$transaction(async (tx) => {
     const user = await tx.customer.upsert({
+      create: {
+        email: orderForm.email,
+        firstName: orderForm.firstName,
+        lastName: orderForm.lastName,
+        phone: orderForm.phoneNumber,
+
+        shippingPostcode: orderForm.shippingPostcode,
+        shippingCity: orderForm.shippingCity,
+        shippingAddress: orderForm.shippingAddress,
+        shippingSubaddress: orderForm.shippingSubaddress,
+        billingPostcode: orderForm.billingPostcode,
+        billingCity: orderForm.billingCity,
+        billingAddress: orderForm.billingAddress,
+        billingSubaddress: orderForm.billingSubaddress,
+      },
       where: {
-        email: orderForm.email!,
+        email: orderForm.email,
       },
       update: {
-        email: orderForm.email!,
-        firstName: orderForm.firstName!,
-        lastName: orderForm.lastName!,
-        phone: orderForm.phoneNumber!,
-        shippingPostcode: orderForm.shippingPostcode!,
-        shippingCity: orderForm.shippingCity!,
-        shippingAddress: orderForm.shippingAddress!,
-        shippingSubaddress: orderForm.shippingSubaddress!,
-        billingPostcode: orderForm.billingPostcode!,
-        billingCity: orderForm.billingCity!,
-        billingAddress: orderForm.billingAddress!,
-        billingSubaddress: orderForm.billingSubaddress!,
-      },
-      create: {
-        email: orderForm.email!,
-        firstName: orderForm.firstName!,
-        lastName: orderForm.lastName!,
-        phone: orderForm.phoneNumber!,
-        shippingPostcode: orderForm.shippingPostcode!,
-        shippingCity: orderForm.shippingCity!,
-        shippingAddress: orderForm.shippingAddress!,
-        shippingSubaddress: orderForm.shippingSubaddress!,
-        billingPostcode: orderForm.billingPostcode!,
-        billingCity: orderForm.billingCity!,
-        billingAddress: orderForm.billingAddress!,
-        billingSubaddress: orderForm.billingSubaddress!,
+        email: orderForm.email,
+        firstName: orderForm.firstName,
+        lastName: orderForm.lastName,
+        phone: orderForm.phoneNumber,
       },
     });
 
     const order = await tx.order.create({
       data: {
         customerId: user.id,
-        status: "Pending",
-        shippingMode: prismaShippingModeMap[orderForm.shippingOption!],
-        paymentMode: prismaPaymentModemMap[orderForm.paymentOption!],
-        comment: orderForm.comment!,
+        status: 'Pending',
+        shippingMode:
+          prismaShippingModeMap[
+            orderForm.shippingOption as ShippingOptionValue
+          ],
+        paymentMode:
+          prismaPaymentModeMap[orderForm.paymentOption as BillingOptionValue],
+        comment: orderForm.comment,
 
-        createdAt: new Date(),
+        shippingPostcode: orderForm.shippingPostcode,
+        shippingCity: orderForm.shippingCity,
+        shippingAddress: orderForm.shippingAddress,
+        shippingSubaddress: orderForm.shippingSubaddress,
+        billingPostcode: orderForm.billingPostcode,
+        billingCity: orderForm.billingCity,
+        billingAddress: orderForm.billingAddress,
+        billingSubaddress: orderForm.billingSubaddress,
       },
     });
 

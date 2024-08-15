@@ -1,36 +1,34 @@
-const fs = require("fs");
+import NextBundleAnalyzer from '@next/bundle-analyzer';
+import createNextPluginPreval from 'next-plugin-preval/config.js';
 
-function getAppVersion() {
-  const { version } = JSON.parse(fs.readFileSync("./package.json"));
-  return version;
-}
+const withNextPluginPreval = createNextPluginPreval();
 
-const withBundleAnalyzer = require("@next/bundle-analyzer")({
-  enabled: process.env.ANALYZE === "true",
+const withBundleAnalyzer = NextBundleAnalyzer({
+  enabled: process.env.ANALYZE === 'true',
 });
+
+const withPlugins = (nextConfig) =>
+  withNextPluginPreval(withBundleAnalyzer(nextConfig));
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/,
-      use: ["@svgr/webpack"],
+      use: ['@svgr/webpack'],
     });
 
     return config;
   },
-  publicRuntimeConfig: {
-    appVersion: getAppVersion(),
-  },
   images: {
     remotePatterns: [
       {
-        protocol: "https",
-        hostname: "cdn.sanity.io",
-        port: "",
+        protocol: 'https',
+        hostname: 'cdn.sanity.io',
+        port: '',
       },
     ],
   },
 };
 
-module.exports = withBundleAnalyzer(nextConfig);
+export default withPlugins(nextConfig);
