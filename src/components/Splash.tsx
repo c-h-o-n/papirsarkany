@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from 'next/link';
 
 export default function Splash() {
   return (
@@ -10,7 +10,7 @@ export default function Splash() {
         <h1 className="font-bold max-[369px]:text-2xl">www.papirsarkany.hu</h1>
         <Link
           href="/sarkanyok"
-          className="d-btn d-btn-primary d-btn-block min-[370px]:d-btn-lg "
+          className="d-btn d-btn-primary d-btn-block min-[370px]:d-btn-lg"
         >
           Papírsárkány árusítás 1984-óta.
         </Link>

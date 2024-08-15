@@ -1,10 +1,10 @@
-import AddToCartButton from "@/components/AddToCartButton";
+import AddToCartButton from '@/components/AddToCartButton';
 
-import { currencyFormatter } from "@/lib/formatters";
-import Image from "next/image";
-import { notFound } from "next/navigation";
-import { getAllKites, getKiteBySlug } from "@/lib/sanity";
-import { MISSING_IMG_URL, NO_NAME } from "@/lib/constants";
+import { getAllKites, getKiteBySlug } from '@/lib/cms';
+import { MISSING_IMG_URL, NO_NAME } from '@/lib/constants';
+import { currencyFormatter } from '@/lib/formatters';
+import Image from 'next/image';
+import { notFound } from 'next/navigation';
 
 type Params = {
   slug: string;
@@ -21,7 +21,6 @@ export async function generateStaticParams(): Promise<Partial<Params>[]> {
 export default async function Kite({ params }: { params: Params }) {
   const kite = await getKiteBySlug(params.slug);
 
-  // TODO remove this after BUG is fixed in not-found.tsx
   if (!kite) {
     notFound();
   }
@@ -45,7 +44,7 @@ export default async function Kite({ params }: { params: Params }) {
         <div className="text-center md:text-left">
           <h1 className="font-bold">{kite.name}</h1>
           {kite.isBeginner && (
-            <h3 className=" font-bold text-primary underline underline-offset-8">
+            <h3 className="font-bold text-primary underline underline-offset-8">
               Kezdőknek ajánlott!
             </h3>
           )}
@@ -68,7 +67,7 @@ export default async function Kite({ params }: { params: Params }) {
           {kite.materials && kite.materials?.length > 0 && (
             <h3>
               <b>Anyagok: </b>
-              {kite.materials.join(", ")}
+              {kite.materials.join(', ')}
             </h3>
           )}
           {kite.windSpeed && (

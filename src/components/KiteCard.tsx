@@ -1,12 +1,13 @@
-import Link from "next/link";
-import Image from "next/image";
+import Image from 'next/image';
+import Link from 'next/link';
 
-import Card from "./Card";
-import AddToCartButton from "./AddToCartButton";
-import { currencyFormatter } from "@/lib/formatters";
-import { WithImageAsset } from "@/lib/types";
-import { Kite } from "@sanity/lib/sanity.types";
-import { MISSING_IMG_URL, NO_NAME } from "@/lib/constants";
+import { MISSING_IMG_URL, NO_NAME } from '@/lib/constants';
+import { currencyFormatter } from '@/lib/formatters';
+import { WithImageAsset } from '@/lib/types';
+import { Kite } from '@sanity/lib/sanity.types';
+import AddToCartButton from './AddToCartButton';
+
+import HoverAnimatedCard from './HoverAnimatedCard';
 
 type KiteCardProps = {
   kite: WithImageAsset<Kite>;
@@ -16,7 +17,10 @@ export default function KiteCard({ kite }: KiteCardProps) {
   return (
     <div className="relative z-0 cursor-pointer">
       <Link href={`sarkanyok/${kite.slug?.current}`}>
-        <Card className="w-full space-y-3 p-5">
+        <HoverAnimatedCard
+          tabIndex={-1}
+          className="w-full space-y-3 p-3 sm:p-4 md:p-5"
+        >
           <div>
             <h3 className="text-center font-bold">{kite.name}</h3>
 
@@ -47,7 +51,7 @@ export default function KiteCard({ kite }: KiteCardProps) {
           <div className="flex justify-end">
             <AddToCartButton product={kite} />
           </div>
-        </Card>
+        </HoverAnimatedCard>
       </Link>
     </div>
   );

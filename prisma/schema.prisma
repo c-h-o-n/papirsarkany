@@ -8,48 +8,6 @@ datasource db {
   directUrl = env("DATABASE_URL_UNPOOLED")
 }
 
-model Customer {
-  id                 Int      @id @default(autoincrement())
-  email              String   @unique
-  firstName          String
-  lastName           String
-  phone              String
-  shippingPostcode   String
-  shippingCity       String
-  shippingAddress    String
-  shippingSubaddress String
-  billingPostcode    String
-  billingCity        String
-  billingAddress     String
-  billingSubaddress  String
-  createdAt          DateTime @default(now()) @db.Timestamp(6)
-  Orders             Order[]
-}
-
-model Order {
-  id           Int          @id @default(autoincrement())
-  customerId   Int
-  status       Status
-  shippingMode ShippingMode
-  paymentMode  PaymentMode
-  comment      String?
-  createdAt    DateTime     @default(now()) @db.Timestamp(6)
-  OrderItems   OrderItem[]
-  Customers    Customer    @relation(fields: [customerId], references: [id])
-
-  @@index([customerId])
-}
-
-model OrderItem {
-  id       Int    @id @default(autoincrement())
-  orderId  Int
-  productId String
-  quantity Int
-  orders   Order @relation(fields: [orderId], references: [id])
-
-  @@index([orderId])
-}
-
 enum Status {
   Pending
   Canceled
@@ -59,9 +17,60 @@ enum Status {
 enum ShippingMode {
   PersonalPickup @map("Személyes átvétel")
   Post           @map("Postai szállítás")
+  Foxpost        @map("Foxpost automatába")
 }
 
 enum PaymentMode {
   Cash     @map("Átvételkor készpénzel")
+  Card     @map("Átvételkor bankártyával")
   Transfer @map("Előreutalással")
+}
+
+model Customer {
+  id                 Int      @id @default(autoincrement())
+  email              String   @unique
+  firstName          String
+  lastName           String
+  phone              String
+  shippingPostcode   String?
+  shippingCity       String?
+  shippingAddress    String?
+  shippingSubaddress String?
+  billingPostcode    String
+  billingCity        String
+  billingAddress     String
+  billingSubaddress  String?
+  createdAt          DateTime @default(now()) @db.Timestamp(6)
+  Orders             Order[]
+}
+
+model Order {
+  id           Int          @id @default(autoincrement())
+  customerId   Int
+  status       Status
+  shippingMode ShippingMode
+  shippingPostcode   String?
+  shippingCity       String?
+  shippingAddress    String?
+  shippingSubaddress String?
+  paymentMode  PaymentMode
+  billingPostcode    String?
+  billingCity        String?
+  billingAddress     String?
+  billingSubaddress  String?
+  comment      String?
+  createdAt    DateTime     @default(now()) @db.Timestamp(6)
+  OrderItems   OrderItem[]
+  Customers    Customer     @relation(fields: [customerId], references: [id])
+
+  @@index([customerId])
+}
+model OrderItem {
+  id        Int    @id @default(autoincrement())
+  orderId   Int
+  productId String
+  quantity  Int
+  orders    Order  @relation(fields: [orderId], references: [id])
+
+  @@index([orderId])
 }

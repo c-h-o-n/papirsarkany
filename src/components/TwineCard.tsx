@@ -1,11 +1,11 @@
-"use client";
-import { useState } from "react";
+'use client';
+import { useState } from 'react';
 
-import AddToCartButton from "./AddToCartButton";
-import { currencyFormatter, pricePerMeterFormatter } from "@/lib/formatters";
-import Card from "./Card";
-import { WithImageAsset } from "@/lib/types";
-import { Twine, TwineDiameters } from "@sanity/lib/sanity.types";
+import { currencyFormatter, pricePerMeterFormatter } from '@/lib/formatters';
+import { WithImageAsset } from '@/lib/types';
+import { Twine, TwineDiameters } from '@sanity/lib/sanity.types';
+import AddToCartButton from './AddToCartButton';
+import Card from './Card';
 
 type Props = {
   twine: WithImageAsset<Twine>;
@@ -29,7 +29,7 @@ export default function TwineCard({ twine }: Props) {
   return (
     <div className="relative z-0">
       <Card className="w-full space-y-3 p-5">
-        <h3 className="font-bold">{twine.name}</h3>{" "}
+        <h3 className="font-bold">{twine.name}</h3>{' '}
         <span>(szakítószilárdság: {selectedDiameter.tensileStrength} kg)</span>
         <div className="flex gap-2">
           <div className="flex-shrink">
@@ -55,7 +55,7 @@ export default function TwineCard({ twine }: Props) {
                 placeholder="hossz"
                 onChange={(e) => setLength(+e.target.value)}
               />
-              <span className="d-join-item inline-flex items-center justify-center rounded-r-full bg-base-200 px-4 ">
+              <span className="d-join-item inline-flex items-center justify-center rounded-r-full bg-base-200 px-4">
                 m
               </span>
             </div>
@@ -65,7 +65,7 @@ export default function TwineCard({ twine }: Props) {
           <h2>
             {currencyFormatter(
               selectedDiameter.pricePerMeter * Math.ceil(length),
-            )}{" "}
+            )}{' '}
             <span className="text-base text-gray-400">
               ({pricePerMeterFormatter(selectedDiameter.pricePerMeter)})
             </span>
