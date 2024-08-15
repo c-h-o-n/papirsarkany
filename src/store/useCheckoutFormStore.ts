@@ -1,54 +1,69 @@
-import { create } from "zustand";
-import { FormSchemaObject } from "@/lib/types";
+import 'client-only';
+import { create } from 'zustand';
+
+import { OrderFormSchemaObject } from '@/lib/types';
 
 type State = {
-  formData: FormSchemaObject;
-  isSubmitting: boolean;
+  /**
+   * Stored values of checkout form.
+   */
+  formValues: OrderFormSchemaObject;
+  step: number;
 };
 
 type Actions = {
-  setFormData: (formData: Partial<FormSchemaObject>) => void;
-  resetFormData: () => void;
-  setIsSubmitting: (value: boolean) => void;
+  setFormValues: (formData: Partial<OrderFormSchemaObject>) => void;
+  nextStep: () => void;
+  prevStep: () => void;
+  setStep: (step: number) => void;
+  resetForm: () => void;
 };
 
 const initialState: State = {
-  isSubmitting: false,
-  formData: {
-    email: "",
-    firstName: "",
-    lastName: "",
-    phoneNumber: "",
+  step: 0,
+  formValues: {
+    email: '',
+    firstName: '',
+    lastName: '',
+    phoneNumber: '',
 
-    shippingOption: "",
+    shippingOption: null,
 
-    shippingPostcode: "",
-    shippingCity: "",
-    shippingAddress: "",
-    shippingSubaddress: "",
+    shippingPostcode: '',
+    shippingCity: '',
+    shippingAddress: '',
+    shippingSubaddress: '',
 
-    paymentOption: "",
+    paymentOption: null,
 
     isSameAdressAsShipping: true,
 
-    billingPostcode: "",
-    billingCity: "",
-    billingAddress: "",
-    billingSubaddress: "",
+    billingPostcode: '',
+    billingCity: '',
+    billingAddress: '',
+    billingSubaddress: '',
 
-    comment: "",
+    comment: '',
   },
 };
-
+/**
+ * To persist form state when user navigates to other pages during checkout and the checkout form got unmounted.
+ */
 export const useCheckoutFormStore = create<State & Actions>((set) => ({
   ...initialState,
-  setIsSubmitting(value) {
-    set(() => ({ isSubmitting: value }));
+  setFormValues(formData) {
+    set((state) => ({ formValues: { ...state.formValues, ...formData } }));
   },
-  setFormData(formData) {
-    set((state) => ({ formData: { ...state.formData, ...formData } }));
+  nextStep() {
+    set((state) => ({ step: state.step + 1 }));
   },
-  resetFormData() {
+  prevStep() {
+    set((state) => ({ step: state.step - 1 }));
+  },
+  setStep(step) {
+    set(() => ({ step }));
+  },
+  resetForm() {
     set(() => ({
       ...initialState,
     }));

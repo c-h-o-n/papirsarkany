@@ -1,11 +1,10 @@
-"use client";
-import { useCartStore } from "@/store/useCartStore";
-import { useEffect } from "react";
+'use client';
+import { useCartStore } from '@/store/useCartStore';
+
+if (typeof window !== 'undefined') {
+  useCartStore.persist.rehydrate();
+}
 
 export default function CartStoreRehydrate() {
-  useEffect(() => {
-    useCartStore.persist.rehydrate();
-  }, []);
-
   return null;
 }
