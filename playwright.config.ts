@@ -37,13 +37,25 @@ export default defineConfig({
   /* Configure projects for major browsers */
   projects: [
     {
+      name: 'accept-cookie-consent',
+      testMatch: /global\.setup\.ts/,
+    },
+    {
       name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
+      use: {
+        ...devices['Desktop Chrome'],
+        storageState: 'playwright-storage-state.json',
+      },
+      dependencies: ['accept-cookie-consent'],
     },
 
     {
       name: 'firefox',
-      use: { ...devices['Desktop Firefox'] },
+      use: {
+        ...devices['Desktop Firefox'],
+        storageState: 'playwright-storage-state.json',
+      },
+      dependencies: ['accept-cookie-consent'],
     },
 
     // {
