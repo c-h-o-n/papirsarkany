@@ -1,6 +1,5 @@
 'use client';
-
-import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 import CartIcon from '@/assets/cart.svg';
 import useCart from '@/hooks/useCart';
@@ -9,6 +8,7 @@ import { blurActiveAnchorElement } from '@/lib/helpers';
 
 export default function CartDropDown() {
   const { getTotalItemCount, getTotalPrice } = useCart();
+  const router = useRouter();
 
   return (
     <div className="d-dropdown p-0 md:d-dropdown-end">
@@ -39,13 +39,15 @@ export default function CartDropDown() {
             Összesen: {currencyFormatter(getTotalPrice())}
           </span>
           <div className="d-card-actions">
-            <Link
-              href={'/kosar'}
+            <button
               className="d-btn d-btn-primary d-btn-block uppercase"
-              onClick={blurActiveAnchorElement}
+              onClick={() => {
+                router.push('/kosar');
+                blurActiveAnchorElement();
+              }}
             >
               Kosár
-            </Link>
+            </button>
           </div>
         </div>
       </div>
