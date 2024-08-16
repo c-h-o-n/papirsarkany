@@ -9,7 +9,7 @@ test('Kite order', async ({ page, browserName, isMobile }) => {
     await page.getByText('Kosárba').nth(2).click();
 
     const cartItemIndicator = await page
-      .getByTestId('cart-dropdown')
+      .getByTestId('cart-menu-item')
       .first()
       .locator('.d-indicator');
 
@@ -20,11 +20,8 @@ test('Kite order', async ({ page, browserName, isMobile }) => {
   });
 
   await test.step('Navigate to "/kosar" (cart) page', async () => {
-    // click on cart dropwdown
-    await page.getByTestId('cart-dropdown').first().click();
-
     // navigate to '/kosar' page
-    await page.getByRole('link', { name: 'Kosár', exact: true }).click();
+    await page.getByTestId('cart-menu-item').click();
   });
 
   await test.step('Modify cart items', async () => {
