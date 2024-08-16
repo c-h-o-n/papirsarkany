@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 import HomeIcon from '@/assets/home.svg';
-import CartDropDown from './CartDropDown';
+import CartMenuItem from './CartMenuItem';
 import NavMenuItem from './NavMenuItem';
 import { NavbarItems } from './Navbar';
 
@@ -43,7 +43,7 @@ export default function DesktopNavbar({ navbarItems }: DesktopNavbarProps) {
           ))}
         </ul>
         <div className="flex-none">
-          <CartDropDown />
+          <CartMenuItem />
         </div>
       </div>
     </div>
