@@ -4,18 +4,18 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "next dev",
     "build": "next build",
-    "build:analyze": "ANALYZE=true npm run build",
     "postbuild": "next-sitemap",
-    "start": "next start",
-    "lint": "next lint && tsc --noEmit",
+    "build:analyze": "ANALYZE=true npm run build",
+    "dev": "next dev",
     "format": "prettier src --write",
+    "lint": "next lint && tsc --noEmit",
+    "sanity:publish": "npx tsx sanity/lib/actions/publish-all-modified.ts",
+    "sanity:typegen": "rimraf ./sanity/schema.json && npx sanity schema extract --path sanity/schema.json && npx sanity typegen generate",
+    "start": "next start",
     "test": "playwright test",
     "test:report": "playwright test && playwright show-report",
-    "test:ui": "playwright test --ui",
-    "sanity:typegen": "rimraf ./sanity/schema.json && npx sanity schema extract --path sanity/schema.json && npx sanity typegen generate",
-    "sanity:publish": "npx tsx sanity/lib/actions/publish-all-modified.ts"
+    "test:ui": "playwright test --ui"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.4",
