@@ -10,7 +10,6 @@ export default function Error({
   reset: () => void;
 }) {
   useEffect(() => {
-    // Log the error to an error reporting service
     console.error(error);
   }, [error]);
 
@@ -20,10 +19,7 @@ export default function Error({
         <h2>Hoppá, valahol elszakadt a eresztő zsinór!</h2>
         <button
           className="d-btn d-btn-outline d-btn-neutral"
-          onClick={
-            // Attempt to recover by trying to re-render the segment
-            () => reset()
-          }
+          onClick={() => reset()}
         >
           <RestartIcon className="h-6 w-6" />
           Próbáld újra
