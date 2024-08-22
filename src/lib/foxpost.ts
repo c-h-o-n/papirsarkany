@@ -8,6 +8,7 @@ import {
   FoxpostCreateParcelRequestBody,
   FoxpostPackageSize,
   PackageInfo,
+  ValidatedOrderForm,
 } from './types';
 
 const {
@@ -35,6 +36,12 @@ export function createParcel(body: FoxpostCreateParcelRequestBody) {
     headers: foxpostHeaders,
     body: JSON.stringify([body]),
   });
+}
+
+export function getCOD(normalizedFormData: ValidatedOrderForm, totalPrice: number) {
+  return normalizedFormData.paymentOption === 'Átvételkor bankártyával'
+  ? totalPrice
+  : 0;
 }
 
 export function isFitInMaxLimit(packageInfo: PackageInfo): boolean {
