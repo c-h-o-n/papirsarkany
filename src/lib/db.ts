@@ -1,4 +1,4 @@
-import { Prisma } from '@prisma/client';
+import { Order, Prisma } from '@prisma/client';
 import { prismaPaymentModeMap, prismaShippingModeMap } from './formatters';
 import prisma from './prisma';
 import {
@@ -11,7 +11,7 @@ import {
 export async function createOrder(
   orderForm: ValidatedOrderForm,
   products: CartItem[],
-) {
+): Promise<Order> {
   return await prisma.$transaction(async (tx) => {
     const user = await tx.customer.upsert({
       create: {
