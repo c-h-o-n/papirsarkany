@@ -6,6 +6,7 @@ import CraftingIcon from '@/assets/crafting.svg';
 import HomeSection from '@/components/HomeSection';
 import ScrollTriggeredAnimatedCard from '@/components/ScrollTriggeredAnimatedCard';
 import Splash from '@/components/Splash';
+import { env } from '@/lib/env';
 
 export default function Home() {
   return (
@@ -99,7 +100,7 @@ export default function Home() {
             <h1 className="text-center font-bold">Elérhetőség</h1>
 
             <div className="text-center font-semibold">
-              <h4>{process.env.VENDOR_EMAIL_ADDRESS}</h4>
+              <h4>{env.VENDOR_EMAIL_ADDRESS}</h4>
               <h4>+36 30 9754 786</h4>
             </div>
 
