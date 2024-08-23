@@ -13,7 +13,6 @@ import {
   ValidatedOrderForm,
 } from './types';
 
-
 export function createParcel(body: FoxpostCreateParcelRequestBody) {
   const {
     FOXPOST_API_USERNAME,
@@ -21,7 +20,7 @@ export function createParcel(body: FoxpostCreateParcelRequestBody) {
     FOXPOST_API_KEY,
     FOXPOST_API_URL,
   } = env;
-  
+
   const foxpostHeaders = new Headers({
     Authorization:
       'Basic ' + btoa(FOXPOST_API_USERNAME + ':' + FOXPOST_API_PASSWORD),

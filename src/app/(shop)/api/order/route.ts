@@ -114,7 +114,7 @@ export async function POST(request: Request) {
       case error instanceof ZodError:
         return NextResponse.json(
           {
-          error: `Validation error: ${error.errors.map(error => `${error.path}: ${error.message}`).join('; ')}`,
+            error: `Validation error: ${error.errors.map((error) => `${error.path}: ${error.message}`).join('; ')}`,
           },
           { status: 403 },
         );
