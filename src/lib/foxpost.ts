@@ -13,21 +13,21 @@ import {
   ValidatedOrderForm,
 } from './types';
 
-const {
-  FOXPOST_API_USERNAME,
-  FOXPOST_API_PASSWORD,
-  FOXPOST_API_KEY,
-  FOXPOST_API_URL,
-} = env;
-
-const foxpostHeaders = new Headers({
-  Authorization:
-    'Basic ' + btoa(FOXPOST_API_USERNAME + ':' + FOXPOST_API_PASSWORD),
-  'Content-Type': 'application/json',
-  'Api-key': FOXPOST_API_KEY,
-});
 
 export function createParcel(body: FoxpostCreateParcelRequestBody) {
+  const {
+    FOXPOST_API_USERNAME,
+    FOXPOST_API_PASSWORD,
+    FOXPOST_API_KEY,
+    FOXPOST_API_URL,
+  } = env;
+  
+  const foxpostHeaders = new Headers({
+    Authorization:
+      'Basic ' + btoa(FOXPOST_API_USERNAME + ':' + FOXPOST_API_PASSWORD),
+    'Content-Type': 'application/json',
+    'Api-key': FOXPOST_API_KEY,
+  });
   return fetch(`${FOXPOST_API_URL}/parcel?isWeb=true`, {
     method: 'POST',
     headers: foxpostHeaders,
