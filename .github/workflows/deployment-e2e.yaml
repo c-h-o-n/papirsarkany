@@ -5,11 +5,18 @@ on:
 
 jobs:
   playwright-e2e-test:
-    if: ${{ secrets.VERCEL_GIT_PULL_REQUEST_ID != '' }}
+    if: ${{ github.event.deployment_status.state == 'success' }}
+
     timeout-minutes: 60
     runs-on: ubuntu-latest
     steps:
-      - run: echo ${{ secrets.VERCEL_GIT_PULL_REQUEST_ID }}
+      - run: |
+          echo "$ALLMYSECRETS"
+          echo "$ALLMYVARS"
+        shell: bash
+        env:
+          ALLMYSECRETS: ${{ toJSON(secrets) }}
+          ALLMYVARS: ${{ toJSON(vars) }}
       - name: Checkout code
         uses: actions/checkout@v4
 
@@ -17,7 +24,6 @@ jobs:
         uses: pnpm/action-setup@v4
         with:
           version: 8
-
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
