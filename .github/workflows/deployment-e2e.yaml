@@ -5,7 +5,6 @@ on:
 
 jobs:
   get-pr:
-    if: ${{ github.event.deployment.environment != 'Production' }}
     runs-on: ubuntu-latest
     outputs:
       pr_found: ${{ steps.get_pr.outputs.pr_found }}
