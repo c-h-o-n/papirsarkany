@@ -5,13 +5,13 @@ on:
 
 jobs:
   playwright-e2e-test:
-    if: ${{ github.event.deployment_status.state == 'success' }}
+    if: ${{ github.event.deployment_status.status == 'success'}}
 
     timeout-minutes: 60
     runs-on: ubuntu-latest
     steps:
       - run: |
-          echo $VERCEL_GIT_PULL_REQUEST_ID
+          echo ${{ github }}
         shell: bash
       - name: Checkout code
         uses: actions/checkout@v4
