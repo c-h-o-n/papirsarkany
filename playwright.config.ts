@@ -60,7 +60,11 @@ export default defineConfig({
 
     {
       name: 'webkit',
-      use: { ...devices['Desktop Safari'] },
+      use: {
+        ...devices['Desktop Safari'],
+        storageState: 'playwright-storage-state.json',
+      },
+      dependencies: ['accept-cookie-consent'],
     },
 
     /* Test against mobile viewports. */
