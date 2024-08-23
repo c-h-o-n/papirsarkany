@@ -11,12 +11,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: |
-          echo "$ALLMYSECRETS"
-          echo "$ALLMYVARS"
+          echo $VERCEL_GIT_PULL_REQUEST_ID
         shell: bash
-        env:
-          ALLMYSECRETS: ${{ toJSON(secrets) }}
-          ALLMYVARS: ${{ toJSON(vars) }}
       - name: Checkout code
         uses: actions/checkout@v4
 
