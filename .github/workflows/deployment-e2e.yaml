@@ -5,13 +5,14 @@ on:
 
 jobs:
   playwright-e2e-test:
-    if: ${{ github.event.deployment_status.state == 'success' && (github.event.deployment.environment == 'Production' || secrets.VERCEL_GIT_PULL_REQUEST_ID != '') }}
+    env:
+      VERCEL_GIT_PULL_REQUEST_ID: ${{ secrets.VERCEL_GIT_PULL_REQUEST_ID }}
+    if: ${{ github.event.deployment_status.state == 'success' && (github.event.deployment.environment == 'Production' || $VERCEL_GIT_PULL_REQUEST_ID != '') }}
     timeout-minutes: 60
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-
       - name: Set up pnpm
         uses: pnpm/action-setup@v4
         with:
