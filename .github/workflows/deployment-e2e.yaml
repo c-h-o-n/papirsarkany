@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: |
-          echo ${{ fromJSON(github) }}
+          echo ${{ toJSON(github) }}
         shell: bash
       - name: Checkout code
         uses: actions/checkout@v4
