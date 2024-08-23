@@ -25,6 +25,17 @@ export const orderFormSchema = [
       shippingSubaddress: z.string().optional(),
     })
     .superRefine((val, ctx) => {
+      if (
+        val.shippingOption === 'Foxpost automatába' &&
+        (!val.shippingPostcode || !val.shippingCity || !val.shippingAddress)
+      ) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ['shippingOption'],
+          message: 'Kérlek válassz egy automatát',
+        });
+      }
+
       if (val.shippingOption === 'Postai szállítás') {
         if (!val.shippingPostcode) {
           ctx.addIssue({
