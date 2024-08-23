@@ -3,6 +3,8 @@ import {
   FOXPOST_PACKAGE_HANDLING_FEES,
   FOXPOST_PACKAGE_MAX_LIMIT,
 } from './constants';
+import { env } from './env';
+import { isProdEnv } from './helpers';
 import {
   CartItem,
   FoxpostCreateParcelRequestBody,
@@ -16,18 +18,14 @@ const {
   FOXPOST_API_PASSWORD,
   FOXPOST_API_KEY,
   FOXPOST_API_URL,
-} = process.env;
+} = env;
 
-// LATER blocked by lack of Foxpost sandbox mode
-// if(!FOXPOST_API_KEY) {
-//   throw new Error('Missing Foxpost API key.')
-// }
-
+// LATER add sandbox-key (blocked by lack of Foxpost sandbox mode)
 const foxpostHeaders = new Headers({
   Authorization:
     'Basic ' + btoa(FOXPOST_API_USERNAME + ':' + FOXPOST_API_PASSWORD),
   'Content-Type': 'application/json',
-  'Api-key': FOXPOST_API_KEY || 'missing-api-key',
+  'Api-key': isProdEnv() ? FOXPOST_API_KEY : 'sandbox-key',
 });
 
 export function createParcel(body: FoxpostCreateParcelRequestBody) {
@@ -38,10 +36,13 @@ export function createParcel(body: FoxpostCreateParcelRequestBody) {
   });
 }
 
-export function getCOD(normalizedFormData: ValidatedOrderForm, totalPrice: number) {
+export function getCOD(
+  normalizedFormData: ValidatedOrderForm,
+  totalPrice: number,
+) {
   return normalizedFormData.paymentOption === 'Átvételkor bankártyával'
-  ? totalPrice
-  : 0;
+    ? totalPrice
+    : 0;
 }
 
 export function isFitInMaxLimit(packageInfo: PackageInfo): boolean {
