@@ -70,7 +70,10 @@ export default function CheckoutPayingForm() {
   };
 
   const syncShippingAndBilling = () => {
-    if (selectedShippingOption === 'Postai szállítás' && getValues('isSameAdressAsShipping')) {
+    if (
+      selectedShippingOption === 'Postai szállítás' &&
+      getValues('isSameAdressAsShipping')
+    ) {
       setValue('billingPostcode', getValues('shippingPostcode') || '');
       setValue('billingCity', getValues('shippingCity') || '');
       setValue('billingAddress', getValues('shippingAddress') || '');
