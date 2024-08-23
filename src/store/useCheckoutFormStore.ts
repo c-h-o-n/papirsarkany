@@ -27,14 +27,14 @@ const initialState: State = {
     lastName: '',
     phoneNumber: '',
 
-    shippingOption: null,
+    shippingOption: 'Személyes átvétel',
 
     shippingPostcode: '',
     shippingCity: '',
     shippingAddress: '',
     shippingSubaddress: '',
 
-    paymentOption: null,
+    paymentOption: 'Előreutalással',
 
     isSameAdressAsShipping: true,
 

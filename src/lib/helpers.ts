@@ -30,13 +30,13 @@ export function isPreviewEnv(): boolean {
 }
 
 export async function validateOrderForm(data: OrderFormSchemaObject) {
-  return await mergedFormSchemaObject.validate(data);
+  return await mergedFormSchemaObject.parseAsync(data);
 }
 
 export function normalizeOrderForm(
   data: ValidatedOrderForm,
-): ValidatedOrderForm {
-  const { shippingOption, ...restData } = data;
+) {
+  const { shippingOption, ...restData} = data;
 
   if (shippingOption === 'Személyes átvétel') {
     return {
