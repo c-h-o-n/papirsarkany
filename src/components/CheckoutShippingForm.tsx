@@ -38,7 +38,6 @@ export default function CheckoutShippingForm() {
     setValue('shippingAddress', LOCAL_PICKUP_ADDRESS.shippingAddress);
 
     trigger([
-      'shippingOption',
       'shippingPostcode',
       'shippingCity',
       'shippingAddress',

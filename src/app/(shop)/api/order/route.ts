@@ -1,5 +1,4 @@
 import { NextResponse } from 'next/server';
-import { ValidationError } from 'yup';
 
 import { createOrder } from '@/lib/db';
 import { sendEmail, sendOrderEmails, setSendgridApiKey } from '@/lib/email';
@@ -16,6 +15,7 @@ import {
   validateOrderForm,
 } from '@/lib/helpers';
 import { OrderMail, OrderRequestBody } from '@/lib/types';
+import { ZodError } from 'zod';
 
 setSendgridApiKey();
 
@@ -111,10 +111,10 @@ export async function POST(request: Request) {
     }
 
     switch (true) {
-      case error instanceof ValidationError:
+      case error instanceof ZodError:
         return NextResponse.json(
           {
-            error: `Validation error: ${error.params?.label || error.path} ${error.errors.join(',')}`,
+          error: `Validation error: ${error.errors.map(error => `${error.path}: ${error.message}`).join('; ')}`,
           },
           { status: 403 },
         );
