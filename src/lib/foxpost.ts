@@ -3,38 +3,44 @@ import {
   FOXPOST_PACKAGE_HANDLING_FEES,
   FOXPOST_PACKAGE_MAX_LIMIT,
 } from './constants';
+import { env } from './env';
+
 import {
   CartItem,
   FoxpostCreateParcelRequestBody,
   FoxpostPackageSize,
   PackageInfo,
+  ValidatedOrderForm,
 } from './types';
 
-const {
-  FOXPOST_API_USERNAME,
-  FOXPOST_API_PASSWORD,
-  FOXPOST_API_KEY,
-  FOXPOST_API_URL,
-} = process.env;
-
-// LATER blocked by lack of Foxpost sandbox mode
-// if(!FOXPOST_API_KEY) {
-//   throw new Error('Missing Foxpost API key.')
-// }
-
-const foxpostHeaders = new Headers({
-  Authorization:
-    'Basic ' + btoa(FOXPOST_API_USERNAME + ':' + FOXPOST_API_PASSWORD),
-  'Content-Type': 'application/json',
-  'Api-key': FOXPOST_API_KEY || 'missing-api-key',
-});
-
 export function createParcel(body: FoxpostCreateParcelRequestBody) {
+  const {
+    FOXPOST_API_USERNAME,
+    FOXPOST_API_PASSWORD,
+    FOXPOST_API_KEY,
+    FOXPOST_API_URL,
+  } = env;
+
+  const foxpostHeaders = new Headers({
+    Authorization:
+      'Basic ' + btoa(FOXPOST_API_USERNAME + ':' + FOXPOST_API_PASSWORD),
+    'Content-Type': 'application/json',
+    'Api-key': FOXPOST_API_KEY,
+  });
   return fetch(`${FOXPOST_API_URL}/parcel?isWeb=true`, {
     method: 'POST',
     headers: foxpostHeaders,
     body: JSON.stringify([body]),
   });
+}
+
+export function getCOD(
+  normalizedFormData: ValidatedOrderForm,
+  totalPrice: number,
+) {
+  return normalizedFormData.paymentOption === 'Átvételkor bankártyával'
+    ? totalPrice
+    : 0;
 }
 
 export function isFitInMaxLimit(packageInfo: PackageInfo): boolean {

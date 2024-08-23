@@ -1,8 +1,8 @@
 import { SanityImageMetadata } from '@sanity/lib/sanity.types';
-import { Asserts, BooleanSchema, ObjectSchema, StringSchema } from 'yup';
-import { MixedSchema } from 'yup/lib/mixed';
 
+import { z } from 'zod';
 import { validateOrderForm } from './helpers';
+import { mergedFormSchemaObject, orderFormSchema } from './order-form-schema';
 
 /**
  * All properties must be  NOT undefined values
@@ -43,36 +43,8 @@ export type CartItem = NullableDeepRequired<Product> & {
 // FIX literal types (e.g. shippingOption) are not inferred
 export type ValidatedOrderForm = Awaited<ReturnType<typeof validateOrderForm>>;
 
-export type OrderFormSchemaArray = [
-  ObjectSchema<{
-    email: StringSchema;
-    firstName: StringSchema;
-    lastName: StringSchema;
-    phoneNumber: StringSchema;
-
-    shippingOption: MixedSchema<ShippingOptionValue | null>;
-
-    shippingPostcode: StringSchema;
-    shippingCity: StringSchema;
-    shippingAddress: StringSchema;
-    shippingSubaddress: StringSchema;
-  }>,
-  ObjectSchema<{
-    isSameAdressAsShipping: BooleanSchema;
-    paymentOption: MixedSchema<BillingOptionValue | null>;
-    billingPostcode: StringSchema;
-    billingCity: StringSchema;
-    billingAddress: StringSchema;
-    billingSubaddress: StringSchema;
-  }>,
-  ObjectSchema<{
-    comment: StringSchema;
-  }>,
-];
-
-export type OrderFormSchemaObject = Asserts<OrderFormSchemaArray[0]> &
-  Asserts<OrderFormSchemaArray[1]> &
-  Asserts<OrderFormSchemaArray[2]>;
+export type Asd = z.infer<(typeof orderFormSchema)[number]>;
+export type OrderFormSchemaObject = z.infer<typeof mergedFormSchemaObject>;
 
 export type OrderRequestBody = {
   formData: OrderFormSchemaObject;

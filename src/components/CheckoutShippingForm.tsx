@@ -37,12 +37,7 @@ export default function CheckoutShippingForm() {
     setValue('shippingCity', LOCAL_PICKUP_ADDRESS.shippingCity);
     setValue('shippingAddress', LOCAL_PICKUP_ADDRESS.shippingAddress);
 
-    trigger([
-      'shippingOption',
-      'shippingPostcode',
-      'shippingCity',
-      'shippingAddress',
-    ]);
+    trigger(['shippingPostcode', 'shippingCity', 'shippingAddress']);
   };
 
   const onFoxpostOptionClick = () => {

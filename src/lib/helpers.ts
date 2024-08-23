@@ -1,3 +1,4 @@
+import { env } from './env';
 import { currencyFormatter } from './formatters';
 import { mergedFormSchemaObject } from './order-form-schema';
 import {
@@ -14,27 +15,21 @@ export function blurActiveAnchorElement() {
   }
 }
 
-export function isProdEnv() {
+export function isProdEnv(): boolean {
   return (
-    process.env.NODE_ENV === 'production' &&
-    process.env.VERCEL_ENV === 'production'
+    process.env.NODE_ENV === 'production' && env.VERCEL_ENV === 'production'
   );
 }
 
-export function isPreviewEnv() {
-  return (
-    process.env.NODE_ENV === 'production' &&
-    process.env.VERCEL_ENV === 'preview'
-  );
+export function isPreviewEnv(): boolean {
+  return process.env.NODE_ENV === 'production' && env.VERCEL_ENV === 'preview';
 }
 
 export async function validateOrderForm(data: OrderFormSchemaObject) {
-  return await mergedFormSchemaObject.validate(data);
+  return await mergedFormSchemaObject.parseAsync(data);
 }
 
-export function normalizeOrderForm(
-  data: ValidatedOrderForm,
-): ValidatedOrderForm {
+export function normalizeOrderForm(data: ValidatedOrderForm) {
   const { shippingOption, ...restData } = data;
 
   if (shippingOption === 'Személyes átvétel') {

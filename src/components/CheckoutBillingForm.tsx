@@ -70,10 +70,13 @@ export default function CheckoutPayingForm() {
   };
 
   const syncShippingAndBilling = () => {
-    if (getValues('isSameAdressAsShipping')) {
-      setValue('billingPostcode', getValues('shippingPostcode'));
-      setValue('billingCity', getValues('shippingCity'));
-      setValue('billingAddress', getValues('shippingAddress'));
+    if (
+      selectedShippingOption === 'Postai szállítás' &&
+      getValues('isSameAdressAsShipping')
+    ) {
+      setValue('billingPostcode', getValues('shippingPostcode') || '');
+      setValue('billingCity', getValues('shippingCity') || '');
+      setValue('billingAddress', getValues('shippingAddress') || '');
       setValue('billingSubaddress', getValues('shippingSubaddress'));
     }
   };
@@ -96,7 +99,7 @@ export default function CheckoutPayingForm() {
 
       <h2 className="underline underline-offset-8">Számlázási cím</h2>
 
-      {getValues('shippingOption') === 'Postai szállítás' && (
+      {selectedShippingOption === 'Postai szállítás' && (
         <div className="d-form-control pt-4">
           <label className="d-label cursor-pointer justify-start gap-x-2">
             <input
@@ -112,7 +115,7 @@ export default function CheckoutPayingForm() {
         </div>
       )}
 
-      {(getValues('shippingOption') !== 'Postai szállítás' ||
+      {(selectedShippingOption !== 'Postai szállítás' ||
         !getValues('isSameAdressAsShipping')) && (
         <>
           <div className="d-form-control">

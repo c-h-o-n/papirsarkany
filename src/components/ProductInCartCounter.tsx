@@ -63,21 +63,21 @@ export default function ProductinCartCounter({
   return (
     <div className="flex items-center">
       <div
-        className="d-btn no-animation rounded-r-none"
+        className="d-btn no-animation rounded-r-none shadow-none"
         onClick={() => handleDecreaseButtonClick()}
       >
         -
       </div>
       <input
         type="number"
-        className="h-12 w-12 bg-base-200 text-center"
+        className="h-12 w-12 bg-base-200 text-center rounded-none shadow-none"
         value={temporaryQuantityValue.toString()}
         onChange={handleChange}
         onBlur={handleBlur}
         onKeyDown={handleInputKeyPress}
       />
       <div
-        className={`d-btn no-animation rounded-l-none ${
+        className={`d-btn no-animation rounded-l-none shadow-none ${
           cartItem.quantity >= 999 && 'd-btn-disabled'
         }`}
         onClick={() => handleIncreaseButtonClick()}
