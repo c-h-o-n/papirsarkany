@@ -4,7 +4,7 @@ import {
   FOXPOST_PACKAGE_MAX_LIMIT,
 } from './constants';
 import { env } from './env';
-import { isProdEnv } from './helpers';
+
 import {
   CartItem,
   FoxpostCreateParcelRequestBody,
@@ -20,12 +20,11 @@ const {
   FOXPOST_API_URL,
 } = env;
 
-// LATER add sandbox-key (blocked by lack of Foxpost sandbox mode)
 const foxpostHeaders = new Headers({
   Authorization:
     'Basic ' + btoa(FOXPOST_API_USERNAME + ':' + FOXPOST_API_PASSWORD),
   'Content-Type': 'application/json',
-  'Api-key': isProdEnv() ? FOXPOST_API_KEY : 'sandbox-key',
+  'Api-key': FOXPOST_API_KEY,
 });
 
 export function createParcel(body: FoxpostCreateParcelRequestBody) {
