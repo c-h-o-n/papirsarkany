@@ -11,8 +11,7 @@ type FoxpostMapProps = {
 };
 
 export default function FoxpostMap({ hideMap }: FoxpostMapProps) {
-  const { setValue, trigger, register } =
-    useFormContext<OrderFormSchemaObject>();
+  const { setValue, trigger } = useFormContext<OrderFormSchemaObject>();
 
   const setFoxpostData = useFoxpostParcelBoxStore(
     (state) => state.setFoxpostData,
@@ -52,31 +51,14 @@ export default function FoxpostMap({ hideMap }: FoxpostMapProps) {
   }, [hideMap, setFoxpostData, setValue, trigger]);
 
   return (
-    <>
-      <input
-        type="text"
-        className="opacity-0 h-0 w-0 block"
-        {...register('shippingPostcode')}
-      />
-      <input
-        type="text"
-        className="opacity-0 h-0 w-0 block"
-        {...register('shippingCity')}
-      />
-      <input
-        type="text"
-        className="opacity-0 h-0 w-0 block"
-        {...register('shippingAddress')}
-      />
-      <Card className="p-4">
-        <iframe
-          className="rounded h-[640px] min-[504px]:h-[820px] min-[1096px]:h-[715px]"
-          loading="lazy"
-          src="https://cdn.foxpost.hu/apt-finder/v1/app/"
-          width="100%"
-          height="715px"
-        ></iframe>
-      </Card>
-    </>
+    <Card className="p-4">
+      <iframe
+        className="rounded h-[640px] min-[504px]:h-[820px] min-[1096px]:h-[715px]"
+        loading="lazy"
+        src="https://cdn.foxpost.hu/apt-finder/v1/app/"
+        width="100%"
+        height="715px"
+      ></iframe>
+    </Card>
   );
 }
