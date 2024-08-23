@@ -6,13 +6,11 @@ on:
 jobs:
   playwright-e2e-test:
     if: ${{ github.event.deployment_status.state == 'success' }}
-    env:
-      PR_NUMBER: ${{ github.event.number }}
     timeout-minutes: 60
     runs-on: ubuntu-latest
     steps:
       - run: |
-          printenv
+          echo ${{ fromJSON(github) }}
         shell: bash
       - name: Checkout code
         uses: actions/checkout@v4
