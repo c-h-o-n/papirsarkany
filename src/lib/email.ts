@@ -1,15 +1,11 @@
 import { Order } from '@prisma/client';
 import sgMail, { MailDataRequired } from '@sendgrid/mail';
 import { CUSTOMER_TEMPLATE_ID, VENDOR_TEMPLATE_ID } from './constants';
+import { env } from './env';
 import { OrderMail } from './types';
 
 export function setSendgridApiKey() {
-  const { SENDGRID_API_KEY } = process.env;
-
-  if (!SENDGRID_API_KEY) {
-    throw new Error('Missing sendgrid API key.');
-  }
-
+  const { SENDGRID_API_KEY } = env;
   sgMail.setApiKey(SENDGRID_API_KEY);
 }
 
@@ -20,11 +16,7 @@ export async function sendEmail(mailData: MailDataRequired) {
 }
 
 export async function sendOrderEmails(order: Order, orderEmailData: OrderMail) {
-  const { VENDOR_EMAIL_ADDRESS } = process.env;
-
-  if (!VENDOR_EMAIL_ADDRESS) {
-    throw new Error('Missing vendor email.');
-  }
+  const { VENDOR_EMAIL_ADDRESS } = env;
 
   const vendorMail: MailDataRequired = {
     from: 'mail.papirsarkany@gmail.com',

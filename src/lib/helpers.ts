@@ -1,3 +1,4 @@
+import { env } from './env';
 import { currencyFormatter } from './formatters';
 import { mergedFormSchemaObject } from './order-form-schema';
 import {
@@ -17,14 +18,14 @@ export function blurActiveAnchorElement() {
 export function isProdEnv() {
   return (
     process.env.NODE_ENV === 'production' &&
-    process.env.VERCEL_ENV === 'production'
+    env.VERCEL_ENV === 'production'
   );
 }
 
 export function isPreviewEnv() {
   return (
     process.env.NODE_ENV === 'production' &&
-    process.env.VERCEL_ENV === 'preview'
+    env.VERCEL_ENV === 'preview'
   );
 }
 
