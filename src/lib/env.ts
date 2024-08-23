@@ -11,13 +11,13 @@ export const env = createEnv({
 
     SITE_URL: z.string().url(),
 
-    SANITY_API_TOKEN: z.string(),
+    SANITY_API_TOKEN: z.string().optional(),
 
     FOXPOST_API_URL: z.string().url(),
     FOXPOST_API_USERNAME: z.string(),
     FOXPOST_API_PASSWORD: z.string(),
     FOXPOST_API_KEY: z.string(),
-    
+
     VERCEL_ENV: z.enum(['preview', 'production', 'development']).optional(),
   },
   client: {
@@ -39,11 +39,13 @@ export const env = createEnv({
     NEXT_PUBLIC_SANITY_API_VERSION: process.env.NEXT_PUBLIC_SANITY_API_VERSION,
     SANITY_API_TOKEN: process.env.SANITY_API_TOKEN,
 
-    FOXPOST_API_URL: process.env.FOXPOST_API_URL,
-    FOXPOST_API_USERNAME: process.env.FOXPOST_API_USERNAME,
-    FOXPOST_API_PASSWORD: process.env.FOXPOST_API_PASSWORD,
-    FOXPOST_API_KEY: process.env.FOXPOST_API_KEY,
-
+    // LATER add sandbox cred (blocked by lack of Foxpost sandbox mode)
+    FOXPOST_API_URL: process.env.FOXPOST_API_URL || 'missing-sandbox-api-url',
+    FOXPOST_API_USERNAME:
+      process.env.FOXPOST_API_USERNAME || 'missing-sandbox-api-username',
+    FOXPOST_API_PASSWORD:
+      process.env.FOXPOST_API_PASSWORD || 'missing-sandbox-api-password',
+    FOXPOST_API_KEY: process.env.FOXPOST_API_KEY || 'missing-sandbox-api-key',
 
     VERCEL_ENV: process.env.VERCEL_ENV,
   },

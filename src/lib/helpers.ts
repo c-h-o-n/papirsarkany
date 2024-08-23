@@ -15,14 +15,14 @@ export function blurActiveAnchorElement() {
   }
 }
 
-export function isProdEnv() {
+export function isProdEnv(): boolean {
   return (
     process.env.NODE_ENV === 'production' &&
     env.VERCEL_ENV === 'production'
   );
 }
 
-export function isPreviewEnv() {
+export function isPreviewEnv(): boolean {
   return (
     process.env.NODE_ENV === 'production' &&
     env.VERCEL_ENV === 'preview'
