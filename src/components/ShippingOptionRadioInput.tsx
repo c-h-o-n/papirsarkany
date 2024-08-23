@@ -76,7 +76,8 @@ export default function ShippingOptionRadioInput({
                 missingShippingInfoErrorMessage}
             </span>
             <span className="d-label-text text-lg select-text">
-              {`${getValues('shippingPostcode')} ${getValues('shippingCity')} ${getValues('shippingAddress')}`}
+              {getValues('shippingOption') !== 'Postai szállítás' &&
+                `${getValues('shippingPostcode')} ${getValues('shippingCity')} ${getValues('shippingAddress')}`}
             </span>
           </div>
         )}
