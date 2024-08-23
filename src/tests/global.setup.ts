@@ -6,9 +6,7 @@ setup('bypass cookie consent', async ({ page }) => {
   await page.waitForLoadState('networkidle');
 
   await page.evaluate(() => {
-    console.log('eval');
     if (window.Truendo) {
-      console.log(window.Truendo);
       window.Truendo.acceptAllCookies();
     }
   });

@@ -14,7 +14,7 @@ export default defineConfig({
   /* Run tests in files in parallel */
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
-  forbidOnly: !!process.env.CI,
+  forbidOnly: Boolean(process.env.CI),
   /* Retry on CI only */
   retries: process.env.CI ? 2 : 0,
   /* Opt out of parallel tests on CI. */
@@ -60,7 +60,11 @@ export default defineConfig({
 
     {
       name: 'webkit',
-      use: { ...devices['Desktop Safari'] },
+      use: {
+        ...devices['Desktop Safari'],
+        storageState: 'playwright-storage-state.json',
+      },
+      dependencies: ['accept-cookie-consent'],
     },
 
     /* Test against mobile viewports. */
@@ -86,7 +90,7 @@ export default defineConfig({
 
   /* Run your local dev server before starting the tests */
   webServer: {
-    command: 'npm run dev',
+    command: 'pnpm run dev',
     url: 'http://127.0.0.1:3000',
     reuseExistingServer: !process.env.CI,
   },

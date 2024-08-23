@@ -1,73 +1,78 @@
-import { boolean, mixed, object, string } from 'yup';
+import { z } from 'zod';
 
-import '@/lib/yupConfig';
+export const orderFormSchema = [
+  z
+    .object({
+      email: z.string().min(1, 'Kötelező mező').email('Érvénytelen email cím'),
+      firstName: z.string().min(1, 'Kötelező mező'),
+      lastName: z.string().min(1, 'Kötelező mező'),
+      phoneNumber: z
+        .string()
+        .min(1, 'Kötelező mező')
+        .regex(
+          /^(\+36)(20|30|31|70|50|51)\d{7}$/,
+          'Érvényes magyar telefonszámnak kell lennie +36 formátumban pl.: +36201234567',
+        ),
 
-export const formSchemaArray = [
-  object({
-    email: string().required().email().label('Email'),
-    firstName: string().required().label('Keresztnév'),
-    lastName: string().required().label('Vezetéknév'),
-    phoneNumber: string()
-      .required()
-      .matches(
-        /^(\+36)(20|30|31|70|50|51)\d{7}$/,
-        'Érvényes magyar telefonszámnak kell lennie +36 formátumban pl.: +36201234567',
-      )
-      .matches(
-        /^(\+36)(20|30|31|70|50|51)\d{7}$/,
-        'Érvényes magyar telefonszámnak kell lennie pl.: +36201234567',
-      )
-      .label('Telefonszám'),
-    shippingOption: mixed()
-      .required(({ label }) => `Kérlek válassz egy ${label.toLowerCase()}ot`)
-      .oneOf(
+      shippingOption: z.enum(
         ['Személyes átvétel', 'Postai szállítás', 'Foxpost automatába'],
-        'Érvénytelen szállítási mód',
-      )
-      .label('Szállitási mód'),
+        { message: 'Kérlek válassz egy szállítási módot!' },
+      ),
 
-    shippingPostcode: string()
-      .when('shippingOption', {
-        is: 'Foxpost automatába',
-        then: (schema) => schema.required(),
-      })
-      .label('Irányítószám'),
-    shippingCity: string()
-      .when('shippingOption', {
-        is: 'Foxpost automatába',
-        then: (schema) => schema.required(),
-      })
-      .label('Város'),
-    shippingAddress: string()
-      .when('shippingOption', {
-        is: 'Foxpost automatába',
-        then: (schema) => schema.required(),
-      })
-      .label('Cím'),
-    shippingSubaddress: string().label('Másodlagos cím'),
+      shippingPostcode: z.string().optional(),
+      shippingCity: z.string().optional(),
+      shippingAddress: z.string().optional(),
+      shippingSubaddress: z.string().optional(),
+    })
+    .superRefine((val, ctx) => {
+      if (val.shippingOption === 'Postai szállítás') {
+        if (!val.shippingPostcode) {
+          ctx.addIssue({
+            code: z.ZodIssueCode.custom,
+            path: ['shippingPostcode'],
+            message: 'Kötelező mező',
+          });
+        }
+
+        if (!val.shippingCity) {
+          ctx.addIssue({
+            code: z.ZodIssueCode.custom,
+            path: ['shippingCity'],
+            message: 'Kötelező mező',
+          });
+        }
+
+        if (!val.shippingAddress) {
+          ctx.addIssue({
+            code: z.ZodIssueCode.custom,
+            path: ['shippingAddress'],
+            message: 'Kötelező mező',
+          });
+        }
+
+        return false;
+      }
+      return true;
+    }),
+  z.object({
+    paymentOption: z.enum(
+      ['Előreutalással', 'Átvételkor készpénzel', 'Átvételkor bankártyával'],
+      { message: 'Kérlek válassz egy fizetési módot!' },
+    ),
+
+    isSameAdressAsShipping: z.boolean(),
+
+    billingPostcode: z.string().min(1, 'Kötelező mező'),
+    billingCity: z.string().min(1, 'Kötelező mező'),
+    billingAddress: z.string().min(1, 'Kötelező mező'),
+    billingSubaddress: z.string().optional(),
   }),
-  object({
-    paymentOption: mixed()
-      .required(({ label }) => `Kérlek válassz egy ${label.toLowerCase()}ot`)
-      .oneOf(
-        ['Előreutalással', 'Átvételkor készpénzel', 'Átvételkor bankártyával'],
-        'Érvénytelen fizetési mód',
-      )
-      .label('Fizetési mód'),
-    isSameAdressAsShipping: boolean().default(true),
-    billingPostcode: string().required().label('Irányítószám'),
-    billingCity: string().required().label('Város'),
-    billingAddress: string().required().label('Cím'),
-    billingSubaddress: string().label('Másodlagos cím'),
-  }),
-  object({
-    comment: string(),
+  z.object({
+    comment: z.string().optional(),
   }),
 ] as const;
 
-export const mergedFormSchemaObject = formSchemaArray.reduce(
-  (acc, schema) => acc.shape(schema.fields),
-  object(),
-) as (typeof formSchemaArray)[0] &
-  (typeof formSchemaArray)[1] &
-  (typeof formSchemaArray)[2];
+export const mergedFormSchemaObject = z.intersection(
+  z.intersection(orderFormSchema[0], orderFormSchema[1]),
+  orderFormSchema[2],
+);
