@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: |
-          echo number: ${{ github.event.number }}
+          printenv
         shell: bash
       - name: Checkout code
         uses: actions/checkout@v4
