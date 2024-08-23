@@ -1,8 +1,8 @@
 import { SanityImageMetadata } from '@sanity/lib/sanity.types';
 
+import { z } from 'zod';
 import { validateOrderForm } from './helpers';
 import { mergedFormSchemaObject, orderFormSchema } from './order-form-schema';
-import { z } from 'zod';
 
 /**
  * All properties must be  NOT undefined values
@@ -43,9 +43,8 @@ export type CartItem = NullableDeepRequired<Product> & {
 // FIX literal types (e.g. shippingOption) are not inferred
 export type ValidatedOrderForm = Awaited<ReturnType<typeof validateOrderForm>>;
 
-
-export type Asd = z.infer<typeof orderFormSchema[number]>
-export type OrderFormSchemaObject = z.infer<typeof mergedFormSchemaObject>
+export type Asd = z.infer<(typeof orderFormSchema)[number]>;
+export type OrderFormSchemaObject = z.infer<typeof mergedFormSchemaObject>;
 
 export type OrderRequestBody = {
   formData: OrderFormSchemaObject;

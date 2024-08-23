@@ -127,9 +127,7 @@ export default function OrderFormStepper({ children }: CheckoutStepperProps) {
     <div className={`container py-8 ${!isLast && 'max-w-screen-xl'}`}>
       <FormProvider {...formMethods}>
         <form
-          onSubmit={handleSubmit(
-            async (data) => await onSubmit(data)
-          )}
+          onSubmit={handleSubmit(async (data) => await onSubmit(data))}
           className="[&>h2]:py-2 space-y-4"
         >
           <div className="mx-auto max-w-screen-md">

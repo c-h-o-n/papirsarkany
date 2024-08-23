@@ -17,26 +17,20 @@ export function blurActiveAnchorElement() {
 
 export function isProdEnv(): boolean {
   return (
-    process.env.NODE_ENV === 'production' &&
-    env.VERCEL_ENV === 'production'
+    process.env.NODE_ENV === 'production' && env.VERCEL_ENV === 'production'
   );
 }
 
 export function isPreviewEnv(): boolean {
-  return (
-    process.env.NODE_ENV === 'production' &&
-    env.VERCEL_ENV === 'preview'
-  );
+  return process.env.NODE_ENV === 'production' && env.VERCEL_ENV === 'preview';
 }
 
 export async function validateOrderForm(data: OrderFormSchemaObject) {
   return await mergedFormSchemaObject.parseAsync(data);
 }
 
-export function normalizeOrderForm(
-  data: ValidatedOrderForm,
-) {
-  const { shippingOption, ...restData} = data;
+export function normalizeOrderForm(data: ValidatedOrderForm) {
+  const { shippingOption, ...restData } = data;
 
   if (shippingOption === 'Személyes átvétel') {
     return {

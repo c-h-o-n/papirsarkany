@@ -54,25 +54,25 @@ export const orderFormSchema = [
       }
       return true;
     }),
-  z
-    .object({
-      paymentOption: z.enum(
-        ['Előreutalással', 'Átvételkor készpénzel', 'Átvételkor bankártyával'],
-        { message: 'Kérlek válassz egy fizetési módot!' },
-      ),
+  z.object({
+    paymentOption: z.enum(
+      ['Előreutalással', 'Átvételkor készpénzel', 'Átvételkor bankártyával'],
+      { message: 'Kérlek válassz egy fizetési módot!' },
+    ),
 
-      isSameAdressAsShipping: z.boolean(),
+    isSameAdressAsShipping: z.boolean(),
 
-      billingPostcode: z.string().min(1, 'Kötelező mező'),
-      billingCity: z.string().min(1, 'Kötelező mező'),
-      billingAddress: z.string().min(1, 'Kötelező mező'),
-      billingSubaddress: z.string().optional(),
-    }),
+    billingPostcode: z.string().min(1, 'Kötelező mező'),
+    billingCity: z.string().min(1, 'Kötelező mező'),
+    billingAddress: z.string().min(1, 'Kötelező mező'),
+    billingSubaddress: z.string().optional(),
+  }),
   z.object({
     comment: z.string().optional(),
   }),
 ] as const;
 
-export const mergedFormSchemaObject = z.intersection(z.intersection(orderFormSchema[0], orderFormSchema[1]), orderFormSchema[2])
-
-
+export const mergedFormSchemaObject = z.intersection(
+  z.intersection(orderFormSchema[0], orderFormSchema[1]),
+  orderFormSchema[2],
+);
