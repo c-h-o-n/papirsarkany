@@ -40,7 +40,7 @@ export const env = createEnv({
     SANITY_API_TOKEN: process.env.SANITY_API_TOKEN,
 
     // LATER add sandbox cred (blocked by lack of Foxpost sandbox mode)
-    FOXPOST_API_URL: process.env.FOXPOST_API_URL || 'missing-sandbox-api-url',
+    FOXPOST_API_URL: process.env.FOXPOST_API_URL || 'https://foxpost.hu/',
     FOXPOST_API_USERNAME:
       process.env.FOXPOST_API_USERNAME || 'missing-sandbox-api-username',
     FOXPOST_API_PASSWORD:
