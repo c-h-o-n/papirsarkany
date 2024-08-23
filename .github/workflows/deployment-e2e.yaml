@@ -5,14 +5,14 @@ on:
 
 jobs:
   playwright-e2e-test:
-    if: ${{ github.event.deployment_status.state == 'success'}}
-
+    if: ${{ github.event.deployment_status.state == 'success' }}
+    env:
+      PR_NUMBER: ${{ github.event.number }}
     timeout-minutes: 60
     runs-on: ubuntu-latest
     steps:
       - run: |
-          echo ${{ github.env }}
-          echo ${{ github.event }}
+          echo number: ${{ github.event.number }}
         shell: bash
       - name: Checkout code
         uses: actions/checkout@v4
