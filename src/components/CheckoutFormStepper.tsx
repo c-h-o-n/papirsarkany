@@ -62,8 +62,9 @@ export default function OrderFormStepper({ children }: CheckoutStepperProps) {
   }, [setBillingFee, setShippingFee, setStep]);
 
   const onSubmit = async (data: OrderFormSchemaObject) => {
+    setFormValues(data);
+
     if (!isLast) {
-      setFormValues(data);
       nextStep();
       return;
     }
@@ -73,13 +74,11 @@ export default function OrderFormStepper({ children }: CheckoutStepperProps) {
     }
 
     try {
-      const res = await sendOrder(formValues);
+      const fullFormData = {...formValues, ...data}
+      const res = await sendOrder(fullFormData);
 
       if (!res.ok) {
         throw new Error(res.statusText);
-      }
-      if (res.status !== 200) {
-        return;
       }
 
       await resetFormStores();
