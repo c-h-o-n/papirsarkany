@@ -1,10 +1,10 @@
 'use client';
+import { MouseEvent, useState } from 'react';
 
 import { CartItem, Product } from '@/lib/types';
 import { useCartStore } from '@/store/useCartStore';
-import Link from 'next/link';
-import { MouseEvent, useState } from 'react';
-import { createPortal } from 'react-dom';
+import ErrorToast from './ErrorToast';
+import SuccessToast from './SuccessToast';
 
 type AddToCartProps = {
   product: Product;
@@ -70,29 +70,11 @@ export default function AddToCartButton({ product }: AddToCartProps) {
 
   return (
     <>
-      {isSuccess
-        ? createPortal(
-            <Link href="/kosar">
-              <div className="d-toast d-toast-end d-toast-bottom z-50">
-                <div className="d-alert d-alert-success">
-                  <span>Sikeresen hozzádva a kosárhoz.</span>
-                </div>
-              </div>
-            </Link>,
-            document.body,
-          )
-        : undefined}
+      {isSuccess ? (
+        <SuccessToast href="/kosar" message="Sikeresen hozzádva a kosárhoz." />
+      ) : undefined}
 
-      {error
-        ? createPortal(
-            <div className="d-toast d-toast-end d-toast-bottom z-50">
-              <div className="d-alert d-alert-error ">
-                <span className="text-white font-semibold">Hiba: {error}.</span>
-              </div>
-            </div>,
-            document.body,
-          )
-        : undefined}
+      {error ? <ErrorToast message={`Hiba: ${error}.`} /> : undefined}
 
       <button
         className="d-btn d-btn-primary uppercase active:!scale-105"
