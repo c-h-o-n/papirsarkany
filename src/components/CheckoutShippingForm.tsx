@@ -9,7 +9,7 @@ import {
   LOCAL_PICKUP_ADDRESS,
 } from '@/lib/constants';
 import { getTotalPackageInfo, isFitInMaxLimit } from '@/lib/foxpost';
-import { OrderFormSchemaObject } from '@/lib/types';
+import { OrderForm } from '@/lib/types';
 import { useCartStore } from '@/store/useCartStore';
 import FoxpostMap from './FoxpostMap';
 import LazyLoadFramerMotion from './LazyLoadFramerMotion';
@@ -23,7 +23,7 @@ export default function CheckoutShippingForm() {
     trigger,
     getValues,
     formState: { errors },
-  } = useFormContext<OrderFormSchemaObject>();
+  } = useFormContext<OrderForm>();
   const cart = useCartStore((state) => state.cart);
 
   const [isShowFoxpostMap, setIsShowFoxpostMap] = useState(false);

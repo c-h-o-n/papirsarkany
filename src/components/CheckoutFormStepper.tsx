@@ -6,7 +6,7 @@ import { FormProvider, useForm } from 'react-hook-form';
 
 import useCart from '@/hooks/useCart';
 import { orderFormSchema } from '@/lib/order-form-schema';
-import { OrderFormSchemaObject, OrderRequestBody } from '@/lib/types';
+import { OrderForm, OrderRequestBody } from '@/lib/types';
 import { useCartStore } from '@/store/useCartStore';
 import { useCheckoutFormStore } from '@/store/useCheckoutFormStore';
 import { useFoxpostParcelBoxStore } from '@/store/useFoxpostParcelBoxStore';
@@ -40,7 +40,7 @@ export default function OrderFormStepper({ children }: CheckoutStepperProps) {
 
   const isLast = step === Children.count(children) - 1;
 
-  const formMethods = useForm<OrderFormSchemaObject>({
+  const formMethods = useForm<OrderForm>({
     resolver: zodResolver(orderFormSchema[step]),
     defaultValues: {
       isSameAdressAsShipping: true,
@@ -61,7 +61,7 @@ export default function OrderFormStepper({ children }: CheckoutStepperProps) {
     };
   }, [setBillingFee, setShippingFee, setStep]);
 
-  const onSubmit = async (data: OrderFormSchemaObject) => {
+  const onSubmit = async (data: OrderForm) => {
     setFormValues(data);
 
     if (!isLast) {
@@ -74,7 +74,7 @@ export default function OrderFormStepper({ children }: CheckoutStepperProps) {
     }
 
     try {
-      const fullFormData = {...formValues, ...data}
+      const fullFormData = { ...formValues, ...data };
       const res = await sendOrder(fullFormData);
 
       if (!res.ok) {
@@ -97,7 +97,7 @@ export default function OrderFormStepper({ children }: CheckoutStepperProps) {
     });
   };
 
-  const sendOrder = (formData: OrderFormSchemaObject) => {
+  const sendOrder = (formData: OrderForm) => {
     const totalPrice = getTotalPrice();
     return fetch('/api/order', {
       method: 'POST',

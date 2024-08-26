@@ -5,10 +5,10 @@ import { Fragment } from 'react';
 
 import TrashCanIcon from '@/assets/trash-can.svg';
 import useCart from '@/hooks/useCart';
-import { MISSING_IMG_URL } from '@/lib/constants';
+import { MISSING_IMG_URL, NO_NAME } from '@/lib/constants';
 import { currencyFormatter } from '@/lib/formatters';
 import { formatShippingFee } from '@/lib/helpers';
-import { CartItem } from '@/lib/types';
+import { CartItem } from '@/lib/validation-schemas';
 import { useCartStore } from '@/store/useCartStore';
 import Card from './Card';
 import ProductinCartCounter from './ProductInCartCounter';
@@ -29,8 +29,8 @@ export default function OrderSummaryCard({
 
   const totalPrice = getTotalPrice();
 
-  const onDeleteClick = (product: CartItem) => {
-    removeFromCart(product);
+  const onDeleteClick = (cartItem: CartItem) => {
+    removeFromCart(cartItem);
   };
 
   if (cart.length < 1) {
@@ -52,7 +52,7 @@ export default function OrderSummaryCard({
                   {item.image && (
                     <Image
                       src={item.image.asset?.url || MISSING_IMG_URL}
-                      alt={item.name}
+                      alt={item.name || NO_NAME}
                       width={128}
                       height={128}
                       placeholder="blur"
@@ -121,7 +121,7 @@ export default function OrderSummaryCard({
               {item.image && (
                 <Image
                   src={item.image.asset?.url || MISSING_IMG_URL}
-                  alt={item.name}
+                  alt={item.name || NO_NAME}
                   width={128}
                   height={128}
                   placeholder="blur"

@@ -1,18 +1,18 @@
 import 'client-only';
 import { create } from 'zustand';
 
-import { OrderFormSchemaObject } from '@/lib/types';
+import { OrderForm } from '@/lib/types';
 
 type State = {
   /**
    * Stored values of checkout form.
    */
-  formValues: OrderFormSchemaObject;
+  formValues: OrderForm;
   step: number;
 };
 
 type Actions = {
-  setFormValues: (formData: Partial<OrderFormSchemaObject>) => void;
+  setFormValues: (formData: Partial<OrderForm>) => void;
   nextStep: () => void;
   prevStep: () => void;
   setStep: (step: number) => void;

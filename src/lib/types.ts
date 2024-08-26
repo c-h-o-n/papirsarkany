@@ -1,8 +1,15 @@
-import { SanityImageMetadata } from '@sanity/lib/sanity.types';
+import {
+  Kite,
+  Reel,
+  Rod,
+  SanityImageMetadata,
+  Twine,
+} from '@sanity/lib/sanity.types';
 
 import { z } from 'zod';
 import { validateOrderForm } from './helpers';
-import { mergedFormSchemaObject, orderFormSchema } from './order-form-schema';
+import { mergedFormSchemaObject } from './order-form-schema';
+import { CartItem } from './validation-schemas';
 
 /**
  * All properties must be  NOT undefined values
@@ -22,32 +29,32 @@ export type WithImageAsset<T> = Omit<T, 'image'> & {
   } | null;
 };
 
-export type Product = WithImageAsset<{
-  _id: string;
-  name?: string;
-  price?: number;
-  packageInfo?: {
-    x?: number;
-    y?: number;
-    z?: number;
-    weight?: number;
-  };
-}>;
+// export type Product = WithImageAsset<{
+//   _id: string;
+//   name?: string;
+//   price?: number;
+//   packageInfo?: {
+//     x?: number;
+//     y?: number;
+//     z?: number;
+//     weight?: number;
+//   };
+// }>;
+
+export type InferredProduct =
+  | WithImageAsset<Kite>
+  | WithImageAsset<Twine>
+  | WithImageAsset<Reel>
+  | WithImageAsset<Rod>;
 
 export type ProductTypes = 'kite' | 'rod' | 'reel' | 'twine';
 
-export type CartItem = NullableDeepRequired<Product> & {
-  quantity: number;
-};
-
-// FIX literal types (e.g. shippingOption) are not inferred
 export type ValidatedOrderForm = Awaited<ReturnType<typeof validateOrderForm>>;
 
-export type Asd = z.infer<(typeof orderFormSchema)[number]>;
-export type OrderFormSchemaObject = z.infer<typeof mergedFormSchemaObject>;
+export type OrderForm = z.infer<typeof mergedFormSchemaObject>;
 
 export type OrderRequestBody = {
-  formData: OrderFormSchemaObject;
+  formData: OrderForm;
   cart: CartItem[];
   totalPrice: number;
   foxpostOperatorId?: string;

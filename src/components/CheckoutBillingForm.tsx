@@ -4,7 +4,7 @@ import { useFormContext } from 'react-hook-form';
 
 import {
   BillingOptionValue,
-  OrderFormSchemaObject,
+  OrderForm,
   ShippingOptionValue,
 } from '@/lib/types';
 import { useCheckoutFormStore } from '@/store/useCheckoutFormStore';
@@ -17,7 +17,7 @@ export default function CheckoutPayingForm() {
     getValues,
     setValue,
     trigger,
-  } = useFormContext<OrderFormSchemaObject>();
+  } = useFormContext<OrderForm>();
 
   const prevStep = useCheckoutFormStore((state) => state.prevStep);
 

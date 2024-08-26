@@ -3,10 +3,10 @@ import { prismaPaymentModeMap, prismaShippingModeMap } from './formatters';
 import prisma from './prisma';
 import {
   BillingOptionValue,
-  CartItem,
   ShippingOptionValue,
   ValidatedOrderForm,
 } from './types';
+import { CartItem } from './validation-schemas';
 
 export async function createOrder(
   orderForm: ValidatedOrderForm,

@@ -1,70 +1,57 @@
 'use client';
 import { MouseEvent, useState } from 'react';
+import { ZodError } from 'zod';
 
-import { CartItem, Product } from '@/lib/types';
+import { formatZodErrors } from '@/lib/formatters';
+import { InferredProduct } from '@/lib/types';
+import { cartItemValidationSchema } from '@/lib/validation-schemas';
 import { useCartStore } from '@/store/useCartStore';
 import ErrorToast from './ErrorToast';
 import SuccessToast from './SuccessToast';
 
 type AddToCartProps = {
-  product: Product;
+  product: InferredProduct & { price?: number };
+  onClick?(): () => void;
 };
 
-export default function AddToCartButton({ product }: AddToCartProps) {
-  const addToCart = useCartStore((state) => state.addToCart);
+export default function AddToCartButton({ product, onClick }: AddToCartProps) {
   const [isSuccess, setIsSuccess] = useState(false);
   const [error, setError] = useState<string>();
 
-  const onClick = (e: MouseEvent) => {
+  const addToCart = useCartStore((state) => state.addToCart);
+
+  const onButtonClick = (e: MouseEvent) => {
     e.preventDefault();
 
     try {
-      if (!product.name) {
-        throw new Error('Hiányzó név');
+      if (onClick) {
+        onClick();
       }
 
-      if (typeof product.price !== 'number') {
-        throw new Error('Hiányzó vagy érvénytelen ár');
-      }
+      const cartItem = Object.assign(
+        { image: product.image },
+        cartItemValidationSchema.parse({
+          ...product,
+          quantity: 1,
+        }),
+      );
 
-      if (!product.packageInfo) {
-        throw new Error('Hiányzó csomag információk');
-      }
-
-      if (
-        typeof product.packageInfo.x !== 'number' ||
-        typeof product.packageInfo.y !== 'number' ||
-        typeof product.packageInfo.z !== 'number' ||
-        typeof product.packageInfo.weight !== 'number'
-      ) {
-        throw new Error('Hiányzó vagy érvénytelen csomag információk');
-      }
+      addToCart(cartItem);
 
       setIsSuccess(true);
 
       setTimeout(() => setIsSuccess(false), 3000);
-
-      const cartItem: CartItem = {
-        _id: product._id,
-        name: product.name,
-        price: product.price,
-        image: product.image,
-        packageInfo: {
-          x: product.packageInfo.x,
-          y: product.packageInfo.y,
-          z: product.packageInfo.z,
-          weight: product.packageInfo.weight,
-        },
-        quantity: 1,
-      };
-
-      addToCart(cartItem);
     } catch (error) {
       if (error instanceof Error) {
         setError(error.message);
-
-        setTimeout(() => setError(undefined), 3000);
       }
+
+      if (error instanceof ZodError) {
+        console.log(error.errors);
+        setError(formatZodErrors(error));
+      }
+
+      setTimeout(() => setError(undefined), 5000);
     }
   };
 
@@ -78,7 +65,7 @@ export default function AddToCartButton({ product }: AddToCartProps) {
 
       <button
         className="d-btn d-btn-primary uppercase active:!scale-105"
-        onClick={onClick}
+        onClick={onButtonClick}
       >
         Kosárba
       </button>

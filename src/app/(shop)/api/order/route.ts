@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 
 import { createOrder } from '@/lib/db';
 import { sendEmail, sendOrderEmails, setSendgridApiKey } from '@/lib/email';
-import { currencyFormatter } from '@/lib/formatters';
+import { currencyFormatter, formatZodErrors } from '@/lib/formatters';
 import {
   createParcel,
   getFoxpostPackageSize,
@@ -114,7 +114,7 @@ export async function POST(request: Request) {
       case error instanceof ZodError:
         return NextResponse.json(
           {
-            error: `Validation error: ${error.errors.map((error) => `${error.path}: ${error.message}`).join('; ')}`,
+            error: `Validation error: ${formatZodErrors}`,
           },
           { status: 403 },
         );
