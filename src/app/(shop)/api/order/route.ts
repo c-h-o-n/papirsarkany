@@ -8,13 +8,9 @@ import {
   getFoxpostPackageSize,
   getTotalPackageInfo,
 } from '@/lib/foxpost';
-import {
-  isPreviewEnv,
-  isProdEnv,
-  normalizeOrderForm,
-  validateOrderForm,
-} from '@/lib/helpers';
+import { isPreviewEnv, isProdEnv, normalizeOrderForm } from '@/lib/helpers';
 import { OrderMail, OrderRequestBody } from '@/lib/types';
+import { mergedFormSchemaObject } from '@/lib/validation-schemas';
 import { ZodError } from 'zod';
 
 setSendgridApiKey();
@@ -25,7 +21,7 @@ export async function POST(request: Request) {
     const { cart, formData, totalPrice, foxpostOperatorId } = body;
 
     // TODO move this into a middleware
-    const validatedFormData = await validateOrderForm(formData);
+    const validatedFormData = await mergedFormSchemaObject.parseAsync(formData);
 
     const normalizedFormData = normalizeOrderForm(validatedFormData);
 
