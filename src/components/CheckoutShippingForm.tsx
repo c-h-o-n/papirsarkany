@@ -9,11 +9,11 @@ import {
   LOCAL_PICKUP_ADDRESS,
 } from '@/lib/constants';
 import { getTotalPackageInfo, isFitInMaxLimit } from '@/lib/foxpost';
-import { OrderForm } from '@/lib/types';
 import { useCartStore } from '@/store/useCartStore';
 import FoxpostMap from './FoxpostMap';
 import LazyLoadFramerMotion from './LazyLoadFramerMotion';
 import ShippingOptionRadioInput from './ShippingOptionRadioInput';
+import { OrderForm } from '@/lib/validation-schemas';
 
 export default function CheckoutShippingForm() {
   const {

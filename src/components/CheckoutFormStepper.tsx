@@ -5,12 +5,12 @@ import { Children, ReactNode, useEffect } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 
 import useCart from '@/hooks/useCart';
-import { orderFormSchema } from '@/lib/order-form-schema';
-import { OrderForm, OrderRequestBody } from '@/lib/types';
+import { OrderRequestBody } from '@/lib/types';
 import { useCartStore } from '@/store/useCartStore';
 import { useCheckoutFormStore } from '@/store/useCheckoutFormStore';
 import { useFoxpostParcelBoxStore } from '@/store/useFoxpostParcelBoxStore';
 import StepProgress from './StepProgress';
+import { OrderForm, orderFormSchema } from '@/lib/validation-schemas';
 
 type CheckoutStepperProps = {
   children: ReactNode;

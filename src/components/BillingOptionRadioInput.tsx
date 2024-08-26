@@ -1,7 +1,9 @@
-import { currencyFormatter } from '@/lib/formatters';
-import { BillingOptionValue, OrderForm } from '@/lib/types';
-import { useCartStore } from '@/store/useCartStore';
 import { useFormContext } from 'react-hook-form';
+
+import { currencyFormatter } from '@/lib/formatters';
+import { BillingOptionValue } from '@/lib/types';
+import { OrderForm } from '@/lib/validation-schemas';
+import { useCartStore } from '@/store/useCartStore';
 
 type BillingOptionRadioInputProps = {
   isDisabled?: boolean;
