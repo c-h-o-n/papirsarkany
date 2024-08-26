@@ -6,7 +6,6 @@ import {
   Twine,
 } from '@sanity/lib/sanity.types';
 
-import { validateOrderForm } from './helpers';
 import { CartItem, OrderForm } from './validation-schemas';
 
 export type WithImageAsset<T> = Omit<T, 'image'> & {
@@ -25,9 +24,6 @@ export type InferredProduct =
   | WithImageAsset<Rod>;
 
 export type ProductTypes = 'kite' | 'rod' | 'reel' | 'twine';
-
-export type ValidatedOrderForm = Awaited<ReturnType<typeof validateOrderForm>>;
-
 
 export type OrderRequestBody = {
   formData: OrderForm;
