@@ -1,7 +1,7 @@
 import { MouseEventHandler, ReactNode } from 'react';
 import { useFormContext } from 'react-hook-form';
 
-import { formatShippingFee } from '@/lib/helpers';
+import { formatShippingFee } from '@/lib/formatters';
 import { ShippingFee, ShippingOptionValue } from '@/lib/types';
 import { OrderForm } from '@/lib/validation-schemas';
 import { useCartStore } from '@/store/useCartStore';
