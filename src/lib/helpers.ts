@@ -1,7 +1,7 @@
 import { env } from './env';
 import { currencyFormatter } from './formatters';
 import { ShippingFee } from './types';
-import { mergedFormSchemaObject, OrderForm } from './validation-schemas';
+import { OrderForm } from './validation-schemas';
 
 export function blurActiveAnchorElement() {
   const element = document.activeElement as HTMLAnchorElement;
@@ -19,10 +19,6 @@ export function isProdEnv(): boolean {
 
 export function isPreviewEnv(): boolean {
   return process.env.NODE_ENV === 'production' && env.VERCEL_ENV === 'preview';
-}
-
-export async function validateOrderForm(data: OrderForm) {
-  return await mergedFormSchemaObject.parseAsync(data);
 }
 
 export function normalizeOrderForm(data: OrderForm) {
