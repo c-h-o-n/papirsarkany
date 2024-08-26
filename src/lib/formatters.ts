@@ -1,7 +1,12 @@
 import { $Enums } from '@prisma/client';
 
 import { ZodError } from 'zod';
-import { BillingOptionValue, ProductTypes, ShippingOptionValue } from './types';
+import {
+  BillingOptionValue,
+  ProductTypes,
+  ShippingFee,
+  ShippingOptionValue,
+} from './types';
 
 export function currencyFormatter(value: number): string {
   const formatter = Intl.NumberFormat('hu', {
@@ -20,6 +25,14 @@ export function pricePerMeterFormatter(value: number): string {
 
 export function formatZodErrors(error: ZodError): string {
   return error.errors.map((error) => `${error.message}`).join('; ');
+}
+
+export function formatShippingFee(shippingFee: ShippingFee) {
+  if (typeof shippingFee === 'number') {
+    return `+${currencyFormatter(shippingFee)}`;
+  }
+
+  return `+${shippingFee}`;
 }
 
 export const sanityProductCategoryMap: Record<ProductTypes, string> = {
