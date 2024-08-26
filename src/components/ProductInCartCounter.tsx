@@ -1,4 +1,4 @@
-import { CartItem } from '@/lib/types';
+import { CartItem } from '@/lib/validation-schemas';
 import { useCartStore } from '@/store/useCartStore';
 import { ChangeEvent, FocusEvent, useState } from 'react';
 

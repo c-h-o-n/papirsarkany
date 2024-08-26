@@ -6,12 +6,12 @@ import {
 import { env } from './env';
 
 import {
-  CartItem,
   FoxpostCreateParcelRequestBody,
   FoxpostPackageSize,
   PackageInfo,
   ValidatedOrderForm,
 } from './types';
+import { CartItem } from './validation-schemas';
 
 export function createParcel(body: FoxpostCreateParcelRequestBody) {
   const {

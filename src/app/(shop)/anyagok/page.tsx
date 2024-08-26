@@ -4,7 +4,7 @@ import RodCard from '@/components/RodCard';
 import TwineCard from '@/components/TwineCard';
 
 import { getAllReels, getAllRods, getAllTwines } from '@/lib/cms';
-import { SanityCategoryMap } from '@/lib/formatters';
+import { sanityProductCategoryMap } from '@/lib/formatters';
 
 export default async function Materials() {
   const reels = await getAllReels();
@@ -17,7 +17,7 @@ export default async function Materials() {
       <div className="space-y-8">
         {reels && reels.length > 0 && (
           <div className="space-y-4">
-            <h2 className="font-bold">{SanityCategoryMap['reel']}</h2>
+            <h2 className="font-bold">{sanityProductCategoryMap['reel']}</h2>
             <MasonryContainer>
               {reels.map((reel) => (
                 <ReelCard reel={reel} key={reel._id} />
@@ -27,7 +27,7 @@ export default async function Materials() {
         )}
         {twines && twines.length > 0 && (
           <div className="space-y-4">
-            <h2 className="font-bold">{SanityCategoryMap['twine']}</h2>
+            <h2 className="font-bold">{sanityProductCategoryMap['twine']}</h2>
             <MasonryContainer>
               {twines.map((twine) => (
                 <TwineCard twine={twine} key={twine._id} />
@@ -37,7 +37,7 @@ export default async function Materials() {
         )}
         {rods && rods.length > 0 && (
           <div className="space-y-4">
-            <h2 className="font-bold">{SanityCategoryMap['rod']}</h2>
+            <h2 className="font-bold">{sanityProductCategoryMap['rod']}</h2>
             <MasonryContainer>
               {rods.map((rod) => (
                 <RodCard rod={rod} key={rod._id} />

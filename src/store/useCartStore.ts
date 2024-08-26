@@ -2,7 +2,8 @@ import 'client-only';
 import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
 
-import { CartItem, ShippingFee } from '@/lib/types';
+import { ShippingFee } from '@/lib/types';
+import { CartItem } from '@/lib/validation-schemas';
 
 type State = {
   _hasHydrated: boolean;

@@ -114,7 +114,6 @@ export default function RodCard({ rod }: Props) {
         <AddToCartButton
           product={{
             ...rod,
-            _id: rod._id,
             name: `${rod.name} (${selectedDiameter.diameter} mm - ${selectedLength} cm)`,
             price:
               (selectedDiameter.pricePerMeter || NaN) *

@@ -1,5 +1,6 @@
 import { $Enums } from '@prisma/client';
 
+import { ZodError } from 'zod';
 import { BillingOptionValue, ProductTypes, ShippingOptionValue } from './types';
 
 export function currencyFormatter(value: number): string {
@@ -17,7 +18,11 @@ export function pricePerMeterFormatter(value: number): string {
   return currencyFormatter(value) + ' / m';
 }
 
-export const SanityCategoryMap: Record<ProductTypes, string> = {
+export function formatZodErrors(error: ZodError): string {
+  return error.errors.map((error) => `${error.message}`).join('; ');
+}
+
+export const sanityProductCategoryMap: Record<ProductTypes, string> = {
   kite: 'Egyzsinóros sárkány',
   reel: 'Zsinórtartók',
   rod: 'Pálcák, rudak és csövek',

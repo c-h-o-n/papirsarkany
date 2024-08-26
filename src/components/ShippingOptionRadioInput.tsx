@@ -2,11 +2,7 @@ import { MouseEventHandler, ReactNode } from 'react';
 import { useFormContext } from 'react-hook-form';
 
 import { formatShippingFee } from '@/lib/helpers';
-import {
-  OrderFormSchemaObject,
-  ShippingFee,
-  ShippingOptionValue,
-} from '@/lib/types';
+import { OrderForm, ShippingFee, ShippingOptionValue } from '@/lib/types';
 import { useCartStore } from '@/store/useCartStore';
 
 type ShippingOptionRadioInputProps = {
@@ -31,7 +27,7 @@ export default function ShippingOptionRadioInput({
     watch,
     formState: { errors },
     getValues,
-  } = useFormContext<OrderFormSchemaObject>();
+  } = useFormContext<OrderForm>();
   const setShippingFee = useCartStore((state) => state.setShippingFee);
 
   const onInputClick: MouseEventHandler<HTMLInputElement> = (e) => {

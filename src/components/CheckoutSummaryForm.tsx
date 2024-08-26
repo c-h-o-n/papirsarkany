@@ -3,7 +3,7 @@
 import { useRouter } from 'next/navigation';
 import { useFormContext } from 'react-hook-form';
 
-import { OrderFormSchemaObject } from '@/lib/types';
+import { OrderForm } from '@/lib/types';
 import { useCheckoutFormStore } from '@/store/useCheckoutFormStore';
 import Card from './Card';
 import OrderSummaryCard from './OrderSummaryCard';
@@ -14,7 +14,7 @@ export default function CheckoutSummary() {
     register,
     getValues,
     formState: { isSubmitting },
-  } = useFormContext<OrderFormSchemaObject>();
+  } = useFormContext<OrderForm>();
   const formValues = getValues();
 
   const prevStep = useCheckoutFormStore((state) => state.prevStep);
