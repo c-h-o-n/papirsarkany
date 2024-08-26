@@ -1,11 +1,7 @@
 import { env } from './env';
 import { currencyFormatter } from './formatters';
 import { mergedFormSchemaObject } from './order-form-schema';
-import {
-  OrderFormSchemaObject,
-  ShippingFee,
-  ValidatedOrderForm,
-} from './types';
+import { OrderForm, ShippingFee, ValidatedOrderForm } from './types';
 
 export function blurActiveAnchorElement() {
   const element = document.activeElement as HTMLAnchorElement;
@@ -25,7 +21,7 @@ export function isPreviewEnv(): boolean {
   return process.env.NODE_ENV === 'production' && env.VERCEL_ENV === 'preview';
 }
 
-export async function validateOrderForm(data: OrderFormSchemaObject) {
+export async function validateOrderForm(data: OrderForm) {
   return await mergedFormSchemaObject.parseAsync(data);
 }
 

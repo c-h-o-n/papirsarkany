@@ -2,7 +2,7 @@
 import { useEffect } from 'react';
 import { useFormContext } from 'react-hook-form';
 
-import { FoxpostSelectMessageData, OrderFormSchemaObject } from '@/lib/types';
+import { FoxpostSelectMessageData, OrderForm } from '@/lib/types';
 import { useFoxpostParcelBoxStore } from '@/store/useFoxpostParcelBoxStore';
 import Card from './Card';
 
@@ -11,7 +11,7 @@ type FoxpostMapProps = {
 };
 
 export default function FoxpostMap({ hideMap }: FoxpostMapProps) {
-  const { setValue, trigger } = useFormContext<OrderFormSchemaObject>();
+  const { setValue, trigger } = useFormContext<OrderForm>();
 
   const setFoxpostData = useFoxpostParcelBoxStore(
     (state) => state.setFoxpostData,

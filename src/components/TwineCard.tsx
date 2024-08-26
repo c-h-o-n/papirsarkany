@@ -16,7 +16,7 @@ export default function TwineCard({ twine }: Props) {
     twine.diameters ? twine.diameters[0] : undefined,
   );
 
-  const [length, setLength] = useState<number>(1);
+  const [length, setLength] = useState<number>(0);
 
   if (!selectedDiameter) {
     return;
@@ -74,7 +74,6 @@ export default function TwineCard({ twine }: Props) {
         <AddToCartButton
           product={{
             ...twine,
-            _id: twine._id,
             name: `${twine.name} (${selectedDiameter.diameter} - ${length}m)`,
             price: (selectedDiameter.pricePerMeter || NaN) * Math.ceil(length),
           }}
