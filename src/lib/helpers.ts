@@ -1,6 +1,6 @@
 import { env } from './env';
 import { currencyFormatter } from './formatters';
-import {  ShippingFee, ValidatedOrderForm } from './types';
+import { ShippingFee } from './types';
 import { mergedFormSchemaObject, OrderForm } from './validation-schemas';
 
 export function blurActiveAnchorElement() {
@@ -25,7 +25,7 @@ export async function validateOrderForm(data: OrderForm) {
   return await mergedFormSchemaObject.parseAsync(data);
 }
 
-export function normalizeOrderForm(data: ValidatedOrderForm) {
+export function normalizeOrderForm(data: OrderForm) {
   const { shippingOption, ...restData } = data;
 
   if (shippingOption === 'Személyes átvétel') {

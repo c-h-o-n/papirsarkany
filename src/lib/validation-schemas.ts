@@ -105,5 +105,4 @@ export const mergedFormSchemaObject = z.intersection(
   orderFormSchema[2],
 );
 
-
 export type OrderForm = z.infer<typeof mergedFormSchemaObject>;
