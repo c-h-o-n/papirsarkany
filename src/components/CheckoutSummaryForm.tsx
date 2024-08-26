@@ -3,10 +3,10 @@
 import { useRouter } from 'next/navigation';
 import { useFormContext } from 'react-hook-form';
 
+import { OrderForm } from '@/lib/validation-schemas';
 import { useCheckoutFormStore } from '@/store/useCheckoutFormStore';
 import Card from './Card';
 import OrderSummaryCard from './OrderSummaryCard';
-import { OrderForm } from '@/lib/validation-schemas';
 
 export default function CheckoutSummary() {
   const router = useRouter();

@@ -9,9 +9,8 @@ import {
   FoxpostCreateParcelRequestBody,
   FoxpostPackageSize,
   PackageInfo,
-  ValidatedOrderForm,
 } from './types';
-import { CartItem } from './validation-schemas';
+import { CartItem, OrderForm } from './validation-schemas';
 
 export function createParcel(body: FoxpostCreateParcelRequestBody) {
   const {
@@ -34,10 +33,7 @@ export function createParcel(body: FoxpostCreateParcelRequestBody) {
   });
 }
 
-export function getCOD(
-  normalizedFormData: ValidatedOrderForm,
-  totalPrice: number,
-) {
+export function getCOD(normalizedFormData: OrderForm, totalPrice: number) {
   return normalizedFormData.paymentOption === 'Átvételkor bankártyával'
     ? totalPrice
     : 0;
