@@ -1,7 +1,7 @@
 import { env } from './env';
 import { currencyFormatter } from './formatters';
-import { mergedFormSchemaObject } from './order-form-schema';
-import { OrderForm, ShippingFee, ValidatedOrderForm } from './types';
+import {  ShippingFee, ValidatedOrderForm } from './types';
+import { mergedFormSchemaObject, OrderForm } from './validation-schemas';
 
 export function blurActiveAnchorElement() {
   const element = document.activeElement as HTMLAnchorElement;

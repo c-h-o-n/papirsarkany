@@ -6,19 +6,8 @@ import {
   Twine,
 } from '@sanity/lib/sanity.types';
 
-import { z } from 'zod';
 import { validateOrderForm } from './helpers';
-import { mergedFormSchemaObject } from './order-form-schema';
-import { CartItem } from './validation-schemas';
-
-/**
- * All properties must be  NOT undefined values
- */
-export type NullableDeepRequired<T> = Required<{
-  [K in keyof T]: T[K] extends Required<T[K]>
-    ? T[K]
-    : NullableDeepRequired<T[K]>;
-}>;
+import { CartItem, OrderForm } from './validation-schemas';
 
 export type WithImageAsset<T> = Omit<T, 'image'> & {
   image: {
@@ -28,18 +17,6 @@ export type WithImageAsset<T> = Omit<T, 'image'> & {
     } | null;
   } | null;
 };
-
-// export type Product = WithImageAsset<{
-//   _id: string;
-//   name?: string;
-//   price?: number;
-//   packageInfo?: {
-//     x?: number;
-//     y?: number;
-//     z?: number;
-//     weight?: number;
-//   };
-// }>;
 
 export type InferredProduct =
   | WithImageAsset<Kite>
@@ -51,7 +28,6 @@ export type ProductTypes = 'kite' | 'rod' | 'reel' | 'twine';
 
 export type ValidatedOrderForm = Awaited<ReturnType<typeof validateOrderForm>>;
 
-export type OrderForm = z.infer<typeof mergedFormSchemaObject>;
 
 export type OrderRequestBody = {
   formData: OrderForm;

@@ -2,9 +2,10 @@
 import { useEffect } from 'react';
 import { useFormContext } from 'react-hook-form';
 
-import { FoxpostSelectMessageData, OrderForm } from '@/lib/types';
+import { FoxpostSelectMessageData } from '@/lib/types';
 import { useFoxpostParcelBoxStore } from '@/store/useFoxpostParcelBoxStore';
 import Card from './Card';
+import { OrderForm } from '@/lib/validation-schemas';
 
 type FoxpostMapProps = {
   hideMap: () => void;
