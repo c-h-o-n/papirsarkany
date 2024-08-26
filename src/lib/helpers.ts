@@ -1,6 +1,4 @@
 import { env } from './env';
-import { currencyFormatter } from './formatters';
-import { ShippingFee } from './types';
 import { OrderForm } from './validation-schemas';
 
 export function blurActiveAnchorElement() {
@@ -36,12 +34,4 @@ export function normalizeOrderForm(data: OrderForm) {
   }
 
   return data;
-}
-
-export function formatShippingFee(shippingFee: ShippingFee) {
-  if (typeof shippingFee === 'number') {
-    return `+${currencyFormatter(shippingFee)}`;
-  }
-
-  return `+${shippingFee}`;
 }
