@@ -1,7 +1,7 @@
 import 'client-only';
 import { create } from 'zustand';
 
-import { OrderForm } from '@/lib/types';
+import { OrderForm } from '@/lib/validation-schemas';
 
 type State = {
   /**
