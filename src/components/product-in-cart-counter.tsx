@@ -1,5 +1,5 @@
 import { CartItem } from '@/lib/validation-schemas';
-import { useCartStore } from '@/store/useCartStore';
+import { useCartStore } from '@/store/use-cart-store';
 import { ChangeEvent, FocusEvent, useState } from 'react';
 
 type ProductinCartCounterProps = {

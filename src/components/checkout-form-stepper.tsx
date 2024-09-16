@@ -4,13 +4,13 @@ import { redirect, useRouter } from 'next/navigation';
 import { Children, ReactNode, useEffect } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 
-import useCart from '@/hooks/useCart';
+import useCart from '@/hooks/use-cart';
 import { OrderRequestBody } from '@/lib/types';
 import { OrderForm, orderFormSchema } from '@/lib/validation-schemas';
-import { useCartStore } from '@/store/useCartStore';
-import { useCheckoutFormStore } from '@/store/useCheckoutFormStore';
-import { useFoxpostParcelBoxStore } from '@/store/useFoxpostParcelBoxStore';
-import StepProgress from './StepProgress';
+import { useCartStore } from '@/store/use-cart-store';
+import { useCheckoutFormStore } from '@/store/use-checkout-form-store';
+import { useFoxpostParcelBoxStore } from '@/store/use-foxpost-parcel-box-store';
+import StepProgress from './step-progress';
 
 type CheckoutStepperProps = {
   children: ReactNode;

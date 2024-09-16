@@ -5,9 +5,9 @@ import { MISSING_IMG_URL, NO_NAME } from '@/lib/constants';
 import { currencyFormatter } from '@/lib/formatters';
 import { WithImageAsset } from '@/lib/types';
 import { Kite } from '@sanity/lib/sanity.types';
-import AddToCartButton from './AddToCartButton';
+import AddToCartButton from './add-to-cart-button';
 
-import HoverAnimatedCard from './HoverAnimatedCard';
+import HoverAnimatedCard from './hover-animated-card';
 
 type KiteCardProps = {
   kite: WithImageAsset<Kite>;
