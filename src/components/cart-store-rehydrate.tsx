@@ -1,5 +1,5 @@
 'use client';
-import { useCartStore } from '@/store/useCartStore';
+import { useCartStore } from '@/store/use-cart-store';
 
 if (typeof window !== 'undefined') {
   useCartStore.persist.rehydrate();

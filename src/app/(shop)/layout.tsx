@@ -4,10 +4,10 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { ReactNode } from 'react';
 
-import AppVersionScript from '@/components/AppVersionScript';
-import CartStoreRehydrate from '@/components/CartStoreRehydrate';
-import Navbar from '@/components/Navbar';
-import TruendoScript from '@/components/TruendoScript';
+import AppVersionScript from '@/components/app-version-script';
+import CartStoreRehydrate from '@/components/cart-store-rehydrate';
+import Navbar from '@/components/navbar';
+import TruendoScript from '@/components/truendo-script';
 import './globals.css';
 
 const inter = Inter({ subsets: ['latin'] });

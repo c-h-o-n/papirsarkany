@@ -1,11 +1,12 @@
 'use client';
+
 import { useEffect } from 'react';
 import { useFormContext } from 'react-hook-form';
 
 import { FoxpostSelectMessageData } from '@/lib/types';
 import { OrderForm } from '@/lib/validation-schemas';
-import { useFoxpostParcelBoxStore } from '@/store/useFoxpostParcelBoxStore';
-import Card from './Card';
+import { useFoxpostParcelBoxStore } from '@/store/use-foxpost-parcel-box-store';
+import Card from './card';
 
 type FoxpostMapProps = {
   hideMap: () => void;

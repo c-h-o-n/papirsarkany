@@ -2,7 +2,7 @@
 import Link from 'next/link';
 
 import CartIcon from '@/assets/cart.svg';
-import useCart from '@/hooks/useCart';
+import useCart from '@/hooks/use-cart';
 
 export default function CartMenuItem() {
   const { getTotalItemCount } = useCart();

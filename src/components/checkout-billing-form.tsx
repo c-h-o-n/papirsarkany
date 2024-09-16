@@ -4,8 +4,8 @@ import { useFormContext } from 'react-hook-form';
 
 import { BillingOptionValue, ShippingOptionValue } from '@/lib/types';
 import { OrderForm } from '@/lib/validation-schemas';
-import { useCheckoutFormStore } from '@/store/useCheckoutFormStore';
-import BillingOptionRadioInput from './BillingOptionRadioInput';
+import { useCheckoutFormStore } from '@/store/use-checkout-form-store';
+import BillingOptionRadioInput from './billing-option-radio-input';
 
 export default function CheckoutPayingForm() {
   const {

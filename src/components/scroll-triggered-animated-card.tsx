@@ -1,8 +1,9 @@
 'use client';
+
 import { m } from 'framer-motion';
 import { ReactNode } from 'react';
-import Card from './Card';
-import LazyLoadFramerMotion from './LazyLoadFramerMotion';
+import Card from './card';
+import LazyLoadFramerMotion from './lazy-load-framer-motion';
 
 type AnimatedCardProps = {
   children: ReactNode;
