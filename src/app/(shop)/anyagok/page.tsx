@@ -1,7 +1,7 @@
-import MasonryContainer from '@/components/MasonryContainer';
-import ReelCard from '@/components/ReelCard';
-import RodCard from '@/components/RodCard';
-import TwineCard from '@/components/TwineCard';
+import MasonryContainer from '@/components/masonry-container';
+import ReelCard from '@/components/reel-card';
+import RodCard from '@/components/rod-card';
+import TwineCard from '@/components/twine-card';
 
 import { getAllReels, getAllRods, getAllTwines } from '@/lib/cms';
 import { sanityProductCategoryMap } from '@/lib/formatters';

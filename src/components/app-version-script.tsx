@@ -1,4 +1,5 @@
 'use client';
+
 import appVersion from '@/lib/app-version.preval';
 import Script from 'next/script';
 

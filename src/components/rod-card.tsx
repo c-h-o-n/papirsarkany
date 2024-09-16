@@ -4,8 +4,8 @@ import { currencyFormatter, pricePerMeterFormatter } from '@/lib/formatters';
 import { WithImageAsset } from '@/lib/types';
 import { Rod, RodDiameters } from '@sanity/lib/sanity.types';
 import { ChangeEvent, useState } from 'react';
-import AddToCartButton from './AddToCartButton';
-import Card from './Card';
+import AddToCartButton from './add-to-cart-button';
+import Card from './card';
 
 type Props = {
   rod: WithImageAsset<Rod>;

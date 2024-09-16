@@ -1,13 +1,14 @@
 'use client';
+
 import { MouseEvent, useState } from 'react';
 import { ZodError } from 'zod';
 
 import { formatZodErrors } from '@/lib/formatters';
 import { InferredProduct } from '@/lib/types';
 import { cartItemValidationSchema } from '@/lib/validation-schemas';
-import { useCartStore } from '@/store/useCartStore';
-import ErrorToast from './ErrorToast';
-import SuccessToast from './SuccessToast';
+import { useCartStore } from '@/store/use-cart-store';
+import ErrorToast from './error-toast';
+import SuccessToast from './success-toast';
 
 type AddToCartProps = {
   product: InferredProduct & { price?: number };

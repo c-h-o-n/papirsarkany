@@ -1,4 +1,5 @@
 'use client';
+
 import { AnimatePresence, m } from 'framer-motion';
 import { useMemo, useState } from 'react';
 import { useFormContext } from 'react-hook-form';
@@ -10,10 +11,10 @@ import {
 } from '@/lib/constants';
 import { getTotalPackageInfo, isFitInMaxLimit } from '@/lib/foxpost';
 import { OrderForm } from '@/lib/validation-schemas';
-import { useCartStore } from '@/store/useCartStore';
-import FoxpostMap from './FoxpostMap';
-import LazyLoadFramerMotion from './LazyLoadFramerMotion';
-import ShippingOptionRadioInput from './ShippingOptionRadioInput';
+import { useCartStore } from '@/store/use-cart-store';
+import FoxpostMap from './foxpost-map';
+import LazyLoadFramerMotion from './lazy-load-framer-motion';
+import ShippingOptionRadioInput from './shipping-option-radio-input';
 
 export default function CheckoutShippingForm() {
   const {

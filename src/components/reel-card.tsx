@@ -3,8 +3,8 @@ import { currencyFormatter } from '@/lib/formatters';
 import { WithImageAsset } from '@/lib/types';
 import { Reel } from '@sanity/lib/sanity.types';
 import Image from 'next/image';
-import AddToCartButton from './AddToCartButton';
-import Card from './Card';
+import AddToCartButton from './add-to-cart-button';
+import Card from './card';
 
 type Props = {
   reel: WithImageAsset<Reel>;

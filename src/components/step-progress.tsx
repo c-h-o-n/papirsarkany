@@ -1,4 +1,4 @@
-import { useCheckoutFormStore } from '@/store/useCheckoutFormStore';
+import { useCheckoutFormStore } from '@/store/use-checkout-form-store';
 
 const steps = ['Szálítás', 'Számlázás', 'Összegzés'];
 
