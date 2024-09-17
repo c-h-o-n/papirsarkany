@@ -26,6 +26,7 @@ export function createParcel(body: FoxpostCreateParcelRequestBody) {
     'Content-Type': 'application/json',
     'Api-key': FOXPOST_API_KEY,
   });
+
   return fetch(`${FOXPOST_API_URL}/parcel?isWeb=true`, {
     method: 'POST',
     headers: foxpostHeaders,

@@ -99,6 +99,7 @@ export default function OrderFormStepper({ children }: CheckoutStepperProps) {
 
   const sendOrder = (formData: OrderForm) => {
     const totalPrice = getTotalPrice();
+
     return fetch('/api/order', {
       method: 'POST',
       body: JSON.stringify({
