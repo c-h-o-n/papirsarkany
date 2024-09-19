@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 import { getGoogleMapsRating } from '@/lib/google-cloud';
-import RatingIcon from './rating-icon';
+import GoogleMapsRating from './google-maps-rating';
 
 export default async function Splash() {
   const { rating, userRatingCount } = await getGoogleMapsRating();
@@ -18,10 +18,7 @@ export default async function Splash() {
           className="mx-auto"
           title={`${userRatingCount} vélemény`}
         >
-          <RatingIcon rating={rating} />
-          <h1 className="font-bold mt-4">{rating} / 5</h1>
-
-          <h3 className="font-semibold mt-2">Google Maps értékelésünk</h3>
+          <GoogleMapsRating rating={rating} />
         </Link>
 
         <div className="space-y-4">
