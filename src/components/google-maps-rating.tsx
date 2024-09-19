@@ -5,20 +5,20 @@ import { FC } from 'react';
 
 import LazyLoadFramerMotion from './lazy-load-framer-motion';
 
-type RatingIconProps = {
+type GoogleMapsRating = {
   rating: number;
 };
 
 const THRESHOLD = 3;
 
-const GoogleMapsRating: FC<RatingIconProps> = ({ rating }) => {
+const GoogleMapsRating: FC<GoogleMapsRating> = ({ rating }) => {
   const ratingRatio = (rating / 5) * 100;
 
   const normalizedInsetPath = `inset(${THRESHOLD + (100 - ratingRatio)}% 0 0 0)`;
 
   return (
     <LazyLoadFramerMotion>
-      <m.div initial="initial" whileHover="hover">
+      <m.div initial="initial" whileHover="hover" className='w-fit mx-auto'>
         <m.svg
           className="h-24 w-24 md:h-32 md:w-32 lg:h-48 lg:w-48 mx-auto"
           viewBox="0 0 32 32"
@@ -62,9 +62,9 @@ const GoogleMapsRating: FC<RatingIconProps> = ({ rating }) => {
             </clipPath>
           </defs>
         </m.svg>
-        <h1 className="font-bold mt-4">{rating} / 5</h1>
 
-        <h3 className="font-semibold mt-2">Google Maps értékelésünk</h3>
+          <h1 className="font-bold mt-4">{rating} / 5</h1>
+          <h3 className="font-semibold mt-2">Google Maps értékelésünk</h3>
       </m.div>
     </LazyLoadFramerMotion>
   );
