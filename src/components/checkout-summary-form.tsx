@@ -5,6 +5,7 @@ import { useFormContext } from 'react-hook-form';
 
 import { OrderForm } from '@/lib/validation-schemas';
 import { useCheckoutFormStore } from '@/store/use-checkout-form-store';
+import Link from 'next/link';
 import Card from './card';
 import OrderSummaryCard from './order-summary-card';
 
@@ -62,19 +63,27 @@ export default function CheckoutSummary() {
         </Card>
       </div>
 
-      <div className="d-form-control">
-        <label className="d-label">
+      <label className="d-form-control">
+        <div className="d-label">
           <span className="d-labels-text text-lg">Megjegyzés</span>
-        </label>
+        </div>
         <textarea
           className="d-textarea d-textarea-bordered d-textarea-primary h-24"
           {...register('comment')}
         ></textarea>
-        <label className="d-label justify-end">
+        <div className="d-label justify-end">
           <span className="d-label-text-alt">
             14 napos elállási jog fentartva a rendelés leadásától számítva.
           </span>
-        </label>
+        </div>
+      </label>
+
+      <div className="text-xs text-center">
+        A „Megrendelem” gomb megnyomásával Ön elfogadja az{' '}
+        <Link href="/aszf" className="d-link">
+          Adatvédelmi Nyilatkozat és Felhasználási Feltételek
+        </Link>{' '}
+        tartalmát.
       </div>
 
       <div className="flex flex-wrap justify-between gap-4">

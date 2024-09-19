@@ -1,5 +1,7 @@
+import tailwindTypography from '@tailwindcss/typography';
 import daisyui from 'daisyui';
 import type { Config } from 'tailwindcss';
+
 import daisyuiConfig from './daisyui.config';
 
 const config: Config = {
@@ -15,11 +17,11 @@ const config: Config = {
     },
     extend: {
       colors: {
-        'foxpost-red': '#a82220'
-      }
-    }
+        'foxpost-red': '#a82220',
+      },
+    },
   },
-  plugins: [daisyui],
+  plugins: [daisyui, tailwindTypography],
   daisyui: { ...daisyuiConfig },
 };
 export default config;
