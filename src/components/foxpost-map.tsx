@@ -55,7 +55,7 @@ export default function FoxpostMap({ hideMap }: FoxpostMapProps) {
   return (
     <Card className="p-4">
       <iframe
-        className="rounded h-[640px] min-[504px]:h-[820px] min-[1096px]:h-[715px]"
+        className="h-[640px] rounded min-[504px]:h-[820px] min-[1096px]:h-[715px]"
         loading="lazy"
         src="https://cdn.foxpost.hu/apt-finder/v1/app/"
         width="100%"

@@ -128,7 +128,7 @@ export default function OrderFormStepper({ children }: CheckoutStepperProps) {
       <FormProvider {...formMethods}>
         <form
           onSubmit={handleSubmit(async (data) => await onSubmit(data))}
-          className="[&>h2]:py-2 space-y-4"
+          className="space-y-4 [&>h2]:py-2"
         >
           <div className="mx-auto max-w-screen-md">
             <StepProgress />

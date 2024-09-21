@@ -4,8 +4,8 @@ import { FC } from 'react';
 const TermsAndConditionsPage: FC = () => {
   return (
     <div className="container py-8 md:py-16">
-      <Card className="p-8 prose prose-slate lg:prose-lg max-w-[120ch] mx-auto">
-        <h2 className="font-bold text-center">
+      <Card className="prose prose-slate mx-auto max-w-[120ch] p-8 lg:prose-lg">
+        <h2 className="text-center font-bold">
           Adatvédelmi Nyilatkozat és Felhasználási Feltételek
         </h2>
         <h3>1. Általános rendelkezések</h3>

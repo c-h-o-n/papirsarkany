@@ -65,7 +65,7 @@ export default function CheckoutShippingForm() {
   return (
     <>
       <div>
-        <div className="max-w-screen-sm mx-auto">
+        <div className="mx-auto max-w-screen-sm">
           <h2 className="underline underline-offset-8">Elérhetőség</h2>
           <div className="d-form-control">
             <label className="d-label">
@@ -142,7 +142,7 @@ export default function CheckoutShippingForm() {
               <>
                 <div className="text-foxpost-red">Foxpost automatába </div>
                 {!isFitInFoxpostLimit && (
-                  <div className="font-normal text-sm sm:text-lg">
+                  <div className="text-sm font-normal sm:text-lg">
                     {`maximum ${FOXPOST_PACKAGE_MAX_LIMIT.weight}kg és (${FOXPOST_PACKAGE_MAX_LIMIT.x}x${FOXPOST_PACKAGE_MAX_LIMIT.y}x${FOXPOST_PACKAGE_MAX_LIMIT.z}cm-ig)`}
                   </div>
                 )}
@@ -177,7 +177,7 @@ export default function CheckoutShippingForm() {
               )}
           </AnimatePresence>
         </LazyLoadFramerMotion>
-        <div className="max-w-screen-sm mx-auto">
+        <div className="mx-auto max-w-screen-sm">
           <ShippingOptionRadioInput
             label="Postai szállítás"
             value="Postai szállítás"
@@ -249,7 +249,7 @@ export default function CheckoutShippingForm() {
         </div>
       </div>
 
-      <div className="max-w-screen-sm mx-auto mt-4">
+      <div className="mx-auto mt-4 max-w-screen-sm">
         <div className="flex justify-end">
           <button
             type="submit"
