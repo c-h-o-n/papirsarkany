@@ -47,7 +47,7 @@ export default function OrderSummaryCard({
           <Fragment key={item._id}>
             <div className="flex items-center justify-between">
               <div className="flex gap-2">
-                <div className="hidden min-[390px]:block flex-shrink-0">
+                <div className="hidden flex-shrink-0 min-[390px]:block">
                   {item.image && (
                     <Image
                       src={item.image.asset?.url || MISSING_IMG_URL}
@@ -56,7 +56,7 @@ export default function OrderSummaryCard({
                       height={128}
                       placeholder="blur"
                       blurDataURL={item.image.asset?.metadata?.blurHash}
-                      className="h-auto max-h-32 min-h-24 w-32 rounded-lg object-contain "
+                      className="h-auto max-h-32 min-h-24 w-32 rounded-lg object-contain"
                     />
                   )}
                 </div>

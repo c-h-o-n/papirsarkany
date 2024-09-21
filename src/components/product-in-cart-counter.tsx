@@ -70,7 +70,7 @@ export default function ProductinCartCounter({
       </div>
       <input
         type="number"
-        className="h-12 w-12 bg-base-200 text-center rounded-none shadow-none"
+        className="h-12 w-12 rounded-none bg-base-200 text-center shadow-none"
         value={temporaryQuantityValue.toString()}
         onChange={handleChange}
         onBlur={handleBlur}

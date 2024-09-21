@@ -9,7 +9,7 @@ export default function CartMenuItem() {
 
   return (
     <Link href={'/kosar'} className="d-btn-circle" data-pw-e2e="cart-menu-item">
-      <div className=" p-0">
+      <div className="p-0">
         <div className="d-btn d-btn-circle d-btn-ghost">
           <div className="d-indicator">
             <CartIcon

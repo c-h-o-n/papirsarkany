@@ -22,7 +22,7 @@ export default function Steps() {
         return (
           <li
             key={stepLabel}
-            className={`d-step font-semibold ${isActive ? 'd-step-success' : 'after:!bg-white before:!bg-white'} ${isPrevious ? 'cursor-pointer' : ''}`}
+            className={`d-step font-semibold ${isActive ? 'd-step-success' : 'before:!bg-white after:!bg-white'} ${isPrevious ? 'cursor-pointer' : ''}`}
             onClick={() => onStepClick(isPrevious, idx)}
           >
             {stepLabel}

@@ -78,7 +78,7 @@ export default function CheckoutPayingForm() {
     }
   };
   return (
-    <div className="max-w-screen-sm mx-auto">
+    <div className="mx-auto max-w-screen-sm">
       <h2 className="underline underline-offset-8">Fizetés</h2>
 
       {shippingBillingMap[selectedShippingOption].map(

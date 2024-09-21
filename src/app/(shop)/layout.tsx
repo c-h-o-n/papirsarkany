@@ -30,7 +30,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <body className={`${inter.className} `}>
         <div className="flex min-h-screen flex-col">
           <Navbar />
-          <main className="grid flex-1 bg-sky-100 min-h-[calc(100dvh-68px)] sm:min-h-[calc(100dvh-72px)] lg:min-h-[calc(100dvh-76px)]">
+          <main className="grid min-h-[calc(100dvh-68px)] flex-1 bg-sky-100 sm:min-h-[calc(100dvh-72px)] lg:min-h-[calc(100dvh-76px)]">
             {children}
             <Analytics />
             <SpeedInsights />

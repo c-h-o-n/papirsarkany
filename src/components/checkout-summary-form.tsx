@@ -78,7 +78,7 @@ export default function CheckoutSummary() {
         </div>
       </label>
 
-      <div className="text-xs text-center">
+      <div className="text-center text-xs">
         A „Megrendelem” gomb megnyomásával Ön elfogadja az{' '}
         <Link href="/aszf" className="d-link">
           Adatvédelmi Nyilatkozat és Felhasználási Feltételek
