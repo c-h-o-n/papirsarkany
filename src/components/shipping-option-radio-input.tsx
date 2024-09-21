@@ -51,7 +51,7 @@ export default function ShippingOptionRadioInput({
 
   return (
     <div className={`d-form-control ${isDisabled && 'opacity-30'}`}>
-      <label className="d-label cursor-pointer justify-start gap-x-2 flex-wrap">
+      <label className="d-label cursor-pointer flex-wrap justify-start gap-x-2">
         <input
           type="radio"
           value={value}
@@ -67,12 +67,12 @@ export default function ShippingOptionRadioInput({
           </span>
         )}
         {watch('shippingOption') === value && (
-          <div className="pl-8 basis-full">
+          <div className="basis-full pl-8">
             <span className="d-label-text-alt text-error">
               {hasShippingSchemaRequiredError &&
                 missingShippingInfoErrorMessage}
             </span>
-            <span className="d-label-text text-lg select-text">
+            <span className="d-label-text select-text text-lg">
               {getValues('shippingOption') !== 'Postai szállítás' &&
                 `${getValues('shippingPostcode')} ${getValues('shippingCity')} ${getValues('shippingAddress')}`}
             </span>
