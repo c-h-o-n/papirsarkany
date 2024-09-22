@@ -4,7 +4,7 @@ import type { Config } from 'tailwindcss';
 
 import daisyuiConfig from './daisyui.config';
 
-const config: Config = {
+export default {
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
@@ -23,5 +23,4 @@ const config: Config = {
   },
   plugins: [daisyui, tailwindTypography],
   daisyui: { ...daisyuiConfig },
-};
-export default config;
+} satisfies Config;
