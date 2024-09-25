@@ -1,20 +1,15 @@
 'use client';
 
-import { createPortal } from 'react-dom';
+import { Toast } from '@/lib/types';
 
-type ErrorToastProps = {
-  message?: string;
-};
+type ErrorToastProps = Pick<Extract<Toast, { type: 'error' }>, 'message'>;
 
 export default function ErrorToast({ message }: ErrorToastProps) {
-  return createPortal(
-    <div className="d-toast d-toast-end d-toast-bottom z-50">
-      <div className="d-alert d-alert-error">
-        <span className="font-semibold text-white">
-          {message || 'Hiba történt'}
-        </span>
-      </div>
-    </div>,
-    document.body,
+  return (
+    <div className="d-alert d-alert-error">
+      <span className="font-semibold text-white">
+        {message || 'Hiba történt'}
+      </span>
+    </div>
   );
 }
