@@ -24,7 +24,7 @@ export function pricePerMeterFormatter(value: number): string {
 }
 
 export function formatZodErrors(error: ZodError): string {
-  return error.errors.map((error) => `${error.message}`).join('; ');
+  return error.errors.map((error) => `${error.message}`).join('; ') + '.';
 }
 
 export function formatShippingFee(shippingFee: ShippingFee) {
