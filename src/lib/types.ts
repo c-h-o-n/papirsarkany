@@ -244,3 +244,20 @@ export type FoxpostCreateParcelRequestBody = {
    */
   uniqueBarcode?: string;
 };
+
+export type Toast = {
+  /**
+   * only allow one toast with the same id at a time in the toast store
+   */
+  id: string;
+  message: string;
+  active?: boolean;
+} & (
+  | {
+      type: 'success';
+      href?: string;
+    }
+  | {
+      type: 'error';
+    }
+);
