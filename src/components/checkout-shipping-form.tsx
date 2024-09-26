@@ -14,6 +14,7 @@ import { OrderForm } from '@/lib/validation-schemas';
 import { useCartStore } from '@/store/use-cart-store';
 import FoxpostMap from './foxpost-map';
 import LazyLoadFramerMotion from './lazy-load-framer-motion';
+import PhoneNumberInput from './phone-number-input';
 import ShippingOptionRadioInput from './shipping-option-radio-input';
 
 export default function CheckoutShippingForm() {
@@ -119,12 +120,7 @@ export default function CheckoutShippingForm() {
             <label className="d-label">
               <span className="d-label-text text-lg">Telefonszám</span>
             </label>
-            <input
-              type="text"
-              placeholder="+36201234567"
-              className="d-input d-input-bordered"
-              {...register('phoneNumber')}
-            />
+            <PhoneNumberInput name="phoneNumber" />
             <label className="d-label">
               <span className="d-label-text-alt text-error">
                 {errors.phoneNumber?.message}
