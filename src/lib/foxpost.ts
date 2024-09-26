@@ -6,12 +6,11 @@ import {
 import { env } from './env';
 
 import {
-  CartItem,
   FoxpostCreateParcelRequestBody,
   FoxpostPackageSize,
   PackageInfo,
-  ValidatedOrderForm,
 } from './types';
+import { CartItem, OrderForm } from './validation-schemas';
 
 export function createParcel(body: FoxpostCreateParcelRequestBody) {
   const {
@@ -27,6 +26,7 @@ export function createParcel(body: FoxpostCreateParcelRequestBody) {
     'Content-Type': 'application/json',
     'Api-key': FOXPOST_API_KEY,
   });
+
   return fetch(`${FOXPOST_API_URL}/parcel?isWeb=true`, {
     method: 'POST',
     headers: foxpostHeaders,
@@ -34,10 +34,7 @@ export function createParcel(body: FoxpostCreateParcelRequestBody) {
   });
 }
 
-export function getCOD(
-  normalizedFormData: ValidatedOrderForm,
-  totalPrice: number,
-) {
+export function getCOD(normalizedFormData: OrderForm, totalPrice: number) {
   return normalizedFormData.paymentOption === 'Átvételkor bankártyával'
     ? totalPrice
     : 0;

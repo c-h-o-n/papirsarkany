@@ -1,11 +1,5 @@
 import { env } from './env';
-import { currencyFormatter } from './formatters';
-import { mergedFormSchemaObject } from './order-form-schema';
-import {
-  OrderFormSchemaObject,
-  ShippingFee,
-  ValidatedOrderForm,
-} from './types';
+import { OrderForm } from './validation-schemas';
 
 export function blurActiveAnchorElement() {
   const element = document.activeElement as HTMLAnchorElement;
@@ -13,6 +7,10 @@ export function blurActiveAnchorElement() {
   if (element) {
     element.blur();
   }
+}
+
+export function delay(time: number) {
+  return new Promise((resolve) => setTimeout(resolve, time));
 }
 
 export function isProdEnv(): boolean {
@@ -25,11 +23,7 @@ export function isPreviewEnv(): boolean {
   return process.env.NODE_ENV === 'production' && env.VERCEL_ENV === 'preview';
 }
 
-export async function validateOrderForm(data: OrderFormSchemaObject) {
-  return await mergedFormSchemaObject.parseAsync(data);
-}
-
-export function normalizeOrderForm(data: ValidatedOrderForm) {
+export function normalizeOrderForm(data: OrderForm) {
   const { shippingOption, ...restData } = data;
 
   if (shippingOption === 'Személyes átvétel') {
@@ -44,12 +38,4 @@ export function normalizeOrderForm(data: ValidatedOrderForm) {
   }
 
   return data;
-}
-
-export function formatShippingFee(shippingFee: ShippingFee) {
-  if (typeof shippingFee === 'number') {
-    return `+${currencyFormatter(shippingFee)}`;
-  }
-
-  return `+${shippingFee}`;
 }
