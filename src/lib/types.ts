@@ -1,17 +1,12 @@
-import { SanityImageMetadata } from '@sanity/lib/sanity.types';
+import {
+  Kite,
+  Reel,
+  Rod,
+  SanityImageMetadata,
+  Twine,
+} from '@sanity/lib/sanity.types';
 
-import { z } from 'zod';
-import { validateOrderForm } from './helpers';
-import { mergedFormSchemaObject, orderFormSchema } from './order-form-schema';
-
-/**
- * All properties must be  NOT undefined values
- */
-export type NullableDeepRequired<T> = Required<{
-  [K in keyof T]: T[K] extends Required<T[K]>
-    ? T[K]
-    : NullableDeepRequired<T[K]>;
-}>;
+import { CartItem, OrderForm } from './validation-schemas';
 
 export type WithImageAsset<T> = Omit<T, 'image'> & {
   image: {
@@ -22,32 +17,16 @@ export type WithImageAsset<T> = Omit<T, 'image'> & {
   } | null;
 };
 
-export type Product = WithImageAsset<{
-  _id: string;
-  name?: string;
-  price?: number;
-  packageInfo?: {
-    x?: number;
-    y?: number;
-    z?: number;
-    weight?: number;
-  };
-}>;
+export type InferredProduct =
+  | WithImageAsset<Kite>
+  | WithImageAsset<Twine>
+  | WithImageAsset<Reel>
+  | WithImageAsset<Rod>;
 
 export type ProductTypes = 'kite' | 'rod' | 'reel' | 'twine';
 
-export type CartItem = NullableDeepRequired<Product> & {
-  quantity: number;
-};
-
-// FIX literal types (e.g. shippingOption) are not inferred
-export type ValidatedOrderForm = Awaited<ReturnType<typeof validateOrderForm>>;
-
-export type Asd = z.infer<(typeof orderFormSchema)[number]>;
-export type OrderFormSchemaObject = z.infer<typeof mergedFormSchemaObject>;
-
 export type OrderRequestBody = {
-  formData: OrderFormSchemaObject;
+  formData: OrderForm;
   cart: CartItem[];
   totalPrice: number;
   foxpostOperatorId?: string;
@@ -265,3 +244,20 @@ export type FoxpostCreateParcelRequestBody = {
    */
   uniqueBarcode?: string;
 };
+
+export type Toast = {
+  /**
+   * only allow one toast with the same id at a time in the toast store
+   */
+  id: string;
+  message: string;
+  active?: boolean;
+} & (
+  | {
+      type: 'success';
+      href?: string;
+    }
+  | {
+      type: 'error';
+    }
+);
