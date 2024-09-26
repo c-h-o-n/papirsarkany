@@ -1,3 +1,4 @@
+
 import KiteCard from '@/components/kite-card';
 import MasonryContainer from '@/components/masonry-container';
 import { getAllKites } from '@/lib/cms';
