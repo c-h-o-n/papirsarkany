@@ -3,10 +3,13 @@ import Link from 'next/link';
 import AboutBusinessIcon from '@/assets/about-business.svg';
 import ContactIcon from '@/assets/contact.svg';
 import CraftingIcon from '@/assets/crafting.svg';
-import HomeSection from '@/components/HomeSection';
-import ScrollTriggeredAnimatedCard from '@/components/ScrollTriggeredAnimatedCard';
-import Splash from '@/components/Splash';
+import HomeSection from '@/components/home-section';
+import ScrollTriggeredAnimatedCard from '@/components/scroll-triggered-animated-card';
+import Splash from '@/components/splash';
 import { env } from '@/lib/env';
+
+// revalidate page every week
+export const revalidate = 604800;
 
 export default function Home() {
   return (
