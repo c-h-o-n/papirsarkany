@@ -35,6 +35,31 @@ export function formatShippingFee(shippingFee: ShippingFee) {
   return `+${shippingFee}`;
 }
 
+export function formatPhoneNumber(phoneNumber: string) {
+  if (!phoneNumber) {
+    return '';
+  }
+
+  const cleaned = phoneNumber.replace(/[^\d+]/g, '');
+
+  let formatted = cleaned;
+
+  if (cleaned.startsWith('+36')) {
+    // Start formatting from +36
+    if (cleaned.length > 3) {
+      formatted = `${cleaned.slice(0, 3)} ${cleaned.slice(3)}`;
+    }
+    if (cleaned.length > 5) {
+      formatted = `${cleaned.slice(0, 3)} ${cleaned.slice(3, 5)} ${cleaned.slice(5)}`;
+    }
+    if (cleaned.length > 8) {
+      formatted = `${cleaned.slice(0, 3)} ${cleaned.slice(3, 5)} ${cleaned.slice(5, 8)} ${cleaned.slice(8)}`;
+    }
+  }
+
+  return formatted;
+}
+
 export const sanityProductCategoryMap: Record<ProductTypes, string> = {
   kite: 'Egyzsinóros sárkány',
   reel: 'Zsinórtartók',
