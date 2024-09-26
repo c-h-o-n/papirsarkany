@@ -4,10 +4,11 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { ReactNode } from 'react';
 
-import AppVersionScript from '@/components/AppVersionScript';
-import CartStoreRehydrate from '@/components/CartStoreRehydrate';
-import Navbar from '@/components/Navbar';
-import TruendoScript from '@/components/TruendoScript';
+import AppVersionScript from '@/components/app-version-script';
+import CartStoreRehydrate from '@/components/cart-store-rehydrate';
+import Navbar from '@/components/navbar';
+import ToastContainer from '@/components/toast-container';
+import TruendoScript from '@/components/truendo-script';
 import './globals.css';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -29,8 +30,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       </head>
       <body className={`${inter.className} `}>
         <div className="flex min-h-screen flex-col">
+          <ToastContainer />
           <Navbar />
-          <main className="grid flex-1 bg-sky-100 min-h-[calc(100dvh-68px)] sm:min-h-[calc(100dvh-72px)] lg:min-h-[calc(100dvh-76px)]">
+          <main className="grid min-h-[calc(100dvh-68px)] flex-1 bg-sky-100 sm:min-h-[calc(100dvh-72px)] lg:min-h-[calc(100dvh-76px)]">
             {children}
             <Analytics />
             <SpeedInsights />

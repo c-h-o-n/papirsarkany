@@ -2,19 +2,15 @@ import { NextResponse } from 'next/server';
 
 import { createOrder } from '@/lib/db';
 import { sendEmail, sendOrderEmails, setSendgridApiKey } from '@/lib/email';
-import { currencyFormatter } from '@/lib/formatters';
+import { currencyFormatter, formatZodErrors } from '@/lib/formatters';
 import {
   createParcel,
   getFoxpostPackageSize,
   getTotalPackageInfo,
 } from '@/lib/foxpost';
-import {
-  isPreviewEnv,
-  isProdEnv,
-  normalizeOrderForm,
-  validateOrderForm,
-} from '@/lib/helpers';
+import { isPreviewEnv, isProdEnv, normalizeOrderForm } from '@/lib/helpers';
 import { OrderMail, OrderRequestBody } from '@/lib/types';
+import { mergedFormSchemaObject } from '@/lib/validation-schemas';
 import { ZodError } from 'zod';
 
 setSendgridApiKey();
@@ -25,7 +21,7 @@ export async function POST(request: Request) {
     const { cart, formData, totalPrice, foxpostOperatorId } = body;
 
     // TODO move this into a middleware
-    const validatedFormData = await validateOrderForm(formData);
+    const validatedFormData = await mergedFormSchemaObject.parseAsync(formData);
 
     const normalizedFormData = normalizeOrderForm(validatedFormData);
 
@@ -114,7 +110,7 @@ export async function POST(request: Request) {
       case error instanceof ZodError:
         return NextResponse.json(
           {
-            error: `Validation error: ${error.errors.map((error) => `${error.path}: ${error.message}`).join('; ')}`,
+            error: `Validation error: ${formatZodErrors}`,
           },
           { status: 403 },
         );
