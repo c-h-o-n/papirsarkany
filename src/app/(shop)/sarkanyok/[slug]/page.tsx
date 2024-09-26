@@ -1,4 +1,4 @@
-import AddToCartButton from '@/components/AddToCartButton';
+import AddToCartButton from '@/components/add-to-cart-button';
 
 import { getAllKites, getKiteBySlug } from '@/lib/cms';
 import { MISSING_IMG_URL, NO_NAME } from '@/lib/constants';
