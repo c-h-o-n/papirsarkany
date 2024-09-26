@@ -1,5 +1,6 @@
 import { z } from 'zod';
 
+import { formatPhoneNumber } from './formatters';
 import { WithImageAsset } from './types';
 
 export const cartItemValidationSchema = z.object({
@@ -28,7 +29,7 @@ export const orderFormSchema = [
         .min(1, 'Kötelező mező')
         .regex(
           /^(\+36)(20|30|31|70|50|51)\d{7}$/,
-          'Érvényes magyar telefonszámnak kell lennie +36 formátumban pl.: +36201234567',
+          `Érvényes magyar telefonszámnak kell lennie +36 formátumban pl.: ${formatPhoneNumber('+36201234567')}`,
         ),
 
       shippingOption: z.enum(
