@@ -10,6 +10,7 @@ import Navbar from '@/components/navbar';
 import ToastContainer from '@/components/toast-container';
 import TruendoScript from '@/components/truendo-script';
 import './globals.css';
+import Footer from '@/components/footer';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -39,6 +40,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             <CartStoreRehydrate />
           </main>
         </div>
+        <Footer />
       </body>
     </html>
   );
