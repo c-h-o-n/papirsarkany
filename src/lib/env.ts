@@ -19,6 +19,8 @@ export const env = createEnv({
     FOXPOST_API_KEY: z.string(),
 
     VERCEL_ENV: z.enum(['preview', 'production', 'development']).optional(),
+
+    GOOGLE_CLOUD_API_KEY: z.string(),
   },
   client: {
     NEXT_PUBLIC_SANITY_PROJECT_ID: z.string(),
@@ -48,6 +50,8 @@ export const env = createEnv({
     FOXPOST_API_KEY: process.env.FOXPOST_API_KEY || 'missing-sandbox-api-key',
 
     VERCEL_ENV: process.env.VERCEL_ENV,
+
+    GOOGLE_CLOUD_API_KEY: process.env.GOOGLE_CLOUD_API_KEY,
   },
   skipValidation: Boolean(process.env.CI),
 });

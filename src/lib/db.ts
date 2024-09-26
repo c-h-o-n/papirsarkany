@@ -1,15 +1,11 @@
 import { Order, Prisma } from '@prisma/client';
 import { prismaPaymentModeMap, prismaShippingModeMap } from './formatters';
 import prisma from './prisma';
-import {
-  BillingOptionValue,
-  CartItem,
-  ShippingOptionValue,
-  ValidatedOrderForm,
-} from './types';
+import { BillingOptionValue, ShippingOptionValue } from './types';
+import { CartItem, OrderForm } from './validation-schemas';
 
 export async function createOrder(
-  orderForm: ValidatedOrderForm,
+  orderForm: OrderForm,
   products: CartItem[],
 ): Promise<Order> {
   return await prisma.$transaction(async (tx) => {
