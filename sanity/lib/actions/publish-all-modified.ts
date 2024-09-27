@@ -1,23 +1,21 @@
-import { PublishAction , createClient } from '@sanity/client';
-import {
-  apiVersion,
-  dataset,
-  token,
-  projectId,
-  useCdn,
-} from '@sanity/env';
+import { PublishAction, createClient } from '@sanity/client';
 import { defineQuery } from 'groq';
+
+import { env } from '@/lib/env';
+import { apiVersion, dataset, projectId, useCdn } from '@sanity/env';
+
+const { SANITY_API_TOKEN } = env;
 
 const client = createClient({
   projectId,
   dataset,
   useCdn,
-  token,
+  token: SANITY_API_TOKEN,
   apiVersion,
 });
 
 // TODO make sure to trigger a single webhook
-// USE CAREFULLY !!! EACH PUBLISH TRIGGERS THE REBUILD WEBHOOK 
+// USE CAREFULLY !!! EACH PUBLISH TRIGGERS THE REBUILD WEBHOOK
 async function main() {
   const modifiedPublishedQuery = defineQuery(
     `*[count(*[_id in [^._id, "drafts." + ^._id]]) > 1]`,
@@ -30,11 +28,13 @@ async function main() {
     return;
   }
 
-  const publishActions: PublishAction[] = modifiedPublishedDocuments.map((document) => ({
-    actionType: 'sanity.action.document.publish',
-    draftId: 'drafts.' + document._id,
-    publishedId: document._id
-  }));
+  const publishActions: PublishAction[] = modifiedPublishedDocuments.map(
+    (document) => ({
+      actionType: 'sanity.action.document.publish',
+      draftId: 'drafts.' + document._id,
+      publishedId: document._id,
+    }),
+  );
 
   await client.action(publishActions);
 
