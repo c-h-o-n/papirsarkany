@@ -9,4 +9,3 @@ export const projectId = env.NEXT_PUBLIC_SANITY_PROJECT_ID;
 
 export const useCdn = false;
 
-export const token = env.SANITY_API_TOKEN;
