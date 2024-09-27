@@ -6,11 +6,11 @@ import { ReactNode } from 'react';
 
 import AppVersionScript from '@/components/app-version-script';
 import CartStoreRehydrate from '@/components/cart-store-rehydrate';
+import Footer from '@/components/footer';
 import Navbar from '@/components/navbar';
 import ToastContainer from '@/components/toast-container';
 import TruendoScript from '@/components/truendo-script';
 import './globals.css';
-import Footer from '@/components/footer';
 
 const inter = Inter({ subsets: ['latin'] });
 
