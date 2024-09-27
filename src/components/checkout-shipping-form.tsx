@@ -120,7 +120,7 @@ export default function CheckoutShippingForm() {
             <label className="d-label">
               <span className="d-label-text text-lg">Telefonszám</span>
             </label>
-            <PhoneNumberInput name="phoneNumber" />
+            <PhoneNumberInput {...register('phoneNumber')} />
             <label className="d-label">
               <span className="d-label-text-alt text-error">
                 {errors.phoneNumber?.message}

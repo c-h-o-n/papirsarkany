@@ -1,49 +1,54 @@
 'use client';
+
+import { forwardRef, useRef, useState } from 'react';
+import { UseFormRegisterReturn } from 'react-hook-form';
+
 import { formatPhoneNumber } from '@/lib/formatters';
-import { FC, useState } from 'react';
-import { useFormContext } from 'react-hook-form';
 
-type PhoneNumberInputProps = {
-  name: string;
-};
+type PhoneNumberInputProps = UseFormRegisterReturn;
 
-/**
- * use it inside a react-hook-form context
- */
-const PhoneNumberInput: FC<PhoneNumberInputProps> = ({ name }) => {
-  const { setValue, formState } = useFormContext();
-  const [phoneNumber, setPhoneNumber] = useState('');
+const PhoneNumberInput = forwardRef<HTMLInputElement, PhoneNumberInputProps>(
+  (register, ref) => {
+    const [phoneNumber, setPhoneNumber] = useState('');
+    const rawPhoneNumber = useRef('');
 
-  const rawPhoneNumber = (value: string) => {
-    return value.replace(/\s/g, '');
-  };
+    const getRawPhoneNumber = (phoneNumber: string) => {
+      return phoneNumber.replaceAll(' ', '');
+    };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const formatted = formatPhoneNumber(e.target.value);
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      rawPhoneNumber.current = getRawPhoneNumber(e.target.value);
+      if (rawPhoneNumber.current.length > 12) {
+        return;
+      }
 
-    if (formatted.length > 15) {
-      return;
-    }
+      const formatted = formatPhoneNumber(e.target.value);
+      setPhoneNumber(formatted);
 
-    setPhoneNumber(formatted);
+      e.target.value = rawPhoneNumber.current;
+      register.onChange(e);
+    };
 
-    setValue(name, rawPhoneNumber(formatted), {
-      shouldValidate: formState.isSubmitted,
-    });
-  };
+    const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+      e.target.value = rawPhoneNumber.current;
+      register.onBlur(e);
+    };
 
-  return (
-    <>
+    return (
       <input
         type="text"
         autoComplete="tel"
         className="d-input d-input-bordered"
-        onChange={handleChange}
-        value={phoneNumber}
         placeholder="+36 20 123 4567"
+        value={phoneNumber}
+        {...register}
+        name={register.name}
+        onChange={handleChange}
+        onBlur={handleBlur}
+        ref={ref}
       />
-    </>
-  );
-};
+    );
+  },
+);
 
 export default PhoneNumberInput;
