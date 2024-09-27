@@ -7,12 +7,8 @@ import { formatPhoneNumber } from '@/lib/formatters';
 
 type PhoneNumberInputProps = UseFormRegisterReturn;
 
-
-
 const PhoneNumberInput = forwardRef<HTMLInputElement, PhoneNumberInputProps>(
-  
   (register, ref) => {
-
     const [phoneNumber, setPhoneNumber] = useState('');
     const rawPhoneNumber = useRef('');
 
