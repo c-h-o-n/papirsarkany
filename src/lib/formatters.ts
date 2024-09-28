@@ -1,6 +1,12 @@
 import { $Enums } from '@prisma/client';
 
-import { BillingOptionValue, ProductTypes, ShippingOptionValue } from './types';
+import { ZodError } from 'zod';
+import {
+  BillingOptionValue,
+  ProductTypes,
+  ShippingFee,
+  ShippingOptionValue,
+} from './types';
 
 export function currencyFormatter(value: number): string {
   const formatter = Intl.NumberFormat('hu', {
@@ -17,7 +23,44 @@ export function pricePerMeterFormatter(value: number): string {
   return currencyFormatter(value) + ' / m';
 }
 
-export const SanityCategoryMap: Record<ProductTypes, string> = {
+export function formatZodErrors(error: ZodError): string {
+  return error.errors.map((error) => `${error.message}`).join('; ') + '.';
+}
+
+export function formatShippingFee(shippingFee: ShippingFee) {
+  if (typeof shippingFee === 'number') {
+    return `+${currencyFormatter(shippingFee)}`;
+  }
+
+  return `+${shippingFee}`;
+}
+
+export function formatPhoneNumber(phoneNumber: string) {
+  if (!phoneNumber) {
+    return '';
+  }
+
+  const cleaned = phoneNumber.replace(/[^\d+]/g, '');
+
+  let formatted = cleaned;
+
+  if (cleaned.startsWith('+36')) {
+    // Start formatting from +36
+    if (cleaned.length > 3) {
+      formatted = `${cleaned.slice(0, 3)} ${cleaned.slice(3)}`;
+    }
+    if (cleaned.length > 5) {
+      formatted = `${cleaned.slice(0, 3)} ${cleaned.slice(3, 5)} ${cleaned.slice(5)}`;
+    }
+    if (cleaned.length > 8) {
+      formatted = `${cleaned.slice(0, 3)} ${cleaned.slice(3, 5)} ${cleaned.slice(5, 8)} ${cleaned.slice(8)}`;
+    }
+  }
+
+  return formatted;
+}
+
+export const sanityProductCategoryMap: Record<ProductTypes, string> = {
   kite: 'Egyzsinóros sárkány',
   reel: 'Zsinórtartók',
   rod: 'Pálcák, rudak és csövek',

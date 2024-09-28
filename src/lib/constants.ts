@@ -41,3 +41,5 @@ export const FOXPOST_PACKAGE_HANDLING_FEES = [
     feeType: 'percentage',
   },
 ] as const satisfies FoxpostPackageHandlingFees;
+
+export const GOOGLE_MAPS_PLACE_ID = 'ChIJgUbQc-92akcRLtRwSD_F784';
