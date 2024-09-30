@@ -1,8 +1,6 @@
-import { env } from './src/lib/env';
-
 /** @type {import('next-sitemap').IConfig} */
 export default {
-  siteUrl: env.SITE_URL,
+  siteUrl: process.env.SITE_URL,
   generateRobotsTxt: true, // (optional)
   changefreq: 'monthly',
   priority: 1,
