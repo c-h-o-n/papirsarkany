@@ -1,13 +1,11 @@
 name: Run E2E tests
 
 on:
-  push:
-    branches:
-      - main
+  deployment_status:
 
 jobs:
   playwright-e2e-test:
-    if: ${{ github.event.deployment_status.state == 'success' && github.event.deployment.environment == 'Production' }}
+    if: ${{ github.event.deployment.environment == 'Production' && github.event.deployment_status.state == 'success' }}
     timeout-minutes: 60
     runs-on: ubuntu-latest
     steps:
