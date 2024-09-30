@@ -123,7 +123,7 @@ importers:
         specifier: ^7.51.3
         version: 7.51.3(react@18.3.1)
       react-responsive-masonry:
-        specifier: ^2.2.0
+        specifier: 2.2.0
         version: 2.2.0
       sanity:
         specifier: ^3.58.0
