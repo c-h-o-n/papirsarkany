@@ -1,24 +1,13 @@
 name: Run E2E tests
 
 on:
-  deployment_status:
+  push:
+    branches:
+      - main
 
 jobs:
-  get-pr:
-    runs-on: ubuntu-latest
-    outputs:
-      pr_found: ${{ steps.get_pr.outputs.pr_found }}
-    steps:
-      - name: Get Current Pull Request
-        id: get_pr
-        uses: 8BitJonny/gh-get-current-pr@3.0.0
-
-      - run: echo "PR url - ${{ steps.get_pr.outputs.pr_url }}"
-        if: ${{ steps.get_pr.outputs.pr_found == 'true' }}
-
   playwright-e2e-test:
-    needs: get-pr
-    if: ${{ github.event.deployment_status.state == 'success' && (needs.get-pr.outputs.pr_found == 'true' || github.event.deployment.environment == 'Production') }}
+    if: ${{ github.event.deployment_status.state == 'success' && github.event.deployment.environment == 'Production' }}
     timeout-minutes: 60
     runs-on: ubuntu-latest
     steps:
