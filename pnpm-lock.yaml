@@ -123,8 +123,8 @@ importers:
         specifier: ^7.51.3
         version: 7.51.3(react@18.3.1)
       react-responsive-masonry:
-        specifier: ^2.2.0
-        version: 2.2.0
+        specifier: ^2.3.0
+        version: 2.3.0
       sanity:
         specifier: ^3.58.0
         version: 3.58.0(@types/node@20.11.0)(@types/react@18.3.9)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(styled-components@6.1.13(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(terser@5.31.0)
@@ -4955,8 +4955,8 @@ packages:
     resolution: {integrity: sha512-wViHqhAd8OHeLS/IRMJjTSDHF3U9eWi62F/MledQGPdJGDhodXJ9PBLNGr6WWL7qlH12Mt3TyTpbS+hGXMjCzQ==}
     engines: {node: '>=0.10.0'}
 
-  react-responsive-masonry@2.2.0:
-    resolution: {integrity: sha512-IYbnfe2tWCZ3pvyTLyBWPj7uv5ZmNOULYMcAZi5a47ZLhSotOck1vkkISq6gP2qiyWdMvPfeMhjvYzUYGw9BOQ==}
+  react-responsive-masonry@2.3.0:
+    resolution: {integrity: sha512-ttb71B75qAfZ5q2CRLKRnCRO9V6p1Vkgw1C9wIeNaD2JpAxwCb1hUBI4Drqea9hNlvxxLpUkO0TRE5CLxqLY0A==}
 
   react-rx@4.0.0:
     resolution: {integrity: sha512-nJbL5VvUUKaNlEzPcAcGdTe9HqJLKfFi7SM3FFAqnPYdJ1mJbZHfmGH82DCkAEzGmOtW9ItdtDbjXSLMswE+dg==}
@@ -11368,7 +11368,7 @@ snapshots:
 
   react-refresh@0.14.0: {}
 
-  react-responsive-masonry@2.2.0: {}
+  react-responsive-masonry@2.3.0: {}
 
   react-rx@4.0.0(react@18.3.1)(rxjs@7.8.1):
     dependencies:
