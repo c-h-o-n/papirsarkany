@@ -42,7 +42,7 @@
     "dotenv": "^16.4.5",
     "eslint": "^8.57.0",
     "eslint-config-next": "^14.2.5",
-    "framer-motion": "^11.2.10",
+    "framer-motion": "^11.9.0",
     "groq": "^3.58.0",
     "just-pick": "^4.2.0",
     "next": "^14.2.13",
