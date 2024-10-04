@@ -7,6 +7,7 @@ import DesktopNavbar from './desktop-navbar';
 import MobileNavbar from './mobile-navbar';
 import { MenuItemProps } from './nav-menu-item';
 
+// TODO: move this to types.ts
 /**
  * leftItems: on `desktop` rendered on `left` side on `mobile` rendered at the `bottom`
  *
