@@ -52,7 +52,7 @@ export default function TwineCard({ twine }: Props) {
             <div className="d-join rounded-r-full outline-offset-2 focus-within:outline focus-within:outline-2 focus-within:outline-base-300">
               <input
                 type="number"
-                className="d-input d-join-item d-input-bordered w-full !outline-none focus:rounded-l-[0.1875rem]"
+                className="d-input d-join-item d-input-bordered w-full !outline-none focus:rounded-l-[0.0625rem]"
                 placeholder="hossz"
                 onChange={(e) => setLength(+e.target.value)}
               />
