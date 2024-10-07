@@ -21,7 +21,7 @@
     "@hookform/resolvers": "^3.9.0",
     "@next/bundle-analyzer": "^14.2.14",
     "@prisma/client": "^5.20.0",
-    "@sanity/client": "^6.22.0",
+    "@sanity/client": "^6.22.1",
     "@sanity/locale-hu-hu": "^1.1.13",
     "@sanity/vision": "^3.58.0",
     "@sendgrid/mail": "^8.1.3",
