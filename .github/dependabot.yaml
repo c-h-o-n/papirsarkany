@@ -5,5 +5,11 @@ updates:
     directory: '/'
     schedule:
       interval: 'daily'
-
     target-branch: 'develop'
+    groups:
+      sanity:
+        patterns:
+          - 'sanity'
+          - '@sanity/vision'
+          - 'groq'
+          - '@sanity/client'
