@@ -10,7 +10,7 @@ export default {
       {
         userAgent: '*',
         allow: '/',
-        disallow: '/admin/',
+        disallow: ['/admin/', '/penztar'],
       },
     ],
   },
