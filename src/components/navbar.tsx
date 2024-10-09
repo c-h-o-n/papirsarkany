@@ -49,7 +49,7 @@ export default function Navbar() {
   const isDesktop = useMedia({ minWidth: twConfig.screens.md });
 
   return (
-    <div className="sticky top-0 z-10">
+    <div className="sticky top-0 z-40">
       {isDesktop ? (
         <DesktopNavbar navbarItems={navbarItems} />
       ) : (
