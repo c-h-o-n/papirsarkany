@@ -38,7 +38,7 @@
     "@vercel/speed-insights": "^1.0.12",
     "autoprefixer": "10.4.20",
     "client-only": "^0.0.1",
-    "daisyui": "^4.12.12",
+    "daisyui": "^4.12.13",
     "dotenv": "^16.4.5",
     "eslint": "^8.57.1",
     "eslint-config-next": "^14.2.5",
