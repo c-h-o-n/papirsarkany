@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { Fragment } from 'react';
+import { FC, Fragment } from 'react';
 
 import TrashCanIcon from '@/assets/trash-can.svg';
 import useCart from '@/hooks/use-cart';
@@ -12,13 +12,11 @@ import { useCartStore } from '@/store/use-cart-store';
 import Card from './card';
 import ProductinCartCounter from './product-in-cart-counter';
 
-type OrderSummaryCard = {
+type OrderSummaryCardProps = {
   layout?: 'full' | 'definitive';
 };
 
-export default function OrderSummaryCard({
-  layout = 'full',
-}: OrderSummaryCard) {
+const OrderSummaryCard: FC<OrderSummaryCardProps> = ({ layout = 'full' }) => {
   const cart = useCartStore((state) => state.cart);
   const shippingFee = useCartStore((state) => state.shippingFee);
   const billingFee = useCartStore((state) => state.billingFee);
@@ -182,4 +180,6 @@ export default function OrderSummaryCard({
       </div>
     </Card>
   );
-}
+};
+
+export default OrderSummaryCard;

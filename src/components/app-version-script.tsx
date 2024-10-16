@@ -1,12 +1,14 @@
-'use client';
+import Script from 'next/script';
+import { FC } from 'react';
 
 import appVersion from '@/lib/app-version.preval';
-import Script from 'next/script';
 
-export default function AppVersionScript() {
+const AppVersionScript: FC = () => {
   return (
     <Script id="appVersionInject">
       {`window.appVersion = "${appVersion}";`}
     </Script>
   );
-}
+};
+
+export default AppVersionScript;

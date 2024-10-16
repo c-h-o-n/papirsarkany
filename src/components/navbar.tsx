@@ -3,6 +3,7 @@
 import useMedia from 'use-media';
 
 import twConfig from '@/lib/tailwind-theme.preval';
+import { FC } from 'react';
 import DesktopNavbar from './desktop-navbar';
 import MobileNavbar from './mobile-navbar';
 import { MenuItemProps } from './nav-menu-item';
@@ -45,7 +46,7 @@ export const navbarItems: NavbarItems = {
   ],
 };
 
-export default function Navbar() {
+const Navbar: FC = () => {
   const isDesktop = useMedia({ minWidth: twConfig.screens.md });
 
   return (
@@ -57,4 +58,6 @@ export default function Navbar() {
       )}
     </div>
   );
-}
+};
+
+export default Navbar;

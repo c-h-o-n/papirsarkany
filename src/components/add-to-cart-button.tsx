@@ -1,6 +1,6 @@
 'use client';
 
-import { MouseEvent } from 'react';
+import { FC, MouseEvent } from 'react';
 import { ZodError } from 'zod';
 
 import { formatZodErrors } from '@/lib/formatters';
@@ -14,7 +14,7 @@ type AddToCartProps = {
   onClick?(): () => void;
 };
 
-export default function AddToCartButton({ product, onClick }: AddToCartProps) {
+const AddToCartButton: FC<AddToCartProps> = ({ product, onClick }) => {
   const addToCart = useCartStore((state) => state.addToCart);
 
   const toast = useToastStore((state) => state.toast);
@@ -78,4 +78,6 @@ export default function AddToCartButton({ product, onClick }: AddToCartProps) {
       </button>
     </>
   );
-}
+};
+
+export default AddToCartButton;

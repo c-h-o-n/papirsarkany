@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
+import { FC, useEffect } from 'react';
 import { useFormContext } from 'react-hook-form';
 
 import { FoxpostSelectMessageData } from '@/lib/types';
@@ -12,7 +12,7 @@ type FoxpostMapProps = {
   hideMap: () => void;
 };
 
-export default function FoxpostMap({ hideMap }: FoxpostMapProps) {
+const FoxpostMap: FC<FoxpostMapProps> = ({ hideMap }) => {
   const { setValue, trigger } = useFormContext<OrderForm>();
 
   const setFoxpostData = useFoxpostParcelBoxStore(
@@ -63,4 +63,6 @@ export default function FoxpostMap({ hideMap }: FoxpostMapProps) {
       ></iframe>
     </Card>
   );
-}
+};
+
+export default FoxpostMap;

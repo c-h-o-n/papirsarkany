@@ -1,7 +1,7 @@
 'use client';
 
 import { AnimatePresence, m } from 'framer-motion';
-import { useMemo, useState } from 'react';
+import { FC, useMemo, useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 
 import {
@@ -17,7 +17,7 @@ import LazyLoadFramerMotion from './lazy-load-framer-motion';
 import PhoneNumberInput from './phone-number-input';
 import ShippingOptionRadioInput from './shipping-option-radio-input';
 
-export default function CheckoutShippingForm() {
+const CheckoutShippingForm: FC = () => {
   const {
     register,
     watch,
@@ -257,4 +257,6 @@ export default function CheckoutShippingForm() {
       </div>
     </>
   );
-}
+};
+
+export default CheckoutShippingForm;

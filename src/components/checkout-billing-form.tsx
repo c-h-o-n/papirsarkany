@@ -1,5 +1,6 @@
 'use client';
-import { ChangeEvent } from 'react';
+
+import { ChangeEvent, FC } from 'react';
 import { useFormContext } from 'react-hook-form';
 
 import { BillingOptionValue, ShippingOptionValue } from '@/lib/types';
@@ -7,7 +8,7 @@ import { OrderForm } from '@/lib/validation-schemas';
 import { useCheckoutFormStore } from '@/store/use-checkout-form-store';
 import BillingOptionRadioInput from './billing-option-radio-input';
 
-export default function CheckoutPayingForm() {
+const CheckoutPayingForm: FC = () => {
   const {
     register,
     formState: { errors },
@@ -193,4 +194,6 @@ export default function CheckoutPayingForm() {
       </div>
     </div>
   );
-}
+};
+
+export default CheckoutPayingForm;

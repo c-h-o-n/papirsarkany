@@ -1,8 +1,9 @@
 import { useCheckoutFormStore } from '@/store/use-checkout-form-store';
+import { FC } from 'react';
 
-const steps = ['Szálítás', 'Számlázás', 'Összegzés'];
+const STEP_LABELS = ['Szálítás', 'Számlázás', 'Összegzés'] as const;
 
-export default function Steps() {
+const StepProgress: FC = () => {
   const step = useCheckoutFormStore((state) => state.step);
   const setStep = useCheckoutFormStore((state) => state.setStep);
 
@@ -15,7 +16,7 @@ export default function Steps() {
 
   return (
     <ul className="d-steps w-full">
-      {steps.map((stepLabel, idx) => {
+      {STEP_LABELS.map((stepLabel, idx) => {
         const isActive = step >= idx;
         const isPrevious = step > idx;
 
@@ -31,4 +32,6 @@ export default function Steps() {
       })}
     </ul>
   );
-}
+};
+
+export default StepProgress;
