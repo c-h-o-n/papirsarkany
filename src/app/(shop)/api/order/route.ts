@@ -110,7 +110,7 @@ export async function POST(request: Request) {
       case error instanceof ZodError:
         return NextResponse.json(
           {
-            error: `Validation error: ${formatZodErrors}`,
+            error: `Validation error: ${formatZodErrors(error)}`,
           },
           { status: 403 },
         );
