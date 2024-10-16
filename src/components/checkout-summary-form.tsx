@@ -6,10 +6,11 @@ import { useFormContext } from 'react-hook-form';
 import { OrderForm } from '@/lib/validation-schemas';
 import { useCheckoutFormStore } from '@/store/use-checkout-form-store';
 import Link from 'next/link';
+import { FC } from 'react';
 import Card from './card';
 import OrderSummaryCard from './order-summary-card';
 
-export default function CheckoutSummary() {
+const CheckoutSummaryForm: FC = () => {
   const router = useRouter();
   const {
     register,
@@ -108,4 +109,6 @@ export default function CheckoutSummary() {
       </div>
     </div>
   );
-}
+};
+
+export default CheckoutSummaryForm;

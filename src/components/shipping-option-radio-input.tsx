@@ -1,3 +1,5 @@
+'use client';
+
 import { MouseEventHandler, ReactNode } from 'react';
 import { useFormContext } from 'react-hook-form';
 

@@ -1,8 +1,9 @@
 'use client';
 
-import { useToastStore } from '@/store/use-toast-store';
 import { AnimatePresence, m } from 'framer-motion';
 import { FC } from 'react';
+
+import { useToastStore } from '@/store/use-toast-store';
 import LazyLoadFramerMotion from './lazy-load-framer-motion';
 import Toast from './toast';
 

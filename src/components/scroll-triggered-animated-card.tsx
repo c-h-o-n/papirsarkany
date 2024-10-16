@@ -1,7 +1,8 @@
 'use client';
 
 import { m } from 'framer-motion';
-import { ReactNode } from 'react';
+import { FC, ReactNode } from 'react';
+
 import Card from './card';
 import LazyLoadFramerMotion from './lazy-load-framer-motion';
 
@@ -10,10 +11,10 @@ type AnimatedCardProps = {
   className?: string;
 };
 
-export default function ScrollTriggeredAnimatedCard({
+const ScrollTriggeredAnimatedCard: FC<AnimatedCardProps> = ({
   children,
   className,
-}: AnimatedCardProps) {
+}) => {
   return (
     <LazyLoadFramerMotion>
       <m.div
@@ -38,4 +39,6 @@ export default function ScrollTriggeredAnimatedCard({
       </m.div>
     </LazyLoadFramerMotion>
   );
-}
+};
+
+export default ScrollTriggeredAnimatedCard;

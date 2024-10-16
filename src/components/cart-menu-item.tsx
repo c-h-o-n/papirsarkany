@@ -1,10 +1,12 @@
 'use client';
+
 import Link from 'next/link';
 
 import CartIcon from '@/assets/cart.svg';
 import useCart from '@/hooks/use-cart';
+import { FC } from 'react';
 
-export default function CartMenuItem() {
+const CartMenuItem: FC = () => {
   const { getTotalItemCount } = useCart();
 
   return (
@@ -26,4 +28,6 @@ export default function CartMenuItem() {
       </div>
     </Link>
   );
-}
+};
+
+export default CartMenuItem;

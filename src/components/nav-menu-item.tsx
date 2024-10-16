@@ -2,13 +2,13 @@
 
 import { blurActiveAnchorElement } from '@/lib/helpers';
 import Link, { LinkProps } from 'next/link';
-import { ReactNode } from 'react';
+import { FC, ReactNode } from 'react';
 
 export type MenuItemProps = LinkProps & {
   children?: ReactNode;
 };
 
-export default function NavMenuItem(props: MenuItemProps) {
+const NavMenuItem: FC<MenuItemProps> = (props: MenuItemProps) => {
   const { children } = props;
 
   return (
@@ -18,4 +18,6 @@ export default function NavMenuItem(props: MenuItemProps) {
       </Link>
     </li>
   );
-}
+};
+
+export default NavMenuItem;
