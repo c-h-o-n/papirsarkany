@@ -4,6 +4,7 @@ import { currencyFormatter } from '@/lib/formatters';
 import { BillingOptionValue } from '@/lib/types';
 import { OrderForm } from '@/lib/validation-schemas';
 import { useCartStore } from '@/store/use-cart-store';
+import { FC } from 'react';
 
 type BillingOptionRadioInputProps = {
   isDisabled?: boolean;
@@ -11,11 +12,11 @@ type BillingOptionRadioInputProps = {
   billingFee?: number | null;
 };
 
-export default function BillingOptionRadioInput({
+const BillingOptionRadioInput: FC<BillingOptionRadioInputProps> = ({
   isDisabled,
   value,
   billingFee,
-}: BillingOptionRadioInputProps) {
+}) => {
   const { register } = useFormContext<OrderForm>();
 
   const setBillingFee = useCartStore((state) => state.setBillingFee);
@@ -44,4 +45,6 @@ export default function BillingOptionRadioInput({
       </label>
     </div>
   );
-}
+};
+
+export default BillingOptionRadioInput;

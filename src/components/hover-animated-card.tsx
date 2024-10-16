@@ -1,19 +1,20 @@
 'use client';
 
 import { HTMLMotionProps, m } from 'framer-motion';
-import { ReactNode } from 'react';
+import { FC, ReactNode } from 'react';
+
 import Card from './card';
 import LazyLoadFramerMotion from './lazy-load-framer-motion';
 
 type HoverAnimatedCardProps = HTMLMotionProps<'div'> & {
-  children?: ReactNode;
+  children: ReactNode;
 };
 
-export default function HoverAnimatedCard({
+const HoverAnimatedCard: FC<HoverAnimatedCardProps> = ({
   children,
   className,
   ...props
-}: HoverAnimatedCardProps) {
+}) => {
   return (
     <LazyLoadFramerMotion>
       <m.div
@@ -32,4 +33,6 @@ export default function HoverAnimatedCard({
       </m.div>
     </LazyLoadFramerMotion>
   );
-}
+};
+
+export default HoverAnimatedCard;
