@@ -1,4 +1,4 @@
-import { type Toast } from '@/lib/types';
+import { type Toast } from '~/lib/types';
 import { FC } from 'react';
 import ErrorToast from './error-toast';
 import SuccessToast from './success-toast';

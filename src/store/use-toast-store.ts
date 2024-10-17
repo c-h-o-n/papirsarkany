@@ -1,5 +1,5 @@
-import { delay } from '@/lib/helpers';
-import { Toast } from '@/lib/types';
+import { delay } from '~/lib/helpers';
+import { Toast } from '~/lib/types';
 import 'client-only';
 import { SetOptional } from 'type-fest';
 import { create } from 'zustand';

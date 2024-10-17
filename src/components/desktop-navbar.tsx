@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import HomeIcon from '@/assets/home.svg';
+import HomeIcon from '~/assets/home.svg';
 import { FC } from 'react';
 import CartMenuItem from './cart-menu-item';
 import NavMenuItem from './nav-menu-item';

@@ -1,6 +1,6 @@
 'use client';
 
-import useCart from '@/hooks/use-cart';
+import useCart from '~/hooks/use-cart';
 import Link from 'next/link';
 import { FC } from 'react';
 

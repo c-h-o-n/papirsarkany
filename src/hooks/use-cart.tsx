@@ -1,7 +1,7 @@
 import 'client-only';
 
-import { CartItem } from '@/lib/validation-schemas';
-import { useCartStore } from '@/store/use-cart-store';
+import { CartItem } from '~/lib/validation-schemas';
+import { useCartStore } from '~/store/use-cart-store';
 
 /**
  * Functions to calculate derived values from [useCartStore](../store/useCartStore.ts) state.
