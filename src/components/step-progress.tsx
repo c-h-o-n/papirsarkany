@@ -1,4 +1,4 @@
-import { useCheckoutFormStore } from '@/store/use-checkout-form-store';
+import { useCheckoutFormStore } from '~/store/use-checkout-form-store';
 import { FC } from 'react';
 
 const STEP_LABELS = ['Szálítás', 'Számlázás', 'Összegzés'] as const;

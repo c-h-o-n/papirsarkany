@@ -1,6 +1,6 @@
 'use client';
 
-import { blurActiveAnchorElement } from '@/lib/helpers';
+import { blurActiveAnchorElement } from '~/lib/helpers';
 import Link, { LinkProps } from 'next/link';
 import { FC, ReactNode } from 'react';
 

@@ -1,6 +1,6 @@
 import Script from 'next/script';
 
-import { isProdEnv } from '@/lib/helpers';
+import { isProdEnv } from '~/lib/helpers';
 
 /**
  * Truendo is a Consent Management Platform.

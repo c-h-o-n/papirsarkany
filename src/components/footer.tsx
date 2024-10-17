@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { FC } from 'react';
 
-import FacebookIcon from '@/assets/facebook.svg';
+import FacebookIcon from '~/assets/facebook.svg';
 
 const Footer: FC = () => {
   return (

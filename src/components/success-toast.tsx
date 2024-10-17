@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { FC } from 'react';
 
-import { Toast } from '@/lib/types';
+import { Toast } from '~/lib/types';
 
 type SuccessToastProps = Pick<
   Extract<Toast, { type: 'success' }>,
