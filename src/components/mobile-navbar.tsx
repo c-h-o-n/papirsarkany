@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import HamburgerIcon from '@/assets/hamburger.svg';
+import HamburgerIcon from '~/assets/hamburger.svg';
 import { FC } from 'react';
 import CartMenuItem from './cart-menu-item';
 import NavMenuItem from './nav-menu-item';

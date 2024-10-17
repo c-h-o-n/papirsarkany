@@ -3,12 +3,12 @@
 import Image from 'next/image';
 import { FC, Fragment } from 'react';
 
-import TrashCanIcon from '@/assets/trash-can.svg';
-import useCart from '@/hooks/use-cart';
-import { MISSING_IMG_URL, NO_NAME } from '@/lib/constants';
-import { currencyFormatter, formatShippingFee } from '@/lib/formatters';
-import { CartItem } from '@/lib/validation-schemas';
-import { useCartStore } from '@/store/use-cart-store';
+import TrashCanIcon from '~/assets/trash-can.svg';
+import useCart from '~/hooks/use-cart';
+import { MISSING_IMG_URL, NO_NAME } from '~/lib/constants';
+import { currencyFormatter, formatShippingFee } from '~/lib/formatters';
+import { CartItem } from '~/lib/validation-schemas';
+import { useCartStore } from '~/store/use-cart-store';
 import Card from './card';
 import ProductinCartCounter from './product-in-cart-counter';
 

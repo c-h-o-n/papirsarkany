@@ -2,8 +2,8 @@
 
 import { FC, useState } from 'react';
 
-import { currencyFormatter, pricePerMeterFormatter } from '@/lib/formatters';
-import { WithImageAsset } from '@/lib/types';
+import { currencyFormatter, pricePerMeterFormatter } from '~/lib/formatters';
+import { WithImageAsset } from '~/lib/types';
 import { Twine, TwineDiameters } from '@sanity/lib/sanity.types';
 import AddToCartButton from './add-to-cart-button';
 import Card from './card';

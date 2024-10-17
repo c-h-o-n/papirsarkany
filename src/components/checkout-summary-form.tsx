@@ -3,8 +3,8 @@
 import { useRouter } from 'next/navigation';
 import { useFormContext } from 'react-hook-form';
 
-import { OrderForm } from '@/lib/validation-schemas';
-import { useCheckoutFormStore } from '@/store/use-checkout-form-store';
+import { OrderForm } from '~/lib/validation-schemas';
+import { useCheckoutFormStore } from '~/store/use-checkout-form-store';
 import Link from 'next/link';
 import { FC } from 'react';
 import Card from './card';

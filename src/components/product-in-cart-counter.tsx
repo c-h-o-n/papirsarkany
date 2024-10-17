@@ -2,8 +2,8 @@
 
 import { ChangeEvent, FC, FocusEvent, useState } from 'react';
 
-import { CartItem } from '@/lib/validation-schemas';
-import { useCartStore } from '@/store/use-cart-store';
+import { CartItem } from '~/lib/validation-schemas';
+import { useCartStore } from '~/store/use-cart-store';
 
 type ProductinCartCounterProps = {
   cartItem: CartItem;

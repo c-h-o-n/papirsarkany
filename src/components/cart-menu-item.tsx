@@ -2,8 +2,8 @@
 
 import Link from 'next/link';
 
-import CartIcon from '@/assets/cart.svg';
-import useCart from '@/hooks/use-cart';
+import CartIcon from '~/assets/cart.svg';
+import useCart from '~/hooks/use-cart';
 import { FC } from 'react';
 
 const CartMenuItem: FC = () => {

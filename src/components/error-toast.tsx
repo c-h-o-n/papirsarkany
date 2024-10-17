@@ -1,6 +1,6 @@
 'use client';
 
-import { Toast } from '@/lib/types';
+import { Toast } from '~/lib/types';
 import { FC } from 'react';
 
 type ErrorToastProps = Pick<Extract<Toast, { type: 'error' }>, 'message'>;

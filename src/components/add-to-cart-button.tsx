@@ -3,11 +3,11 @@
 import { FC, MouseEvent } from 'react';
 import { ZodError } from 'zod';
 
-import { formatZodErrors } from '@/lib/formatters';
-import { InferredProduct } from '@/lib/types';
-import { cartItemValidationSchema } from '@/lib/validation-schemas';
-import { useCartStore } from '@/store/use-cart-store';
-import { useToastStore } from '@/store/use-toast-store';
+import { formatZodErrors } from '~/lib/formatters';
+import { InferredProduct } from '~/lib/types';
+import { cartItemValidationSchema } from '~/lib/validation-schemas';
+import { useCartStore } from '~/store/use-cart-store';
+import { useToastStore } from '~/store/use-toast-store';
 
 type AddToCartProps = {
   product: InferredProduct & { price?: number };

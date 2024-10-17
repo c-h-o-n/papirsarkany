@@ -1,10 +1,10 @@
-import MasonryContainer from '@/components/masonry-container';
-import ReelCard from '@/components/reel-card';
-import RodCard from '@/components/rod-card';
-import TwineCard from '@/components/twine-card';
+import MasonryContainer from '~/components/masonry-container';
+import ReelCard from '~/components/reel-card';
+import RodCard from '~/components/rod-card';
+import TwineCard from '~/components/twine-card';
 
-import { getAllReels, getAllRods, getAllTwines } from '@/lib/cms';
-import { sanityProductCategoryMap } from '@/lib/formatters';
+import { getAllReels, getAllRods, getAllTwines } from '~/lib/cms';
+import { sanityProductCategoryMap } from '~/lib/formatters';
 
 export default async function Materials() {
   const reels = await getAllReels();

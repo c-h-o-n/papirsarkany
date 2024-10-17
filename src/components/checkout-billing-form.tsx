@@ -3,9 +3,9 @@
 import { ChangeEvent, FC } from 'react';
 import { useFormContext } from 'react-hook-form';
 
-import { BillingOptionValue, ShippingOptionValue } from '@/lib/types';
-import { OrderForm } from '@/lib/validation-schemas';
-import { useCheckoutFormStore } from '@/store/use-checkout-form-store';
+import { BillingOptionValue, ShippingOptionValue } from '~/lib/types';
+import { OrderForm } from '~/lib/validation-schemas';
+import { useCheckoutFormStore } from '~/store/use-checkout-form-store';
 import BillingOptionRadioInput from './billing-option-radio-input';
 
 const CheckoutPayingForm: FC = () => {

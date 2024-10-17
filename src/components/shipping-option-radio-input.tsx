@@ -3,10 +3,10 @@
 import { MouseEventHandler, ReactNode } from 'react';
 import { useFormContext } from 'react-hook-form';
 
-import { formatShippingFee } from '@/lib/formatters';
-import { ShippingFee, ShippingOptionValue } from '@/lib/types';
-import { OrderForm } from '@/lib/validation-schemas';
-import { useCartStore } from '@/store/use-cart-store';
+import { formatShippingFee } from '~/lib/formatters';
+import { ShippingFee, ShippingOptionValue } from '~/lib/types';
+import { OrderForm } from '~/lib/validation-schemas';
+import { useCartStore } from '~/store/use-cart-store';
 
 type ShippingOptionRadioInputProps = {
   label: Exclude<ReactNode, string> | ShippingOptionValue;

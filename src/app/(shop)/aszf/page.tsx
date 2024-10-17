@@ -1,4 +1,4 @@
-import Card from '@/components/card';
+import Card from '~/components/card';
 import { FC } from 'react';
 
 const TermsAndConditionsPage: FC = () => {

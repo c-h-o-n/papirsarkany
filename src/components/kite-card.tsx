@@ -2,9 +2,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { FC } from 'react';
 
-import { MISSING_IMG_URL, NO_NAME } from '@/lib/constants';
-import { currencyFormatter } from '@/lib/formatters';
-import { WithImageAsset } from '@/lib/types';
+import { MISSING_IMG_URL, NO_NAME } from '~/lib/constants';
+import { currencyFormatter } from '~/lib/formatters';
+import { WithImageAsset } from '~/lib/types';
 import { Kite } from '@sanity/lib/sanity.types';
 import AddToCartButton from './add-to-cart-button';
 import HoverAnimatedCard from './hover-animated-card';

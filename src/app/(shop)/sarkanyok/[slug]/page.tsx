@@ -1,8 +1,8 @@
-import AddToCartButton from '@/components/add-to-cart-button';
+import AddToCartButton from '~/components/add-to-cart-button';
 
-import { getAllKites, getKiteBySlug } from '@/lib/cms';
-import { MISSING_IMG_URL, NO_NAME } from '@/lib/constants';
-import { currencyFormatter } from '@/lib/formatters';
+import { getAllKites, getKiteBySlug } from '~/lib/cms';
+import { MISSING_IMG_URL, NO_NAME } from '~/lib/constants';
+import { currencyFormatter } from '~/lib/formatters';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 

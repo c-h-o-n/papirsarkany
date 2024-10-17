@@ -2,7 +2,7 @@
 
 import useMedia from 'use-media';
 
-import twConfig from '@/lib/tailwind-theme.preval';
+import twConfig from '~/lib/tailwind-theme.preval';
 import { FC } from 'react';
 import DesktopNavbar from './desktop-navbar';
 import MobileNavbar from './mobile-navbar';
