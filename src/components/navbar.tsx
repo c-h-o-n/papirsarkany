@@ -1,23 +1,12 @@
 'use client';
 
+import { FC } from 'react';
 import useMedia from 'use-media';
 
 import twConfig from '~/lib/tailwind-theme.preval';
-import { FC } from 'react';
+import { NavbarItems } from '~/lib/types';
 import DesktopNavbar from './desktop-navbar';
 import MobileNavbar from './mobile-navbar';
-import { MenuItemProps } from './nav-menu-item';
-
-// TODO: move this to types.ts
-/**
- * leftItems: on `desktop` rendered on `left` side on `mobile` rendered at the `bottom`
- *
- * rightItems: on `desktop` rendered on `right` side on `mobile` rendered at the `top`
- */
-export type NavbarItems = {
-  leftItems: MenuItemProps[];
-  rightItems: MenuItemProps[];
-};
 
 export const navbarItems: NavbarItems = {
   leftItems: [
