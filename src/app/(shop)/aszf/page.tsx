@@ -1,5 +1,5 @@
-import Card from '~/components/card';
 import { FC } from 'react';
+import Card from '~/components/card';
 
 const TermsAndConditionsPage: FC = () => {
   return (

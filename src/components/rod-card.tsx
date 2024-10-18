@@ -2,9 +2,9 @@
 
 import { ChangeEvent, FC, useState } from 'react';
 
+import { Rod, RodDiameters } from '@sanity/lib/sanity.types';
 import { currencyFormatter, pricePerMeterFormatter } from '~/lib/formatters';
 import { WithImageAsset } from '~/lib/types';
-import { Rod, RodDiameters } from '@sanity/lib/sanity.types';
 import AddToCartButton from './add-to-cart-button';
 import Card from './card';
 

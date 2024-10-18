@@ -2,9 +2,9 @@
 
 import Link from 'next/link';
 
+import { FC } from 'react';
 import CartIcon from '~/assets/cart.svg';
 import useCart from '~/hooks/use-cart';
-import { FC } from 'react';
 
 const CartMenuItem: FC = () => {
   const { getTotalItemCount } = useCart();

@@ -1,8 +1,8 @@
 'use client';
 
-import useCart from '~/hooks/use-cart';
 import Link from 'next/link';
 import { FC } from 'react';
+import useCart from '~/hooks/use-cart';
 
 const CheckoutLink: FC = () => {
   const { getTotalItemCount } = useCart();
