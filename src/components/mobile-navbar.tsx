@@ -1,10 +1,10 @@
 import Link from 'next/link';
+import { FC } from 'react';
 
 import HamburgerIcon from '~/assets/hamburger.svg';
-import { FC } from 'react';
 import CartMenuItem from './cart-menu-item';
 import NavMenuItem from './nav-menu-item';
-import { NavbarItems } from './navbar';
+import { NavbarItems } from '~/lib/types';
 
 type MobileNavbarProps = {
   navbarItems: NavbarItems;
