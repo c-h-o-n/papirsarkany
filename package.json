@@ -20,7 +20,7 @@
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
     "@next/bundle-analyzer": "^14.2.15",
-    "@prisma/client": "^5.20.0",
+    "@prisma/client": "^5.21.1",
     "@sanity/client": "^6.22.2",
     "@sanity/locale-hu-hu": "^1.1.13",
     "@sanity/vision": "^3.61.0",
