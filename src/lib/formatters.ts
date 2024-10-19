@@ -20,11 +20,15 @@ export function currencyFormatter(value: number): string {
 }
 
 export function pricePerMeterFormatter(value: number): string {
-  return currencyFormatter(value) + ' / m';
+  return currencyFormatter(value) + '\xa0/\xa0m';
 }
 
-export function formatZodErrors(error: ZodError): string {
-  return error.errors.map((error) => `${error.message}`).join('; ') + '.';
+export function formatZodErrors(zodError: ZodError): string {
+  if(zodError.errors.length === 0) {
+    return '';
+  }
+
+  return zodError.errors.map((error) => `${error.message}`).join('; ') + '.';
 }
 
 export function formatShippingFee(shippingFee: ShippingFee) {
