@@ -47,17 +47,17 @@ test('formatShippingFee formats shipping fee with "+" sign and "Ft" or as string
 });
 
 test('formatPhoneNumber formats phone number to Hungarian format', () => {
-expect(formatPhoneNumber('')).toBe('');
-expect(formatPhoneNumber('abc!@#')).toBe('');
-expect(formatPhoneNumber('+36abc')).toBe('+36');
-expect(formatPhoneNumber('123')).toBe('123');
+  expect(formatPhoneNumber('')).toBe('');
+  expect(formatPhoneNumber('abc!@#')).toBe('');
+  expect(formatPhoneNumber('+36abc')).toBe('+36');
+  expect(formatPhoneNumber('123')).toBe('123');
 
-expect(formatPhoneNumber('+36')).toBe('+36');
-expect(formatPhoneNumber('+361')).toBe('+36 1');
-expect(formatPhoneNumber('+3630')).toBe('+36 30');
-expect(formatPhoneNumber('+363097')).toBe('+36 30 97');
-expect(formatPhoneNumber('+36309754786')).toBe('+36 30 975 4786');
+  expect(formatPhoneNumber('+36')).toBe('+36');
+  expect(formatPhoneNumber('+361')).toBe('+36 1');
+  expect(formatPhoneNumber('+3630')).toBe('+36 30');
+  expect(formatPhoneNumber('+363097')).toBe('+36 30 97');
+  expect(formatPhoneNumber('+36309754786')).toBe('+36 30 975 4786');
 
-expect(formatPhoneNumber('36501234567')).toBe('36501234567');
-expect(formatPhoneNumber('+36501234567')).toBe('+36 50 123 4567');
+  expect(formatPhoneNumber('36501234567')).toBe('36501234567');
+  expect(formatPhoneNumber('+36501234567')).toBe('+36 50 123 4567');
 });
