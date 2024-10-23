@@ -67,6 +67,7 @@ const CheckoutFormStepper: FC<CheckoutStepperProps> = ({ children }) => {
 
     if (!isLast) {
       nextStep();
+      window.scrollTo(0, 0);
       return;
     }
 
