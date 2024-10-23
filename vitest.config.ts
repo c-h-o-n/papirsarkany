@@ -4,19 +4,15 @@ import { loadEnv } from 'vite';
 import { defineConfig } from 'vitest/config';
 
 export default defineConfig({
-  plugins: [
-    //@ts-ignore
-    react(),
-  ],
+  plugins: [react()],
   test: {
     environment: 'jsdom',
-    dir: './src/tests/unit',
+    dir: './src/tests',
+    exclude: ['e2e'],
     env: loadEnv('', process.cwd(), ''),
-
     coverage: {
       include: ['src'],
       reporter: 'text',
-      exclude: ['src/tests'],
     },
   },
   resolve: {
