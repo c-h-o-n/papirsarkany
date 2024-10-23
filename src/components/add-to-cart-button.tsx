@@ -11,10 +11,9 @@ import { useToastStore } from '~/store/use-toast-store';
 
 type AddToCartProps = {
   product: InferredProduct & { price?: number };
-  onClick?(): () => void;
 };
 
-const AddToCartButton: FC<AddToCartProps> = ({ product, onClick }) => {
+const AddToCartButton: FC<AddToCartProps> = ({ product }) => {
   const addToCart = useCartStore((state) => state.addToCart);
 
   const toast = useToastStore((state) => state.toast);
@@ -23,10 +22,6 @@ const AddToCartButton: FC<AddToCartProps> = ({ product, onClick }) => {
     e.preventDefault();
 
     try {
-      if (onClick) {
-        onClick();
-      }
-
       const cartItem = Object.assign(
         { image: product.image },
         cartItemValidationSchema.parse({
@@ -69,14 +64,12 @@ const AddToCartButton: FC<AddToCartProps> = ({ product, onClick }) => {
   };
 
   return (
-    <>
-      <button
-        className="d-btn d-btn-primary uppercase active:!scale-105"
-        onClick={onButtonClick}
-      >
-        Kosárba
-      </button>
-    </>
+    <button
+      className="d-btn d-btn-primary uppercase active:!scale-105"
+      onClick={onButtonClick}
+    >
+      Kosárba
+    </button>
   );
 };
 
