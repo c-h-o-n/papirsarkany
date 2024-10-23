@@ -19,6 +19,7 @@ const MobileNavbar: FC<MobileNavbarProps> = ({ navbarItems }) => {
             tabIndex={0}
             role="button"
             className="d-btn d-btn-ghost lg:hidden"
+            aria-label='mobile navigation menu'
           >
             <HamburgerIcon className="h-5 w-5" />
           </div>
