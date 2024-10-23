@@ -60,6 +60,7 @@ const FoxpostMap: FC<FoxpostMapProps> = ({ hideMap }) => {
         src="https://cdn.foxpost.hu/apt-finder/v1/app/"
         width="100%"
         height="715px"
+        title='Foxpost map'
       ></iframe>
     </Card>
   );
