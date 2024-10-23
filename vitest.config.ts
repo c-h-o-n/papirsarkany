@@ -13,6 +13,7 @@ export default defineConfig({
     coverage: {
       include: ['src'],
       reporter: 'text',
+      exclude: ['src/tests'],
     },
   },
   resolve: {
