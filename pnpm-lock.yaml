@@ -12,8 +12,8 @@ importers:
         specifier: ^3.9.0
         version: 3.9.0(react-hook-form@7.53.1(react@18.3.1))
       '@next/bundle-analyzer':
-        specifier: ^14.2.15
-        version: 14.2.15
+        specifier: ^15.0.1
+        version: 15.0.1
       '@prisma/client':
         specifier: ^5.21.1
         version: 5.21.1(prisma@5.21.1)
@@ -1984,8 +1984,8 @@ packages:
   '@lezer/lr@1.4.2':
     resolution: {integrity: sha512-pu0K1jCIdnQ12aWNaAVU5bzi7Bd1w54J3ECgANPmYLtQKP0HBj2cE/5coBD66MT10xbtIuUr7tg0Shbsvk0mDA==}
 
-  '@next/bundle-analyzer@14.2.15':
-    resolution: {integrity: sha512-W6iyrp/3G7WbIztDcNt+owYX1iv37m9f4RJs0fa/Ayw4EDdjNPX6qKQrC7gBrESHV3FuchED+8R+CNiw1i78eQ==}
+  '@next/bundle-analyzer@15.0.1':
+    resolution: {integrity: sha512-i/nCRBGBEkESPDpXJc+6SPLFDItnvTTJSaxiOvuNqHmQjQognRl3BANkKb3nWYy0V5rgzygxu++X349Z4dhs4Q==}
 
   '@next/env@13.5.6':
     resolution: {integrity: sha512-Yac/bV5sBGkkEXmAX5FWPS9Mmo2rthrOPRQQNfycJPkjUAUclomCPH7QFVCDQ4Mp2k2K1SSM6m0zrxYrOwtFQw==}
@@ -7047,7 +7047,7 @@ snapshots:
   '@babel/code-frame@7.24.1':
     dependencies:
       '@babel/highlight': 7.24.1
-      picocolors: 1.1.0
+      picocolors: 1.1.1
 
   '@babel/code-frame@7.25.7':
     dependencies:
@@ -9101,7 +9101,7 @@ snapshots:
     dependencies:
       '@lezer/common': 1.2.3
 
-  '@next/bundle-analyzer@14.2.15':
+  '@next/bundle-analyzer@15.0.1':
     dependencies:
       webpack-bundle-analyzer: 4.10.1
     transitivePeerDependencies:
@@ -14204,7 +14204,7 @@ snapshots:
       css-select: 5.1.0
       css-tree: 2.3.1
       csso: 5.0.5
-      picocolors: 1.1.0
+      picocolors: 1.1.1
 
   symbol-tree@3.2.4: {}
 
@@ -14533,7 +14533,7 @@ snapshots:
     dependencies:
       browserslist: 4.24.0
       escalade: 3.2.0
-      picocolors: 1.1.0
+      picocolors: 1.1.1
 
   uri-js@4.4.1:
     dependencies:
@@ -14705,7 +14705,7 @@ snapshots:
       html-escaper: 2.0.2
       is-plain-object: 5.0.0
       opener: 1.5.2
-      picocolors: 1.1.0
+      picocolors: 1.1.1
       sirv: 2.0.4
       ws: 7.5.10
     transitivePeerDependencies:
