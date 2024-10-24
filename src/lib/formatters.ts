@@ -64,14 +64,14 @@ export function formatPhoneNumber(phoneNumber: string) {
   return formatted;
 }
 
-export const sanityProductCategoryMap: Record<ProductTypes, string> = {
+export const sanityProductCategoryTitleMap: Record<ProductTypes, string> = {
   kite: 'Egyzsinóros sárkány',
   reel: 'Zsinórtartók',
   rod: 'Pálcák, rudak és csövek',
   twine: 'Zsinórok',
 };
 
-export const prismaShippingModeMap: Record<
+export const shippingModePrismaMap: Record<
   ShippingOptionValue,
   $Enums.ShippingMode
 > = {
@@ -80,7 +80,7 @@ export const prismaShippingModeMap: Record<
   'Foxpost automatába': 'Foxpost',
 };
 
-export const prismaPaymentModeMap: Record<
+export const paymentModePrismaMap: Record<
   BillingOptionValue,
   $Enums.PaymentMode
 > = {
