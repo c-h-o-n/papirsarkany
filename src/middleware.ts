@@ -6,16 +6,13 @@ import { OrderRequestBody } from '~/lib/types';
 import { mergedFormSchemaObject } from '~/lib/validation-schemas';
 
 export async function middleware(request: NextRequest) {
-  console.log('hit middleware');
   try {
     const body = (await request.json()) as OrderRequestBody;
     const { formData } = body;
     await mergedFormSchemaObject.parseAsync(formData);
 
-    console.log('valid');
     return NextResponse.next();
   } catch (error) {
-    console.log('invalid');
     return NextResponse.json(
       {
         error: `Validation error: ${formatZodErrors(error as ZodError)}`,
