@@ -1,4 +1,10 @@
-import React, { ReactNode } from 'react';
+import React, { FC, ReactNode } from 'react';
+
+type HomeSectionProps = {
+  id: string;
+  children: ReactNode;
+  className?: string;
+};
 
 type IconProps = {
   children: ReactNode;
@@ -8,13 +14,12 @@ type ContentProps = {
   children: ReactNode;
 };
 
-type Props = {
-  id: string;
-  children: ReactNode;
-  className?: string;
+type HomeSectionCompound = FC<HomeSectionProps> & {
+  Icon: FC<IconProps>;
+  Content: FC<ContentProps>;
 };
 
-const HomeSection = (props: Props) => {
+const HomeSection: HomeSectionCompound = (props) => {
   let Icon: ReactNode | null = null;
   let Content: ReactNode | null = null;
 
@@ -37,10 +42,10 @@ const HomeSection = (props: Props) => {
   );
 };
 
-const Icon = (props: IconProps) => (
-  <div className="max-w-[12rem] flex-1">{props.children}</div>
+const Icon: HomeSectionCompound['Icon'] = ({ children }) => (
+  <div className="max-w-[12rem] flex-1">{children}</div>
 );
-const Content = (props: ContentProps) => <>{props.children}</>;
+const Content: HomeSectionCompound['Content'] = ({ children }) => children;
 
 HomeSection.Icon = Icon;
 HomeSection.Content = Content;

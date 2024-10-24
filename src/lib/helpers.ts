@@ -1,14 +1,6 @@
 import { env } from './env';
 import { OrderForm } from './validation-schemas';
 
-export function blurActiveAnchorElement() {
-  const element = document.activeElement as HTMLAnchorElement;
-
-  if (element) {
-    element.blur();
-  }
-}
-
 export function delay(time: number) {
   return new Promise((resolve) => setTimeout(resolve, time));
 }

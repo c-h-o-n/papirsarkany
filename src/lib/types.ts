@@ -6,6 +6,7 @@ import {
   Twine,
 } from '@sanity/lib/sanity.types';
 
+import { MenuItemProps } from '~/components/nav-menu-item';
 import { CartItem, OrderForm } from './validation-schemas';
 
 export type WithImageAsset<T> = Omit<T, 'image'> & {
@@ -261,3 +262,13 @@ export type Toast = {
       type: 'error';
     }
 );
+
+/**
+ * leftItems: on `desktop` rendered on `left` side on `mobile` rendered at the `bottom`
+ *
+ * rightItems: on `desktop` rendered on `right` side on `mobile` rendered at the `top`
+ */
+export type NavbarItems = {
+  leftItems: MenuItemProps[];
+  rightItems: MenuItemProps[];
+};

@@ -1,14 +1,16 @@
-import { ReactNode } from 'react';
+import { FC, ReactNode } from 'react';
 
-type Props = {
+type CardProps = {
   children: ReactNode;
   className?: string;
 };
 
-export default function Card({ children, className }: Props) {
+const Card: FC<CardProps> = ({ children, className }) => {
   return (
     <div className={`rounded-lg border-4 border-black bg-white ${className}`}>
       {children}
     </div>
   );
-}
+};
+
+export default Card;

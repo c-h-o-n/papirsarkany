@@ -1,6 +1,6 @@
 import Script from 'next/script';
 
-import { isProdEnv } from '@/lib/helpers';
+import { isProdEnv } from '~/lib/helpers';
 
 /**
  * Truendo is a Consent Management Platform.
@@ -8,7 +8,7 @@ import { isProdEnv } from '@/lib/helpers';
  * It injects a cookie banner to my sites.
  * @returns Truendo banner integration script if NODE_ENV and VERCEL_ENV is production
  */
-export default function TruendoScript() {
+const TruendoScript = () => {
   if (!isProdEnv()) {
     return;
   }
@@ -21,4 +21,6 @@ export default function TruendoScript() {
       data-siteid="88306c5c-ce8c-45d7-8daf-47e99864c1b8"
     />
   );
-}
+};
+
+export default TruendoScript;

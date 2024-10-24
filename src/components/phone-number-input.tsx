@@ -3,7 +3,7 @@
 import { forwardRef, useRef, useState } from 'react';
 import { UseFormRegisterReturn } from 'react-hook-form';
 
-import { formatPhoneNumber } from '@/lib/formatters';
+import { formatPhoneNumber } from '~/lib/formatters';
 
 type PhoneNumberInputProps = UseFormRegisterReturn;
 

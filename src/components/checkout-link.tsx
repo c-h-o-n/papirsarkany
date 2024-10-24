@@ -1,9 +1,10 @@
 'use client';
 
-import useCart from '@/hooks/use-cart';
 import Link from 'next/link';
+import { FC } from 'react';
+import useCart from '~/hooks/use-cart';
 
-export default function CheckoutLink() {
+const CheckoutLink: FC = () => {
   const { getTotalItemCount } = useCart();
 
   if (getTotalItemCount() < 1) {
@@ -19,4 +20,6 @@ export default function CheckoutLink() {
       </Link>
     </div>
   );
-}
+};
+
+export default CheckoutLink;

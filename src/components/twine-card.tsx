@@ -1,18 +1,18 @@
 'use client';
 
-import { useState } from 'react';
+import { FC, useState } from 'react';
 
-import { currencyFormatter, pricePerMeterFormatter } from '@/lib/formatters';
-import { WithImageAsset } from '@/lib/types';
 import { Twine, TwineDiameters } from '@sanity/lib/sanity.types';
+import { currencyFormatter, pricePerMeterFormatter } from '~/lib/formatters';
+import { WithImageAsset } from '~/lib/types';
 import AddToCartButton from './add-to-cart-button';
 import Card from './card';
 
-type Props = {
+type TwineCardProps = {
   twine: WithImageAsset<Twine>;
 };
 
-export default function TwineCard({ twine }: Props) {
+const TwineCard: FC<TwineCardProps> = ({ twine }) => {
   const [selectedDiameter] = useState<TwineDiameters[number] | undefined>(
     twine.diameters ? twine.diameters[0] : undefined,
   );
@@ -49,10 +49,10 @@ export default function TwineCard({ twine }: Props) {
           </div>
 
           <div className="self-end">
-            <div className="d-join rounded-r-full outline-offset-2 focus-within:outline focus-within:outline-2 focus-within:outline-base-300">
+            <div className="d-join rounded-r-full outline-offset-0 transition-all duration-75 focus-within:outline focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-base-300">
               <input
                 type="number"
-                className="d-input d-join-item d-input-bordered w-full !outline-none focus:rounded-l-[0.0625rem]"
+                className="d-input d-join-item d-input-bordered w-full !outline-none transition-all duration-150 focus:rounded-l-[0.0625rem]"
                 placeholder="hossz"
                 onChange={(e) => setLength(+e.target.value)}
               />
@@ -82,4 +82,6 @@ export default function TwineCard({ twine }: Props) {
       </Card>
     </div>
   );
-}
+};
+
+export default TwineCard;

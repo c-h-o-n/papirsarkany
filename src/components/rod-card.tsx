@@ -1,33 +1,35 @@
 'use client';
 
-import { currencyFormatter, pricePerMeterFormatter } from '@/lib/formatters';
-import { WithImageAsset } from '@/lib/types';
+import { ChangeEvent, FC, useState } from 'react';
+
 import { Rod, RodDiameters } from '@sanity/lib/sanity.types';
-import { ChangeEvent, useState } from 'react';
+import { currencyFormatter, pricePerMeterFormatter } from '~/lib/formatters';
+import { WithImageAsset } from '~/lib/types';
 import AddToCartButton from './add-to-cart-button';
 import Card from './card';
 
-type Props = {
+type RodCardProps = {
   rod: WithImageAsset<Rod>;
 };
 
-function getSelectedDiamaterFirstLength(
-  selectedDiameter: RodDiameters[number] | undefined,
-) {
-  if (!selectedDiameter || !selectedDiameter.lengths) {
-    return undefined;
-  }
-
-  return selectedDiameter.lengths[0];
-}
-
-export default function RodCard({ rod }: Props) {
+const RodCard: FC<RodCardProps> = ({ rod }) => {
   const [selectedDiameter, setSelectedDiameter] = useState<
     RodDiameters[number] | undefined
   >(rod.diameters ? rod.diameters[0] : undefined);
+
   const [selectedLength, setSelectedLength] = useState<number | undefined>(
     getSelectedDiamaterFirstLength(selectedDiameter),
   );
+
+  function getSelectedDiamaterFirstLength(
+    selectedDiameter: RodDiameters[number] | undefined,
+  ) {
+    if (!selectedDiameter || !selectedDiameter.lengths) {
+      return undefined;
+    }
+
+    return selectedDiameter.lengths[0];
+  }
 
   const handleDiameterChange = (e: ChangeEvent<HTMLSelectElement>) => {
     const diamaterName = e.target.value;
@@ -123,4 +125,6 @@ export default function RodCard({ rod }: Props) {
       </Card>
     </div>
   );
-}
+};
+
+export default RodCard;

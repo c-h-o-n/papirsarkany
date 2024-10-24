@@ -1,20 +1,19 @@
 'use client';
 
-import { MouseEvent } from 'react';
+import { FC, MouseEvent } from 'react';
 import { ZodError } from 'zod';
 
-import { formatZodErrors } from '@/lib/formatters';
-import { InferredProduct } from '@/lib/types';
-import { cartItemValidationSchema } from '@/lib/validation-schemas';
-import { useCartStore } from '@/store/use-cart-store';
-import { useToastStore } from '@/store/use-toast-store';
+import { formatZodErrors } from '~/lib/formatters';
+import { InferredProduct } from '~/lib/types';
+import { cartItemValidationSchema } from '~/lib/validation-schemas';
+import { useCartStore } from '~/store/use-cart-store';
+import { useToastStore } from '~/store/use-toast-store';
 
 type AddToCartProps = {
   product: InferredProduct & { price?: number };
-  onClick?(): () => void;
 };
 
-export default function AddToCartButton({ product, onClick }: AddToCartProps) {
+const AddToCartButton: FC<AddToCartProps> = ({ product }) => {
   const addToCart = useCartStore((state) => state.addToCart);
 
   const toast = useToastStore((state) => state.toast);
@@ -23,10 +22,6 @@ export default function AddToCartButton({ product, onClick }: AddToCartProps) {
     e.preventDefault();
 
     try {
-      if (onClick) {
-        onClick();
-      }
-
       const cartItem = Object.assign(
         { image: product.image },
         cartItemValidationSchema.parse({
@@ -69,13 +64,13 @@ export default function AddToCartButton({ product, onClick }: AddToCartProps) {
   };
 
   return (
-    <>
-      <button
-        className="d-btn d-btn-primary uppercase active:!scale-105"
-        onClick={onButtonClick}
-      >
-        Kosárba
-      </button>
-    </>
+    <button
+      className="d-btn d-btn-primary uppercase active:!scale-105"
+      onClick={onButtonClick}
+    >
+      Kosárba
+    </button>
   );
-}
+};
+
+export default AddToCartButton;

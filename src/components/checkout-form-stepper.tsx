@@ -1,22 +1,23 @@
 'use client';
+
 import { zodResolver } from '@hookform/resolvers/zod';
 import { redirect, useRouter } from 'next/navigation';
-import { Children, ReactNode, useEffect } from 'react';
+import { Children, FC, ReactNode, useEffect } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 
-import useCart from '@/hooks/use-cart';
-import { OrderRequestBody } from '@/lib/types';
-import { OrderForm, orderFormSchema } from '@/lib/validation-schemas';
-import { useCartStore } from '@/store/use-cart-store';
-import { useCheckoutFormStore } from '@/store/use-checkout-form-store';
-import { useFoxpostParcelBoxStore } from '@/store/use-foxpost-parcel-box-store';
+import useCart from '~/hooks/use-cart';
+import { OrderRequestBody } from '~/lib/types';
+import { OrderForm, orderFormSchema } from '~/lib/validation-schemas';
+import { useCartStore } from '~/store/use-cart-store';
+import { useCheckoutFormStore } from '~/store/use-checkout-form-store';
+import { useFoxpostParcelBoxStore } from '~/store/use-foxpost-parcel-box-store';
 import StepProgress from './step-progress';
 
 type CheckoutStepperProps = {
   children: ReactNode;
 };
 
-export default function OrderFormStepper({ children }: CheckoutStepperProps) {
+const CheckoutFormStepper: FC<CheckoutStepperProps> = ({ children }) => {
   const router = useRouter();
 
   const hasHydrated = useCartStore((state) => state._hasHydrated);
@@ -66,6 +67,7 @@ export default function OrderFormStepper({ children }: CheckoutStepperProps) {
 
     if (!isLast) {
       nextStep();
+      window.scrollTo(0, 0);
       return;
     }
 
@@ -138,4 +140,6 @@ export default function OrderFormStepper({ children }: CheckoutStepperProps) {
       </FormProvider>
     </div>
   );
-}
+};
+
+export default CheckoutFormStepper;

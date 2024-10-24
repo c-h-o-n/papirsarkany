@@ -1,10 +1,13 @@
 'use client';
-import { useCartStore } from '@/store/use-cart-store';
+
+import { useCartStore } from '~/store/use-cart-store';
 
 if (typeof window !== 'undefined') {
   useCartStore.persist.rehydrate();
 }
 
-export default function CartStoreRehydrate() {
+const CartStoreRehydrate = () => {
   return null;
-}
+};
+
+export default CartStoreRehydrate;

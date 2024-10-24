@@ -1,14 +1,16 @@
 'use client';
 
-import { Toast } from '@/lib/types';
 import Link from 'next/link';
+import { FC } from 'react';
+
+import { Toast } from '~/lib/types';
 
 type SuccessToastProps = Pick<
   Extract<Toast, { type: 'success' }>,
   'message' | 'href'
 >;
 
-export default function SuccessToast({ href, message }: SuccessToastProps) {
+const SuccessToast: FC<SuccessToastProps> = ({ href, message }) => {
   const toast = (
     <div className="d-alert d-alert-success">
       <span className="font-semibold">{message}</span>
@@ -20,4 +22,6 @@ export default function SuccessToast({ href, message }: SuccessToastProps) {
   }
 
   return toast;
-}
+};
+
+export default SuccessToast;

@@ -1,22 +1,12 @@
 'use client';
 
+import { FC } from 'react';
 import useMedia from 'use-media';
 
-import twConfig from '@/lib/tailwind-theme.preval';
+import twConfig from '~/lib/tailwind-theme.preval';
+import { NavbarItems } from '~/lib/types';
 import DesktopNavbar from './desktop-navbar';
 import MobileNavbar from './mobile-navbar';
-import { MenuItemProps } from './nav-menu-item';
-
-// TODO: move this to types.ts
-/**
- * leftItems: on `desktop` rendered on `left` side on `mobile` rendered at the `bottom`
- *
- * rightItems: on `desktop` rendered on `right` side on `mobile` rendered at the `top`
- */
-export type NavbarItems = {
-  leftItems: MenuItemProps[];
-  rightItems: MenuItemProps[];
-};
 
 export const navbarItems: NavbarItems = {
   leftItems: [
@@ -45,11 +35,11 @@ export const navbarItems: NavbarItems = {
   ],
 };
 
-export default function Navbar() {
+const Navbar: FC = () => {
   const isDesktop = useMedia({ minWidth: twConfig.screens.md });
 
   return (
-    <div className="sticky top-0 z-10">
+    <div className="sticky top-0 z-40">
       {isDesktop ? (
         <DesktopNavbar navbarItems={navbarItems} />
       ) : (
@@ -57,4 +47,6 @@ export default function Navbar() {
       )}
     </div>
   );
-}
+};
+
+export default Navbar;

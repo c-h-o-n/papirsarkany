@@ -1,7 +1,7 @@
 import { PublishAction, createClient } from '@sanity/client';
 import { defineQuery } from 'groq';
 
-import { env } from '@/lib/env';
+import { env } from '~/lib/env';
 import { apiVersion, dataset, projectId, useCdn } from '@sanity/env';
 
 const { SANITY_API_TOKEN } = env;

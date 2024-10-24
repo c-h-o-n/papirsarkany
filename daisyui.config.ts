@@ -8,12 +8,12 @@ export default {
     {
       light: {
         ...lightTheme,
-        primary: '#0ea5e9',
-        'primary-content': '#ffffff',
+        primary: '#0E7DAF',
+        'primary-content': '#FFFFFF',
 
-        'success-content': '#f8f8f8',
+        'success-content': '#F8F8F8',
 
-        error: '#ef5258',
+        error: '#EF5258',
       },
     },
   ],
