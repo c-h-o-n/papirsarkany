@@ -8,7 +8,7 @@ import { OrderForm } from '~/lib/validation-schemas';
 import { useCheckoutFormStore } from '~/store/use-checkout-form-store';
 import BillingOptionRadioInput from './billing-option-radio-input';
 
-const CheckoutPayingForm: FC = () => {
+const CheckoutBillingForm: FC = () => {
   const {
     register,
     formState: { errors },
@@ -196,4 +196,4 @@ const CheckoutPayingForm: FC = () => {
   );
 };
 
-export default CheckoutPayingForm;
+export default CheckoutBillingForm;
