@@ -1,7 +1,10 @@
 'use client'; // Error components must be Client Components
 
 import { useEffect } from 'react';
+
 import RestartIcon from '~/assets/restart.svg';
+import { useToastStore } from '~/store/use-toast-store';
+
 export default function Error({
   error,
   reset,
@@ -9,8 +12,16 @@ export default function Error({
   error: Error & { digest?: string };
   reset: () => void;
 }) {
+  const toast = useToastStore((state) => state.toast);
+
   useEffect(() => {
-    console.error(error);
+    toast({
+      message: error.message,
+      type: 'error',
+      id: error.name,
+    });
+
+    console.error(error)
   }, [error]);
 
   return (
