@@ -26,7 +26,7 @@ const Footer: FC = () => {
           href="https://www.facebook.com/profile.php?id=61554743192842"
           target="_blank"
           rel="noopener noreferrer"
-          aria-label='Facebook page'
+          aria-label="Facebook page"
         >
           <FacebookIcon className="h-8 w-8" />
         </Link>

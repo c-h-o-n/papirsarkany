@@ -113,7 +113,7 @@ export default function Home() {
               style={{ border: 0 }}
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              title='Google map'
+              title="Google map"
             ></iframe>
           </HomeSection.Content>
         </HomeSection>

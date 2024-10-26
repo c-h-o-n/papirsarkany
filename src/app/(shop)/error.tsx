@@ -21,7 +21,7 @@ export default function Error({
       id: error.name,
     });
 
-    console.error(error)
+    console.error(error);
   }, [error, toast]);
 
   return (

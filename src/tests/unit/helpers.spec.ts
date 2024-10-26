@@ -43,9 +43,9 @@ describe('normalizeOrderForm', () => {
       billingSubaddress: '3. ajtó',
       comment: 'just a unit test',
     };
-  
+
     const normalizedOrderFormData = normalizeOrderForm(formData);
-  
+
     expect(normalizedOrderFormData).toEqual({
       ...formData,
       shippingPostcode: undefined,
@@ -54,7 +54,7 @@ describe('normalizeOrderForm', () => {
       shippingSubaddress: undefined,
     });
   });
-  
+
   test('returns the same object if "Postai szállítás" is selected', () => {
     const formData: OrderForm = {
       firstName: 'János',
@@ -74,11 +74,9 @@ describe('normalizeOrderForm', () => {
       billingSubaddress: '3. ajtó',
       comment: 'just a unit test',
     };
-  
+
     const normalizedOrderFormData = normalizeOrderForm(formData);
-  
+
     expect(normalizedOrderFormData).toBe(formData);
   });
-})
-
-
+});

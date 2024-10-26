@@ -94,4 +94,4 @@ export const product = {
     current: 'ordogfioka',
     _type: 'slug',
   },
-} satisfies InferredProduct
+} satisfies InferredProduct;

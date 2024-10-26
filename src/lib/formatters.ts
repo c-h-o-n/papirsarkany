@@ -24,7 +24,7 @@ export function pricePerMeterFormatter(value: number): string {
 }
 
 export function formatZodErrors(zodError: ZodError): string {
-  if(zodError.errors.length === 0) {
+  if (zodError.errors.length === 0) {
     return '';
   }
 

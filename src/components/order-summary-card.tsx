@@ -156,7 +156,10 @@ const OrderSummaryCard: FC<OrderSummaryCardProps> = ({ layout = 'full' }) => {
               </button>
             </div>
           </div>
-          <div data-testid="cart-item-controls" className="flex justify-between gap-4 md:hidden">
+          <div
+            data-testid="cart-item-controls"
+            className="flex justify-between gap-4 md:hidden"
+          >
             <ProductinCartCounter value={item.quantity} cartItem={item} />
 
             <button

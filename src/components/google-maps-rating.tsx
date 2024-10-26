@@ -13,7 +13,6 @@ const THRESHOLD = 3;
 
 const GoogleMapsRating: FC<GoogleMapsRating> = ({ rating }) => {
   const ratingRatio = (rating / 5) * 100;
-
   const normalizedInsetPath = `inset(${THRESHOLD + (100 - ratingRatio)}% 0 0 0)`;
 
   return (

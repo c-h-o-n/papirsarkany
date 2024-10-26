@@ -1,4 +1,4 @@
-import {mockMediaQueryList} from 'use-media/lib/useMedia';
+import { mockMediaQueryList } from 'use-media/lib/useMedia';
 import { vi } from 'vitest';
 
 export interface MockMatchMedia {
@@ -6,7 +6,7 @@ export interface MockMatchMedia {
   matches?: boolean;
 }
 
-function getMockImplementation({media, matches = false}: MockMatchMedia) {
+function getMockImplementation({ media, matches = false }: MockMatchMedia) {
   const mql: MediaQueryList = {
     ...mockMediaQueryList,
     media,
@@ -16,7 +16,7 @@ function getMockImplementation({media, matches = false}: MockMatchMedia) {
   return () => mql;
 }
 
-export function viMockMatchMedia({media, matches = false}: MockMatchMedia) {
-  const mockedImplementation = getMockImplementation({media, matches});
+export function viMockMatchMedia({ media, matches = false }: MockMatchMedia) {
+  const mockedImplementation = getMockImplementation({ media, matches });
   window.matchMedia = vi.fn().mockImplementation(mockedImplementation);
 }

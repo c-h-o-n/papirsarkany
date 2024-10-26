@@ -53,6 +53,7 @@ const CheckoutShippingForm: FC = () => {
 
     setIsShowFoxpostMap(true);
   };
+
   const onPostOptionClick = () => {
     const { shippingOption } = getValues();
 
