@@ -1,6 +1,6 @@
 import { InferredProduct } from '~/lib/types';
 
-export const product: InferredProduct = {
+export const product = {
   packageInfo: {
     z: 1,
     x: 1,
@@ -9,7 +9,7 @@ export const product: InferredProduct = {
   },
   windSpeed: 'közepestől az élénk szélig',
   _updatedAt: '2024-10-02T14:16:31Z',
-  _id: 'drafts.9888fb88-9aa5-4ea5-a599-591d19d41fa4',
+  _id: '9888fb88-9aa5-4ea5-a599-591d19d41fa4',
   size: '42x45cm / 2.5 m farokkal',
   name: 'Ördögfióka',
   materials: ['bambusz', 'papír'],
@@ -94,4 +94,4 @@ export const product: InferredProduct = {
     current: 'ordogfioka',
     _type: 'slug',
   },
-};
+} satisfies InferredProduct

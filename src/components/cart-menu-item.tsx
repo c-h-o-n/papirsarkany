@@ -20,7 +20,7 @@ const CartMenuItem: FC = () => {
               strokeLinecap="round"
               strokeLinejoin="round"
             />
-            <span className="d-badge d-indicator-item d-badge-sm">
+            <span data-testid="cart-menu-item-total-count" className="d-badge d-indicator-item d-badge-sm">
               {getTotalItemCount()}
             </span>
           </div>
