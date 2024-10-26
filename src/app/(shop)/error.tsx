@@ -22,7 +22,7 @@ export default function Error({
     });
 
     console.error(error)
-  }, [error]);
+  }, [error, toast]);
 
   return (
     <div className="grid place-items-center">
