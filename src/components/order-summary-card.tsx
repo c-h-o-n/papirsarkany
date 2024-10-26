@@ -109,6 +109,7 @@ const OrderSummaryCard: FC<OrderSummaryCardProps> = ({ layout = 'full' }) => {
     );
   }
 
+  // TODO simplify layout
   return (
     <Card className="flex flex-1 flex-col gap-4 p-8">
       {cart.map((item) => (
@@ -155,7 +156,7 @@ const OrderSummaryCard: FC<OrderSummaryCardProps> = ({ layout = 'full' }) => {
               </button>
             </div>
           </div>
-          <div className="flex justify-between gap-4 md:hidden">
+          <div data-testid="cart-item-controls" className="flex justify-between gap-4 md:hidden">
             <ProductinCartCounter value={item.quantity} cartItem={item} />
 
             <button
