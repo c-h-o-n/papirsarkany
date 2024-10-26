@@ -6,9 +6,7 @@ import { defineConfig } from 'vitest/config';
 
 export default defineConfig({
   plugins: [
-    // @ts-expect-error - plugin type error due to multiple version of vite installed
     react(),
-    // @ts-expect-error - plugin type error due to multiple version of vite installed
     svgr({
       svgrOptions: {
         ref: true,
