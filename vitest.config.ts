@@ -4,7 +4,10 @@ import { loadEnv } from 'vite';
 import { defineConfig } from 'vitest/config';
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: [
+    // @ts-expect-error - plugin type error due to multiple version of vite installed
+    react(),
+  ],
   test: {
     environment: 'jsdom',
     dir: './src/tests',
@@ -13,7 +16,7 @@ export default defineConfig({
     coverage: {
       include: ['src'],
       reporter: 'text',
-      exclude: ['src/tests'],
+      exclude: ['src/tests', 'src/mocks'],
     },
   },
   resolve: {
