@@ -20,8 +20,7 @@ export const env = createEnv({
 
     // vercel system envs
     VERCEL_ENV: z.enum(['preview', 'production', 'development']).optional(),
-    VERCEL_URL: z.string().url().optional(),
-    VERCEL_GIT_PULL_REQUEST_ID: z.number().optional(),
+    VERCEL_GIT_PULL_REQUEST_ID: z.string().optional(),
   },
   client: {
     NEXT_PUBLIC_SANITY_PROJECT_ID: z.string(),
@@ -51,7 +50,6 @@ export const env = createEnv({
     GOOGLE_CLOUD_API_KEY: process.env.GOOGLE_CLOUD_API_KEY,
 
     VERCEL_ENV: process.env.VERCEL_ENV,
-    VERCEL_URL: process.env.VERCEL_URL,
     VERCEL_GIT_PULL_REQUEST_ID: process.env.VERCEL_GIT_PULL_REQUEST_ID,
   },
   skipValidation: Boolean(process.env.CI),
