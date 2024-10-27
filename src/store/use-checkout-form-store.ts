@@ -7,7 +7,7 @@ type State = {
   /**
    * Stored values of checkout form.
    */
-  formValues: OrderForm;
+  formValues: Partial<OrderForm>;
   step: number;
 };
 
@@ -22,30 +22,10 @@ type Actions = {
 const initialState: State = {
   step: 0,
   formValues: {
-    email: '',
-    firstName: '',
-    lastName: '',
-    phoneNumber: '',
-
-    shippingOption: 'Személyes átvétel',
-
-    shippingPostcode: '',
-    shippingCity: '',
-    shippingAddress: '',
-    shippingSubaddress: '',
-
-    paymentOption: 'Előreutalással',
-
     isSameAdressAsShipping: true,
-
-    billingPostcode: '',
-    billingCity: '',
-    billingAddress: '',
-    billingSubaddress: '',
-
-    comment: '',
   },
 };
+
 /**
  * To persist form state when user navigates to other pages during checkout and the checkout form got unmounted.
  */
