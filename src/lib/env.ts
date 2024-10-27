@@ -9,8 +9,6 @@ export const env = createEnv({
     VENDOR_EMAIL_ADDRESS: z.string().email(),
     SENDGRID_API_KEY: z.string(),
 
-    SITE_URL: z.string().url(),
-
     SANITY_API_TOKEN: z.string().optional(),
 
     FOXPOST_API_URL: z.string().url(),
@@ -33,8 +31,6 @@ export const env = createEnv({
 
     VENDOR_EMAIL_ADDRESS: process.env.VENDOR_EMAIL_ADDRESS,
     SENDGRID_API_KEY: process.env.SENDGRID_API_KEY,
-
-    SITE_URL: process.env.SITE_URL,
 
     NEXT_PUBLIC_SANITY_PROJECT_ID: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
     NEXT_PUBLIC_SANITY_DATASET: process.env.NEXT_PUBLIC_SANITY_DATASET,
