@@ -11,13 +11,14 @@ export function isProdEnv(): boolean {
   );
 }
 
+/**
+ * Stage environment is a preview environment with a pull request id
+ */
 export function isStageEnv(): boolean {
   return (
     process.env.NODE_ENV === 'production' &&
     env.VERCEL_ENV === 'preview' &&
-    Boolean(env.VERCEL_URL) &&
-    Boolean(env.STAGE_URL) &&
-    env.VERCEL_URL === env.STAGE_URL
+    Boolean(env.VERCEL_GIT_PULL_REQUEST_ID)
   );
 }
 
