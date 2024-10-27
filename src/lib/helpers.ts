@@ -11,8 +11,14 @@ export function isProdEnv(): boolean {
   );
 }
 
-export function isPreviewEnv(): boolean {
-  return process.env.NODE_ENV === 'production' && env.VERCEL_ENV === 'preview';
+export function isStageEnv(): boolean {
+  return (
+    process.env.NODE_ENV === 'production' &&
+    env.VERCEL_ENV === 'preview' &&
+    Boolean(env.VERCEL_URL) &&
+    Boolean(env.STAGE_URL) &&
+    env.VERCEL_URL === env.STAGE_URL
+  );
 }
 
 export function normalizeOrderForm(data: OrderForm) {

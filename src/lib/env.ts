@@ -16,9 +16,13 @@ export const env = createEnv({
     FOXPOST_API_PASSWORD: z.string(),
     FOXPOST_API_KEY: z.string(),
 
-    VERCEL_ENV: z.enum(['preview', 'production', 'development']).optional(),
+    STAGE_URL: z.string().url().optional(),
 
     GOOGLE_CLOUD_API_KEY: z.string(),
+
+    // vercel system envs
+    VERCEL_ENV: z.enum(['preview', 'production', 'development']).optional(),
+    VERCEL_URL: z.string().url().optional(),
   },
   client: {
     NEXT_PUBLIC_SANITY_PROJECT_ID: z.string(),
@@ -37,17 +41,20 @@ export const env = createEnv({
     NEXT_PUBLIC_SANITY_API_VERSION: process.env.NEXT_PUBLIC_SANITY_API_VERSION,
     SANITY_API_TOKEN: process.env.SANITY_API_TOKEN,
 
-    // LATER add sandbox cred (blocked by lack of Foxpost sandbox mode)
+    // TODO add sandbox cred (blocked by lack of Foxpost sandbox mode)
     FOXPOST_API_URL: process.env.FOXPOST_API_URL || 'https://foxpost.hu/',
     FOXPOST_API_USERNAME:
       process.env.FOXPOST_API_USERNAME || 'missing-sandbox-api-username',
     FOXPOST_API_PASSWORD:
       process.env.FOXPOST_API_PASSWORD || 'missing-sandbox-api-password',
     FOXPOST_API_KEY: process.env.FOXPOST_API_KEY || 'missing-sandbox-api-key',
+    
+    STAGE_URL: process.env.STAGE_URL,
+    
+    GOOGLE_CLOUD_API_KEY: process.env.GOOGLE_CLOUD_API_KEY,
 
     VERCEL_ENV: process.env.VERCEL_ENV,
-
-    GOOGLE_CLOUD_API_KEY: process.env.GOOGLE_CLOUD_API_KEY,
+    VERCEL_URL: process.env.VERCEL_URL,
   },
   skipValidation: Boolean(process.env.CI),
 });

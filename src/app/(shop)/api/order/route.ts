@@ -8,7 +8,7 @@ import {
   getFoxpostPackageSize,
   getTotalPackageInfo,
 } from '~/lib/foxpost';
-import { isPreviewEnv, isProdEnv, normalizeOrderForm } from '~/lib/helpers';
+import { isStageEnv, isProdEnv, normalizeOrderForm } from '~/lib/helpers';
 import { OrderMail, OrderRequestBody } from '~/lib/types';
 
 setSendgridApiKey();
@@ -53,7 +53,7 @@ export async function POST(request: Request) {
       }
     }
 
-    if (isProdEnv() || isPreviewEnv()) {
+    if (isProdEnv() || isStageEnv()) {
       const orderEmailData: OrderMail = {
         contact: {
           email: normalizedFormData.email,
