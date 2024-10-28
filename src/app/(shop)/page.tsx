@@ -1,12 +1,12 @@
 import Link from 'next/link';
 
-import AboutBusinessIcon from '@/assets/about-business.svg';
-import ContactIcon from '@/assets/contact.svg';
-import CraftingIcon from '@/assets/crafting.svg';
-import HomeSection from '@/components/home-section';
-import ScrollTriggeredAnimatedCard from '@/components/scroll-triggered-animated-card';
-import Splash from '@/components/splash';
-import { env } from '@/lib/env';
+import AboutBusinessIcon from '~/assets/about-business.svg';
+import ContactIcon from '~/assets/contact.svg';
+import CraftingIcon from '~/assets/crafting.svg';
+import HomeSection from '~/components/home-section';
+import ScrollTriggeredAnimatedCard from '~/components/scroll-triggered-animated-card';
+import Splash from '~/components/splash';
+import { env } from '~/lib/env';
 
 // revalidate page every week
 export const revalidate = 604800;
@@ -113,6 +113,7 @@ export default function Home() {
               style={{ border: 0 }}
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
+              title="Google map"
             ></iframe>
           </HomeSection.Content>
         </HomeSection>

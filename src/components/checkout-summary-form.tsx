@@ -3,13 +3,14 @@
 import { useRouter } from 'next/navigation';
 import { useFormContext } from 'react-hook-form';
 
-import { OrderForm } from '@/lib/validation-schemas';
-import { useCheckoutFormStore } from '@/store/use-checkout-form-store';
 import Link from 'next/link';
+import { FC } from 'react';
+import { OrderForm } from '~/lib/validation-schemas';
+import { useCheckoutFormStore } from '~/store/use-checkout-form-store';
 import Card from './card';
 import OrderSummaryCard from './order-summary-card';
 
-export default function CheckoutSummary() {
+const CheckoutSummaryForm: FC = () => {
   const router = useRouter();
   const {
     register,
@@ -86,17 +87,17 @@ export default function CheckoutSummary() {
         tartalmát.
       </div>
 
-      <div className="flex flex-wrap justify-between gap-4">
+      <div className="flex flex-col-reverse sm:flex-row sm:justify-between gap-4">
         <button
           type="button"
-          className="d-btn d-btn-outline d-btn-neutral uppercase max-sm:d-btn-block"
+          className="d-btn d-btn-outline d-btn-neutral uppercase d-btn-block sm:w-auto"
           onClick={prevStep}
         >
           Vissza
         </button>
         <button
           type="submit"
-          className={`d-btn d-btn-success uppercase max-sm:d-btn-block`}
+          className={`d-btn d-btn-success uppercase d-btn-block sm:w-auto`}
           disabled={isSubmitting}
           onMouseEnter={() => router.prefetch('/sikeres-rendeles')}
         >
@@ -108,4 +109,6 @@ export default function CheckoutSummary() {
       </div>
     </div>
   );
-}
+};
+
+export default CheckoutSummaryForm;

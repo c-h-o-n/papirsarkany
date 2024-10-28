@@ -1,0 +1,301 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`should render "definitive" layout when provided 1`] = `
+<div>
+  <div
+    class="rounded-lg border-4 border-black bg-white flex flex-1 flex-col gap-4 p-8"
+  >
+    <div
+      class="flex items-center justify-between flex-wrap gap-2"
+    >
+      <div
+        class="flex gap-2 flex-shrink"
+      >
+        <div
+          class="hidden flex-shrink-0 min-[390px]:block"
+        >
+          <img
+            alt="Ördögfióka"
+            class="h-auto max-h-32 min-h-24 w-32 rounded-lg object-contain"
+            data-nimg="1"
+            decoding="async"
+            height="128"
+            loading="lazy"
+            src="/_next/image?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2Fs2hk1b39%2Fdevelop%2Fa659f9fef018cf839676e3c961eaea12d57205b4-800x600.webp&w=256&q=75"
+            srcset="/_next/image?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2Fs2hk1b39%2Fdevelop%2Fa659f9fef018cf839676e3c961eaea12d57205b4-800x600.webp&w=128&q=75 1x, /_next/image?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2Fs2hk1b39%2Fdevelop%2Fa659f9fef018cf839676e3c961eaea12d57205b4-800x600.webp&w=256&q=75 2x"
+            style="color: transparent; background-size: cover; background-position: 50% 50%; background-repeat: no-repeat;"
+            width="128"
+          />
+        </div>
+        <div>
+          <h3
+            class="font-bold"
+          >
+            Ördögfióka
+          </h3>
+          <span
+            class="text-sm font-normal text-gray-400"
+          >
+            2
+             db
+          </span>
+        </div>
+      </div>
+      <div
+        class="flex items-center gap-4 flex-1 justify-end"
+      >
+        <h3
+          class="font-bold"
+        >
+          3 000 Ft
+        </h3>
+      </div>
+    </div>
+    <div
+      class="d-divider"
+    />
+    <div
+      class="flex justify-between font-bold"
+    >
+      <h3
+        class="text-balance"
+      >
+        Összesen
+         
+        <span
+          class="text-base font-normal text-gray-400"
+        >
+          2
+           db
+        </span>
+      </h3>
+      <h3>
+        3 000 Ft
+      </h3>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`should render "full" layout by default 1`] = `
+<div>
+  <div
+    class="rounded-lg border-4 border-black bg-white flex flex-1 flex-col gap-4 p-8"
+  >
+    <div
+      class="flex items-center justify-between gap-2"
+    >
+      <div
+        class="flex gap-2"
+      >
+        <img
+          alt="Ördögfióka"
+          class="h-auto max-h-32 min-h-24 w-32 rounded-lg object-contain"
+          data-nimg="1"
+          decoding="async"
+          height="128"
+          loading="lazy"
+          src="/_next/image?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2Fs2hk1b39%2Fdevelop%2Fa659f9fef018cf839676e3c961eaea12d57205b4-800x600.webp&w=256&q=75"
+          srcset="/_next/image?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2Fs2hk1b39%2Fdevelop%2Fa659f9fef018cf839676e3c961eaea12d57205b4-800x600.webp&w=128&q=75 1x, /_next/image?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2Fs2hk1b39%2Fdevelop%2Fa659f9fef018cf839676e3c961eaea12d57205b4-800x600.webp&w=256&q=75 2x"
+          style="color: transparent; background-size: cover; background-position: 50% 50%; background-repeat: no-repeat;"
+          width="128"
+        />
+        <div>
+          <h3
+            class="font-bold"
+          >
+            Ördögfióka
+          </h3>
+          <h4
+            class="block font-bold md:hidden"
+          >
+            3 000 Ft
+          </h4>
+        </div>
+      </div>
+      <div
+        class="hidden flex-1 items-center justify-end gap-4 md:flex"
+      >
+        <h4
+          class="font-bold"
+        >
+          3 000 Ft
+        </h4>
+        <div>
+          <div
+            class="flex items-center"
+          >
+            <div
+              class="d-btn no-animation rounded-r-none shadow-none"
+            >
+              -
+            </div>
+            <input
+              class="h-12 w-12 rounded-none bg-base-200 text-center shadow-none"
+              type="number"
+              value="2"
+            />
+            <div
+              class="d-btn no-animation rounded-l-none shadow-none false"
+            >
+              +
+            </div>
+          </div>
+        </div>
+        <button
+          class="d-btn d-btn-square d-btn-error"
+        >
+          <svg
+            class="h-6 w-6"
+            fill="none"
+            height="800px"
+            viewBox="0 0 24 24"
+            width="800px"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M10 12V17"
+              stroke="#000000"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+            />
+            <path
+              d="M14 12V17"
+              stroke="#000000"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+            />
+            <path
+              d="M4 7H20"
+              stroke="#000000"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+            />
+            <path
+              d="M6 10V18C6 19.6569 7.34315 21 9 21H15C16.6569 21 18 19.6569 18 18V10"
+              stroke="#000000"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+            />
+            <path
+              d="M9 5C9 3.89543 9.89543 3 11 3H13C14.1046 3 15 3.89543 15 5V7H9V5Z"
+              stroke="#000000"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+    <div
+      class="flex justify-between gap-4 md:hidden"
+      data-testid="cart-item-controls"
+    >
+      <div
+        class="flex items-center"
+      >
+        <div
+          class="d-btn no-animation rounded-r-none shadow-none"
+        >
+          -
+        </div>
+        <input
+          class="h-12 w-12 rounded-none bg-base-200 text-center shadow-none"
+          type="number"
+          value="2"
+        />
+        <div
+          class="d-btn no-animation rounded-l-none shadow-none false"
+        >
+          +
+        </div>
+      </div>
+      <button
+        class="d-btn d-btn-square d-btn-error"
+      >
+        <svg
+          class="h-6 w-6"
+          fill="none"
+          height="800px"
+          viewBox="0 0 24 24"
+          width="800px"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M10 12V17"
+            stroke="#000000"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+          />
+          <path
+            d="M14 12V17"
+            stroke="#000000"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+          />
+          <path
+            d="M4 7H20"
+            stroke="#000000"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+          />
+          <path
+            d="M6 10V18C6 19.6569 7.34315 21 9 21H15C16.6569 21 18 19.6569 18 18V10"
+            stroke="#000000"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+          />
+          <path
+            d="M9 5C9 3.89543 9.89543 3 11 3H13C14.1046 3 15 3.89543 15 5V7H9V5Z"
+            stroke="#000000"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+          />
+        </svg>
+      </button>
+    </div>
+    <div
+      class="d-divider"
+    />
+    <div
+      class="flex justify-between font-bold"
+    >
+      <h3>
+        Összesen
+         
+        <span
+          class="text-base font-normal text-gray-400"
+        >
+          2
+           db
+        </span>
+      </h3>
+      <h3>
+        3 000 Ft
+      </h3>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`should render "Üres a kosarad" when cart is empty 1`] = `
+<div>
+  <div
+    class="text-center"
+  >
+    <h1>
+      Üres a kosarad.
+    </h1>
+  </div>
+</div>
+`;

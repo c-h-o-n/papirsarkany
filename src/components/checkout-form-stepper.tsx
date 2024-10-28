@@ -1,38 +1,36 @@
 'use client';
+
 import { zodResolver } from '@hookform/resolvers/zod';
 import { redirect, useRouter } from 'next/navigation';
-import { Children, ReactNode, useEffect } from 'react';
+import { Children, FC, ReactNode } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 
-import useCart from '@/hooks/use-cart';
-import { OrderRequestBody } from '@/lib/types';
-import { OrderForm, orderFormSchema } from '@/lib/validation-schemas';
-import { useCartStore } from '@/store/use-cart-store';
-import { useCheckoutFormStore } from '@/store/use-checkout-form-store';
-import { useFoxpostParcelBoxStore } from '@/store/use-foxpost-parcel-box-store';
+import useCart from '~/hooks/use-cart';
+import { OrderRequestBody } from '~/lib/types';
+import { OrderForm, orderFormSchema } from '~/lib/validation-schemas';
+import { useCartStore } from '~/store/use-cart-store';
+import { useCheckoutFormStore } from '~/store/use-checkout-form-store';
+import { useFoxpostParcelBoxStore } from '~/store/use-foxpost-parcel-box-store';
 import StepProgress from './step-progress';
 
 type CheckoutStepperProps = {
   children: ReactNode;
 };
 
-export default function OrderFormStepper({ children }: CheckoutStepperProps) {
+const CheckoutFormStepper: FC<CheckoutStepperProps> = ({ children }) => {
   const router = useRouter();
 
   const hasHydrated = useCartStore((state) => state._hasHydrated);
   const cart = useCartStore((state) => state.cart);
-
   const resetCart = useCartStore((state) => state.resetCart);
-  const setShippingFee = useCartStore((state) => state.setShippingFee);
-  const setBillingFee = useCartStore((state) => state.setBillingFee);
 
   const { getTotalPrice } = useCart();
 
   const step = useCheckoutFormStore((state) => state.step);
-  const setStep = useCheckoutFormStore((state) => state.setStep);
   const nextStep = useCheckoutFormStore((state) => state.nextStep);
   const formValues = useCheckoutFormStore((state) => state.formValues);
   const setFormValues = useCheckoutFormStore((state) => state.setFormValues);
+  const resetForm = useCheckoutFormStore((state) => state.resetForm);
 
   const foxpostOperatorId = useFoxpostParcelBoxStore(
     (state) => state.destination,
@@ -43,7 +41,7 @@ export default function OrderFormStepper({ children }: CheckoutStepperProps) {
   const formMethods = useForm<OrderForm>({
     resolver: zodResolver(orderFormSchema[step]),
     defaultValues: {
-      isSameAdressAsShipping: true,
+      ...formValues,
     },
   });
 
@@ -53,19 +51,12 @@ export default function OrderFormStepper({ children }: CheckoutStepperProps) {
     reset,
   } = formMethods;
 
-  useEffect(() => {
-    return () => {
-      setStep(0);
-      setShippingFee(0);
-      setBillingFee(0);
-    };
-  }, [setBillingFee, setShippingFee, setStep]);
-
   const onSubmit = async (data: OrderForm) => {
     setFormValues(data);
 
     if (!isLast) {
       nextStep();
+      window.scrollTo(0, 0);
       return;
     }
 
@@ -92,6 +83,7 @@ export default function OrderFormStepper({ children }: CheckoutStepperProps) {
   const resetFormStores = (): Promise<void> => {
     return new Promise((resolve) => {
       resetCart();
+      resetForm();
       reset();
       resolve();
     });
@@ -138,4 +130,6 @@ export default function OrderFormStepper({ children }: CheckoutStepperProps) {
       </FormProvider>
     </div>
   );
-}
+};
+
+export default CheckoutFormStepper;

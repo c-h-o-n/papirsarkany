@@ -1,23 +1,23 @@
 'use client';
 
 import { AnimatePresence, m } from 'framer-motion';
-import { useMemo, useState } from 'react';
+import { FC, useMemo, useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 
 import {
   FOXPOST_PACKAGE_MAX_LIMIT,
   FOXPOST_SHIPPING_FEE,
   LOCAL_PICKUP_ADDRESS,
-} from '@/lib/constants';
-import { getTotalPackageInfo, isFitInMaxLimit } from '@/lib/foxpost';
-import { OrderForm } from '@/lib/validation-schemas';
-import { useCartStore } from '@/store/use-cart-store';
+} from '~/lib/constants';
+import { getTotalPackageInfo, isFitInMaxLimit } from '~/lib/foxpost';
+import { OrderForm } from '~/lib/validation-schemas';
+import { useCartStore } from '~/store/use-cart-store';
 import FoxpostMap from './foxpost-map';
 import LazyLoadFramerMotion from './lazy-load-framer-motion';
 import PhoneNumberInput from './phone-number-input';
 import ShippingOptionRadioInput from './shipping-option-radio-input';
 
-export default function CheckoutShippingForm() {
+const CheckoutShippingForm: FC = () => {
   const {
     register,
     watch,
@@ -53,6 +53,7 @@ export default function CheckoutShippingForm() {
 
     setIsShowFoxpostMap(true);
   };
+
   const onPostOptionClick = () => {
     const { shippingOption } = getValues();
 
@@ -249,7 +250,7 @@ export default function CheckoutShippingForm() {
         <div className="flex justify-end">
           <button
             type="submit"
-            className="d-btn d-btn-primary uppercase max-sm:d-btn-block"
+            className="d-btn d-btn-primary uppercase d-btn-block sm:w-auto"
           >
             Tovább
           </button>
@@ -257,4 +258,6 @@ export default function CheckoutShippingForm() {
       </div>
     </>
   );
-}
+};
+
+export default CheckoutShippingForm;

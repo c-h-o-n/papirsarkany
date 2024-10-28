@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { FC } from 'react';
 
-import FacebookIcon from '@/assets/facebook.svg';
+import FacebookIcon from '~/assets/facebook.svg';
 
 const Footer: FC = () => {
   return (
@@ -26,6 +26,7 @@ const Footer: FC = () => {
           href="https://www.facebook.com/profile.php?id=61554743192842"
           target="_blank"
           rel="noopener noreferrer"
+          aria-label="Facebook page"
         >
           <FacebookIcon className="h-8 w-8" />
         </Link>

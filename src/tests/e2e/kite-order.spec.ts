@@ -85,8 +85,11 @@ test('Kite order', async ({ page, browserName, isMobile }) => {
   if (browserName === 'chromium' && !isMobile && process.env.CI) {
     await test.step('Place the order', async () => {
       await page.getByRole('button', { name: 'Megrendelem' }).click();
+
       // TODO check if cart, form and stepper did reset and user redirected to the '/sikeres-rendeles' page
-      await page.goto('/sikeres-rendeles');
+
+      await page.waitForURL('**/sikeres-rendeles');
+      expect(page.url()).toContain('/sikeres-rendeles');
     });
   }
 });

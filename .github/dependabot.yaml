@@ -13,3 +13,7 @@ updates:
           - '@sanity/vision'
           - 'groq'
           - '@sanity/client'
+      prisma:
+        patterns:
+          - 'prisma'
+          - '@prisma/client'

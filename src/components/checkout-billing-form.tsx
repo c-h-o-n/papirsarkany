@@ -1,13 +1,14 @@
 'use client';
-import { ChangeEvent } from 'react';
+
+import { ChangeEvent, FC } from 'react';
 import { useFormContext } from 'react-hook-form';
 
-import { BillingOptionValue, ShippingOptionValue } from '@/lib/types';
-import { OrderForm } from '@/lib/validation-schemas';
-import { useCheckoutFormStore } from '@/store/use-checkout-form-store';
+import { BillingOptionValue, ShippingOptionValue } from '~/lib/types';
+import { OrderForm } from '~/lib/validation-schemas';
+import { useCheckoutFormStore } from '~/store/use-checkout-form-store';
 import BillingOptionRadioInput from './billing-option-radio-input';
 
-export default function CheckoutPayingForm() {
+const CheckoutBillingForm: FC = () => {
   const {
     register,
     formState: { errors },
@@ -175,17 +176,17 @@ export default function CheckoutPayingForm() {
         </>
       )}
 
-      <div className="flex flex-wrap justify-between gap-4">
+      <div className="flex flex-col-reverse sm:flex-row sm:justify-between gap-4">
         <button
           type="button"
-          className="d-btn d-btn-outline d-btn-neutral uppercase max-sm:d-btn-block"
+          className="d-btn d-btn-outline d-btn-neutral uppercase d-btn-block sm:w-auto"
           onClick={prevStep}
         >
           Vissza
         </button>
         <button
           type="submit"
-          className="d-btn d-btn-primary uppercase max-sm:d-btn-block"
+          className="d-btn d-btn-primary uppercase d-btn-block sm:w-auto"
           onClick={() => syncShippingAndBilling()}
         >
           Tovább
@@ -193,4 +194,6 @@ export default function CheckoutPayingForm() {
       </div>
     </div>
   );
-}
+};
+
+export default CheckoutBillingForm;

@@ -5,8 +5,10 @@ on:
 
 jobs:
   playwright-e2e-test:
-    if: ${{ github.event.deployment.environment == 'Production' && github.event.deployment_status.state == 'success' }}
+    if: ${{ github.event.deployment_status.state == 'success' }}
     timeout-minutes: 60
+    env:
+      GOOGLE_CLOUD_API_KEY: ${{ secrets.GOOGLE_CLOUD_API_KEY }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -14,8 +16,6 @@ jobs:
 
       - name: Set up pnpm
         uses: pnpm/action-setup@v4
-        with:
-          version: 9
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
@@ -30,6 +30,6 @@ jobs:
         run: pnpm exec playwright install --with-deps
 
       - name: Run tests
-        run: pnpm run test
+        run: pnpm run test:e2e
         env:
           PLAYWRIGHT_TEST_BASE_URL: ${{ github.event.deployment_status.target_url }}

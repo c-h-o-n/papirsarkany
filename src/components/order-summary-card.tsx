@@ -1,24 +1,22 @@
 'use client';
 
 import Image from 'next/image';
-import { Fragment } from 'react';
+import { FC, Fragment } from 'react';
 
-import TrashCanIcon from '@/assets/trash-can.svg';
-import useCart from '@/hooks/use-cart';
-import { MISSING_IMG_URL, NO_NAME } from '@/lib/constants';
-import { currencyFormatter, formatShippingFee } from '@/lib/formatters';
-import { CartItem } from '@/lib/validation-schemas';
-import { useCartStore } from '@/store/use-cart-store';
+import TrashCanIcon from '~/assets/trash-can.svg';
+import useCart from '~/hooks/use-cart';
+import { MISSING_IMG_URL, NO_NAME } from '~/lib/constants';
+import { currencyFormatter, formatShippingFee } from '~/lib/formatters';
+import { CartItem } from '~/lib/validation-schemas';
+import { useCartStore } from '~/store/use-cart-store';
 import Card from './card';
 import ProductinCartCounter from './product-in-cart-counter';
 
-type OrderSummaryCard = {
+type OrderSummaryCardProps = {
   layout?: 'full' | 'definitive';
 };
 
-export default function OrderSummaryCard({
-  layout = 'full',
-}: OrderSummaryCard) {
+const OrderSummaryCard: FC<OrderSummaryCardProps> = ({ layout = 'full' }) => {
   const cart = useCartStore((state) => state.cart);
   const shippingFee = useCartStore((state) => state.shippingFee);
   const billingFee = useCartStore((state) => state.billingFee);
@@ -45,8 +43,8 @@ export default function OrderSummaryCard({
       <Card className="flex flex-1 flex-col gap-4 p-8">
         {cart.map((item) => (
           <Fragment key={item._id}>
-            <div className="flex items-center justify-between">
-              <div className="flex gap-2">
+            <div className="flex items-center justify-between flex-wrap gap-2">
+              <div className="flex gap-2 flex-shrink">
                 <div className="hidden flex-shrink-0 min-[390px]:block">
                   {item.image && (
                     <Image
@@ -69,7 +67,7 @@ export default function OrderSummaryCard({
                   </span>
                 </div>
               </div>
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-4 flex-1 justify-end">
                 {item.price && (
                   <h3 className="font-bold">
                     {currencyFormatter(item.price * item.quantity)}
@@ -111,6 +109,7 @@ export default function OrderSummaryCard({
     );
   }
 
+  // TODO simplify layout
   return (
     <Card className="flex flex-1 flex-col gap-4 p-8">
       {cart.map((item) => (
@@ -157,7 +156,10 @@ export default function OrderSummaryCard({
               </button>
             </div>
           </div>
-          <div className="flex justify-between gap-4 md:hidden">
+          <div
+            data-testid="cart-item-controls"
+            className="flex justify-between gap-4 md:hidden"
+          >
             <ProductinCartCounter value={item.quantity} cartItem={item} />
 
             <button
@@ -182,4 +184,6 @@ export default function OrderSummaryCard({
       </div>
     </Card>
   );
-}
+};
+
+export default OrderSummaryCard;

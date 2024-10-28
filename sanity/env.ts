@@ -1,5 +1,4 @@
-import { env } from '@/lib/env';
-import 'dotenv/config';
+import { env } from '~/lib/env';
 
 export const apiVersion = env.NEXT_PUBLIC_SANITY_API_VERSION || '2024-05-23';
 

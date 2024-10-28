@@ -1,10 +1,12 @@
 'use client';
+
 import Link from 'next/link';
 
-import CartIcon from '@/assets/cart.svg';
-import useCart from '@/hooks/use-cart';
+import { FC } from 'react';
+import CartIcon from '~/assets/cart.svg';
+import useCart from '~/hooks/use-cart';
 
-export default function CartMenuItem() {
+const CartMenuItem: FC = () => {
   const { getTotalItemCount } = useCart();
 
   return (
@@ -18,7 +20,10 @@ export default function CartMenuItem() {
               strokeLinecap="round"
               strokeLinejoin="round"
             />
-            <span className="d-badge d-indicator-item d-badge-sm">
+            <span
+              data-testid="cart-menu-item-total-count"
+              className="d-badge d-indicator-item d-badge-sm"
+            >
               {getTotalItemCount()}
             </span>
           </div>
@@ -26,4 +31,6 @@ export default function CartMenuItem() {
       </div>
     </Link>
   );
-}
+};
+
+export default CartMenuItem;

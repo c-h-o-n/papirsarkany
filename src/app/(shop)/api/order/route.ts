@@ -1,17 +1,15 @@
 import { NextResponse } from 'next/server';
 
-import { createOrder } from '@/lib/db';
-import { sendEmail, sendOrderEmails, setSendgridApiKey } from '@/lib/email';
-import { currencyFormatter, formatZodErrors } from '@/lib/formatters';
+import { createOrder } from '~/lib/db';
+import { sendEmail, sendOrderEmails, setSendgridApiKey } from '~/lib/email';
+import { currencyFormatter } from '~/lib/formatters';
 import {
   createParcel,
   getFoxpostPackageSize,
   getTotalPackageInfo,
-} from '@/lib/foxpost';
-import { isPreviewEnv, isProdEnv, normalizeOrderForm } from '@/lib/helpers';
-import { OrderMail, OrderRequestBody } from '@/lib/types';
-import { mergedFormSchemaObject } from '@/lib/validation-schemas';
-import { ZodError } from 'zod';
+} from '~/lib/foxpost';
+import { isStageEnv, isProdEnv, normalizeOrderForm } from '~/lib/helpers';
+import { OrderMail, OrderRequestBody } from '~/lib/types';
 
 setSendgridApiKey();
 
@@ -20,10 +18,7 @@ export async function POST(request: Request) {
     const body = (await request.json()) as OrderRequestBody;
     const { cart, formData, totalPrice, foxpostOperatorId } = body;
 
-    // TODO move this into a middleware
-    const validatedFormData = await mergedFormSchemaObject.parseAsync(formData);
-
-    const normalizedFormData = normalizeOrderForm(validatedFormData);
+    const normalizedFormData = normalizeOrderForm(formData);
 
     const order = await createOrder(normalizedFormData, cart);
 
@@ -58,7 +53,7 @@ export async function POST(request: Request) {
       }
     }
 
-    if (isProdEnv() || isPreviewEnv()) {
+    if (isProdEnv() || isStageEnv()) {
       const orderEmailData: OrderMail = {
         contact: {
           email: normalizedFormData.email,
@@ -106,19 +101,9 @@ export async function POST(request: Request) {
       });
     }
 
-    switch (true) {
-      case error instanceof ZodError:
-        return NextResponse.json(
-          {
-            error: `Validation error: ${formatZodErrors}`,
-          },
-          { status: 403 },
-        );
-      default:
-        return NextResponse.json(
-          { error: `Internal Server Error reason: ${error}}` },
-          { status: 500 },
-        );
-    }
+    return NextResponse.json(
+      { error: `Internal Server Error reason: ${error}}` },
+      { status: 500 },
+    );
   }
 }

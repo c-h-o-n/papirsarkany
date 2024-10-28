@@ -20,11 +20,15 @@ export function currencyFormatter(value: number): string {
 }
 
 export function pricePerMeterFormatter(value: number): string {
-  return currencyFormatter(value) + ' / m';
+  return currencyFormatter(value) + '\xa0/\xa0m';
 }
 
-export function formatZodErrors(error: ZodError): string {
-  return error.errors.map((error) => `${error.message}`).join('; ') + '.';
+export function formatZodErrors(zodError: ZodError): string {
+  if (zodError.errors.length === 0) {
+    return '';
+  }
+
+  return zodError.errors.map((error) => `${error.message}`).join('; ') + '.';
 }
 
 export function formatShippingFee(shippingFee: ShippingFee) {
@@ -60,14 +64,14 @@ export function formatPhoneNumber(phoneNumber: string) {
   return formatted;
 }
 
-export const sanityProductCategoryMap: Record<ProductTypes, string> = {
+export const sanityProductCategoryTitleMap: Record<ProductTypes, string> = {
   kite: 'Egyzsinóros sárkány',
   reel: 'Zsinórtartók',
   rod: 'Pálcák, rudak és csövek',
   twine: 'Zsinórok',
 };
 
-export const prismaShippingModeMap: Record<
+export const shippingModePrismaMap: Record<
   ShippingOptionValue,
   $Enums.ShippingMode
 > = {
@@ -76,7 +80,7 @@ export const prismaShippingModeMap: Record<
   'Foxpost automatába': 'Foxpost',
 };
 
-export const prismaPaymentModeMap: Record<
+export const paymentModePrismaMap: Record<
   BillingOptionValue,
   $Enums.PaymentMode
 > = {

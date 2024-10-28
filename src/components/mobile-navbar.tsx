@@ -1,15 +1,16 @@
 import Link from 'next/link';
+import { FC } from 'react';
 
-import HamburgerIcon from '@/assets/hamburger.svg';
+import HamburgerIcon from '~/assets/hamburger.svg';
+import { NavbarItems } from '~/lib/types';
 import CartMenuItem from './cart-menu-item';
 import NavMenuItem from './nav-menu-item';
-import { NavbarItems } from './navbar';
 
 type MobileNavbarProps = {
   navbarItems: NavbarItems;
 };
 
-export default function MobileNavbar({ navbarItems }: MobileNavbarProps) {
+const MobileNavbar: FC<MobileNavbarProps> = ({ navbarItems }) => {
   return (
     <div className="d-navbar border-b-4 border-black bg-white">
       <div className="d-navbar-start gap-1">
@@ -18,6 +19,7 @@ export default function MobileNavbar({ navbarItems }: MobileNavbarProps) {
             tabIndex={0}
             role="button"
             className="d-btn d-btn-ghost lg:hidden"
+            aria-label="mobile navigation menu"
           >
             <HamburgerIcon className="h-5 w-5" />
           </div>
@@ -60,4 +62,6 @@ export default function MobileNavbar({ navbarItems }: MobileNavbarProps) {
       </div>
     </div>
   );
-}
+};
+
+export default MobileNavbar;

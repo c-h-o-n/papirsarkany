@@ -1,15 +1,16 @@
 import Link from 'next/link';
+import { FC } from 'react';
 
-import HomeIcon from '@/assets/home.svg';
+import HomeIcon from '~/assets/home.svg';
+import { NavbarItems } from '~/lib/types';
 import CartMenuItem from './cart-menu-item';
 import NavMenuItem from './nav-menu-item';
-import { NavbarItems } from './navbar';
 
 type DesktopNavbarProps = {
   navbarItems: NavbarItems;
 };
 
-export default function DesktopNavbar({ navbarItems }: DesktopNavbarProps) {
+const DesktopNavbar: FC<DesktopNavbarProps> = ({ navbarItems }) => {
   return (
     <div className="d-navbar border-b-4 border-black bg-white">
       <div className="d-navbar-start gap-1">
@@ -48,4 +49,6 @@ export default function DesktopNavbar({ navbarItems }: DesktopNavbarProps) {
       </div>
     </div>
   );
-}
+};
+
+export default DesktopNavbar;

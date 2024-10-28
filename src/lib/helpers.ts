@@ -1,14 +1,6 @@
 import { env } from './env';
 import { OrderForm } from './validation-schemas';
 
-export function blurActiveAnchorElement() {
-  const element = document.activeElement as HTMLAnchorElement;
-
-  if (element) {
-    element.blur();
-  }
-}
-
 export function delay(time: number) {
   return new Promise((resolve) => setTimeout(resolve, time));
 }
@@ -19,8 +11,15 @@ export function isProdEnv(): boolean {
   );
 }
 
-export function isPreviewEnv(): boolean {
-  return process.env.NODE_ENV === 'production' && env.VERCEL_ENV === 'preview';
+/**
+ * Stage environment is a preview environment with a pull request id
+ */
+export function isStageEnv(): boolean {
+  return (
+    process.env.NODE_ENV === 'production' &&
+    env.VERCEL_ENV === 'preview' &&
+    Boolean(env.VERCEL_GIT_PULL_REQUEST_ID)
+  );
 }
 
 export function normalizeOrderForm(data: OrderForm) {

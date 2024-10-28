@@ -1,15 +1,16 @@
-import { CartItem } from '@/lib/validation-schemas';
-import { useCartStore } from '@/store/use-cart-store';
-import { ChangeEvent, FocusEvent, useState } from 'react';
+'use client';
+
+import { ChangeEvent, FC, FocusEvent, useState } from 'react';
+
+import { CartItem } from '~/lib/validation-schemas';
+import { useCartStore } from '~/store/use-cart-store';
 
 type ProductinCartCounterProps = {
   cartItem: CartItem;
   value: number;
 };
 
-export default function ProductinCartCounter({
-  cartItem,
-}: ProductinCartCounterProps) {
+const ProductinCartCounter: FC<ProductinCartCounterProps> = ({ cartItem }) => {
   const setItemQuantity = useCartStore((state) => state.setItemQuantity);
 
   const increaseItemQuantity = useCartStore(
@@ -86,4 +87,6 @@ export default function ProductinCartCounter({
       </div>
     </div>
   );
-}
+};
+
+export default ProductinCartCounter;

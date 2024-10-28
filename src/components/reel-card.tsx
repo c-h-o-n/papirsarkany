@@ -1,16 +1,17 @@
-import { MISSING_IMG_URL, NO_NAME } from '@/lib/constants';
-import { currencyFormatter } from '@/lib/formatters';
-import { WithImageAsset } from '@/lib/types';
 import { Reel } from '@sanity/lib/sanity.types';
 import Image from 'next/image';
+import { FC } from 'react';
+import { MISSING_IMG_URL, NO_NAME } from '~/lib/constants';
+import { currencyFormatter } from '~/lib/formatters';
+import { WithImageAsset } from '~/lib/types';
 import AddToCartButton from './add-to-cart-button';
 import Card from './card';
 
-type Props = {
+type ReelCardProps = {
   reel: WithImageAsset<Reel>;
 };
 
-export default function ReelCard({ reel }: Props) {
+const ReelCard: FC<ReelCardProps> = ({ reel }) => {
   return (
     <Card className="w-full space-y-3 p-5">
       <div>
@@ -40,4 +41,6 @@ export default function ReelCard({ reel }: Props) {
       </div>
     </Card>
   );
-}
+};
+
+export default ReelCard;

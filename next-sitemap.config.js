@@ -1,6 +1,6 @@
 /** @type {import('next-sitemap').IConfig} */
 export default {
-  siteUrl: process.env.SITE_URL,
+  siteUrl: process.env.SITE_URL || process.env.VERCEL_PROJECT_PRODUCTION_URL,
   generateRobotsTxt: true, // (optional)
   changefreq: 'monthly',
   priority: 1,
