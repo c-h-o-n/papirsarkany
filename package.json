@@ -40,7 +40,7 @@
     "next-plugin-preval": "^1.2.6",
     "next-sanity": "^9.8.7",
     "next-sitemap": "^4.2.3",
-    "next": "^14.2.15",
+    "next": "^14.2.21",
     "postcss": "^8.4.47",
     "prettier-plugin-organize-imports": "^4.1.0",
     "prettier-plugin-tailwindcss": "^0.6.8",
