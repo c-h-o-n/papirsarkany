@@ -15,13 +15,13 @@ importers:
         specifier: ^6.1.0
         version: 6.4.1(prisma@6.4.1(typescript@5.6.3))(typescript@5.6.3)
       '@sanity/client':
-        specifier: ^6.25.0
+        specifier: ^6.28.0
         version: 6.28.0(debug@4.4.0)
       '@sanity/locale-hu-hu':
-        specifier: ^1.1.17
+        specifier: ^1.1.18
         version: 1.1.18(sanity@3.76.3(@emotion/is-prop-valid@1.2.2)(@types/babel__core@7.20.5)(@types/node@20.11.0)(@types/react@19.0.7)(jiti@1.21.6)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(styled-components@6.1.15(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(terser@5.31.0)(typescript@5.6.3)(yaml@2.6.1))
       '@sanity/vision':
-        specifier: ^3.70.0
+        specifier: ^3.76.3
         version: 3.76.3(@babel/runtime@7.26.0)(@codemirror/lint@6.8.2)(@codemirror/theme-one-dark@6.1.2)(@emotion/is-prop-valid@1.2.2)(codemirror@6.0.1)(react-dom@19.0.0(react@19.0.0))(react-is@18.3.1)(react@19.0.0)(styled-components@6.1.15(react-dom@19.0.0(react@19.0.0))(react@19.0.0))
       '@sendgrid/mail':
         specifier: ^8.1.4
@@ -54,7 +54,7 @@ importers:
         specifier: ^11.15.0
         version: 11.15.0(@emotion/is-prop-valid@1.2.2)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       groq:
-        specifier: ^3.70.0
+        specifier: ^3.76.3
         version: 3.76.3
       just-pick:
         specifier: ^4.2.0
@@ -66,7 +66,7 @@ importers:
         specifier: ^1.2.7
         version: 1.2.7(esbuild@0.21.5)(next@15.1.5(@babel/core@7.26.0)(@playwright/test@1.49.1)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))
       next-sanity:
-        specifier: ^9.8.38
+        specifier: ^9.8.59
         version: 9.8.59(@emotion/is-prop-valid@1.2.2)(@sanity/client@6.28.0)(@sanity/icons@3.6.0(react@19.0.0))(@sanity/types@3.76.3(@types/react@19.0.7))(@sanity/ui@2.14.1(@emotion/is-prop-valid@1.2.2)(react-dom@19.0.0(react@19.0.0))(react-is@18.3.1)(react@19.0.0)(styled-components@6.1.15(react-dom@19.0.0(react@19.0.0))(react@19.0.0)))(next@15.1.5(@babel/core@7.26.0)(@playwright/test@1.49.1)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react-is@18.3.1)(react@19.0.0)(sanity@3.76.3(@emotion/is-prop-valid@1.2.2)(@types/babel__core@7.20.5)(@types/node@20.11.0)(@types/react@19.0.7)(jiti@1.21.6)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(styled-components@6.1.15(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(terser@5.31.0)(typescript@5.6.3)(yaml@2.6.1))(styled-components@6.1.15(react-dom@19.0.0(react@19.0.0))(react@19.0.0))
       next-sitemap:
         specifier: ^4.2.3
@@ -96,7 +96,7 @@ importers:
         specifier: 2.2.0
         version: 2.2.0
       sanity:
-        specifier: ^3.70.0
+        specifier: ^3.76.3
         version: 3.76.3(@emotion/is-prop-valid@1.2.2)(@types/babel__core@7.20.5)(@types/node@20.11.0)(@types/react@19.0.7)(jiti@1.21.6)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(styled-components@6.1.15(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(terser@5.31.0)(typescript@5.6.3)(yaml@2.6.1)
       sanity-plugin-media:
         specifier: ^2.3.2
@@ -105,7 +105,7 @@ importers:
         specifier: 0.33.5
         version: 0.33.5
       styled-components:
-        specifier: ^6.1.13
+        specifier: ^6.1.15
         version: 6.1.15(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       tailwindcss:
         specifier: 3.4.17
