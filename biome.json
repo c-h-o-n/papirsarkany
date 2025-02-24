@@ -28,12 +28,10 @@
             "inputComponents": ["FormattedPhoneNumberInput"]
           }
         }
+      },
+      "nursery": {
+        "useSortedClasses": "warn"
       }
-    }
-  },
-  "javascript": {
-    "formatter": {
-      "quoteStyle": "single"
     }
   },
   "overrides": [
