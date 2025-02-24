@@ -20,11 +20,25 @@ const ProductinCartCounter: FC<ProductinCartCounterProps> = ({ cartItem }) => {
     (state) => state.decreaseItemQuantity,
   );
 
+  const hasPendingChanges = useRef(false);
   const [temporaryQuantityValue, setTemporaryQuantityValue] = useState(
     cartItem.quantity,
   );
 
+  const abortChanges = () => {
+    hasPendingChanges.current = false;
+    setTemporaryQuantityValue(cartItem.quantity);
+  };
+
+  const saveChanges = () => {
+    hasPendingChanges.current = false;
+    setItemQuantity(cartItem, temporaryQuantityValue);
+    setTemporaryQuantityValue(cartItem.quantity);
+  };
+
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    hasPendingChanges.current = true;
+
     const newQuantity = parseInt(e.target.value);
     setTemporaryQuantityValue(newQuantity);
   };
@@ -37,11 +51,11 @@ const ProductinCartCounter: FC<ProductinCartCounterProps> = ({ cartItem }) => {
       newQuantity > 999 ||
       !Number.isInteger(+e.target.value)
     ) {
-      setTemporaryQuantityValue(cartItem.quantity);
+      abortChanges();
       return;
     }
-    setItemQuantity(cartItem, newQuantity);
-    setTemporaryQuantityValue(newQuantity);
+
+    saveChanges();
   };
 
   const handleInputKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -72,7 +86,11 @@ const ProductinCartCounter: FC<ProductinCartCounterProps> = ({ cartItem }) => {
       <input
         type="number"
         className="h-12 w-12 rounded-none bg-base-200 text-center shadow-none"
-        value={temporaryQuantityValue.toString()}
+        value={
+          !hasPendingChanges.current
+            ? cartItem.quantity.toString()
+            : temporaryQuantityValue.toString()
+        }
         onChange={handleChange}
         onBlur={handleBlur}
         onKeyDown={handleInputKeyPress}
