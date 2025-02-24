@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",
-    "@prisma/client": "^6.1.0",
+    "@prisma/client": "^6.4.1",
     "@sanity/client": "^6.28.0",
     "@sanity/locale-hu-hu": "^1.1.18",
     "@sanity/vision": "^3.76.3",
@@ -68,7 +68,7 @@
     "@vitejs/plugin-react": "^4.3.3",
     "@vitest/coverage-v8": "2.1.9",
     "jsdom": "^25.0.1",
-    "prisma": "^6.1.0",
+    "prisma": "^6.4.1",
     "rimraf": "^6.0.1",
     "typescript": "5.6.3",
     "vite": "^5.4.12",
