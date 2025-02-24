@@ -34,7 +34,7 @@ exports[`should render "definitive" layout when provided 1`] = `
             Ördögfióka
           </h3>
           <span
-            class="text-sm font-normal text-gray-400"
+            class="font-normal text-gray-400 text-sm"
           >
             2
              db
@@ -63,7 +63,7 @@ exports[`should render "definitive" layout when provided 1`] = `
         Összesen
          
         <span
-          class="text-base font-normal text-gray-400"
+          class="font-normal text-base text-gray-400"
         >
           2
            db
@@ -125,25 +125,28 @@ exports[`should render "full" layout by default 1`] = `
           <div
             class="flex items-center"
           >
-            <div
-              class="d-btn no-animation rounded-r-none shadow-none"
+            <button
+              class="d-btn no-animation rounded-r-none shadow-none focus:z-[1]"
+              type="button"
             >
               -
-            </div>
+            </button>
             <input
-              class="h-12 w-12 rounded-none bg-base-200 text-center shadow-none"
+              class="h-12 w-12 rounded-none bg-base-200 text-center shadow-none focus:z-[1]"
               type="number"
               value="2"
             />
-            <div
-              class="d-btn no-animation rounded-l-none shadow-none false"
+            <button
+              class="d-btn no-animation rounded-l-none shadow-none focus:z-[1] false"
+              type="button"
             >
               +
-            </div>
+            </button>
           </div>
         </div>
         <button
           class="d-btn d-btn-square d-btn-error"
+          type="button"
         >
           <svg
             class="h-6 w-6"
@@ -199,24 +202,27 @@ exports[`should render "full" layout by default 1`] = `
       <div
         class="flex items-center"
       >
-        <div
-          class="d-btn no-animation rounded-r-none shadow-none"
+        <button
+          class="d-btn no-animation rounded-r-none shadow-none focus:z-[1]"
+          type="button"
         >
           -
-        </div>
+        </button>
         <input
-          class="h-12 w-12 rounded-none bg-base-200 text-center shadow-none"
+          class="h-12 w-12 rounded-none bg-base-200 text-center shadow-none focus:z-[1]"
           type="number"
           value="2"
         />
-        <div
-          class="d-btn no-animation rounded-l-none shadow-none false"
+        <button
+          class="d-btn no-animation rounded-l-none shadow-none focus:z-[1] false"
+          type="button"
         >
           +
-        </div>
+        </button>
       </div>
       <button
         class="d-btn d-btn-square d-btn-error"
+        type="button"
       >
         <svg
           class="h-6 w-6"
@@ -274,7 +280,7 @@ exports[`should render "full" layout by default 1`] = `
         Összesen
          
         <span
-          class="text-base font-normal text-gray-400"
+          class="font-normal text-base text-gray-400"
         >
           2
            db
