@@ -137,7 +137,7 @@ const OrderSummaryCard: FC<OrderSummaryCardProps> = ({ layout = "full" }) => {
                 )}
               </div>
             </div>
-            <div className="flex-1 items-center justify-end gap-4 md:flex">
+            <div className="hidden flex-1 items-center justify-end gap-4 md:flex">
               {item.price && (
                 <h4 className="font-bold">
                   {currencyFormatter(item.price * item.quantity)}
@@ -159,7 +159,7 @@ const OrderSummaryCard: FC<OrderSummaryCardProps> = ({ layout = "full" }) => {
           </div>
           <div
             data-testid="cart-item-controls"
-            className="flex justify-between gap-4"
+            className="flex justify-between gap-4 md:hidden"
           >
             <ProductinCartCounter value={item.quantity} cartItem={item} />
 
