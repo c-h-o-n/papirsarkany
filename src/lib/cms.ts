@@ -1,5 +1,5 @@
 import { client } from '@sanity/lib/client';
-import {
+import type {
   GetAllKitesQueryResult,
   GetAllReelsQueryResult,
   GetAllRodsQueryResult,

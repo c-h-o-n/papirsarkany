@@ -1,10 +1,10 @@
 'use client';
 
-import { FC, MouseEvent } from 'react';
+import type { FC, MouseEvent } from 'react';
 import { ZodError } from 'zod';
 
 import { formatZodErrors } from '~/lib/formatters';
-import { InferredProduct } from '~/lib/types';
+import type { InferredProduct } from '~/lib/types';
 import { cartItemValidationSchema } from '~/lib/validation-schemas';
 import { useCartStore } from '~/store/use-cart-store';
 import { useToastStore } from '~/store/use-toast-store';
@@ -65,6 +65,7 @@ const AddToCartButton: FC<AddToCartProps> = ({ product }) => {
 
   return (
     <button
+      type='button'
       className="d-btn d-btn-primary uppercase active:!scale-105"
       onClick={onButtonClick}
     >

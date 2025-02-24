@@ -1,7 +1,7 @@
 'use client';
 
 import { AnimatePresence, m } from 'framer-motion';
-import { FC, useMemo, useState } from 'react';
+import { type FC, useMemo, useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 
 import {
@@ -11,7 +11,7 @@ import {
 } from '~/lib/constants';
 import { parsePhoneNumber } from '~/lib/formatters';
 import { getTotalPackageInfo, isFitInMaxLimit } from '~/lib/foxpost';
-import { OrderForm } from '~/lib/validation-schemas';
+import type { OrderForm } from '~/lib/validation-schemas';
 import { useCartStore } from '~/store/use-cart-store';
 import FormattedPhoneNumberInput from './formatted-phone-number-input';
 import FoxpostMap from './foxpost-map';
@@ -74,69 +74,69 @@ const CheckoutShippingForm: FC = () => {
       <div>
         <div className="mx-auto max-w-screen-sm">
           <h2 className="underline underline-offset-8">Elérhetőség</h2>
-          <div className="d-form-control">
-            <label className="d-label">
+          <label className="d-form-control">
+            <div className="d-label">
               <span className="d-label-text text-lg">Email</span>
-            </label>
+            </div>
             <input
               type="text"
               placeholder={'mail.papirsarkany@gmail.com'}
               className="d-input d-input-bordered"
               {...register('email')}
             />
-            <label className="d-label">
+            <div className="d-label">
               <span className="d-label-text-alt text-error">
                 {errors.email?.message}
               </span>
-            </label>
-          </div>
+            </div>
+          </label>
           <div className="gap-4 sm:grid sm:grid-cols-2">
-            <div className="d-form-control">
-              <label className="d-label">
+            <label className="d-form-control">
+              <div className="d-label">
                 <span className="d-label-text text-lg">Vezetéknév</span>
-              </label>
+              </div>
               <input
                 type="text"
                 className="d-input d-input-bordered"
                 {...register('lastName')}
               />
-              <label className="d-label">
+              <div className="d-label">
                 <span className="d-label-text-alt text-error">
                   {errors.lastName?.message}
                 </span>
-              </label>
-            </div>
-            <div className="d-form-control">
-              <label className="d-label">
+              </div>
+            </label>
+            <label className="d-form-control">
+              <div className="d-label">
                 <span className="d-label-text text-lg">Keresztnév</span>
-              </label>
+              </div>
               <input
                 type="text"
                 className="d-input d-input-bordered"
                 {...register('firstName')}
               />
-              <label className="d-label">
+              <div className="d-label">
                 <span className="d-label-text-alt text-error">
                   {errors.firstName?.message}
                 </span>
-              </label>
-            </div>
-          </div>
-          <div className="d-form-control">
-            <label className="d-label">
-              <span className="d-label-text text-lg">Telefonszám</span>
+              </div>
             </label>
+          </div>
+          <label className="d-form-control">
+            <div className="d-label">
+              <span className="d-label-text text-lg">Telefonszám</span>
+            </div>
             <FormattedPhoneNumberInput
               {...register('phoneNumber', {
                 setValueAs: (value: string) => parsePhoneNumber(value),
               })}
             />
-            <label className="d-label">
+            <div className="d-label">
               <span className="d-label-text-alt text-error">
                 {errors.phoneNumber?.message}
               </span>
-            </label>
-          </div>
+            </div>
+          </label>
           <h2 className="underline underline-offset-8">Szállítás</h2>
           <ShippingOptionRadioInput
             label={'Személyes átvétel'}
@@ -193,63 +193,63 @@ const CheckoutShippingForm: FC = () => {
           <span className="text-error">{errors.shippingOption?.message}</span>
           {watch('shippingOption') === 'Postai szállítás' && (
             <>
-              <div className="d-form-control">
-                <label className="d-label">
+              <label className="d-form-control">
+                <div className="d-label">
                   <span className="d-label-text text-lg">Irányítószám</span>
-                </label>
+                </div>
                 <input
                   type="text"
                   className="d-input d-input-bordered"
                   {...register('shippingPostcode')}
                 />
-                <label className="d-label">
+                <div className="d-label">
                   <span className="d-label-text-alt text-error">
                     {errors.shippingPostcode?.message}
                   </span>
-                </label>
-              </div>
-              <div className="d-form-control">
-                <label className="d-label">
+                </div>
+              </label>
+              <label className="d-form-control">
+                <div className="d-label">
                   <span className="d-label-text text-lg">Város</span>
-                </label>
+                </div>
                 <input
                   type="text"
                   className="d-input d-input-bordered"
                   {...register('shippingCity')}
                 />
-                <label className="d-label">
+                <div className="d-label">
                   <span className="d-label-text-alt text-error">
                     {errors.shippingCity?.message}
                   </span>
-                </label>
-              </div>
-              <div className="d-form-control">
-                <label className="d-label">
+                </div>
+              </label>
+              <label className="d-form-control">
+                <div className="d-label">
                   <span className="d-label-text text-lg">Cím</span>
-                </label>
+                </div>
                 <input
                   type="text"
                   placeholder="Utca, házszám"
                   className="d-input d-input-bordered"
                   {...register('shippingAddress')}
                 />
-                <label className="d-label">
+                <div className="d-label">
                   <span className="d-label-text-alt text-error">
                     {errors.shippingAddress?.message}
                   </span>
-                </label>
+                </div>
                 <input
                   type="text"
                   placeholder="Emelet, ajtó, egyéb (opcionális)"
                   className="d-input d-input-bordered"
                   {...register('shippingSubaddress')}
                 />
-                <label className="d-label">
+                <div className="d-label">
                   <span className="d-label-text-alt text-error">
                     {errors.shippingSubaddress?.message}
                   </span>
-                </label>
-              </div>
+                </div>
+              </label>
             </>
           )}
         </div>

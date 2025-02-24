@@ -1,10 +1,13 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 body {
-  color: theme('colors.base-content');
-  background: theme('colors.base-100');
+  /* biome-ignore lint/correctness/noUnknownFunction: theme is a Tailwind function */
+  color: theme("colors.base-content");
+  /* biome-ignore lint/correctness/noUnknownFunction: theme is a Tailwind function */
+  background: theme("colors.base-100");
 }
 
 @layer components {
@@ -19,11 +22,7 @@ body {
   .home-pattern {
     background-image: url(/home-pattern.svg);
     background-size: contain;
-    mask-image: linear-gradient(
-      0deg,
-      rgba(0, 0, 0, 0) 0%,
-      rgba(0, 0, 0, 1) 33%
-    );
+    mask-image: linear-gradient(0deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 33%);
   }
 }
 
@@ -70,7 +69,7 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none; /* Safari */
 }
 
-input[type='number'] {
+input[type="number"] {
   appearance: none;
   -moz-appearance: textfield; /* Firefox */
 }
@@ -80,5 +79,6 @@ input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
-  -webkit-box-shadow: 0 0 0 30px theme('colors.base-100') inset !important;
+  /* biome-ignore lint/correctness/noUnknownFunction: theme is a Tailwind function */
+  -webkit-box-shadow: 0 0 0 30px theme("colors.base-100") inset !important;
 }

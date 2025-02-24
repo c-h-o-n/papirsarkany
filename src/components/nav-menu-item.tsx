@@ -1,7 +1,7 @@
 'use client';
 
-import Link, { LinkProps } from 'next/link';
-import { FC, ReactNode } from 'react';
+import Link, { type LinkProps } from 'next/link';
+import type { FC, ReactNode } from 'react';
 
 export type MenuItemProps = LinkProps & {
   children?: ReactNode;

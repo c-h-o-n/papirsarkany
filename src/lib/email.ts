@@ -1,8 +1,8 @@
-import { Order } from '@prisma/client';
-import sgMail, { MailDataRequired } from '@sendgrid/mail';
+import type { Order } from '@prisma/client';
+import sgMail, { type MailDataRequired } from '@sendgrid/mail';
 import { CUSTOMER_TEMPLATE_ID, VENDOR_TEMPLATE_ID } from './constants';
 import { env } from './env';
-import { OrderMail } from './types';
+import type { OrderMail } from './types';
 
 export function setSendgridApiKey() {
   const { SENDGRID_API_KEY } = env;

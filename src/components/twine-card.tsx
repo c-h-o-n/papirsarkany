@@ -1,10 +1,10 @@
 'use client';
 
-import { FC, useState } from 'react';
+import { type FC, useState } from 'react';
 
-import { Twine, TwineDiameters } from '@sanity/lib/sanity.types';
+import type { Twine, TwineDiameters } from '@sanity/lib/sanity.types';
 import { currencyFormatter, pricePerMeterFormatter } from '~/lib/formatters';
-import { WithImageAsset } from '~/lib/types';
+import type { WithImageAsset } from '~/lib/types';
 import AddToCartButton from './add-to-cart-button';
 import Card from './card';
 
@@ -34,10 +34,10 @@ const TwineCard: FC<TwineCardProps> = ({ twine }) => {
         <span>(szakítószilárdság: {selectedDiameter.tensileStrength} kg)</span>
         <div className="flex gap-2">
           <div className="flex-shrink">
-            <div className="d-form-control w-full max-w-xs">
-              <label className="d-label">
+            <label className="d-form-control w-full max-w-xs">
+              <div className="d-label">
                 <span className="d-label-text font-bold">Átmérő</span>
-              </label>
+              </div>
               <select className="d-select d-select-bordered">
                 {twine.diameters.map((diamaterItem) => (
                   <option key={diamaterItem._key}>
@@ -45,7 +45,7 @@ const TwineCard: FC<TwineCardProps> = ({ twine }) => {
                   </option>
                 ))}
               </select>
-            </div>
+            </label>
           </div>
 
           <div className="self-end">
@@ -76,7 +76,9 @@ const TwineCard: FC<TwineCardProps> = ({ twine }) => {
           product={{
             ...twine,
             name: `${twine.name} (${selectedDiameter.diameter} - ${length}m)`,
-            price: (selectedDiameter.pricePerMeter || NaN) * Math.ceil(length),
+            price:
+              (selectedDiameter.pricePerMeter || Number.NaN) *
+              Math.ceil(length),
           }}
         />
       </Card>

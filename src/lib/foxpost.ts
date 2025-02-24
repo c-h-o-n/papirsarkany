@@ -4,12 +4,12 @@ import {
 } from './constants';
 import { env } from './env';
 
-import {
+import type {
   FoxpostCreateParcelRequestBody,
   FoxpostPackageSize,
   PackageInfo,
 } from './types';
-import { CartItem } from './validation-schemas';
+import type { CartItem } from './validation-schemas';
 
 export function createParcel(body: FoxpostCreateParcelRequestBody) {
   const {
@@ -21,7 +21,7 @@ export function createParcel(body: FoxpostCreateParcelRequestBody) {
 
   const foxpostHeaders = new Headers({
     Authorization:
-      'Basic ' + btoa(FOXPOST_API_USERNAME + ':' + FOXPOST_API_PASSWORD),
+      `Basic ${btoa(`${FOXPOST_API_USERNAME}:${FOXPOST_API_PASSWORD}`)}`,
     'Content-Type': 'application/json',
     'Api-key': FOXPOST_API_KEY,
   });

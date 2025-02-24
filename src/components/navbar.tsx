@@ -1,10 +1,10 @@
 'use client';
 
-import { FC } from 'react';
+import type { FC } from 'react';
 import useMedia from 'use-media';
 
 import twConfig from '~/lib/tailwind-theme.preval';
-import { NavbarItems } from '~/lib/types';
+import type { NavbarItems } from '~/lib/types';
 import DesktopNavbar from './desktop-navbar';
 import MobileNavbar from './mobile-navbar';
 

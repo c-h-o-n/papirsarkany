@@ -1,7 +1,7 @@
 'use client';
 
 import { m } from 'framer-motion';
-import { FC } from 'react';
+import type { FC } from 'react';
 
 import LazyLoadFramerMotion from './lazy-load-framer-motion';
 
@@ -19,6 +19,8 @@ const GoogleMapsRating: FC<GoogleMapsRating> = ({ rating }) => {
     <LazyLoadFramerMotion>
       <m.div initial="initial" whileHover="hover" className="mx-auto w-fit">
         <m.svg
+          role={'img'}
+          aria-label={'google maps rating'}
           className="mx-auto h-24 w-24 md:h-32 md:w-32 lg:h-48 lg:w-48"
           viewBox="0 0 32 32"
           fill="none"
@@ -31,7 +33,7 @@ const GoogleMapsRating: FC<GoogleMapsRating> = ({ rating }) => {
           <g clipPath="url(#clip0_901_3111)">
             <m.path
               initial={{
-                clipPath: `inset(100% 0 0 0)`,
+                clipPath: 'inset(100% 0 0 0)',
               }}
               animate={{
                 clipPath: normalizedInsetPath,

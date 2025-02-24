@@ -1,4 +1,4 @@
-import { InferredProduct } from '~/lib/types';
+import type { InferredProduct } from '~/lib/types';
 
 export const product = {
   packageInfo: {

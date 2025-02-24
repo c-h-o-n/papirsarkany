@@ -1,13 +1,13 @@
 'use client';
 
 import Image from 'next/image';
-import { FC, Fragment } from 'react';
+import { type FC, Fragment } from 'react';
 
 import TrashCanIcon from '~/assets/trash-can.svg';
 import useCart from '~/hooks/use-cart';
 import { MISSING_IMG_URL, NO_NAME } from '~/lib/constants';
 import { currencyFormatter, formatShippingFee } from '~/lib/formatters';
-import { CartItem } from '~/lib/validation-schemas';
+import type { CartItem } from '~/lib/validation-schemas';
 import { useCartStore } from '~/store/use-cart-store';
 import Card from './card';
 import ProductinCartCounter from './product-in-cart-counter';
@@ -75,7 +75,7 @@ const OrderSummaryCard: FC<OrderSummaryCardProps> = ({ layout = 'full' }) => {
                 )}
               </div>
             </div>
-            <div className="d-divider"></div>
+            <div className="d-divider" />
           </Fragment>
         ))}
 
@@ -137,7 +137,7 @@ const OrderSummaryCard: FC<OrderSummaryCardProps> = ({ layout = 'full' }) => {
                 )}
               </div>
             </div>
-            <div className="hidden flex-1 items-center justify-end gap-4 md:flex">
+            <div className="flex-1 items-center justify-end gap-4 md:flex">
               {item.price && (
                 <h4 className="font-bold">
                   {currencyFormatter(item.price * item.quantity)}
@@ -149,6 +149,7 @@ const OrderSummaryCard: FC<OrderSummaryCardProps> = ({ layout = 'full' }) => {
               </div>
 
               <button
+                type="button"
                 className="d-btn d-btn-square d-btn-error"
                 onClick={() => onDeleteClick(item)}
               >
@@ -158,18 +159,19 @@ const OrderSummaryCard: FC<OrderSummaryCardProps> = ({ layout = 'full' }) => {
           </div>
           <div
             data-testid="cart-item-controls"
-            className="flex justify-between gap-4 md:hidden"
+            className="flex justify-between gap-4"
           >
             <ProductinCartCounter value={item.quantity} cartItem={item} />
 
             <button
+              type="button"
               className="d-btn d-btn-square d-btn-error"
               onClick={() => onDeleteClick(item)}
             >
               <TrashCanIcon className="h-6 w-6" />
             </button>
           </div>
-          <div className="d-divider"></div>
+          <div className="d-divider" />
         </Fragment>
       ))}
 

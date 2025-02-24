@@ -114,7 +114,7 @@ export default function Home() {
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
               title="Google map"
-            ></iframe>
+            />
           </HomeSection.Content>
         </HomeSection>
       </div>

@@ -4,8 +4,8 @@ import { useRouter } from 'next/navigation';
 import { useFormContext } from 'react-hook-form';
 
 import Link from 'next/link';
-import { FC } from 'react';
-import { OrderForm } from '~/lib/validation-schemas';
+import type { FC } from 'react';
+import type { OrderForm } from '~/lib/validation-schemas';
 import { useCheckoutFormStore } from '~/store/use-checkout-form-store';
 import Card from './card';
 import OrderSummaryCard from './order-summary-card';
@@ -71,7 +71,7 @@ const CheckoutSummaryForm: FC = () => {
         <textarea
           className="d-textarea d-textarea-bordered d-textarea-primary h-24"
           {...register('comment')}
-        ></textarea>
+        />
         <div className="d-label justify-end">
           <span className="d-label-text-alt">
             14 napos elállási jog fentartva a rendelés leadásától számítva.
@@ -97,13 +97,11 @@ const CheckoutSummaryForm: FC = () => {
         </button>
         <button
           type="submit"
-          className={`d-btn d-btn-success d-btn-block uppercase sm:w-auto`}
+          className="d-btn d-btn-success d-btn-block uppercase sm:w-auto"
           disabled={isSubmitting}
           onMouseEnter={() => router.prefetch('/sikeres-rendeles')}
         >
-          {isSubmitting && (
-            <span className="d-loading d-loading-spinner"></span>
-          )}
+          {isSubmitting && <span className="d-loading d-loading-spinner" />}
           Megrendelem
         </button>
       </div>

@@ -1,4 +1,4 @@
-import { type SchemaTypeDefinition } from 'sanity';
+import type { SchemaTypeDefinition } from 'sanity';
 
 import kiteSchemaTypes from './schemas/kite/kite-schema-types';
 import reelSchemaTypes from './schemas/reel/reel-schema-types';

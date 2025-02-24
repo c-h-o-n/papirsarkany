@@ -14,11 +14,20 @@
     "rules": {
       "recommended": true,
       "correctness": {
-        "noUndeclaredVariables": "error"
+        "noUndeclaredVariables": "error",
+        "noUnusedVariables": "warn"
       },
       "style": { "noNamespace": "error" },
       "suspicious": {
         "noEmptyBlockStatements": "error"
+      },
+      "a11y": {
+        "noLabelWithoutControl": {
+          "level": "error",
+          "options": {
+            "inputComponents": ["FormattedPhoneNumberInput"]
+          }
+        }
       }
     }
   },
@@ -41,12 +50,8 @@
             "noSetterReturn": "off",
             "noUndeclaredVariables": "off",
             "noUnreachable": "off",
-            "noUnreachableSuper": "off"
-          },
-          "style": {
-            "noArguments": "error",
-            "noVar": "error",
-            "useConst": "error"
+            "noUnreachableSuper": "off",
+            "noInvalidUseBeforeDeclaration": "off"
           },
           "suspicious": {
             "noDuplicateClassMembers": "off",

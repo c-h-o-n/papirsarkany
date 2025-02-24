@@ -1,5 +1,5 @@
 import { env } from './env';
-import { OrderForm } from './validation-schemas';
+import type { OrderForm } from './validation-schemas';
 
 export function delay(time: number) {
   return new Promise((resolve) => setTimeout(resolve, time));

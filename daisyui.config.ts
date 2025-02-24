@@ -1,4 +1,4 @@
-import { Config } from 'daisyui';
+import type { Config } from 'daisyui';
 import theme from 'daisyui/src/theming/themes';
 const lightTheme = theme.light;
 

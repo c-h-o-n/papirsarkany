@@ -9,7 +9,7 @@ import {
   getTotalPackageInfo,
 } from '~/lib/foxpost';
 import { isProdEnv, isStageEnv, normalizeOrderForm } from '~/lib/helpers';
-import { OrderMail, OrderRequestBody } from '~/lib/types';
+import type { OrderMail, OrderRequestBody } from '~/lib/types';
 
 setSendgridApiKey();
 

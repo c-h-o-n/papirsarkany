@@ -1,8 +1,8 @@
 import Link from 'next/link';
-import { FC } from 'react';
+import type { FC } from 'react';
 
 import HamburgerIcon from '~/assets/hamburger.svg';
-import { NavbarItems } from '~/lib/types';
+import type { NavbarItems } from '~/lib/types';
 import CartMenuItem from './cart-menu-item';
 import NavMenuItem from './nav-menu-item';
 
@@ -17,14 +17,15 @@ const MobileNavbar: FC<MobileNavbarProps> = ({ navbarItems }) => {
         <div className="d-dropdown">
           <div
             tabIndex={0}
+            // biome-ignore lint/a11y/useSemanticElements: we can't use <button> here because Safari has a bug that prevents the button from being focused.
             role="button"
-            className="d-btn d-btn-ghost lg:hidden"
+            className="d-btn d-btn-ghost focus:ring focus:ring-neutral"
             aria-label="mobile navigation menu"
           >
             <HamburgerIcon className="h-5 w-5" />
           </div>
+
           <ul
-            tabIndex={0}
             className="d-menu d-dropdown-content z-[1] mt-5 w-52 rounded-box bg-base-100 p-2 shadow"
             data-pw-e2e="hamburger-menu-content"
           >
@@ -36,7 +37,7 @@ const MobileNavbar: FC<MobileNavbarProps> = ({ navbarItems }) => {
                 {navbarItem.children}
               </NavMenuItem>
             ))}
-            <div className="d-divider m-0"></div>
+            <div className="d-divider m-0"/>
             {navbarItems.leftItems.map((navbarItem) => (
               <NavMenuItem
                 key={navbarItem.href.toString()}

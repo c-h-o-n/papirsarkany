@@ -2,11 +2,11 @@
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { redirect, useRouter } from 'next/navigation';
-import { Children, FC, ReactNode } from 'react';
+import { Children, type FC, type ReactNode } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 
 import { useOrder } from '~/hooks/use-order';
-import { OrderForm, orderFormSchema } from '~/lib/validation-schemas';
+import { type OrderForm, orderFormSchema } from '~/lib/validation-schemas';
 import { useCartStore } from '~/store/use-cart-store';
 import { useCheckoutFormStore } from '~/store/use-checkout-form-store';
 import StepProgress from './step-progress';

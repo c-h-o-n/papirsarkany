@@ -1,8 +1,8 @@
 import Link from 'next/link';
-import { FC } from 'react';
+import type { FC } from 'react';
 
 import HomeIcon from '~/assets/home.svg';
-import { NavbarItems } from '~/lib/types';
+import type { NavbarItems } from '~/lib/types';
 import CartMenuItem from './cart-menu-item';
 import NavMenuItem from './nav-menu-item';
 

@@ -23,7 +23,7 @@ export default defineConfig({
   projectId,
   dataset,
   scheduledPublishing: {
-    enabled: false
+    enabled: false,
   },
   schema,
   plugins: [

@@ -18,7 +18,7 @@ export default async function Materials() {
         {reels && reels.length > 0 && (
           <div className="space-y-4">
             <h2 className="font-bold">
-              {sanityProductCategoryTitleMap['reel']}
+              {sanityProductCategoryTitleMap.reel}
             </h2>
             <MasonryContainer>
               {reels.map((reel) => (
@@ -30,7 +30,7 @@ export default async function Materials() {
         {twines && twines.length > 0 && (
           <div className="space-y-4">
             <h2 className="font-bold">
-              {sanityProductCategoryTitleMap['twine']}
+              {sanityProductCategoryTitleMap.twine}
             </h2>
             <MasonryContainer>
               {twines.map((twine) => (
@@ -42,7 +42,7 @@ export default async function Materials() {
         {rods && rods.length > 0 && (
           <div className="space-y-4">
             <h2 className="font-bold">
-              {sanityProductCategoryTitleMap['rod']}
+              {sanityProductCategoryTitleMap.rod}
             </h2>
             <MasonryContainer>
               {rods.map((rod) => (

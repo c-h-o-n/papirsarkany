@@ -1,11 +1,15 @@
-import { test as setup } from '@playwright/test';
 import fs from 'node:fs';
 import path from 'node:path';
+import { test as setup } from '@playwright/test';
 
 function isStorageStateExists() {
+  if(!import.meta.dirname) {
+    throw new Error('dirname is not defined');
+  }
+
   return fs.existsSync(
     path.resolve(
-      import.meta.dirname!,
+      import.meta.dirname,
       '../../../playwright-storage-state.json',
     ),
   );

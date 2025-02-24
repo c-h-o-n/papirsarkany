@@ -1,5 +1,5 @@
-import { FC } from 'react';
-import { type Toast } from '~/lib/types';
+import type { FC } from 'react';
+import type { Toast } from '~/lib/types';
 import ErrorToast from './error-toast';
 import SuccessToast from './success-toast';
 

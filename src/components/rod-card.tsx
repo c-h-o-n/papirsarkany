@@ -1,10 +1,10 @@
 'use client';
 
-import { ChangeEvent, FC, useState } from 'react';
+import { type ChangeEvent, type FC, useState } from 'react';
 
-import { Rod, RodDiameters } from '@sanity/lib/sanity.types';
+import type { Rod, RodDiameters } from '@sanity/lib/sanity.types';
 import { currencyFormatter, pricePerMeterFormatter } from '~/lib/formatters';
-import { WithImageAsset } from '~/lib/types';
+import type { WithImageAsset } from '~/lib/types';
 import AddToCartButton from './add-to-cart-button';
 import Card from './card';
 
@@ -66,10 +66,10 @@ const RodCard: FC<RodCardProps> = ({ rod }) => {
         <h3 className="font-bold">{rod.name}</h3>
 
         <div className="flex gap-2">
-          <div className="d-form-control w-full max-w-xs">
-            <label className="d-label">
+          <label className="d-form-control w-full max-w-xs">
+            <div className="d-label">
               <span className="d-label-text font-bold">Átmérő</span>
-            </label>
+            </div>
             <select
               className="d-select d-select-bordered"
               value={selectedDiameter.diameter}
@@ -83,13 +83,14 @@ const RodCard: FC<RodCardProps> = ({ rod }) => {
                 </option>
               ))}
             </select>
-          </div>
+          </label>
 
-          <div className="d-form-control w-full max-w-xs">
-            <label className="kite- d-label">
+          <label className="d-form-control w-full max-w-xs">
+            <div className="d-label">
               <span className="d-label-text font-bold">Hossz</span>
-            </label>
+            </div>
             <select
+              id={`select-length-${rod._id}`}
               className="d-select d-select-bordered w-full max-w-xs"
               onChange={(e) => setSelectedLength(+e.target.value)}
               value={selectedLength}
@@ -100,7 +101,7 @@ const RodCard: FC<RodCardProps> = ({ rod }) => {
                 </option>
               ))}
             </select>
-          </div>
+          </label>
         </div>
         {selectedDiameter.pricePerMeter && selectedLength && (
           <h2>
@@ -118,8 +119,8 @@ const RodCard: FC<RodCardProps> = ({ rod }) => {
             ...rod,
             name: `${rod.name} (${selectedDiameter.diameter} mm - ${selectedLength} cm)`,
             price:
-              (selectedDiameter.pricePerMeter || NaN) *
-              Math.ceil((selectedLength || NaN) / 100),
+              (selectedDiameter.pricePerMeter || Number.NaN) *
+              Math.ceil((selectedLength || Number.NaN) / 100),
           }}
         />
       </Card>

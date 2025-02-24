@@ -1,4 +1,4 @@
-import {
+import type {
   Kite,
   Reel,
   Rod,
@@ -6,8 +6,8 @@ import {
   Twine,
 } from '@sanity/lib/sanity.types';
 
-import { MenuItemProps } from '~/components/nav-menu-item';
-import { CartItem, OrderForm } from './validation-schemas';
+import type { MenuItemProps } from '~/components/nav-menu-item';
+import type { CartItem, OrderForm } from './validation-schemas';
 
 export type WithImageAsset<T> = Omit<T, 'image'> & {
   image: {

@@ -3,8 +3,8 @@ import 'client-only';
 import useCart from '~/hooks/use-cart';
 import { useCartStore } from '~/store/use-cart-store';
 import { useFoxpostParcelBoxStore } from '~/store/use-foxpost-parcel-box-store';
-import { OrderRequestBody } from '../lib/types';
-import { OrderForm } from '../lib/validation-schemas';
+import type { OrderRequestBody } from '../lib/types';
+import type { OrderForm } from '../lib/validation-schemas';
 
 export function useOrder() {
   const { getTotalPrice } = useCart();

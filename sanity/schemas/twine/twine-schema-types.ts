@@ -1,4 +1,4 @@
-import { SchemaTypeDefinition } from 'sanity';
+import type { SchemaTypeDefinition } from 'sanity';
 
 import twine from './twine';
 import twineDiameters from './twine-diameters';

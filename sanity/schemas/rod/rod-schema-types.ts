@@ -1,4 +1,4 @@
-import { SchemaTypeDefinition } from 'sanity';
+import type { SchemaTypeDefinition } from 'sanity';
 import lengths from './lengths';
 import rod from './rod';
 import rodDiameters from './rod-diameters';

@@ -1,9 +1,9 @@
 import { useFormContext } from 'react-hook-form';
 
-import { FC } from 'react';
+import type { FC } from 'react';
 import { currencyFormatter } from '~/lib/formatters';
-import { BillingOptionValue } from '~/lib/types';
-import { OrderForm } from '~/lib/validation-schemas';
+import type { BillingOptionValue } from '~/lib/types';
+import type { OrderForm } from '~/lib/validation-schemas';
 import { useCartStore } from '~/store/use-cart-store';
 
 type BillingOptionRadioInputProps = {

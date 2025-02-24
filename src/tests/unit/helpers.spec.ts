@@ -2,7 +2,7 @@ import { describe, expect, test, vi } from 'vitest';
 
 import { LOCAL_PICKUP_ADDRESS } from '~/lib/constants';
 import { delay, normalizeOrderForm } from '~/lib/helpers';
-import { OrderForm } from '~/lib/validation-schemas';
+import type { OrderForm } from '~/lib/validation-schemas';
 
 test('delay - resolves after the given time', async () => {
   const delayTime = 6000;

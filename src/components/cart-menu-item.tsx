@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 
-import { FC } from 'react';
+import type { FC } from 'react';
 import CartIcon from '~/assets/cart.svg';
 import useCart from '~/hooks/use-cart';
 

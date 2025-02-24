@@ -1,7 +1,7 @@
-import { Order, Prisma } from '@prisma/client';
+import type { Order, Prisma } from '@prisma/client';
 import { paymentModePrismaMap, shippingModePrismaMap } from './formatters';
 import prisma from './prisma';
-import { CartItem, OrderForm } from './validation-schemas';
+import type { CartItem, OrderForm } from './validation-schemas';
 
 export async function createOrder(
   orderForm: OrderForm,

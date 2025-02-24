@@ -1,4 +1,4 @@
-import { defineField, FieldDefinition } from 'sanity';
+import { type FieldDefinition, defineField } from 'sanity';
 
 export default [
   defineField({

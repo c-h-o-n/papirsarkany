@@ -1,10 +1,10 @@
 'use client';
 
-import { ChangeEvent, FC } from 'react';
+import type { ChangeEvent, FC } from 'react';
 import { useFormContext } from 'react-hook-form';
 
-import { BillingOptionValue, ShippingOptionValue } from '~/lib/types';
-import { OrderForm } from '~/lib/validation-schemas';
+import type { BillingOptionValue, ShippingOptionValue } from '~/lib/types';
+import type { OrderForm } from '~/lib/validation-schemas';
 import { useCheckoutFormStore } from '~/store/use-checkout-form-store';
 import BillingOptionRadioInput from './billing-option-radio-input';
 
@@ -116,63 +116,63 @@ const CheckoutBillingForm: FC = () => {
       {(selectedShippingOption !== 'Postai szállítás' ||
         !getValues('isSameAdressAsShipping')) && (
         <>
-          <div className="d-form-control">
-            <label className="d-label">
+          <label className="d-form-control">
+            <div className="d-label">
               <span className="d-label-text text-lg">Irányítószám</span>
-            </label>
+            </div>
             <input
               type="text"
               className="d-input d-input-bordered"
               {...register('billingPostcode')}
             />
-            <label className="d-label">
+            <div className="d-label">
               <span className="d-label-text-alt text-error">
                 {errors.billingPostcode?.message}
               </span>
-            </label>
-          </div>
-          <div className="d-form-control">
-            <label className="d-label">
+            </div>
+          </label>
+          <label className="d-form-control">
+            <div className="d-label">
               <span className="d-label-text text-lg">Város</span>
-            </label>
+            </div>
             <input
               type="text"
               className="d-input d-input-bordered"
               {...register('billingCity')}
             />
-            <label className="d-label">
+            <div className="d-label">
               <span className="d-label-text-alt text-error">
                 {errors.billingCity?.message}
               </span>
-            </label>
-          </div>
-          <div className="d-form-control">
-            <label className="d-label">
+            </div>
+          </label>
+          <label className="d-form-control">
+            <div className="d-label">
               <span className="d-label-text text-lg">Cím</span>
-            </label>
+            </div>
             <input
               type="text"
               placeholder="Utca, házszám"
               className="d-input d-input-bordered"
               {...register('billingAddress')}
             />
-            <label className="d-label">
+            <div className="d-label">
               <span className="d-label-text-alt text-error">
                 {errors.billingAddress?.message}
               </span>
-            </label>
+            </div>
             <input
               type="text"
               placeholder="Emelet, ajtó, egyéb (opcionális)"
               className="d-input d-input-bordered"
               {...register('billingSubaddress')}
             />
-            <label className="d-label">
+            <div className="d-label">
               <span className="d-label-text-alt text-error">
                 {errors.billingSubaddress?.message}
               </span>
-            </label>
-          </div>
+            </div>
+          </label>
         </>
       )}
 

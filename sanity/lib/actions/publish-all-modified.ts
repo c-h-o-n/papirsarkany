@@ -1,8 +1,8 @@
-import { PublishAction, createClient } from '@sanity/client';
+import { type PublishAction, createClient } from '@sanity/client';
 import { defineQuery } from 'groq';
 
-import { env } from '~/lib/env';
 import { apiVersion, dataset, projectId, useCdn } from '@sanity/env';
+import { env } from '~/lib/env';
 
 const { SANITY_API_TOKEN } = env;
 
@@ -31,7 +31,7 @@ async function main() {
   const publishActions: PublishAction[] = modifiedPublishedDocuments.map(
     (document) => ({
       actionType: 'sanity.action.document.publish',
-      draftId: 'drafts.' + document._id,
+      draftId: `drafts.${document._id}`,
       publishedId: document._id,
     }),
   );

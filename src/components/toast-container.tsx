@@ -1,18 +1,19 @@
 'use client';
 
 import { AnimatePresence, m } from 'framer-motion';
-import { FC } from 'react';
+import type { FC } from 'react';
 
 import { useToastStore } from '~/store/use-toast-store';
 import LazyLoadFramerMotion from './lazy-load-framer-motion';
 import Toast from './toast';
 
-type ToastContainerProps = {
-  // autoClose?: number;
-  // motionProps?: HTMLMotionProps<'div'>;
-};
+/**
+ * Expand with the following props:
+ *  - autoClose?: number;
+ *  - motionProps?: HTMLMotionProps<'div'>;
+ */
 
-const ToastContainer: FC<ToastContainerProps> = () => {
+const ToastContainer: FC = () => {
   const toasts = useToastStore((state) => state.toasts);
   const dismissToast = useToastStore((state) => state.dismissToast);
 

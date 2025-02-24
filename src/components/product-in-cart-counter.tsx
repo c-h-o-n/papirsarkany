@@ -1,8 +1,14 @@
 'use client';
 
-import { ChangeEvent, FC, FocusEvent, useState } from 'react';
+import {
+  type ChangeEvent,
+  type FC,
+  type FocusEvent,
+  useRef,
+  useState,
+} from 'react';
 
-import { CartItem } from '~/lib/validation-schemas';
+import type { CartItem } from '~/lib/validation-schemas';
 import { useCartStore } from '~/store/use-cart-store';
 
 type ProductinCartCounterProps = {
@@ -12,7 +18,6 @@ type ProductinCartCounterProps = {
 
 const ProductinCartCounter: FC<ProductinCartCounterProps> = ({ cartItem }) => {
   const setItemQuantity = useCartStore((state) => state.setItemQuantity);
-
   const increaseItemQuantity = useCartStore(
     (state) => state.increaseItemQuantity,
   );
@@ -39,12 +44,12 @@ const ProductinCartCounter: FC<ProductinCartCounterProps> = ({ cartItem }) => {
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     hasPendingChanges.current = true;
 
-    const newQuantity = parseInt(e.target.value);
+    const newQuantity = Number.parseInt(e.target.value);
     setTemporaryQuantityValue(newQuantity);
   };
 
   const handleBlur = (e: FocusEvent<HTMLInputElement>) => {
-    const newQuantity = parseInt(e.target.value);
+    const newQuantity = Number.parseInt(e.target.value);
 
     if (
       newQuantity < 1 ||
@@ -77,15 +82,16 @@ const ProductinCartCounter: FC<ProductinCartCounterProps> = ({ cartItem }) => {
 
   return (
     <div className="flex items-center">
-      <div
-        className="d-btn no-animation rounded-r-none shadow-none"
+      <button
+        type="button"
+        className="d-btn no-animation rounded-r-none shadow-none focus:z-[1]"
         onClick={() => handleDecreaseButtonClick()}
       >
         -
-      </div>
+      </button>
       <input
         type="number"
-        className="h-12 w-12 rounded-none bg-base-200 text-center shadow-none"
+        className="h-12 w-12 rounded-none bg-base-200 text-center shadow-none focus:z-[1]"
         value={
           !hasPendingChanges.current
             ? cartItem.quantity.toString()
@@ -95,14 +101,15 @@ const ProductinCartCounter: FC<ProductinCartCounterProps> = ({ cartItem }) => {
         onBlur={handleBlur}
         onKeyDown={handleInputKeyPress}
       />
-      <div
-        className={`d-btn no-animation rounded-l-none shadow-none ${
+      <button
+        type="button"
+        className={`d-btn no-animation rounded-l-none shadow-none focus:z-[1] ${
           cartItem.quantity >= 999 && 'd-btn-disabled'
         }`}
         onClick={() => handleIncreaseButtonClick()}
       >
         +
-      </div>
+      </button>
     </div>
   );
 };

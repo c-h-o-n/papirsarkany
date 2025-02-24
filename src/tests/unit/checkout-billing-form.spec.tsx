@@ -3,14 +3,14 @@ import { cleanup, render, renderHook, screen } from '@testing-library/react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { afterEach, expect, test, vi } from 'vitest';
 import CheckoutBillingForm from '~/components/checkout-billing-form';
-import { OrderForm } from '~/lib/validation-schemas';
+import type { OrderForm } from '~/lib/validation-schemas';
 
 afterEach(cleanup);
 
 test('should throw error if shipping option was not selected', () => {
-  // Mock console error to suppress expected errors during the test
   const consoleErrorMock = vi
     .spyOn(console, 'error')
+    // biome-ignore lint/suspicious/noEmptyBlockStatements: overrides console error to suppress expected errors during the test
     .mockImplementation(() => {});
 
   const {

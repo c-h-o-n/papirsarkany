@@ -1,8 +1,8 @@
 import 'client-only';
-import { SetOptional } from 'type-fest';
+import type { SetOptional } from 'type-fest';
 import { create } from 'zustand';
 import { delay } from '~/lib/helpers';
-import { Toast } from '~/lib/types';
+import type { Toast } from '~/lib/types';
 
 /**
  * number of ms to wait before automatically closing the toast

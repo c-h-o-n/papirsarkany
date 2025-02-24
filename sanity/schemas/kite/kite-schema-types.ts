@@ -1,4 +1,4 @@
-import { SchemaTypeDefinition } from 'sanity';
+import type { SchemaTypeDefinition } from 'sanity';
 
 import kite from './kite';
 import kiteMaterials from './kite-materials';

@@ -1,7 +1,7 @@
 'use client';
 
-import { FC, useState } from 'react';
-import { UseFormRegisterReturn } from 'react-hook-form';
+import { type FC, useState } from 'react';
+import type { UseFormRegisterReturn } from 'react-hook-form';
 
 import { formatPhoneNumber, parsePhoneNumber } from '~/lib/formatters';
 

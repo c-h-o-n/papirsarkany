@@ -1,5 +1,5 @@
 import { expect, test } from 'vitest';
-import { z, ZodError } from 'zod';
+import { ZodError, z } from 'zod';
 import {
   currencyFormatter,
   formatPhoneNumber,
@@ -32,10 +32,13 @@ test('formatZodErrors formats ZodError into human-readable strings', () => {
     age: z.number().min(18, 'Legalább 18 éves kell legyen'),
   });
   const { error } = zodSchema.safeParse({ name: '', age: 17 });
+  if(!error) {
+    throw new Error('ZodError is undefined');
+  }
 
   expect(formatZodErrors(new ZodError([]))).toBe('');
 
-  expect(formatZodErrors(error!)).toBe(
+  expect(formatZodErrors(error)).toBe(
     'Hiányzó név; Legalább 18 éves kell legyen.',
   );
 });

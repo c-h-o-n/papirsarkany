@@ -7,4 +7,3 @@ export const dataset = env.NEXT_PUBLIC_SANITY_DATASET;
 export const projectId = env.NEXT_PUBLIC_SANITY_PROJECT_ID;
 
 export const useCdn = false;
-

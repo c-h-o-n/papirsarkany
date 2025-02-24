@@ -2,8 +2,8 @@ import 'client-only';
 import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
 
-import { ShippingFee } from '~/lib/types';
-import { CartItem } from '~/lib/validation-schemas';
+import type { ShippingFee } from '~/lib/types';
+import type { CartItem } from '~/lib/validation-schemas';
 
 type State = {
   _hasHydrated: boolean;
@@ -64,17 +64,15 @@ export const useCartStore = create(
         set((state) => ({ cart: [...state.cart] }));
       },
       decreaseItemQuantity(product) {
-        if (product.quantity <= 1) {
-          const { removeFromCart } = get();
-          removeFromCart(product);
-          return;
-        }
-
-        product.quantity--;
-
         set((state) => ({
-          cart: [...state.cart],
-        }));
+          cart: state.cart
+            .map((item) =>
+              item._id === product._id
+                ? { ...item, quantity: item.quantity - 1 }
+                : item
+            )
+            .filter((item) => item.quantity > 0), // Remove item if quantity is 0
+        }))
       },
       setItemQuantity(product, quantity) {
         if (quantity < 1 || quantity > 999) {

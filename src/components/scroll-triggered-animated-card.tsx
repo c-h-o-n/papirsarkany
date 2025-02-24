@@ -1,7 +1,7 @@
 'use client';
 
 import { m } from 'framer-motion';
-import { FC, ReactNode } from 'react';
+import type { FC, ReactNode } from 'react';
 
 import Card from './card';
 import LazyLoadFramerMotion from './lazy-load-framer-motion';

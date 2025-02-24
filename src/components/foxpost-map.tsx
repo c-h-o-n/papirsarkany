@@ -1,10 +1,10 @@
 'use client';
 
-import { FC, useEffect } from 'react';
+import { type FC, useEffect } from 'react';
 import { useFormContext } from 'react-hook-form';
 
-import { FoxpostSelectMessageData } from '~/lib/types';
-import { OrderForm } from '~/lib/validation-schemas';
+import type { FoxpostSelectMessageData } from '~/lib/types';
+import type { OrderForm } from '~/lib/validation-schemas';
 import { useFoxpostParcelBoxStore } from '~/store/use-foxpost-parcel-box-store';
 import Card from './card';
 
@@ -61,7 +61,7 @@ const FoxpostMap: FC<FoxpostMapProps> = ({ hideMap }) => {
         width="100%"
         height="715px"
         title="Foxpost map"
-      ></iframe>
+      />
     </Card>
   );
 };

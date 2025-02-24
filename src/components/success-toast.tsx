@@ -1,9 +1,9 @@
 'use client';
 
 import Link from 'next/link';
-import { FC } from 'react';
+import type { FC } from 'react';
 
-import { Toast } from '~/lib/types';
+import type { Toast } from '~/lib/types';
 
 type SuccessToastProps = Pick<
   Extract<Toast, { type: 'success' }>,

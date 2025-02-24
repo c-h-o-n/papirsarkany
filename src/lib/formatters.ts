@@ -1,7 +1,7 @@
-import { $Enums } from '@prisma/client';
+import type { $Enums } from '@prisma/client';
 
-import { ZodError } from 'zod';
-import {
+import type { ZodError } from 'zod';
+import type {
   BillingOptionValue,
   ProductTypes,
   ShippingFee,
@@ -20,7 +20,7 @@ export function currencyFormatter(value: number): string {
 }
 
 export function pricePerMeterFormatter(value: number): string {
-  return currencyFormatter(value) + '\xa0/\xa0m';
+  return `${currencyFormatter(value)}\xa0/\xa0m`;
 }
 
 export function formatZodErrors(zodError: ZodError): string {
@@ -28,7 +28,9 @@ export function formatZodErrors(zodError: ZodError): string {
     return '';
   }
 
-  return zodError.errors.map((error) => `${error.message}`).join('; ') + '.';
+  const errorString = zodError.errors.map((error) => `${error.message}`).join('; ')
+
+  return `${errorString}.`;
 }
 
 export function formatShippingFee(shippingFee: ShippingFee) {

@@ -1,6 +1,6 @@
 import 'client-only';
 
-import { CartItem } from '~/lib/validation-schemas';
+import type { CartItem } from '~/lib/validation-schemas';
 import { useCartStore } from '~/store/use-cart-store';
 
 /**
