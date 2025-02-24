@@ -1,12 +1,12 @@
-'use client';
+"use client";
 
-import { type FC, useState } from 'react';
+import { type FC, useState } from "react";
 
-import type { Twine, TwineDiameters } from '@sanity/lib/sanity.types';
-import { currencyFormatter, pricePerMeterFormatter } from '~/lib/formatters';
-import type { WithImageAsset } from '~/lib/types';
-import AddToCartButton from './add-to-cart-button';
-import Card from './card';
+import type { Twine, TwineDiameters } from "@sanity/lib/sanity.types";
+import { currencyFormatter, pricePerMeterFormatter } from "~/lib/formatters";
+import type { WithImageAsset } from "~/lib/types";
+import AddToCartButton from "./add-to-cart-button";
+import Card from "./card";
 
 type TwineCardProps = {
   twine: WithImageAsset<Twine>;
@@ -30,7 +30,7 @@ const TwineCard: FC<TwineCardProps> = ({ twine }) => {
   return (
     <div className="relative z-0">
       <Card className="w-full space-y-3 p-5">
-        <h3 className="font-bold">{twine.name}</h3>{' '}
+        <h3 className="font-bold">{twine.name}</h3>{" "}
         <span>(szakítószilárdság: {selectedDiameter.tensileStrength} kg)</span>
         <div className="flex gap-2">
           <div className="flex-shrink">
@@ -49,10 +49,10 @@ const TwineCard: FC<TwineCardProps> = ({ twine }) => {
           </div>
 
           <div className="self-end">
-            <div className="d-join rounded-r-full outline-offset-0 transition-all duration-75 focus-within:outline focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-base-300">
+            <div className="d-join rounded-r-full outline-offset-0 transition-all duration-75 focus-within:outline focus-within:outline-2 focus-within:outline-base-300 focus-within:outline-offset-2">
               <input
                 type="number"
-                className="d-input d-join-item d-input-bordered w-full !outline-none transition-all duration-150 focus:rounded-l-[0.0625rem]"
+                className="d-input d-join-item d-input-bordered !outline-none w-full transition-all duration-150 focus:rounded-l-[0.0625rem]"
                 placeholder="hossz"
                 onChange={(e) => setLength(+e.target.value)}
               />
@@ -66,7 +66,7 @@ const TwineCard: FC<TwineCardProps> = ({ twine }) => {
           <h2>
             {currencyFormatter(
               selectedDiameter.pricePerMeter * Math.ceil(length),
-            )}{' '}
+            )}{" "}
             <span className="text-base text-gray-400">
               ({pricePerMeterFormatter(selectedDiameter.pricePerMeter)})
             </span>

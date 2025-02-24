@@ -1,32 +1,32 @@
-import { defineArrayMember, defineType } from 'sanity';
+import { defineArrayMember, defineType } from "sanity";
 
 export default defineType({
-  name: 'twineDiameters',
-  type: 'array',
+  name: "twineDiameters",
+  type: "array",
   validation: (rule) => rule.required().unique(),
   of: [
     defineArrayMember({
-      type: 'object',
+      type: "object",
       fields: [
         {
-          name: 'diameter',
-          type: 'number',
-          title: 'Átmérő',
-          description: 'Rendelhető átmérő mm-ben.n',
+          name: "diameter",
+          type: "number",
+          title: "Átmérő",
+          description: "Rendelhető átmérő mm-ben.n",
           validation: (rule) => rule.required().positive(),
         },
         {
-          name: 'pricePerMeter',
-          type: 'number',
-          title: 'Ár',
-          description: 'Az ár méterenként értendő.',
+          name: "pricePerMeter",
+          type: "number",
+          title: "Ár",
+          description: "Az ár méterenként értendő.",
           validation: (rule) => rule.required().positive(),
         },
         {
-          name: 'tensileStrength',
-          type: 'number',
-          title: 'Szakítószilárdság',
-          description: 'kg-ban',
+          name: "tensileStrength",
+          type: "number",
+          title: "Szakítószilárdság",
+          description: "kg-ban",
           validation: (rule) => rule.required().positive(),
         },
       ],

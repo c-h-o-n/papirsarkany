@@ -1,8 +1,8 @@
-import { cleanup, render, renderHook, screen } from '@testing-library/react';
-import { afterEach, expect, test } from 'vitest';
-import OrderSummaryCard from '~/components/order-summary-card';
-import { product } from '~/mocks/product.mock';
-import { useCartStore } from '~/store/use-cart-store';
+import { cleanup, render, renderHook, screen } from "@testing-library/react";
+import { afterEach, expect, test } from "vitest";
+import OrderSummaryCard from "~/components/order-summary-card";
+import { product } from "~/mocks/product.mock";
+import { useCartStore } from "~/store/use-cart-store";
 
 afterEach(cleanup);
 
@@ -11,7 +11,7 @@ test('should render "Üres a kosarad" when cart is empty', () => {
 
   const { container } = render(<OrderSummaryCard />);
 
-  expect(screen.getByText('Üres a kosarad.')).toBeDefined();
+  expect(screen.getByText("Üres a kosarad.")).toBeDefined();
   expect(container).toMatchSnapshot();
 });
 
@@ -28,7 +28,7 @@ test('should render "definitive" layout when provided', () => {
   );
 
   const { container } = render(<OrderSummaryCard layout="definitive" />);
-  expect(screen.queryByTestId('cart-item-controls')).toBeNull();
+  expect(screen.queryByTestId("cart-item-controls")).toBeNull();
   expect(container).toMatchSnapshot();
 });
 
@@ -45,6 +45,6 @@ test('should render "full" layout by default', () => {
   );
 
   const { container } = render(<OrderSummaryCard />);
-  expect(screen.queryByTestId('cart-item-controls')).toBeDefined();
+  expect(screen.queryByTestId("cart-item-controls")).toBeDefined();
   expect(container).toMatchSnapshot();
 });

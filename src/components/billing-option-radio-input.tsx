@@ -1,10 +1,10 @@
-import { useFormContext } from 'react-hook-form';
+import { useFormContext } from "react-hook-form";
 
-import type { FC } from 'react';
-import { currencyFormatter } from '~/lib/formatters';
-import type { BillingOptionValue } from '~/lib/types';
-import type { OrderForm } from '~/lib/validation-schemas';
-import { useCartStore } from '~/store/use-cart-store';
+import type { FC } from "react";
+import { currencyFormatter } from "~/lib/formatters";
+import type { BillingOptionValue } from "~/lib/types";
+import type { OrderForm } from "~/lib/validation-schemas";
+import { useCartStore } from "~/store/use-cart-store";
 
 type BillingOptionRadioInputProps = {
   isDisabled?: boolean;
@@ -26,19 +26,19 @@ const BillingOptionRadioInput: FC<BillingOptionRadioInputProps> = ({
   };
 
   return (
-    <div className={`d-form-control ${isDisabled && 'opacity-30'}`}>
+    <div className={`d-form-control ${isDisabled && "opacity-30"}`}>
       <label className="d-label cursor-pointer justify-start gap-x-2">
         <input
           type="radio"
           value={value}
-          {...register('paymentOption')}
-          className="d-radio border-black checked:d-radio-primary"
+          {...register("paymentOption")}
+          className="d-radio checked:d-radio-primary border-black"
           onClick={() => onInputClick(billingFee)}
           disabled={isDisabled}
         />
-        <span className="d-label-text text-lg font-bold">{value}</span>
+        <span className="d-label-text font-bold text-lg">{value}</span>
         {billingFee && (
-          <span className="d-label-text flex-1 text-right text-lg font-bold">
+          <span className="d-label-text flex-1 text-right font-bold text-lg">
             +{currencyFormatter(billingFee)}
           </span>
         )}

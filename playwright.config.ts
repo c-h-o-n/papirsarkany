@@ -1,4 +1,4 @@
-import { defineConfig, devices } from '@playwright/test';
+import { defineConfig, devices } from "@playwright/test";
 
 /**
  * Read environment variables from file.
@@ -10,7 +10,7 @@ import { defineConfig, devices } from '@playwright/test';
  * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig({
-  testDir: './src/tests/e2e',
+  testDir: "./src/tests/e2e",
   /* Run tests in files in parallel */
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
@@ -20,51 +20,51 @@ export default defineConfig({
   /* Opt out of parallel tests on CI. */
   workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: 'html',
+  reporter: "html",
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
     baseURL: process.env.CI
       ? process.env.PLAYWRIGHT_TEST_BASE_URL
-      : 'http://127.0.0.1:3000',
+      : "http://127.0.0.1:3000",
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
-    trace: 'on-first-retry',
+    trace: "on-first-retry",
 
-    testIdAttribute: 'data-pw-e2e',
+    testIdAttribute: "data-pw-e2e",
   },
 
   /* Configure projects for major browsers */
   projects: [
     {
-      name: 'accept-cookie-consent',
+      name: "accept-cookie-consent",
       testMatch: /global\.setup\.ts/,
     },
     {
-      name: 'chromium',
+      name: "chromium",
       use: {
-        ...devices['Desktop Chrome'],
-        storageState: 'playwright-storage-state.json',
+        ...devices["Desktop Chrome"],
+        storageState: "playwright-storage-state.json",
       },
-      dependencies: ['accept-cookie-consent'],
+      dependencies: ["accept-cookie-consent"],
     },
 
     {
-      name: 'firefox',
+      name: "firefox",
       use: {
-        ...devices['Desktop Firefox'],
-        storageState: 'playwright-storage-state.json',
+        ...devices["Desktop Firefox"],
+        storageState: "playwright-storage-state.json",
       },
-      dependencies: ['accept-cookie-consent'],
+      dependencies: ["accept-cookie-consent"],
     },
 
     {
-      name: 'webkit',
+      name: "webkit",
       use: {
-        ...devices['Desktop Safari'],
-        storageState: 'playwright-storage-state.json',
+        ...devices["Desktop Safari"],
+        storageState: "playwright-storage-state.json",
       },
-      dependencies: ['accept-cookie-consent'],
+      dependencies: ["accept-cookie-consent"],
     },
 
     /* Test against mobile viewports. */
@@ -90,8 +90,8 @@ export default defineConfig({
 
   /* Run your local dev server before starting the tests */
   webServer: {
-    command: 'pnpm run dev',
-    url: 'http://127.0.0.1:3000',
+    command: "pnpm run dev",
+    url: "http://127.0.0.1:3000",
     reuseExistingServer: !process.env.CI,
   },
 });

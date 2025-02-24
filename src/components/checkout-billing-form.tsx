@@ -1,12 +1,12 @@
-'use client';
+"use client";
 
-import type { ChangeEvent, FC } from 'react';
-import { useFormContext } from 'react-hook-form';
+import type { ChangeEvent, FC } from "react";
+import { useFormContext } from "react-hook-form";
 
-import type { BillingOptionValue, ShippingOptionValue } from '~/lib/types';
-import type { OrderForm } from '~/lib/validation-schemas';
-import { useCheckoutFormStore } from '~/store/use-checkout-form-store';
-import BillingOptionRadioInput from './billing-option-radio-input';
+import type { BillingOptionValue, ShippingOptionValue } from "~/lib/types";
+import type { OrderForm } from "~/lib/validation-schemas";
+import { useCheckoutFormStore } from "~/store/use-checkout-form-store";
+import BillingOptionRadioInput from "./billing-option-radio-input";
 
 const CheckoutBillingForm: FC = () => {
   const {
@@ -23,59 +23,59 @@ const CheckoutBillingForm: FC = () => {
     ShippingOptionValue,
     { billingOptionValue: BillingOptionValue; billingFee?: number | null }[]
   > = {
-    'Személyes átvétel': [
-      { billingOptionValue: 'Előreutalással', billingFee: undefined },
-      { billingOptionValue: 'Átvételkor készpénzel', billingFee: undefined },
+    "Személyes átvétel": [
+      { billingOptionValue: "Előreutalással", billingFee: undefined },
+      { billingOptionValue: "Átvételkor készpénzel", billingFee: undefined },
     ],
-    'Foxpost automatába': [
-      { billingOptionValue: 'Előreutalással', billingFee: undefined },
+    "Foxpost automatába": [
+      { billingOptionValue: "Előreutalással", billingFee: undefined },
       {
-        billingOptionValue: 'Átvételkor bankártyával',
+        billingOptionValue: "Átvételkor bankártyával",
         billingFee: undefined,
       },
     ],
-    'Postai szállítás': [
+    "Postai szállítás": [
       {
-        billingOptionValue: 'Előreutalással',
+        billingOptionValue: "Előreutalással",
         billingFee: undefined,
       },
       {
-        billingOptionValue: 'Átvételkor készpénzel',
+        billingOptionValue: "Átvételkor készpénzel",
         billingFee: undefined,
       },
     ],
   };
 
-  const selectedShippingOption = getValues('shippingOption');
+  const selectedShippingOption = getValues("shippingOption");
 
   if (!selectedShippingOption) {
-    throw new Error('Érvénytelen szállitási mód');
+    throw new Error("Érvénytelen szállitási mód");
   }
 
   const onIsSameAdressAsShippingChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.checked) {
       syncShippingAndBilling();
-      setValue('isSameAdressAsShipping', true);
+      setValue("isSameAdressAsShipping", true);
     } else {
-      setValue('billingPostcode', '');
-      setValue('billingCity', '');
-      setValue('billingAddress', '');
-      setValue('billingSubaddress', '');
-      setValue('isSameAdressAsShipping', false);
+      setValue("billingPostcode", "");
+      setValue("billingCity", "");
+      setValue("billingAddress", "");
+      setValue("billingSubaddress", "");
+      setValue("isSameAdressAsShipping", false);
     }
 
-    trigger(['isSameAdressAsShipping']);
+    trigger(["isSameAdressAsShipping"]);
   };
 
   const syncShippingAndBilling = () => {
     if (
-      selectedShippingOption === 'Postai szállítás' &&
-      getValues('isSameAdressAsShipping')
+      selectedShippingOption === "Postai szállítás" &&
+      getValues("isSameAdressAsShipping")
     ) {
-      setValue('billingPostcode', getValues('shippingPostcode') || '');
-      setValue('billingCity', getValues('shippingCity') || '');
-      setValue('billingAddress', getValues('shippingAddress') || '');
-      setValue('billingSubaddress', getValues('shippingSubaddress'));
+      setValue("billingPostcode", getValues("shippingPostcode") || "");
+      setValue("billingCity", getValues("shippingCity") || "");
+      setValue("billingAddress", getValues("shippingAddress") || "");
+      setValue("billingSubaddress", getValues("shippingSubaddress"));
     }
   };
   return (
@@ -97,11 +97,11 @@ const CheckoutBillingForm: FC = () => {
 
       <h2 className="underline underline-offset-8">Számlázási cím</h2>
 
-      {selectedShippingOption === 'Postai szállítás' && (
+      {selectedShippingOption === "Postai szállítás" && (
         <div className="d-form-control pt-4">
           <label className="d-label cursor-pointer justify-start gap-x-2">
             <input
-              {...register('isSameAdressAsShipping')}
+              {...register("isSameAdressAsShipping")}
               onChange={(e) => onIsSameAdressAsShippingChange(e)}
               type="checkbox"
               className="d-checkbox checked:d-checkbox-primary"
@@ -113,8 +113,8 @@ const CheckoutBillingForm: FC = () => {
         </div>
       )}
 
-      {(selectedShippingOption !== 'Postai szállítás' ||
-        !getValues('isSameAdressAsShipping')) && (
+      {(selectedShippingOption !== "Postai szállítás" ||
+        !getValues("isSameAdressAsShipping")) && (
         <>
           <label className="d-form-control">
             <div className="d-label">
@@ -123,7 +123,7 @@ const CheckoutBillingForm: FC = () => {
             <input
               type="text"
               className="d-input d-input-bordered"
-              {...register('billingPostcode')}
+              {...register("billingPostcode")}
             />
             <div className="d-label">
               <span className="d-label-text-alt text-error">
@@ -138,7 +138,7 @@ const CheckoutBillingForm: FC = () => {
             <input
               type="text"
               className="d-input d-input-bordered"
-              {...register('billingCity')}
+              {...register("billingCity")}
             />
             <div className="d-label">
               <span className="d-label-text-alt text-error">
@@ -154,7 +154,7 @@ const CheckoutBillingForm: FC = () => {
               type="text"
               placeholder="Utca, házszám"
               className="d-input d-input-bordered"
-              {...register('billingAddress')}
+              {...register("billingAddress")}
             />
             <div className="d-label">
               <span className="d-label-text-alt text-error">
@@ -165,7 +165,7 @@ const CheckoutBillingForm: FC = () => {
               type="text"
               placeholder="Emelet, ajtó, egyéb (opcionális)"
               className="d-input d-input-bordered"
-              {...register('billingSubaddress')}
+              {...register("billingSubaddress")}
             />
             <div className="d-label">
               <span className="d-label-text-alt text-error">

@@ -1,10 +1,10 @@
-import Link from 'next/link';
-import type { FC } from 'react';
+import Link from "next/link";
+import type { FC } from "react";
 
-import HamburgerIcon from '~/assets/hamburger.svg';
-import type { NavbarItems } from '~/lib/types';
-import CartMenuItem from './cart-menu-item';
-import NavMenuItem from './nav-menu-item';
+import HamburgerIcon from "~/assets/hamburger.svg";
+import type { NavbarItems } from "~/lib/types";
+import CartMenuItem from "./cart-menu-item";
+import NavMenuItem from "./nav-menu-item";
 
 type MobileNavbarProps = {
   navbarItems: NavbarItems;
@@ -12,7 +12,7 @@ type MobileNavbarProps = {
 
 const MobileNavbar: FC<MobileNavbarProps> = ({ navbarItems }) => {
   return (
-    <div className="d-navbar border-b-4 border-black bg-white">
+    <div className="d-navbar border-black border-b-4 bg-white">
       <div className="d-navbar-start gap-1">
         <div className="d-dropdown">
           <div
@@ -37,7 +37,7 @@ const MobileNavbar: FC<MobileNavbarProps> = ({ navbarItems }) => {
                 {navbarItem.children}
               </NavMenuItem>
             ))}
-            <div className="d-divider m-0"/>
+            <div className="d-divider m-0" />
             {navbarItems.leftItems.map((navbarItem) => (
               <NavMenuItem
                 key={navbarItem.href.toString()}
@@ -56,7 +56,7 @@ const MobileNavbar: FC<MobileNavbarProps> = ({ navbarItems }) => {
 
       <div className="d-navbar-end">
         <Link
-          href={'/'}
+          href={"/"}
           className="d-btn d-btn-ghost normal-case min-[320px]:text-xl"
         >
           papirsarkany.hu

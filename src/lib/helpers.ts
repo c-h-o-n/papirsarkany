@@ -1,5 +1,5 @@
-import { env } from './env';
-import type { OrderForm } from './validation-schemas';
+import { env } from "./env";
+import type { OrderForm } from "./validation-schemas";
 
 export function delay(time: number) {
   return new Promise((resolve) => setTimeout(resolve, time));
@@ -7,7 +7,7 @@ export function delay(time: number) {
 
 export function isProdEnv(): boolean {
   return (
-    process.env.NODE_ENV === 'production' && env.VERCEL_ENV === 'production'
+    process.env.NODE_ENV === "production" && env.VERCEL_ENV === "production"
   );
 }
 
@@ -16,8 +16,8 @@ export function isProdEnv(): boolean {
  */
 export function isStageEnv(): boolean {
   return (
-    process.env.NODE_ENV === 'production' &&
-    env.VERCEL_ENV === 'stage' &&
+    process.env.NODE_ENV === "production" &&
+    env.VERCEL_ENV === "stage" &&
     Boolean(env.VERCEL_GIT_PULL_REQUEST_ID)
   );
 }
@@ -25,7 +25,7 @@ export function isStageEnv(): boolean {
 export function normalizeOrderForm(data: OrderForm) {
   const { shippingOption, ...restData } = data;
 
-  if (shippingOption === 'Személyes átvétel') {
+  if (shippingOption === "Személyes átvétel") {
     return {
       ...restData,
       shippingOption,

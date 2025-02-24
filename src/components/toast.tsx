@@ -1,7 +1,7 @@
-import type { FC } from 'react';
-import type { Toast } from '~/lib/types';
-import ErrorToast from './error-toast';
-import SuccessToast from './success-toast';
+import type { FC } from "react";
+import type { Toast } from "~/lib/types";
+import ErrorToast from "./error-toast";
+import SuccessToast from "./success-toast";
 
 type ToastProps = {
   toast: Toast;
@@ -9,10 +9,10 @@ type ToastProps = {
 
 const Toast: FC<ToastProps> = ({ toast }) => {
   switch (toast.type) {
-    case 'success': {
+    case "success": {
       return <SuccessToast {...toast} />;
     }
-    case 'error':
+    case "error":
       return <ErrorToast {...toast} />;
   }
 };

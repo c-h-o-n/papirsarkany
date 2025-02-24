@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import {
   type ChangeEvent,
@@ -6,10 +6,10 @@ import {
   type FocusEvent,
   useRef,
   useState,
-} from 'react';
+} from "react";
 
-import type { CartItem } from '~/lib/validation-schemas';
-import { useCartStore } from '~/store/use-cart-store';
+import type { CartItem } from "~/lib/validation-schemas";
+import { useCartStore } from "~/store/use-cart-store";
 
 type ProductinCartCounterProps = {
   cartItem: CartItem;
@@ -64,7 +64,7 @@ const ProductinCartCounter: FC<ProductinCartCounterProps> = ({ cartItem }) => {
   };
 
   const handleInputKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') {
+    if (e.key === "Enter") {
       e.currentTarget.blur();
       return;
     }
@@ -104,7 +104,7 @@ const ProductinCartCounter: FC<ProductinCartCounterProps> = ({ cartItem }) => {
       <button
         type="button"
         className={`d-btn no-animation rounded-l-none shadow-none focus:z-[1] ${
-          cartItem.quantity >= 999 && 'd-btn-disabled'
+          cartItem.quantity >= 999 && "d-btn-disabled"
         }`}
         onClick={() => handleIncreaseButtonClick()}
       >

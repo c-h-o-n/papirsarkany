@@ -2,15 +2,15 @@
 export default {
   siteUrl: process.env.SITE_URL || process.env.VERCEL_PROJECT_PRODUCTION_URL,
   generateRobotsTxt: true, // (optional)
-  changefreq: 'monthly',
+  changefreq: "monthly",
   priority: 1,
-  exclude: ['/admin', '/admin/*', '/penztar'],
+  exclude: ["/admin", "/admin/*", "/penztar"],
   robotsTxtOptions: {
     policies: [
       {
-        userAgent: '*',
-        allow: '/',
-        disallow: ['/admin/', '/penztar'],
+        userAgent: "*",
+        allow: "/",
+        disallow: ["/admin/", "/penztar"],
       },
     ],
   },

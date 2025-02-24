@@ -1,7 +1,7 @@
-import 'client-only';
+import "client-only";
 
-import type { CartItem } from '~/lib/validation-schemas';
-import { useCartStore } from '~/store/use-cart-store';
+import type { CartItem } from "~/lib/validation-schemas";
+import { useCartStore } from "~/store/use-cart-store";
 
 /**
  * Functions to calculate derived values from [useCartStore](../store/useCartStore.ts) state.
@@ -9,7 +9,7 @@ import { useCartStore } from '~/store/use-cart-store';
 export default function useCart() {
   const cart = useCartStore((state) => state.cart);
   const shippingFeeAsNumber = useCartStore((state) =>
-    typeof state.shippingFee === 'number' ? state.shippingFee : 0,
+    typeof state.shippingFee === "number" ? state.shippingFee : 0,
   );
   const billingFee = useCartStore((state) => state.billingFee);
 

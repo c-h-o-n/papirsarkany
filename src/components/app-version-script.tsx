@@ -1,7 +1,7 @@
-import Script from 'next/script';
-import type { FC } from 'react';
+import Script from "next/script";
+import type { FC } from "react";
 
-import appVersion from '~/lib/app-version.preval';
+import appVersion from "~/lib/app-version.preval";
 
 const AppVersionScript: FC = () => {
   return (

@@ -1,15 +1,15 @@
 import {
   FOXPOST_PACKAGE_CONSTRAINST,
   FOXPOST_PACKAGE_MAX_LIMIT,
-} from './constants';
-import { env } from './env';
+} from "./constants";
+import { env } from "./env";
 
 import type {
   FoxpostCreateParcelRequestBody,
   FoxpostPackageSize,
   PackageInfo,
-} from './types';
-import type { CartItem } from './validation-schemas';
+} from "./types";
+import type { CartItem } from "./validation-schemas";
 
 export function createParcel(body: FoxpostCreateParcelRequestBody) {
   const {
@@ -20,14 +20,13 @@ export function createParcel(body: FoxpostCreateParcelRequestBody) {
   } = env;
 
   const foxpostHeaders = new Headers({
-    Authorization:
-      `Basic ${btoa(`${FOXPOST_API_USERNAME}:${FOXPOST_API_PASSWORD}`)}`,
-    'Content-Type': 'application/json',
-    'Api-key': FOXPOST_API_KEY,
+    Authorization: `Basic ${btoa(`${FOXPOST_API_USERNAME}:${FOXPOST_API_PASSWORD}`)}`,
+    "Content-Type": "application/json",
+    "Api-key": FOXPOST_API_KEY,
   });
 
   return fetch(`${FOXPOST_API_URL}/parcel?isWeb=true`, {
-    method: 'POST',
+    method: "POST",
     headers: foxpostHeaders,
     body: JSON.stringify([body]),
   });
@@ -59,7 +58,7 @@ export function getFoxpostPackageSize(
         packageInfo.y <= cy &&
         packageInfo.z <= cz
       );
-    })?.category || 'M'
+    })?.category || "M"
   );
 }
 

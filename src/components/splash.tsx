@@ -1,7 +1,7 @@
-import Link from 'next/link';
+import Link from "next/link";
 
-import { getGoogleMapsRating } from '~/lib/google-cloud';
-import GoogleMapsRating from './google-maps-rating';
+import { getGoogleMapsRating } from "~/lib/google-cloud";
+import GoogleMapsRating from "./google-maps-rating";
 
 export default async function Splash() {
   const { rating, userRatingCount } = await getGoogleMapsRating();

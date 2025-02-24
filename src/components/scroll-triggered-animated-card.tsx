@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import { m } from 'framer-motion';
-import type { FC, ReactNode } from 'react';
+import { m } from "framer-motion";
+import type { FC, ReactNode } from "react";
 
-import Card from './card';
-import LazyLoadFramerMotion from './lazy-load-framer-motion';
+import Card from "./card";
+import LazyLoadFramerMotion from "./lazy-load-framer-motion";
 
 type AnimatedCardProps = {
   children: ReactNode;
@@ -28,7 +28,7 @@ const ScrollTriggeredAnimatedCard: FC<AnimatedCardProps> = ({
           onscreen: {
             scale: 1,
             transition: {
-              type: 'spring',
+              type: "spring",
               bounce: 0.4,
               duration: 0.8,
             },

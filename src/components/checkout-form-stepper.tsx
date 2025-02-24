@@ -1,15 +1,15 @@
-'use client';
+"use client";
 
-import { zodResolver } from '@hookform/resolvers/zod';
-import { redirect, useRouter } from 'next/navigation';
-import { Children, type FC, type ReactNode } from 'react';
-import { FormProvider, useForm } from 'react-hook-form';
+import { zodResolver } from "@hookform/resolvers/zod";
+import { redirect, useRouter } from "next/navigation";
+import { Children, type FC, type ReactNode } from "react";
+import { FormProvider, useForm } from "react-hook-form";
 
-import { useOrder } from '~/hooks/use-order';
-import { type OrderForm, orderFormSchema } from '~/lib/validation-schemas';
-import { useCartStore } from '~/store/use-cart-store';
-import { useCheckoutFormStore } from '~/store/use-checkout-form-store';
-import StepProgress from './step-progress';
+import { useOrder } from "~/hooks/use-order";
+import { type OrderForm, orderFormSchema } from "~/lib/validation-schemas";
+import { useCartStore } from "~/store/use-cart-store";
+import { useCheckoutFormStore } from "~/store/use-checkout-form-store";
+import StepProgress from "./step-progress";
 
 type CheckoutStepperProps = {
   children: ReactNode;
@@ -68,7 +68,7 @@ const CheckoutFormStepper: FC<CheckoutStepperProps> = ({ children }) => {
 
       await resetFormStores();
 
-      router.push('/sikeres-rendeles');
+      router.push("/sikeres-rendeles");
     } catch (error) {
       alert(`Hiba történt a rendelés leadásakor. \n(${error})`);
     }
@@ -88,11 +88,11 @@ const CheckoutFormStepper: FC<CheckoutStepperProps> = ({ children }) => {
   }
 
   if (cart.length < 1) {
-    redirect('/kosar');
+    redirect("/kosar");
   }
 
   return (
-    <div className={`container py-8 ${!isLast && 'max-w-screen-xl'}`}>
+    <div className={`container py-8 ${!isLast && "max-w-screen-xl"}`}>
       <FormProvider {...formMethods}>
         <form
           onSubmit={handleSubmit(async (data) => await onSubmit(data))}

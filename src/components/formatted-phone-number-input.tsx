@@ -1,16 +1,16 @@
-'use client';
+"use client";
 
-import { type FC, useState } from 'react';
-import type { UseFormRegisterReturn } from 'react-hook-form';
+import { type FC, useState } from "react";
+import type { UseFormRegisterReturn } from "react-hook-form";
 
-import { formatPhoneNumber, parsePhoneNumber } from '~/lib/formatters';
+import { formatPhoneNumber, parsePhoneNumber } from "~/lib/formatters";
 
 type PhoneNumberInputProps = UseFormRegisterReturn;
 
 const FormattedPhoneNumberInput: FC<PhoneNumberInputProps> = ({
   ...register
 }) => {
-  const [phoneNumber, setPhoneNumber] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const rawPhoneNumber = parsePhoneNumber(e.target.value);

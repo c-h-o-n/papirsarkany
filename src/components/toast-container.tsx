@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
-import { AnimatePresence, m } from 'framer-motion';
-import type { FC } from 'react';
+import { AnimatePresence, m } from "framer-motion";
+import type { FC } from "react";
 
-import { useToastStore } from '~/store/use-toast-store';
-import LazyLoadFramerMotion from './lazy-load-framer-motion';
-import Toast from './toast';
+import { useToastStore } from "~/store/use-toast-store";
+import LazyLoadFramerMotion from "./lazy-load-framer-motion";
+import Toast from "./toast";
 
 /**
  * Expand with the following props:
@@ -25,7 +25,7 @@ const ToastContainer: FC = () => {
             className="d-toast d-toast-end d-toast-bottom z-50 cursor-pointer"
             initial={{
               opacity: 0,
-              x: '100%',
+              x: "100%",
               scaleY: 0.33,
             }}
             animate={{
@@ -35,7 +35,7 @@ const ToastContainer: FC = () => {
             }}
             exit={{
               opacity: 0,
-              x: '100%',
+              x: "100%",
               scaleY: 0.33,
             }}
             onClick={() => dismissToast(toast.id)}

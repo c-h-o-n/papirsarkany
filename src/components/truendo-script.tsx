@@ -1,6 +1,6 @@
-import Script from 'next/script';
+import Script from "next/script";
 
-import { isProdEnv } from '~/lib/helpers';
+import { isProdEnv } from "~/lib/helpers";
 
 /**
  * IMPORTANT: Import me only in the root layout.

@@ -1,13 +1,13 @@
-import { render } from '@testing-library/react';
-import { expect, test } from 'vitest';
+import { render } from "@testing-library/react";
+import { expect, test } from "vitest";
 
-import AppVersionScript from '~/components/app-version-script';
-import { version } from '../../../package.json';
+import AppVersionScript from "~/components/app-version-script";
+import { version } from "../../../package.json";
 
-test('AppVersionScript', () => {
+test("AppVersionScript", () => {
   render(<AppVersionScript />);
 
-  const scriptTag = window.document.querySelector('script');
+  const scriptTag = window.document.querySelector("script");
   const scriptContent = scriptTag?.innerHTML;
 
   if (scriptContent) {

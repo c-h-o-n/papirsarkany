@@ -1,9 +1,9 @@
-import type { NextRequest } from 'next/server';
-import { NextResponse } from 'next/server';
-import type { ZodError } from 'zod';
-import { formatZodErrors } from '~/lib/formatters';
-import type { OrderRequestBody } from '~/lib/types';
-import { mergedFormSchemaObject } from '~/lib/validation-schemas';
+import type { NextRequest } from "next/server";
+import { NextResponse } from "next/server";
+import type { ZodError } from "zod";
+import { formatZodErrors } from "~/lib/formatters";
+import type { OrderRequestBody } from "~/lib/types";
+import { mergedFormSchemaObject } from "~/lib/validation-schemas";
 
 export async function middleware(request: NextRequest) {
   try {
@@ -23,5 +23,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: '/api/order',
+  matcher: "/api/order",
 };

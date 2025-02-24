@@ -1,4 +1,4 @@
-import { defineQuery } from 'groq';
+import { defineQuery } from "groq";
 
 export const getAllKitesQuery = defineQuery(
   `*[_type == 'kite'] { ..., image { asset -> { url, metadata } } } | order(price asc)`,

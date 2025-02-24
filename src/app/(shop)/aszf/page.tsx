@@ -1,10 +1,10 @@
-import type { FC } from 'react';
-import Card from '~/components/card';
+import type { FC } from "react";
+import Card from "~/components/card";
 
 const TermsAndConditionsPage: FC = () => {
   return (
     <div className="container py-8 md:py-16">
-      <Card className="prose prose-slate mx-auto max-w-[120ch] p-8 lg:prose-lg">
+      <Card className="prose prose-slate lg:prose-lg mx-auto max-w-[120ch] p-8">
         <h2 className="text-center font-bold">
           Adatvédelmi Nyilatkozat és Felhasználási Feltételek
         </h2>

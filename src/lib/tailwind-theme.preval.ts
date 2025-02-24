@@ -1,14 +1,14 @@
-import pick from 'just-pick';
-import preval from 'next-plugin-preval';
-import resolveConfig from 'tailwindcss/resolveConfig';
-import tailwindConfig from '../../tailwind.config';
+import pick from "just-pick";
+import preval from "next-plugin-preval";
+import resolveConfig from "tailwindcss/resolveConfig";
+import tailwindConfig from "../../tailwind.config";
 
 const fullConfig = resolveConfig(tailwindConfig);
 /**
  * Add only necessary theme properties to minimize client bundle size impact.
  */
 const necessaryThemeKeys = [
-  'screens',
+  "screens",
 ] satisfies (keyof typeof fullConfig.theme)[];
 
 const necessaryTheme = pick(fullConfig.theme, necessaryThemeKeys);

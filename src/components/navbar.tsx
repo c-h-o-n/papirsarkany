@@ -1,36 +1,36 @@
-'use client';
+"use client";
 
-import type { FC } from 'react';
-import useMedia from 'use-media';
+import type { FC } from "react";
+import useMedia from "use-media";
 
-import twConfig from '~/lib/tailwind-theme.preval';
-import type { NavbarItems } from '~/lib/types';
-import DesktopNavbar from './desktop-navbar';
-import MobileNavbar from './mobile-navbar';
+import twConfig from "~/lib/tailwind-theme.preval";
+import type { NavbarItems } from "~/lib/types";
+import DesktopNavbar from "./desktop-navbar";
+import MobileNavbar from "./mobile-navbar";
 
 const navbarItems: NavbarItems = {
   leftItems: [
     {
-      children: 'A vállalkozásról',
-      href: '/#vallalkozas',
+      children: "A vállalkozásról",
+      href: "/#vallalkozas",
     },
     {
-      children: 'Sárkány készítés',
-      href: '/#sarkany-keszites',
+      children: "Sárkány készítés",
+      href: "/#sarkany-keszites",
     },
     {
-      children: 'Elérhetőség',
-      href: '/#elerhetoseg',
+      children: "Elérhetőség",
+      href: "/#elerhetoseg",
     },
   ],
   rightItems: [
     {
-      children: 'Sárkányok',
-      href: '/sarkanyok',
+      children: "Sárkányok",
+      href: "/sarkanyok",
     },
     {
-      children: 'Anyagok',
-      href: '/anyagok',
+      children: "Anyagok",
+      href: "/anyagok",
     },
   ],
 };

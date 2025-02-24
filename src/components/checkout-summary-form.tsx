@@ -1,14 +1,14 @@
-'use client';
+"use client";
 
-import { useRouter } from 'next/navigation';
-import { useFormContext } from 'react-hook-form';
+import { useRouter } from "next/navigation";
+import { useFormContext } from "react-hook-form";
 
-import Link from 'next/link';
-import type { FC } from 'react';
-import type { OrderForm } from '~/lib/validation-schemas';
-import { useCheckoutFormStore } from '~/store/use-checkout-form-store';
-import Card from './card';
-import OrderSummaryCard from './order-summary-card';
+import Link from "next/link";
+import type { FC } from "react";
+import type { OrderForm } from "~/lib/validation-schemas";
+import { useCheckoutFormStore } from "~/store/use-checkout-form-store";
+import Card from "./card";
+import OrderSummaryCard from "./order-summary-card";
 
 const CheckoutSummaryForm: FC = () => {
   const router = useRouter();
@@ -70,7 +70,7 @@ const CheckoutSummaryForm: FC = () => {
         </div>
         <textarea
           className="d-textarea d-textarea-bordered d-textarea-primary h-24"
-          {...register('comment')}
+          {...register("comment")}
         />
         <div className="d-label justify-end">
           <span className="d-label-text-alt">
@@ -80,10 +80,10 @@ const CheckoutSummaryForm: FC = () => {
       </label>
 
       <div className="text-center text-xs">
-        A „Megrendelem” gomb megnyomásával Ön elfogadja az{' '}
+        A „Megrendelem” gomb megnyomásával Ön elfogadja az{" "}
         <Link href="/aszf" className="d-link">
           Adatvédelmi Nyilatkozat és Felhasználási Feltételek
-        </Link>{' '}
+        </Link>{" "}
         tartalmát.
       </div>
 
@@ -99,7 +99,7 @@ const CheckoutSummaryForm: FC = () => {
           type="submit"
           className="d-btn d-btn-success d-btn-block uppercase sm:w-auto"
           disabled={isSubmitting}
-          onMouseEnter={() => router.prefetch('/sikeres-rendeles')}
+          onMouseEnter={() => router.prefetch("/sikeres-rendeles")}
         >
           {isSubmitting && <span className="d-loading d-loading-spinner" />}
           Megrendelem

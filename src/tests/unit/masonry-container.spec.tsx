@@ -1,9 +1,9 @@
-import { render } from '@testing-library/react';
-import { expect, test } from 'vitest';
+import { render } from "@testing-library/react";
+import { expect, test } from "vitest";
 
-import MasonryContainer from '~/components/masonry-container';
+import MasonryContainer from "~/components/masonry-container";
 
-test('should render in masonry layout', () => {
+test("should render in masonry layout", () => {
   const { container } = render(
     <MasonryContainer>
       <div>1</div>

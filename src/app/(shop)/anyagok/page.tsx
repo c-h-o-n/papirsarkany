@@ -1,10 +1,10 @@
-import MasonryContainer from '~/components/masonry-container';
-import ReelCard from '~/components/reel-card';
-import RodCard from '~/components/rod-card';
-import TwineCard from '~/components/twine-card';
+import MasonryContainer from "~/components/masonry-container";
+import ReelCard from "~/components/reel-card";
+import RodCard from "~/components/rod-card";
+import TwineCard from "~/components/twine-card";
 
-import { getAllReels, getAllRods, getAllTwines } from '~/lib/cms';
-import { sanityProductCategoryTitleMap } from '~/lib/formatters';
+import { getAllReels, getAllRods, getAllTwines } from "~/lib/cms";
+import { sanityProductCategoryTitleMap } from "~/lib/formatters";
 
 export default async function Materials() {
   const reels = await getAllReels();
@@ -17,9 +17,7 @@ export default async function Materials() {
       <div className="space-y-8">
         {reels && reels.length > 0 && (
           <div className="space-y-4">
-            <h2 className="font-bold">
-              {sanityProductCategoryTitleMap.reel}
-            </h2>
+            <h2 className="font-bold">{sanityProductCategoryTitleMap.reel}</h2>
             <MasonryContainer>
               {reels.map((reel) => (
                 <ReelCard reel={reel} key={reel._id} />
@@ -29,9 +27,7 @@ export default async function Materials() {
         )}
         {twines && twines.length > 0 && (
           <div className="space-y-4">
-            <h2 className="font-bold">
-              {sanityProductCategoryTitleMap.twine}
-            </h2>
+            <h2 className="font-bold">{sanityProductCategoryTitleMap.twine}</h2>
             <MasonryContainer>
               {twines.map((twine) => (
                 <TwineCard twine={twine} key={twine._id} />
@@ -41,9 +37,7 @@ export default async function Materials() {
         )}
         {rods && rods.length > 0 && (
           <div className="space-y-4">
-            <h2 className="font-bold">
-              {sanityProductCategoryTitleMap.rod}
-            </h2>
+            <h2 className="font-bold">{sanityProductCategoryTitleMap.rod}</h2>
             <MasonryContainer>
               {rods.map((rod) => (
                 <RodCard rod={rod} key={rod._id} />

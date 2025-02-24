@@ -1,9 +1,9 @@
-import { render } from '@testing-library/react';
-import { afterEach, expect, test } from 'vitest';
+import { render } from "@testing-library/react";
+import { afterEach, expect, test } from "vitest";
 
-import Navbar from '~/components/navbar';
-import twConfig from '~/lib/tailwind-theme.preval';
-import { viMockMatchMedia } from '~/mocks/matchMedia.mock';
+import Navbar from "~/components/navbar";
+import twConfig from "~/lib/tailwind-theme.preval";
+import { viMockMatchMedia } from "~/mocks/matchMedia.mock";
 
 const mediaQueries = {
   desktop: `(min-width: ${twConfig.screens.md})`,

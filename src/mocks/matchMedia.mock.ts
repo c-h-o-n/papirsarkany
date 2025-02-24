@@ -1,5 +1,5 @@
-import { mockMediaQueryList } from 'use-media/lib/useMedia';
-import { vi } from 'vitest';
+import { mockMediaQueryList } from "use-media/lib/useMedia";
+import { vi } from "vitest";
 
 type MockMatchMedia = {
   media: string;

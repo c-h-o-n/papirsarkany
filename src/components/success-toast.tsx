@@ -1,13 +1,13 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import type { FC } from 'react';
+import Link from "next/link";
+import type { FC } from "react";
 
-import type { Toast } from '~/lib/types';
+import type { Toast } from "~/lib/types";
 
 type SuccessToastProps = Pick<
-  Extract<Toast, { type: 'success' }>,
-  'message' | 'href'
+  Extract<Toast, { type: "success" }>,
+  "message" | "href"
 >;
 
 const SuccessToast: FC<SuccessToastProps> = ({ href, message }) => {

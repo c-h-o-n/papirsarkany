@@ -1,13 +1,13 @@
-'use client';
+"use client";
 
-import type { FC, MouseEvent } from 'react';
-import { ZodError } from 'zod';
+import type { FC, MouseEvent } from "react";
+import { ZodError } from "zod";
 
-import { formatZodErrors } from '~/lib/formatters';
-import type { InferredProduct } from '~/lib/types';
-import { cartItemValidationSchema } from '~/lib/validation-schemas';
-import { useCartStore } from '~/store/use-cart-store';
-import { useToastStore } from '~/store/use-toast-store';
+import { formatZodErrors } from "~/lib/formatters";
+import type { InferredProduct } from "~/lib/types";
+import { cartItemValidationSchema } from "~/lib/validation-schemas";
+import { useCartStore } from "~/store/use-cart-store";
+import { useToastStore } from "~/store/use-toast-store";
 
 type AddToCartProps = {
   product: InferredProduct & { price?: number };
@@ -34,9 +34,9 @@ const AddToCartButton: FC<AddToCartProps> = ({ product }) => {
 
       toast({
         id: product._id,
-        message: 'Sikeresen hozzádva a kosárhoz.',
-        type: 'success',
-        href: '/kosar',
+        message: "Sikeresen hozzádva a kosárhoz.",
+        type: "success",
+        href: "/kosar",
       });
     } catch (error) {
       switch (true) {
@@ -46,7 +46,7 @@ const AddToCartButton: FC<AddToCartProps> = ({ product }) => {
 
             toast({
               id: product._id,
-              type: 'error',
+              type: "error",
               message: formatZodErrors(error),
             });
           }
@@ -55,7 +55,7 @@ const AddToCartButton: FC<AddToCartProps> = ({ product }) => {
         default:
           toast({
             id: product._id,
-            type: 'error',
+            type: "error",
             message: `Hiba történt a kosár hozzáadása közben. ${error instanceof Error && error.message}`,
           });
           break;
@@ -65,8 +65,8 @@ const AddToCartButton: FC<AddToCartProps> = ({ product }) => {
 
   return (
     <button
-      type='button'
-      className="d-btn d-btn-primary uppercase active:!scale-105"
+      type="button"
+      className="d-btn d-btn-primary active:!scale-105 uppercase"
       onClick={onButtonClick}
     >
       Kosárba

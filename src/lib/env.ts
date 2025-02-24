@@ -1,5 +1,5 @@
-import { createEnv } from '@t3-oss/env-nextjs';
-import { z } from 'zod';
+import { createEnv } from "@t3-oss/env-nextjs";
+import { z } from "zod";
 
 export const env = createEnv({
   server: {
@@ -20,7 +20,7 @@ export const env = createEnv({
 
     // vercel system envs
     VERCEL_ENV: z
-      .enum(['preview', 'production', 'development', 'stage'])
+      .enum(["preview", "production", "development", "stage"])
       .optional(),
     VERCEL_GIT_PULL_REQUEST_ID: z.string().optional(),
   },
@@ -42,12 +42,12 @@ export const env = createEnv({
     SANITY_API_TOKEN: process.env.SANITY_API_TOKEN,
 
     // TODO add sandbox cred (blocked by lack of Foxpost sandbox mode)
-    FOXPOST_API_URL: process.env.FOXPOST_API_URL || 'https://foxpost.hu/',
+    FOXPOST_API_URL: process.env.FOXPOST_API_URL || "https://foxpost.hu/",
     FOXPOST_API_USERNAME:
-      process.env.FOXPOST_API_USERNAME || 'missing-sandbox-api-username',
+      process.env.FOXPOST_API_USERNAME || "missing-sandbox-api-username",
     FOXPOST_API_PASSWORD:
-      process.env.FOXPOST_API_PASSWORD || 'missing-sandbox-api-password',
-    FOXPOST_API_KEY: process.env.FOXPOST_API_KEY || 'missing-sandbox-api-key',
+      process.env.FOXPOST_API_PASSWORD || "missing-sandbox-api-password",
+    FOXPOST_API_KEY: process.env.FOXPOST_API_KEY || "missing-sandbox-api-key",
 
     GOOGLE_CLOUD_API_KEY: process.env.GOOGLE_CLOUD_API_KEY,
 

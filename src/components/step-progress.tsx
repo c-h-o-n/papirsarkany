@@ -1,7 +1,7 @@
-import type { FC } from 'react';
-import { useCheckoutFormStore } from '~/store/use-checkout-form-store';
+import type { FC } from "react";
+import { useCheckoutFormStore } from "~/store/use-checkout-form-store";
 
-const STEP_LABELS = ['Szálítás', 'Számlázás', 'Összegzés'] as const;
+const STEP_LABELS = ["Szálítás", "Számlázás", "Összegzés"] as const;
 
 const StepProgress: FC = () => {
   const step = useCheckoutFormStore((state) => state.step);
@@ -25,7 +25,7 @@ const StepProgress: FC = () => {
             tabIndex={isPrevious ? 0 : -1}
             type="button"
             key={stepLabel}
-            className={`d-step font-semibold after:!content-[counter(step)] focus-within:after:outline focus-visible:outline-none focus-visible:after:outline-offset-2 focus-visible:after:outline-neutral ${isActive ? 'd-step-success' : 'before:!bg-white after:!bg-white'} ${isPrevious ? 'cursor-pointer' : ''}`}
+            className={`d-step after:!content-[counter(step)] font-semibold focus-within:after:outline focus-visible:outline-none focus-visible:after:outline-neutral focus-visible:after:outline-offset-2 ${isActive ? "d-step-success" : "before:!bg-white after:!bg-white"} ${isPrevious ? "cursor-pointer" : ""}`}
             onClick={() => onStepClick(isPrevious, idx)}
           >
             {stepLabel}

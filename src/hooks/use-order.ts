@@ -1,10 +1,10 @@
-import 'client-only';
+import "client-only";
 
-import useCart from '~/hooks/use-cart';
-import { useCartStore } from '~/store/use-cart-store';
-import { useFoxpostParcelBoxStore } from '~/store/use-foxpost-parcel-box-store';
-import type { OrderRequestBody } from '../lib/types';
-import type { OrderForm } from '../lib/validation-schemas';
+import useCart from "~/hooks/use-cart";
+import { useCartStore } from "~/store/use-cart-store";
+import { useFoxpostParcelBoxStore } from "~/store/use-foxpost-parcel-box-store";
+import type { OrderRequestBody } from "../lib/types";
+import type { OrderForm } from "../lib/validation-schemas";
 
 export function useOrder() {
   const { getTotalPrice } = useCart();
@@ -18,8 +18,8 @@ export function useOrder() {
   const sendOrder = (formData: OrderForm) => {
     const totalPrice = getTotalPrice();
 
-    return fetch('/api/order', {
-      method: 'POST',
+    return fetch("/api/order", {
+      method: "POST",
       body: JSON.stringify({
         formData,
         cart,
@@ -27,8 +27,8 @@ export function useOrder() {
         foxpostOperatorId,
       } satisfies OrderRequestBody),
       headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
+        Accept: "application/json",
+        "Content-Type": "application/json",
       },
     });
   };
