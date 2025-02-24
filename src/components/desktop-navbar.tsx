@@ -12,8 +12,8 @@ type DesktopNavbarProps = {
 
 const DesktopNavbar: FC<DesktopNavbarProps> = ({ navbarItems }) => {
   return (
-    <div className="d-navbar border-black border-b-4 bg-white">
-      <div className="d-navbar-start gap-1">
+    <div className="d-navbar min-h-[68px] border-black border-b-4 bg-white">
+      <div className="d-navbar-start hidden gap-1 md:flex">
         <Link
           href={"/#hello"}
           className="d-btn d-btn-ghost hover:!bg-sky-200 py-1 text-xl normal-case"
@@ -32,7 +32,7 @@ const DesktopNavbar: FC<DesktopNavbarProps> = ({ navbarItems }) => {
           ))}
         </ul>
       </div>
-      <div className="d-navbar-end">
+      <div className="d-navbar-end hidden md:flex">
         <ul className="d-menu d-menu-horizontal gap-2 font-extrabold text-base">
           {navbarItems.rightItems.map((navbarItem) => (
             <NavMenuItem

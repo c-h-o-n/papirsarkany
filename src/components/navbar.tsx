@@ -36,7 +36,7 @@ const navbarItems: NavbarItems = {
 };
 
 const Navbar: FC = () => {
-  const isDesktop = useMedia({ minWidth: twConfig.screens.md });
+  const isDesktop = useMedia({ minWidth: twConfig.screens.md }, true);
 
   return (
     <div className="sticky top-0 z-40">
