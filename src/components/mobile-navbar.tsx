@@ -26,6 +26,8 @@ const MobileNavbar: FC<MobileNavbarProps> = ({ navbarItems }) => {
           </div>
 
           <ul
+            // biome-ignore lint/a11y/noNoninteractiveTabindex: safari has a bug that prevents the button from being focused
+            tabIndex={0}
             className="d-menu d-dropdown-content z-[1] mt-5 w-52 rounded-box bg-base-100 p-2 shadow"
             data-pw-e2e="hamburger-menu-content"
           >
