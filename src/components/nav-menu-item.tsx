@@ -14,7 +14,7 @@ const NavMenuItem: FC<MenuItemProps> = (props: MenuItemProps) => {
   const pathname = usePathname();
 
   const isActive = (href: LinkProps["href"]) => {
-    if(!pathname || !href) {
+    if (!pathname || !href) {
       return false;
     }
 
