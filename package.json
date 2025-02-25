@@ -62,7 +62,7 @@
     "@next/bundle-analyzer": "^15.1.7",
     "@playwright/test": "^1.48.2",
     "@testing-library/react": "^16.2.0",
-    "@types/node": "20.11.0",
+    "@types/node": "22.13.5",
     "@types/react": "19.0.7",
     "@types/react-dom": "19.0.3",
     "@types/react-responsive-masonry": "^2.1.3",
