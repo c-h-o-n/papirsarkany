@@ -15,7 +15,8 @@
       "recommended": true,
       "correctness": {
         "noUndeclaredVariables": "error",
-        "noUnusedVariables": "warn"
+        "noUnusedVariables": "warn",
+        "noUnusedImports": "warn"
       },
       "style": { "noNamespace": "error" },
       "suspicious": {
