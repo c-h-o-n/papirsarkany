@@ -1,12 +1,10 @@
-import { cleanup, render, renderHook, screen } from "@testing-library/react";
-import { afterEach, expect, test } from "vitest";
+import { render, renderHook, screen } from "@testing-library/react";
+import { expect, test } from "vitest";
 
 import CartMenuItem from "~/components/cart-menu-item";
 import useCart from "~/hooks/use-cart";
 import { product } from "~/mocks/product.mock";
 import { useCartStore } from "~/store/use-cart-store";
-
-afterEach(cleanup);
 
 test("should render with correct numberof of total cart items", () => {
   renderHook(() =>

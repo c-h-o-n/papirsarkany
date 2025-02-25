@@ -1,12 +1,10 @@
-import { cleanup, render, renderHook, screen } from "@testing-library/react";
-import { afterEach, expect, test } from "vitest";
+import { render, renderHook, screen } from "@testing-library/react";
+import { expect, test } from "vitest";
 
 import AddToCartButton from "~/components/add-to-cart-button";
 import useCart from "~/hooks/use-cart";
 import { useCartStore } from "~/store/use-cart-store";
 import { product } from "../../mocks/product.mock";
-
-afterEach(cleanup);
 
 test('Add to cart button has text "Kosárba"', () => {
   render(<AddToCartButton product={product} />);

@@ -1,19 +1,10 @@
 import { expect } from "@playwright/test";
-import {
-  cleanup,
-  fireEvent,
-  render,
-  renderHook,
-  screen,
-} from "@testing-library/react";
+import { fireEvent, render, renderHook, screen } from "@testing-library/react";
 import { useForm } from "react-hook-form";
-import { afterEach, test } from "vitest";
+import { test } from "vitest";
 
 import FormattedPhoneNumberInput from "~/components/formatted-phone-number-input";
 import { parsePhoneNumber } from "~/lib/formatters";
-
-// TODO apply this globally
-afterEach(cleanup);
 
 test("should render phone number input value in a formatted way", () => {
   const {

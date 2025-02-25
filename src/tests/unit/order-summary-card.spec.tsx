@@ -1,10 +1,8 @@
-import { cleanup, render, renderHook, screen } from "@testing-library/react";
-import { afterEach, expect, test } from "vitest";
+import { render, renderHook, screen } from "@testing-library/react";
+import { expect, test } from "vitest";
 import OrderSummaryCard from "~/components/order-summary-card";
 import { product } from "~/mocks/product.mock";
 import { useCartStore } from "~/store/use-cart-store";
-
-afterEach(cleanup);
 
 test('should render "Üres a kosarad" when cart is empty', () => {
   renderHook(() => useCartStore.setState({ cart: [] }));

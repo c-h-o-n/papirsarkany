@@ -1,11 +1,9 @@
-import { cleanup, render, renderHook, screen } from "@testing-library/react";
+import { render, renderHook, screen } from "@testing-library/react";
 
 import { FormProvider, useForm } from "react-hook-form";
-import { afterEach, expect, test, vi } from "vitest";
+import { expect, test, vi } from "vitest";
 import CheckoutBillingForm from "~/components/checkout-billing-form";
 import type { OrderForm } from "~/lib/validation-schemas";
-
-afterEach(cleanup);
 
 test("should throw error if shipping option was not selected", () => {
   const consoleErrorMock = vi
