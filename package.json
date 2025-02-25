@@ -14,9 +14,9 @@
     "sanity:publish": "pnpx tsx sanity/lib/actions/publish-all-modified.ts",
     "sanity:typegen": "rimraf ./sanity/schema.json && pnpx sanity schema extract --path sanity/schema.json && pnpx sanity typegen generate",
     "start": "next start",
-    "test": "vitest run && playwright test",
-    "test:unit": "vitest run",
-    "coverage": "vitest run --coverage",
+    "test": "vitest && playwright test",
+    "test:unit": "vitest",
+    "coverage": "vitest --coverage",
     "test:e2e": "playwright test",
     "lint-and-format": "biome check"
   },
