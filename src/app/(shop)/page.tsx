@@ -24,7 +24,10 @@ export default function Home() {
           <HomeSection.Content>
             <h1 className="text-center font-bold">A vállalkozásról</h1>
 
-            <ScrollTriggeredAnimatedCard className="p-5 text-center font-semibold sm:p-10">
+            <ScrollTriggeredAnimatedCard
+              animationDirection="right-to-left"
+              className="p-5 text-center font-semibold sm:p-10"
+            >
               <h4>
                 Üzletem nincs, ezért postai utánvétellel szállítok, melynek
                 költsége a megrendelőt terheli.
@@ -37,7 +40,10 @@ export default function Home() {
               </h4>
             </ScrollTriggeredAnimatedCard>
 
-            <ScrollTriggeredAnimatedCard className="p-5 text-center font-semibold sm:p-10">
+            <ScrollTriggeredAnimatedCard
+              animationDirection="left-to-right"
+              className="p-5 text-center font-semibold sm:p-10"
+            >
               <h4>
                 Sárkányaim repülési és nyolc napos pénzvisszafizetési
                 garanciával kaphatók.
@@ -52,7 +58,10 @@ export default function Home() {
               <h4>Mindenkinek kellemes sárkányeresztést kívánok</h4>
             </ScrollTriggeredAnimatedCard>
 
-            <ScrollTriggeredAnimatedCard className="p-5 text-center sm:p-10">
+            <ScrollTriggeredAnimatedCard
+              animationDirection="right-to-left"
+              className="p-5 text-center sm:p-10"
+            >
               <h2 className="font-bold">Ducsai Barnabás</h2>
               <h5>
                 <b>Adószám:</b> 61090938-1-33
@@ -73,7 +82,10 @@ export default function Home() {
               Sárkányépítő foglalkozások
             </h1>
 
-            <ScrollTriggeredAnimatedCard className="p-5 text-center font-semibold sm:p-10">
+            <ScrollTriggeredAnimatedCard
+              animationDirection="left-to-right"
+              className="p-5 text-center font-semibold sm:p-10"
+            >
               <h4>
                 A sárkánykészítés és -repítés régebben mindennapos dolog volt a
                 gyerekek hétköznapjaiban. Ez a &quot;tudomány&quot; apáról fiúra
@@ -82,7 +94,10 @@ export default function Home() {
               </h4>
             </ScrollTriggeredAnimatedCard>
 
-            <ScrollTriggeredAnimatedCard className="p-5 text-center font-semibold sm:p-10">
+            <ScrollTriggeredAnimatedCard
+              animationDirection="right-to-left"
+              className="p-5 text-center font-semibold sm:p-10"
+            >
               <h4>
                 Vállalom sárkányépítő foglalkozások vezetését
                 gyerekrendezvények, -intézmények és céges rendezvények számára.
