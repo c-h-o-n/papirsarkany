@@ -1,11 +1,11 @@
 import { defineQuery } from "groq";
 
 export const getAllKitesQuery = defineQuery(
-  `*[_type == 'kite'] { ..., image { asset -> { url, metadata } } } | order(price asc)`,
+  `*[_type == 'kite'] { ..., image { ..., asset -> { url, metadata } } } | order(price asc)`,
 );
 
 export const getKiteBySlugQuery = defineQuery(
-  `*[_type == 'kite' && slug.current == $slug] { ..., image { asset-> { url, metadata } } }[0]`,
+  `*[_type == 'kite' && slug.current == $slug] { ..., image { ..., asset-> { url, metadata } } }[0]`,
 );
 
 export const getAllRodsQuery = defineQuery(

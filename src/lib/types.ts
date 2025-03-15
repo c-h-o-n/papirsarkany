@@ -2,6 +2,8 @@ import type {
   Kite,
   Reel,
   Rod,
+  SanityImageCrop,
+  SanityImageHotspot,
   SanityImageMetadata,
   Twine,
 } from "@sanity/lib/sanity.types";
@@ -15,6 +17,9 @@ export type WithImageAsset<T> = Omit<T, "image"> & {
       url: string | null;
       metadata: SanityImageMetadata | null;
     } | null;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
   } | null;
 };
 

@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { getAllKites, getKiteBySlug } from "~/lib/cms";
 import { MISSING_IMG_URL, NO_NAME } from "~/lib/constants";
 import { currencyFormatter } from "~/lib/formatters";
+import { getPositionFromHotspot } from "~/lib/sanity-image";
 
 type Params = {
   slug: string;
@@ -32,6 +33,9 @@ export default async function Kite(props: { params: Promise<Params> }) {
         {kite.image && (
           <Image
             className="mx-auto rounded-lg object-cover md:h-full md:w-fit"
+            style={{
+              objectPosition: getPositionFromHotspot(kite.image.hotspot),
+            }}
             src={kite.image.asset?.url || MISSING_IMG_URL}
             width={kite.image.asset?.metadata?.dimensions?.width}
             height={kite.image.asset?.metadata?.dimensions?.height}

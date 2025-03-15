@@ -11,6 +11,9 @@ export default [
     name: "image",
     type: "image",
     title: "Kép",
+    options: {
+      hotspot: true,
+    }
   }),
   defineField({
     name: "packageInfo",

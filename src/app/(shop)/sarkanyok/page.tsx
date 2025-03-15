@@ -1,5 +1,4 @@
 import KiteCard from "~/components/kite-card";
-import MasonryContainer from "~/components/masonry-container";
 import { getAllKites } from "~/lib/cms";
 
 export default async function Kites() {
@@ -12,11 +11,11 @@ export default async function Kites() {
         <h3>A vételár tartalmaz 100m eresztőzsinórt és zsinórtartót.</h3>
       </div>
 
-      <MasonryContainer>
+      <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-3">
         {kites.map((kite) => (
-          <KiteCard kite={kite} key={kite._id} />
+          <KiteCard key={kite._id} kite={kite} />
         ))}
-      </MasonryContainer>
+      </div>
     </div>
   );
 }
