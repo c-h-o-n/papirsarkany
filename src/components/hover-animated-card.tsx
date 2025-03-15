@@ -28,7 +28,7 @@ const HoverAnimatedCard: FC<HoverAnimatedCardProps> = ({
           },
         }}
         {...props}
-        className='h-full w-full'
+        className="h-full w-full"
       >
         <Card className={className}>{children}</Card>
       </m.div>

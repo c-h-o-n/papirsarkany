@@ -1,19 +1,17 @@
+import type { Kite } from "@sanity/lib/sanity.types";
 import Image from "next/image";
 import Link from "next/link";
 import type { FC } from "react";
-import type { Kite } from "@sanity/lib/sanity.types";
+import { NO_NAME } from "~/lib/constants";
 import { currencyFormatter } from "~/lib/formatters";
+import { getPositionFromHotspot, urlFor } from "~/lib/sanity-image";
 import type { WithImageAsset } from "~/lib/types";
 import AddToCartButton from "./add-to-cart-button";
 import HoverAnimatedCard from "./hover-animated-card";
-import { getPositionFromHotspot, urlFor } from "~/lib/sanity-image";
-import { NO_NAME } from '~/lib/constants';
 
 type KiteCardProps = {
   kite: WithImageAsset<Kite>;
 };
-
-
 
 const KiteCard: FC<KiteCardProps> = ({ kite }) => {
   return (

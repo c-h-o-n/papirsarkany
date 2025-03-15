@@ -37,7 +37,9 @@ const HomeSection: HomeSectionCompound = (props) => {
     <section id={props.id} className={`py-12 ${props.className}`}>
       {Icon && <div className="flex justify-center px-12 pb-12">{Icon}</div>}
 
-      <div className="space-y-8 prose-h2:text-balance prose-h2:leading-relaxed">{Content}</div>
+      <div className="space-y-8 prose-h2:text-balance prose-h2:leading-relaxed">
+        {Content}
+      </div>
     </section>
   );
 };

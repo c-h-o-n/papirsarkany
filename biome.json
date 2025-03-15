@@ -9,6 +9,9 @@
     "enabled": true,
     "indentStyle": "space"
   },
+  "files": {
+    "ignore": ["sanity.types.ts"]
+  },
   "linter": {
     "enabled": true,
     "rules": {

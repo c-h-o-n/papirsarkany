@@ -54,8 +54,7 @@ export default function Home() {
                 Sárkányaim repülési és{" "}
                 <span className="font-bold text-primary">nyolc napos </span>
                 pénzvisszafizetési garanciával kaphatók.
-                <br />
-                A visszaküldés költsége a vevőt terheli.
+                <br />A visszaküldés költsége a vevőt terheli.
                 <br />
                 Minden érdeklődőnek{" "}
                 <span className="font-bold text-primary">
@@ -96,17 +95,19 @@ export default function Home() {
               Sárkányépítő foglalkozások
             </h1>
 
-            <ScrollTriggeredAnimatedCard 
+            <ScrollTriggeredAnimatedCard
               animationDirection="left-to-right"
               className="p-5 text-center font-semibold sm:p-10"
             >
               <h2>
                 A{" "}
-                <span className="font-bold text-primary">sárkánykészítés és -repítés </span>{" "}
-                régebben mindennapos dolog volt a gyerekek
-                hétköznapjaiban. Ez a &quot;tudomány&quot; apáról fiúra szállt,
-                illetve a nagyobbaktól lesték el a kisebbek. A gyerekek mára
-                elfelejtették ezt a szép régi játékot.
+                <span className="font-bold text-primary">
+                  sárkánykészítés és -repítés{" "}
+                </span>{" "}
+                régebben mindennapos dolog volt a gyerekek hétköznapjaiban. Ez a
+                &quot;tudomány&quot; apáról fiúra szállt, illetve a nagyobbaktól
+                lesték el a kisebbek. A gyerekek mára elfelejtették ezt a szép
+                régi játékot.
               </h2>
             </ScrollTriggeredAnimatedCard>
 

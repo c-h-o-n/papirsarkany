@@ -1,6 +1,6 @@
-import type { SanityImageHotspot } from "@sanity/lib/sanity.types";
 import imageUrlBuilder from "@sanity/image-url";
 import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
+import type { SanityImageHotspot } from "@sanity/lib/sanity.types";
 
 import { client } from "@sanity/lib/client";
 
@@ -11,7 +11,7 @@ export function urlFor(source: SanityImageSource) {
 }
 
 export function getPositionFromHotspot(
-  hotspot: SanityImageHotspot | undefined
+  hotspot: SanityImageHotspot | undefined,
 ): string {
   if (!hotspot || !hotspot.x || !hotspot.y) return "center";
 

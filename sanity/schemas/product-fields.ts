@@ -13,7 +13,7 @@ export default [
     title: "Kép",
     options: {
       hotspot: true,
-    }
+    },
   }),
   defineField({
     name: "packageInfo",

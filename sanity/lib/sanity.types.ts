@@ -165,7 +165,14 @@ export type Rod = {
   diameters?: RodDiameters;
 };
 
-export type KiteMaterials = Array<"ripstop" | "\xFCvegsz\xE1las m\u0171anyag" | "fa" | "nylon" | "bambusz" | "pap\xEDr">;
+export type KiteMaterials = Array<
+  | "ripstop"
+  | "\xFCvegsz\xE1las m\u0171anyag"
+  | "fa"
+  | "nylon"
+  | "bambusz"
+  | "pap\xEDr"
+>;
 
 export type Kite = {
   _id: string;
@@ -195,7 +202,10 @@ export type Kite = {
   price?: number;
   size?: string;
   materials?: KiteMaterials;
-  windSpeed?: "gyeng\xE9t\u0151l a k\xF6zepes sz\xE9lig" | "gyeng\xE9t\u0151l az \xE9l\xE9nk sz\xE9lig" | "k\xF6zepest\u0151l az \xE9l\xE9nk sz\xE9lig";
+  windSpeed?:
+    | "gyeng\xE9t\u0151l a k\xF6zepes sz\xE9lig"
+    | "gyeng\xE9t\u0151l az \xE9l\xE9nk sz\xE9lig"
+    | "k\xF6zepest\u0151l az \xE9l\xE9nk sz\xE9lig";
   isBeginner?: boolean;
   description?: string;
 };
@@ -263,159 +273,188 @@ export type SanityImageMetadata = {
   isOpaque?: boolean;
 };
 
-export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | TwineDiameters | Twine | Reel | Lengths | RodDiameters | Rod | KiteMaterials | Kite | Slug | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata;
+export type AllSanitySchemaTypes =
+  | SanityImagePaletteSwatch
+  | SanityImagePalette
+  | SanityImageDimensions
+  | SanityFileAsset
+  | Geopoint
+  | TwineDiameters
+  | Twine
+  | Reel
+  | Lengths
+  | RodDiameters
+  | Rod
+  | KiteMaterials
+  | Kite
+  | Slug
+  | SanityImageCrop
+  | SanityImageHotspot
+  | SanityImageAsset
+  | SanityAssetSourceData
+  | SanityImageMetadata;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./sanity/lib/actions/publish-all-modified.ts
 // Variable: modifiedPublishedQuery
 // Query: *[count(*[_id in [^._id, "drafts." + ^._id]]) > 1]
-export type ModifiedPublishedQueryResult = Array<{
-  _id: string;
-  _type: "kite";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  name?: string;
-  image?: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    _type: "image";
-  };
-  packageInfo?: {
-    x?: number;
-    y?: number;
-    z?: number;
-    weight?: number;
-  };
-  slug?: Slug;
-  price?: number;
-  size?: string;
-  materials?: KiteMaterials;
-  windSpeed?: "gyeng\xE9t\u0151l a k\xF6zepes sz\xE9lig" | "gyeng\xE9t\u0151l az \xE9l\xE9nk sz\xE9lig" | "k\xF6zepest\u0151l az \xE9l\xE9nk sz\xE9lig";
-  isBeginner?: boolean;
-  description?: string;
-} | {
-  _id: string;
-  _type: "reel";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  name?: string;
-  image?: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    _type: "image";
-  };
-  packageInfo?: {
-    x?: number;
-    y?: number;
-    z?: number;
-    weight?: number;
-  };
-  price?: number;
-} | {
-  _id: string;
-  _type: "rod";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  name?: string;
-  image?: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    _type: "image";
-  };
-  packageInfo?: {
-    x?: number;
-    y?: number;
-    z?: number;
-    weight?: number;
-  };
-  diameters?: RodDiameters;
-} | {
-  _id: string;
-  _type: "sanity.fileAsset";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  originalFilename?: string;
-  label?: string;
-  title?: string;
-  description?: string;
-  altText?: string;
-  sha1hash?: string;
-  extension?: string;
-  mimeType?: string;
-  size?: number;
-  assetId?: string;
-  uploadId?: string;
-  path?: string;
-  url?: string;
-  source?: SanityAssetSourceData;
-} | {
-  _id: string;
-  _type: "sanity.imageAsset";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  originalFilename?: string;
-  label?: string;
-  title?: string;
-  description?: string;
-  altText?: string;
-  sha1hash?: string;
-  extension?: string;
-  mimeType?: string;
-  size?: number;
-  assetId?: string;
-  uploadId?: string;
-  path?: string;
-  url?: string;
-  metadata?: SanityImageMetadata;
-  source?: SanityAssetSourceData;
-} | {
-  _id: string;
-  _type: "twine";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  name?: string;
-  image?: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    _type: "image";
-  };
-  packageInfo?: {
-    x?: number;
-    y?: number;
-    z?: number;
-    weight?: number;
-  };
-  diameters?: TwineDiameters;
-}>;
+export type ModifiedPublishedQueryResult = Array<
+  | {
+      _id: string;
+      _type: "kite";
+      _createdAt: string;
+      _updatedAt: string;
+      _rev: string;
+      name?: string;
+      image?: {
+        asset?: {
+          _ref: string;
+          _type: "reference";
+          _weak?: boolean;
+          [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+        };
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        _type: "image";
+      };
+      packageInfo?: {
+        x?: number;
+        y?: number;
+        z?: number;
+        weight?: number;
+      };
+      slug?: Slug;
+      price?: number;
+      size?: string;
+      materials?: KiteMaterials;
+      windSpeed?:
+        | "gyeng\xE9t\u0151l a k\xF6zepes sz\xE9lig"
+        | "gyeng\xE9t\u0151l az \xE9l\xE9nk sz\xE9lig"
+        | "k\xF6zepest\u0151l az \xE9l\xE9nk sz\xE9lig";
+      isBeginner?: boolean;
+      description?: string;
+    }
+  | {
+      _id: string;
+      _type: "reel";
+      _createdAt: string;
+      _updatedAt: string;
+      _rev: string;
+      name?: string;
+      image?: {
+        asset?: {
+          _ref: string;
+          _type: "reference";
+          _weak?: boolean;
+          [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+        };
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        _type: "image";
+      };
+      packageInfo?: {
+        x?: number;
+        y?: number;
+        z?: number;
+        weight?: number;
+      };
+      price?: number;
+    }
+  | {
+      _id: string;
+      _type: "rod";
+      _createdAt: string;
+      _updatedAt: string;
+      _rev: string;
+      name?: string;
+      image?: {
+        asset?: {
+          _ref: string;
+          _type: "reference";
+          _weak?: boolean;
+          [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+        };
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        _type: "image";
+      };
+      packageInfo?: {
+        x?: number;
+        y?: number;
+        z?: number;
+        weight?: number;
+      };
+      diameters?: RodDiameters;
+    }
+  | {
+      _id: string;
+      _type: "sanity.fileAsset";
+      _createdAt: string;
+      _updatedAt: string;
+      _rev: string;
+      originalFilename?: string;
+      label?: string;
+      title?: string;
+      description?: string;
+      altText?: string;
+      sha1hash?: string;
+      extension?: string;
+      mimeType?: string;
+      size?: number;
+      assetId?: string;
+      uploadId?: string;
+      path?: string;
+      url?: string;
+      source?: SanityAssetSourceData;
+    }
+  | {
+      _id: string;
+      _type: "sanity.imageAsset";
+      _createdAt: string;
+      _updatedAt: string;
+      _rev: string;
+      originalFilename?: string;
+      label?: string;
+      title?: string;
+      description?: string;
+      altText?: string;
+      sha1hash?: string;
+      extension?: string;
+      mimeType?: string;
+      size?: number;
+      assetId?: string;
+      uploadId?: string;
+      path?: string;
+      url?: string;
+      metadata?: SanityImageMetadata;
+      source?: SanityAssetSourceData;
+    }
+  | {
+      _id: string;
+      _type: "twine";
+      _createdAt: string;
+      _updatedAt: string;
+      _rev: string;
+      name?: string;
+      image?: {
+        asset?: {
+          _ref: string;
+          _type: "reference";
+          _weak?: boolean;
+          [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+        };
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        _type: "image";
+      };
+      packageInfo?: {
+        x?: number;
+        y?: number;
+        z?: number;
+        weight?: number;
+      };
+      diameters?: TwineDiameters;
+    }
+>;
 
 // Source: ./src/lib/queries.ts
 // Variable: getAllKitesQuery
@@ -446,7 +485,10 @@ export type GetAllKitesQueryResult = Array<{
   price?: number;
   size?: string;
   materials?: KiteMaterials;
-  windSpeed?: "gyeng\xE9t\u0151l a k\xF6zepes sz\xE9lig" | "gyeng\xE9t\u0151l az \xE9l\xE9nk sz\xE9lig" | "k\xF6zepest\u0151l az \xE9l\xE9nk sz\xE9lig";
+  windSpeed?:
+    | "gyeng\xE9t\u0151l a k\xF6zepes sz\xE9lig"
+    | "gyeng\xE9t\u0151l az \xE9l\xE9nk sz\xE9lig"
+    | "k\xF6zepest\u0151l az \xE9l\xE9nk sz\xE9lig";
   isBeginner?: boolean;
   description?: string;
 }>;
@@ -478,7 +520,10 @@ export type GetKiteBySlugQueryResult = {
   price?: number;
   size?: string;
   materials?: KiteMaterials;
-  windSpeed?: "gyeng\xE9t\u0151l a k\xF6zepes sz\xE9lig" | "gyeng\xE9t\u0151l az \xE9l\xE9nk sz\xE9lig" | "k\xF6zepest\u0151l az \xE9l\xE9nk sz\xE9lig";
+  windSpeed?:
+    | "gyeng\xE9t\u0151l a k\xF6zepes sz\xE9lig"
+    | "gyeng\xE9t\u0151l az \xE9l\xE9nk sz\xE9lig"
+    | "k\xF6zepest\u0151l az \xE9l\xE9nk sz\xE9lig";
   isBeginner?: boolean;
   description?: string;
 } | null;
@@ -528,6 +573,9 @@ export type GetAllReelsQueryResult = Array<{
   };
   price?: number;
 }>;
+
+
+
 // Variable: getAllTwinesQuery
 // Query: *[_type == 'twine'] { ..., image { asset-> { url, metadata } } } | order(name asc)
 export type GetAllTwinesQueryResult = Array<{
@@ -556,7 +604,7 @@ export type GetAllTwinesQueryResult = Array<{
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
-    "*[count(*[_id in [^._id, \"drafts.\" + ^._id]]) > 1]": ModifiedPublishedQueryResult;
+    '*[count(*[_id in [^._id, "drafts." + ^._id]]) > 1]': ModifiedPublishedQueryResult;
     "*[_type == 'kite'] { ..., image { ..., asset -> { url, metadata } } } | order(price asc)": GetAllKitesQueryResult;
     "*[_type == 'kite' && slug.current == $slug] { ..., image { ..., asset-> { url, metadata } } }[0]": GetKiteBySlugQueryResult;
     "*[_type == 'rod'] { ..., image { asset-> { url, metadata } } } | order(name asc)": GetAllRodsQueryResult;
