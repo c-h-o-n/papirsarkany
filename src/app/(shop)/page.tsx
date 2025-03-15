@@ -16,7 +16,7 @@ export default function Home() {
     <div>
       <Splash />
 
-      <div className="container mx-auto max-w-screen-lg">
+      <div className="container mx-auto max-w-screen-lg ">
         <HomeSection id="vallalkozas">
           <HomeSection.Icon>
             <AboutBusinessIcon />
@@ -28,34 +28,49 @@ export default function Home() {
               animationDirection="right-to-left"
               className="p-5 text-center font-semibold sm:p-10"
             >
-              <h4>
-                Üzletem nincs, ezért postai utánvétellel szállítok, melynek
-                költsége a megrendelőt terheli.
+              <h2>
+                <span className="font-bold text-primary">Üzletem nincs</span>,
+                ezért{" "}
+                <span className="font-bold text-primary">
+                  postai utánvétellel
+                </span>{" "}
+                szállítok, melynek költsége a megrendelőt terheli.
                 <br />
-                Személyesen{" "}
-                <Link className="underline" href="#elerhetoseg">
-                  Nagykovácsiban
-                </Link>{" "}
+                <span className="font-bold text-primary">
+                  Személyesen{" "}
+                  <Link className="underline" href="#elerhetoseg">
+                    Nagykovácsiban
+                  </Link>{" "}
+                </span>
                 (63-as BKV busszal megközelíthető) is vásárolhat
-              </h4>
+              </h2>
             </ScrollTriggeredAnimatedCard>
 
             <ScrollTriggeredAnimatedCard
               animationDirection="left-to-right"
               className="p-5 text-center font-semibold sm:p-10"
             >
-              <h4>
-                Sárkányaim repülési és nyolc napos pénzvisszafizetési
-                garanciával kaphatók.
-              </h4>
-              <h4>A visszaküldés költsége a vevőt terheli.</h4>
-              <h4>
-                Minden érdeklődőnek egy óra ingyenes oktatás sárkány
-                biztosításával - vásárlási kötelezettség nélkül -
-                Nagykovácsiban. (Telefonos időpont egyeztetés után.)
-              </h4>
-
-              <h4>Mindenkinek kellemes sárkányeresztést kívánok</h4>
+              <h2>
+                Sárkányaim repülési és{" "}
+                <span className="font-bold text-primary">nyolc napos </span>
+                pénzvisszafizetési garanciával kaphatók.
+                <br />
+                A visszaküldés költsége a vevőt terheli.
+                <br />
+                Minden érdeklődőnek{" "}
+                <span className="font-bold text-primary">
+                  egy óra ingyenes oktatás
+                </span>{" "}
+                sárkány biztosításával &mdash; vásárlási kötelezettség nélkül
+                &mdash;{" "}
+                <span className="font-bold text-primary">Nagykovácsiban</span>.
+                <br />
+                (Telefonos időpont egyeztetés után.)
+                <br />
+                <span className="font-bold text-primary">
+                  Mindenkinek kellemes sárkányeresztést kívánok!
+                </span>
+              </h2>
             </ScrollTriggeredAnimatedCard>
 
             <ScrollTriggeredAnimatedCard
@@ -63,12 +78,11 @@ export default function Home() {
               className="p-5 text-center sm:p-10"
             >
               <h2 className="font-bold">Ducsai Barnabás</h2>
-              <h5>
+              <h3>
                 <b>Adószám:</b> 61090938-1-33
-              </h5>
-              <h5>
+                <br />
                 <b>Számlaszám:</b> Erste Bank 11600006-00000000-76709302
-              </h5>
+              </h3>
             </ScrollTriggeredAnimatedCard>
           </HomeSection.Content>
         </HomeSection>
@@ -82,29 +96,38 @@ export default function Home() {
               Sárkányépítő foglalkozások
             </h1>
 
-            <ScrollTriggeredAnimatedCard
+            <ScrollTriggeredAnimatedCard 
               animationDirection="left-to-right"
               className="p-5 text-center font-semibold sm:p-10"
             >
-              <h4>
-                A sárkánykészítés és -repítés régebben mindennapos dolog volt a
-                gyerekek hétköznapjaiban. Ez a &quot;tudomány&quot; apáról fiúra
-                szállt, illetve a nagyobbaktól lesték el a kisebbek. A gyerekek
-                mára elfelejtették ezt a szép régi játékot.
-              </h4>
+              <h2>
+                A{" "}
+                <span className="font-bold text-primary">sárkánykészítés és -repítés </span>{" "}
+                régebben mindennapos dolog volt a gyerekek
+                hétköznapjaiban. Ez a &quot;tudomány&quot; apáról fiúra szállt,
+                illetve a nagyobbaktól lesték el a kisebbek. A gyerekek mára
+                elfelejtették ezt a szép régi játékot.
+              </h2>
             </ScrollTriggeredAnimatedCard>
 
             <ScrollTriggeredAnimatedCard
               animationDirection="right-to-left"
               className="p-5 text-center font-semibold sm:p-10"
             >
-              <h4>
-                Vállalom sárkányépítő foglalkozások vezetését
-                gyerekrendezvények, -intézmények és céges rendezvények számára.
+              <h2>
+                Vállalom{" "}
+                <span className="font-bold text-primary">
+                  sárkányépítő foglalkozások
+                </span>{" "}
+                vezetését gyerekrendezvények, -intézmények és céges rendezvények
+                számára.
                 <br />
-                Anyagot biztosítok. (Szelet a megrendelő biztosít.) Ár egyedi
-                megállapodás alapján.
-              </h4>
+                Anyagot biztosítok.
+                <br />
+                (Szelet a megrendelő biztosít.)
+                <br />
+                Ár egyedi megállapodás alapján.
+              </h2>
             </ScrollTriggeredAnimatedCard>
           </HomeSection.Content>
         </HomeSection>
@@ -118,8 +141,8 @@ export default function Home() {
             <h1 className="text-center font-bold">Elérhetőség</h1>
 
             <div className="text-center font-semibold">
-              <h4>{env.VENDOR_EMAIL_ADDRESS}</h4>
-              <h4>+36 30 9754 786</h4>
+              <h2>{env.VENDOR_EMAIL_ADDRESS}</h2>
+              <h2>+36 30 9754 786</h2>
             </div>
 
             <iframe

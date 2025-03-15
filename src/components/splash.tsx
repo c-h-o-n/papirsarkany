@@ -22,7 +22,7 @@ export default async function Splash() {
           <GoogleMapsRating rating={rating} />
         </Link>
 
-        <div className="space-y-4">
+        <div className="space-y-4 sm:space-y-6">
           <h1 className="font-bold max-[369px]:text-2xl">
             www.papirsarkany.hu
           </h1>
