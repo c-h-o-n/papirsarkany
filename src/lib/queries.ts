@@ -9,13 +9,13 @@ export const getKiteBySlugQuery = defineQuery(
 );
 
 export const getAllRodsQuery = defineQuery(
-  `*[_type == 'rod'] { ..., image { asset-> { url, metadata } } } | order(name asc)`,
+  `*[_type == 'rod'] { ..., image { ..., asset-> { url, metadata } } } | order(name asc)`,
 );
 
 export const getAllReelsQuery = defineQuery(
-  `*[_type == 'reel'] { ..., image { asset-> { url, metadata } } } | order(name asc)`,
+  `*[_type == 'reel'] { ..., image { ..., asset-> { url, metadata } } } | order(name asc)`,
 );
 
 export const getAllTwinesQuery = defineQuery(
-  `*[_type == 'twine'] { ..., image { asset-> { url, metadata } } } | order(name asc)`,
+  `*[_type == 'twine'] { ..., image { ..., asset-> { url, metadata } } } | order(name asc)`,
 );

@@ -19,7 +19,6 @@ export type WithImageAsset<T> = Omit<T, "image"> & {
     } | null;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
-    _type: "image";
   } | null;
 };
 
