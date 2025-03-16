@@ -72,15 +72,17 @@ const TwineCard: FC<TwineCardProps> = ({ twine }) => {
             </span>
           </h2>
         )}
-        <AddToCartButton
-          product={{
-            ...twine,
-            name: `${twine.name} (${selectedDiameter.diameter} - ${length}m)`,
-            price:
-              (selectedDiameter.pricePerMeter || Number.NaN) *
-              Math.ceil(length),
-          }}
-        />
+        <div className="flex justify-end">
+          <AddToCartButton
+            product={{
+              ...twine,
+              name: `${twine.name} (${selectedDiameter.diameter} - ${length}m)`,
+              price:
+                (selectedDiameter.pricePerMeter || Number.NaN) *
+                Math.ceil(length),
+            }}
+          />
+        </div>
       </Card>
     </div>
   );

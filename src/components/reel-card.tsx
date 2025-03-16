@@ -13,7 +13,7 @@ type ReelCardProps = {
 
 const ReelCard: FC<ReelCardProps> = ({ reel }) => {
   return (
-    <Card className="w-full space-y-3 p-5">
+    <Card className="flex w-full flex-col justify-between gap-3 p-5">
       <div>
         <h3 className="text-center font-bold">{reel.name}</h3>
       </div>

@@ -114,15 +114,17 @@ const RodCard: FC<RodCardProps> = ({ rod }) => {
           </h2>
         )}
 
-        <AddToCartButton
-          product={{
-            ...rod,
-            name: `${rod.name} (${selectedDiameter.diameter} mm - ${selectedLength} cm)`,
-            price:
-              (selectedDiameter.pricePerMeter || Number.NaN) *
-              Math.ceil((selectedLength || Number.NaN) / 100),
-          }}
-        />
+        <div className="flex justify-end">
+          <AddToCartButton
+            product={{
+              ...rod,
+              name: `${rod.name} (${selectedDiameter.diameter} mm - ${selectedLength} cm)`,
+              price:
+                (selectedDiameter.pricePerMeter || Number.NaN) *
+                Math.ceil((selectedLength || Number.NaN) / 100),
+            }}
+          />
+        </div>
       </Card>
     </div>
   );

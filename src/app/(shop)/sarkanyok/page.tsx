@@ -1,4 +1,5 @@
 import KiteCard from "~/components/kite-card";
+import ProductContainer from '~/components/product-container';
 import { getAllKites } from "~/lib/cms";
 
 export default async function Kites() {
@@ -11,11 +12,11 @@ export default async function Kites() {
         <h3>A vételár tartalmaz 100m eresztőzsinórt és zsinórtartót.</h3>
       </div>
 
-      <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-3">
+      <ProductContainer>
         {kites.map((kite) => (
           <KiteCard key={kite._id} kite={kite} />
         ))}
-      </div>
+      </ProductContainer>
     </div>
   );
 }
