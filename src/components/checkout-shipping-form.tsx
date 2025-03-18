@@ -1,6 +1,6 @@
 "use client";
 
-import { AnimatePresence, m } from "framer-motion";
+import { AnimatePresence, m } from "motion/react";
 import { type FC, useMemo, useState } from "react";
 import { useFormContext } from "react-hook-form";
 

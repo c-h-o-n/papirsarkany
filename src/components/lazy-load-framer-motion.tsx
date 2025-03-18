@@ -1,6 +1,6 @@
 "use client";
 
-import { LazyMotion } from "framer-motion";
+import { LazyMotion } from "motion/react";
 import type { FC, ReactNode } from "react";
 
 type LazyLoadFramerMotionProps = {

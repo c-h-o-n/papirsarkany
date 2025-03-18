@@ -1,6 +1,6 @@
 "use client";
 
-import { type HTMLMotionProps, m } from "framer-motion";
+import { type HTMLMotionProps, m } from "motion/react";
 import type { FC, ReactNode } from "react";
 
 import Card from "./card";
