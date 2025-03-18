@@ -14,7 +14,7 @@
     "sanity:publish": "pnpx tsx sanity/lib/actions/publish-all-modified.ts",
     "sanity:typegen": "rimraf ./sanity/schema.json && pnpx sanity schema extract --path sanity/schema.json && pnpx sanity typegen generate",
     "start": "next start",
-    "test": "vitest && playwright test",
+    "test": "vitest run && playwright test",
     "test:unit": "vitest",
     "coverage": "vitest --coverage",
     "test:e2e": "playwright test",
@@ -66,14 +66,14 @@
     "@types/react": "19.0.11",
     "@types/react-dom": "19.0.4",
     "@vitejs/plugin-react": "^4.3.4",
-    "@vitest/coverage-v8": "2.1.9",
-    "jsdom": "^25.0.1",
+    "@vitest/coverage-v8": "3.0.9",
+    "jsdom": "^26.0.0",
     "prisma": "^6.4.1",
     "rimraf": "^6.0.1",
     "typescript": "5.6.3",
-    "vite": "^5.4.12",
+    "vite": "^6.2.2",
     "vite-plugin-svgr": "^4.3.0",
-    "vitest": "^2.1.9"
+    "vitest": "^3.0.9"
   },
   "packageManager": "pnpm@9.15.0+sha256.09a8fe31a34fda706354680619f4002f4ccef6dadff93240d24ef6c831f0fd28"
 }
