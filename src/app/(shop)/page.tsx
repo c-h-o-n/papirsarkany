@@ -28,7 +28,7 @@ export default function Home() {
               animationDirection="right-to-left"
               className="p-5 text-center font-semibold sm:p-10"
             >
-              <h2>
+              <h3>
                 <span className="font-bold text-primary">Üzletem nincs</span>,
                 ezért{" "}
                 <span className="font-bold text-primary">
@@ -43,14 +43,14 @@ export default function Home() {
                   </Link>{" "}
                 </span>
                 (63-as BKV busszal megközelíthető) is vásárolhat
-              </h2>
+              </h3>
             </ScrollTriggeredAnimatedCard>
 
             <ScrollTriggeredAnimatedCard
               animationDirection="left-to-right"
               className="p-5 text-center font-semibold sm:p-10"
             >
-              <h2>
+              <h3>
                 Sárkányaim repülési és{" "}
                 <span className="font-bold text-primary">nyolc napos </span>
                 pénzvisszafizetési garanciával kaphatók.
@@ -69,19 +69,19 @@ export default function Home() {
                 <span className="font-bold text-primary">
                   Mindenkinek kellemes sárkányeresztést kívánok!
                 </span>
-              </h2>
+              </h3>
             </ScrollTriggeredAnimatedCard>
 
             <ScrollTriggeredAnimatedCard
               animationDirection="right-to-left"
-              className="p-5 text-center sm:p-10"
+              className="space-y-2 p-5 text-center sm:p-10"
             >
-              <h2 className="font-bold">Ducsai Barnabás</h2>
-              <h3>
+              <h3 className="font-bold">Ducsai Barnabás</h3>
+              <h4>
                 <b>Adószám:</b> 61090938-1-33
                 <br />
                 <b>Számlaszám:</b> Erste Bank 11600006-00000000-76709302
-              </h3>
+              </h4>
             </ScrollTriggeredAnimatedCard>
           </HomeSection.Content>
         </HomeSection>
@@ -99,7 +99,7 @@ export default function Home() {
               animationDirection="left-to-right"
               className="p-5 text-center font-semibold sm:p-10"
             >
-              <h2>
+              <h3>
                 A{" "}
                 <span className="font-bold text-primary">
                   sárkánykészítés és -repítés{" "}
@@ -108,14 +108,14 @@ export default function Home() {
                 &quot;tudomány&quot; apáról fiúra szállt, illetve a nagyobbaktól
                 lesték el a kisebbek. A gyerekek mára elfelejtették ezt a szép
                 régi játékot.
-              </h2>
+              </h3>
             </ScrollTriggeredAnimatedCard>
 
             <ScrollTriggeredAnimatedCard
               animationDirection="right-to-left"
               className="p-5 text-center font-semibold sm:p-10"
             >
-              <h2>
+              <h3>
                 Vállalom{" "}
                 <span className="font-bold text-primary">
                   sárkányépítő foglalkozások
@@ -128,7 +128,7 @@ export default function Home() {
                 (Szelet a megrendelő biztosít.)
                 <br />
                 Ár egyedi megállapodás alapján.
-              </h2>
+              </h3>
             </ScrollTriggeredAnimatedCard>
           </HomeSection.Content>
         </HomeSection>
@@ -142,8 +142,8 @@ export default function Home() {
             <h1 className="text-center font-bold">Elérhetőség</h1>
 
             <div className="text-center font-semibold">
-              <h2>{env.VENDOR_EMAIL_ADDRESS}</h2>
-              <h2>+36 30 9754 786</h2>
+              <h3>{env.VENDOR_EMAIL_ADDRESS}</h3>
+              <h3>+36 30 9754 786</h3>
             </div>
 
             <iframe
