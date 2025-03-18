@@ -1,5 +1,5 @@
 import KiteCard from "~/components/kite-card";
-import ProductContainer from '~/components/product-container';
+import ProductContainer from "~/components/product-container";
 import { getAllKites } from "~/lib/cms";
 
 export default async function Kites() {
