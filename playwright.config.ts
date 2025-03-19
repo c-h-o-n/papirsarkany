@@ -32,6 +32,11 @@ export default defineConfig({
     trace: "on-first-retry",
 
     testIdAttribute: "data-pw-e2e",
+
+    extraHTTPHeaders: {
+      "x-vercel-protection-bypass":
+        process.env.VERCEL_AUTOMATION_BYPASS_SECRET || "",
+    },
   },
 
   /* Configure projects for major browsers */
