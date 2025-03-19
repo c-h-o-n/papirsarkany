@@ -5,7 +5,7 @@ import { huHULocale } from "@sanity/locale-hu-hu";
 import { visionTool } from "@sanity/vision";
 import { defineConfig, isDev } from "sanity";
 // LATER add to plugins if sanity-plugin-media supports React 19
-// import { media } from 'sanity-plugin-media';
+import { media } from "sanity-plugin-media";
 import { structureTool } from "sanity/structure";
 import { apiVersion, dataset, projectId } from "./sanity/env";
 import { schema } from "./sanity/schema";
@@ -31,6 +31,7 @@ export default defineConfig({
       title: "Struktúra",
     }),
     huHULocale(),
+    media(),
     ...(isDev ? devOnlyPlugins : []),
   ],
 });
