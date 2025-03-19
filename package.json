@@ -60,7 +60,7 @@
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
     "@next/bundle-analyzer": "^15.1.7",
-    "@playwright/test": "^1.48.2",
+    "@playwright/test": "^1.51.1",
     "@testing-library/react": "^16.2.0",
     "@types/node": "22.13.5",
     "@types/react": "19.0.11",
