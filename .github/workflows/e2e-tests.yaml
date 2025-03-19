@@ -7,9 +7,6 @@ jobs:
   playwright-e2e-test:
     if: ${{ github.event.deployment_status.state == 'success' }}
     timeout-minutes: 60
-    env:
-      GOOGLE_CLOUD_API_KEY: ${{ secrets.GOOGLE_CLOUD_API_KEY }}
-      VERCEL_AUTOMATION_BYPASS_SECRET: ${{ secrets.VERCEL_AUTOMATION_BYPASS_SECRET}}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
