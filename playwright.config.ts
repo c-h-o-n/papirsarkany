@@ -34,10 +34,8 @@ export default defineConfig({
     testIdAttribute: "data-pw-e2e",
 
     extraHTTPHeaders: {
-      ...(process.env.VERCEL_AUTOMATION_BYPASS_SECRET && {
-        "x-vercel-protection-bypass":
-          process.env.VERCEL_AUTOMATION_BYPASS_SECRET,
-      }),
+      "x-vercel-protection-bypass":
+        process.env.VERCEL_AUTOMATION_BYPASS_SECRET || "",
     },
   },
 
