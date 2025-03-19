@@ -39,7 +39,7 @@
     "groq": "^3.80.0",
     "just-pick": "^4.2.0",
     "motion": "^12.5.0",
-    "next": "^15.1.7",
+    "next": "^15.2.3",
     "next-plugin-preval": "^1.2.8",
     "next-sanity": "^9.9.5",
     "next-sitemap": "^4.2.3",
@@ -59,7 +59,7 @@
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
-    "@next/bundle-analyzer": "^15.1.7",
+    "@next/bundle-analyzer": "^15.2.3",
     "@playwright/test": "^1.51.1",
     "@testing-library/react": "^16.2.0",
     "@types/node": "22.13.5",
