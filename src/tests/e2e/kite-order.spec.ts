@@ -86,7 +86,7 @@ test("Kite order flow", async ({ page, browserName, isMobile }) => {
     await test.step("Place the order", async () => {
       await page.getByRole("button", { name: "Megrendelem" }).click();
 
-      // TODO check if cart, form and stepper did reset and user redirected to the '/sikeres-rendeles' page
+      // TODO check if cart, form and stepper has been actualy reset
 
       await page.waitForURL("**/sikeres-rendeles");
       expect(page.url()).toContain("/sikeres-rendeles");
