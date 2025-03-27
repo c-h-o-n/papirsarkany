@@ -81,17 +81,17 @@ const ProductinCartCounter: FC<ProductinCartCounterProps> = ({ cartItem }) => {
   };
 
   return (
-    <div className="flex items-center">
+    <div className="[&>button]:active:translate-0! flex items-stretch rounded bg-base-200">
       <button
         type="button"
-        className="d-btn no-animation rounded-r-none shadow-none focus:z-[1]"
+        className="d-btn rounded-r-none border-r-0 focus:z-1"
         onClick={() => handleDecreaseButtonClick()}
       >
         -
       </button>
       <input
         type="number"
-        className="h-12 w-12 rounded-none bg-base-200 text-center shadow-none focus:z-[1]"
+        className="d-input d-input-ghost h-auto w-12 rounded-none border-gray-200! border-x-0 text-center focus:z-1 focus:bg-transparent"
         value={
           !hasPendingChanges.current
             ? cartItem.quantity.toString()
@@ -103,7 +103,7 @@ const ProductinCartCounter: FC<ProductinCartCounterProps> = ({ cartItem }) => {
       />
       <button
         type="button"
-        className={`d-btn no-animation rounded-l-none shadow-none focus:z-[1] ${
+        className={`d-btn rounded-l-none border-l-0 focus:z-1 ${
           cartItem.quantity >= 999 && "d-btn-disabled"
         }`}
         onClick={() => handleIncreaseButtonClick()}

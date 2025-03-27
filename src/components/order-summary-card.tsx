@@ -44,8 +44,8 @@ const OrderSummaryCard: FC<OrderSummaryCardProps> = ({ layout = "full" }) => {
         {cart.map((item) => (
           <Fragment key={item._id}>
             <div className="flex flex-wrap items-center justify-between gap-2">
-              <div className="flex flex-shrink gap-2">
-                <div className="hidden flex-shrink-0 min-[390px]:block">
+              <div className="flex shrink gap-2">
+                <div className="hidden shrink-0 min-[390px]:block">
                   {item.image && (
                     <Image
                       src={item.image.asset?.url || MISSING_IMG_URL}
@@ -153,7 +153,7 @@ const OrderSummaryCard: FC<OrderSummaryCardProps> = ({ layout = "full" }) => {
                 className="d-btn d-btn-square d-btn-error"
                 onClick={() => onDeleteClick(item)}
               >
-                <TrashCanIcon className="h-6 w-6" />
+                <TrashCanIcon className="h-6 w-6 opacity-66" />
               </button>
             </div>
           </div>
@@ -168,7 +168,7 @@ const OrderSummaryCard: FC<OrderSummaryCardProps> = ({ layout = "full" }) => {
               className="d-btn d-btn-square d-btn-error"
               onClick={() => onDeleteClick(item)}
             >
-              <TrashCanIcon className="h-6 w-6" />
+              <TrashCanIcon className="h-6 w-6 opacity-66" />
             </button>
           </div>
           <div className="d-divider" />

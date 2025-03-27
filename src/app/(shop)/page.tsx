@@ -16,7 +16,7 @@ export default function Home() {
     <div>
       <Splash />
 
-      <div className="container mx-auto max-w-screen-lg ">
+      <div className="container mx-auto max-w-(--breakpoint-lg) ">
         <HomeSection id="vallalkozas">
           <HomeSection.Icon>
             <AboutBusinessIcon />

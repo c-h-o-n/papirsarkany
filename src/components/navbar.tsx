@@ -3,10 +3,16 @@
 import type { FC } from "react";
 import useMedia from "use-media";
 
-import twConfig from "~/lib/tailwind-theme.preval";
 import type { NavbarItems } from "~/lib/types";
 import DesktopNavbar from "./desktop-navbar";
 import MobileNavbar from "./mobile-navbar";
+
+let breakPoint: string;
+
+if (typeof window !== "undefined") {
+  const styles = getComputedStyle(document.documentElement);
+  breakPoint = styles.getPropertyValue("--breakpoint-md");
+}
 
 const navbarItems: NavbarItems = {
   leftItems: [
@@ -36,7 +42,7 @@ const navbarItems: NavbarItems = {
 };
 
 const Navbar: FC = () => {
-  const isDesktop = useMedia({ minWidth: twConfig.screens.md }, true);
+  const isDesktop = useMedia({ minWidth: breakPoint }, true);
 
   return (
     <div className="sticky top-0 z-40">

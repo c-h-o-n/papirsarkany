@@ -52,35 +52,35 @@ export default function ShippingOptionRadioInput({
   );
 
   return (
-    <div className={`d-form-control ${isDisabled && "opacity-30"}`}>
-      <label className="d-label cursor-pointer flex-wrap justify-start gap-x-2">
+    <fieldset className={`d-fieldset ${isDisabled ? "opacity-30" : ""}`}>
+      <label className="flex cursor-pointer flex-wrap justify-start gap-x-2">
         <input
           type="radio"
           value={value}
           {...register("shippingOption")}
-          className="d-radio checked:d-radio-primary border-black disabled:opacity-100"
+          className="d-radio d-radio-primary border-black disabled:opacity-100"
           disabled={isDisabled}
           onClick={onInputClick}
         />
-        <span className="d-label-text font-bold text-lg">{label}</span>
+        <span className="font-bold text-lg">{label}</span>
         {shippingFee && (
-          <span className="d-label-text flex-1 text-right font-bold text-lg">
+          <span className="flex-1 text-right font-bold text-lg">
             {formatShippingFee(shippingFee)}
           </span>
         )}
         {watch("shippingOption") === value && (
           <div className="basis-full pl-8">
-            <span className="d-label-text-alt text-error">
+            <span className="text-error">
               {hasShippingSchemaRequiredError &&
                 missingShippingInfoErrorMessage}
             </span>
-            <span className="d-label-text select-text text-lg">
+            <span className=" select-text text-lg">
               {getValues("shippingOption") !== "Postai szállítás" &&
                 `${getValues("shippingPostcode")} ${getValues("shippingCity")} ${getValues("shippingAddress")}`}
             </span>
           </div>
         )}
       </label>
-    </div>
+    </fieldset>
   );
 }

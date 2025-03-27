@@ -55,7 +55,7 @@ const FoxpostMap: FC<FoxpostMapProps> = ({ hideMap }) => {
   return (
     <Card className="p-4">
       <iframe
-        className="h-[640px] rounded min-[1096px]:h-[715px] min-[504px]:h-[820px]"
+        className="h-[640px] rounded-sm min-[1096px]:h-[715px] min-[504px]:h-[820px]"
         loading="lazy"
         src="https://cdn.foxpost.hu/apt-finder/v1/app/"
         width="100%"

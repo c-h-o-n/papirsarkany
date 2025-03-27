@@ -65,13 +65,14 @@ const RodCard: FC<RodCardProps> = ({ rod }) => {
       <Card className="w-full space-y-3 p-5">
         <h3 className="font-bold">{rod.name}</h3>
 
-        <div className="flex gap-2">
-          <label className="d-form-control w-full max-w-xs">
-            <div className="d-label">
+        <div className="flex flex-wrap gap-2">
+          <fieldset className="d-fieldset flex-1">
+            <label className="d-label" htmlFor={`select-diameter-${rod._id}`}>
               <span className="d-label-text font-bold">Átmérő</span>
-            </div>
+            </label>
             <select
-              className="d-select d-select-bordered"
+              id={`select-diameter-${rod._id}`}
+              className="d-select"
               value={selectedDiameter.diameter}
               onChange={(e) => {
                 handleDiameterChange(e);
@@ -83,15 +84,15 @@ const RodCard: FC<RodCardProps> = ({ rod }) => {
                 </option>
               ))}
             </select>
-          </label>
+          </fieldset>
 
-          <label className="d-form-control w-full max-w-xs">
-            <div className="d-label">
+          <fieldset className="d-fieldset flex-1">
+            <label className="d-label" htmlFor={`select-length-${rod._id}`}>
               <span className="d-label-text font-bold">Hossz</span>
-            </div>
+            </label>
             <select
               id={`select-length-${rod._id}`}
-              className="d-select d-select-bordered w-full max-w-xs"
+              className="d-select"
               onChange={(e) => setSelectedLength(+e.target.value)}
               value={selectedLength}
             >
@@ -101,7 +102,7 @@ const RodCard: FC<RodCardProps> = ({ rod }) => {
                 </option>
               ))}
             </select>
-          </label>
+          </fieldset>
         </div>
         {selectedDiameter.pricePerMeter && selectedLength && (
           <h2>

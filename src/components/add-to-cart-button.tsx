@@ -66,7 +66,7 @@ const AddToCartButton: FC<AddToCartProps> = ({ product }) => {
   return (
     <button
       type="button"
-      className="d-btn d-btn-primary active:!scale-105 uppercase"
+      className="d-btn d-btn-primary uppercase active:scale-105!"
       onClick={onButtonClick}
     >
       Kosárba

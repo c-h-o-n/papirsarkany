@@ -19,7 +19,7 @@ const MobileNavbar: FC<MobileNavbarProps> = ({ navbarItems }) => {
             tabIndex={0}
             // biome-ignore lint/a11y/useSemanticElements: we can't use <button> here because Safari has a bug that prevents the button from being focused.
             role="button"
-            className="d-btn d-btn-ghost focus:ring focus:ring-neutral"
+            className="d-btn d-btn-ghost focus:ring-3 focus:ring-neutral"
             aria-label="mobile navigation menu"
           >
             <HamburgerIcon className="h-5 w-5" />
@@ -28,7 +28,7 @@ const MobileNavbar: FC<MobileNavbarProps> = ({ navbarItems }) => {
           <ul
             // biome-ignore lint/a11y/noNoninteractiveTabindex: safari has a bug that prevents the button from being focused
             tabIndex={0}
-            className="d-menu d-dropdown-content z-[1] mt-5 w-52 rounded-box bg-base-100 p-2 shadow"
+            className="d-menu d-dropdown-content z-1 mt-5 w-52 rounded-box bg-base-100 p-2 shadow-sm"
             data-pw-e2e="hamburger-menu-content"
           >
             {navbarItems.rightItems.map((navbarItem) => (

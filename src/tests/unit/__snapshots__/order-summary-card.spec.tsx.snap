@@ -9,10 +9,10 @@ exports[`should render "definitive" layout when provided 1`] = `
       class="flex flex-wrap items-center justify-between gap-2"
     >
       <div
-        class="flex flex-shrink gap-2"
+        class="flex shrink gap-2"
       >
         <div
-          class="hidden flex-shrink-0 min-[390px]:block"
+          class="hidden shrink-0 min-[390px]:block"
         >
           <img
             alt="Ördögfióka"
@@ -126,18 +126,18 @@ exports[`should render "full" layout by default 1`] = `
             class="flex items-center"
           >
             <button
-              class="d-btn no-animation rounded-r-none shadow-none focus:z-[1]"
+              class="d-btn no-animation rounded-r-none shadow-none focus:z-1"
               type="button"
             >
               -
             </button>
             <input
-              class="h-12 w-12 rounded-none bg-base-200 text-center shadow-none focus:z-[1]"
+              class="h-12 w-12 rounded-none bg-base-200 text-center shadow-none focus:z-1"
               type="number"
               value="2"
             />
             <button
-              class="d-btn no-animation rounded-l-none shadow-none focus:z-[1] false"
+              class="d-btn no-animation rounded-l-none shadow-none focus:z-1 false"
               type="button"
             >
               +
@@ -203,18 +203,18 @@ exports[`should render "full" layout by default 1`] = `
         class="flex items-center"
       >
         <button
-          class="d-btn no-animation rounded-r-none shadow-none focus:z-[1]"
+          class="d-btn no-animation rounded-r-none shadow-none focus:z-1"
           type="button"
         >
           -
         </button>
         <input
-          class="h-12 w-12 rounded-none bg-base-200 text-center shadow-none focus:z-[1]"
+          class="h-12 w-12 rounded-none bg-base-200 text-center shadow-none focus:z-1"
           type="number"
           value="2"
         />
         <button
-          class="d-btn no-animation rounded-l-none shadow-none focus:z-[1] false"
+          class="d-btn no-animation rounded-l-none shadow-none focus:z-1 false"
           type="button"
         >
           +

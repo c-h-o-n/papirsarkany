@@ -29,7 +29,7 @@ export default async function Kite(props: { params: Promise<Params> }) {
 
   return (
     <div className="h-full space-y-8 p-8 md:flex md:gap-4 md:space-y-0">
-      <div className="md:flex-[3]">
+      <div className="md:flex-3">
         {kite.image && (
           <Image
             className="mx-auto rounded-lg object-cover md:h-full md:w-fit"
@@ -45,7 +45,7 @@ export default async function Kite(props: { params: Promise<Params> }) {
           />
         )}
       </div>
-      <div className="space-y-4 md:flex-[2] md:space-y-8">
+      <div className="space-y-4 md:flex-2 md:space-y-8">
         <div className="text-center md:text-left">
           <h1 className="font-bold">{kite.name}</h1>
           {kite.isBeginner && (

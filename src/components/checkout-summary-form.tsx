@@ -64,20 +64,21 @@ const CheckoutSummaryForm: FC = () => {
         </Card>
       </div>
 
-      <label className="d-form-control">
-        <div className="d-label">
+      <fieldset className="d-fieldset">
+        <label className="d-label" htmlFor="comment">
           <span className="d-labels-text text-lg">Megjegyzés</span>
-        </div>
+        </label>
         <textarea
-          className="d-textarea d-textarea-bordered d-textarea-primary h-24"
+          id="comment"
+          className="d-textarea d-textarea-primary w-full"
           {...register("comment")}
         />
-        <div className="d-label justify-end">
+        <label className="d-label justify-end" htmlFor="comment">
           <span className="d-label-text-alt">
             14 napos elállási jog fentartva a rendelés leadásától számítva.
           </span>
-        </div>
-      </label>
+        </label>
+      </fieldset>
 
       <div className="text-center text-xs">
         A „Megrendelem” gomb megnyomásával Ön elfogadja az{" "}

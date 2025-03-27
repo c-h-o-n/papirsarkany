@@ -79,7 +79,7 @@ const CheckoutBillingForm: FC = () => {
     }
   };
   return (
-    <div className="mx-auto max-w-screen-sm">
+    <div className="mx-auto max-w-(--breakpoint-sm) space-y-2">
       <h2 className="underline underline-offset-8">Fizetés</h2>
 
       {shippingBillingMap[selectedShippingOption].map(
@@ -98,7 +98,7 @@ const CheckoutBillingForm: FC = () => {
       <h2 className="underline underline-offset-8">Számlázási cím</h2>
 
       {selectedShippingOption === "Postai szállítás" && (
-        <div className="d-form-control pt-4">
+        <fieldset className="d-fieldset pt-4">
           <label className="d-label cursor-pointer justify-start gap-x-2">
             <input
               {...register("isSameAdressAsShipping")}
@@ -110,61 +110,64 @@ const CheckoutBillingForm: FC = () => {
               A számlázási adataim megegyeznek a szállítási címemmel
             </span>
           </label>
-        </div>
+        </fieldset>
       )}
 
       {(selectedShippingOption !== "Postai szállítás" ||
         !getValues("isSameAdressAsShipping")) && (
         <>
-          <label className="d-form-control">
-            <div className="d-label">
+          <fieldset className="d-fieldset">
+            <label className="d-label" htmlFor="billingPostcode">
               <span className="d-label-text text-lg">Irányítószám</span>
-            </div>
+            </label>
             <input
+              id="billingPostcode"
               type="text"
-              className="d-input d-input-bordered"
+              className="d-input w-full"
               {...register("billingPostcode")}
             />
-            <div className="d-label">
+            <label className="d-label" htmlFor="billingPostcode">
               <span className="d-label-text-alt text-error">
                 {errors.billingPostcode?.message}
               </span>
-            </div>
-          </label>
-          <label className="d-form-control">
-            <div className="d-label">
+            </label>
+          </fieldset>
+          <fieldset className="d-fieldset">
+            <label className="d-label" htmlFor="billingCity">
               <span className="d-label-text text-lg">Város</span>
-            </div>
+            </label>
             <input
+              id="billingCity"
               type="text"
-              className="d-input d-input-bordered"
+              className="d-input w-full"
               {...register("billingCity")}
             />
-            <div className="d-label">
+            <label className="d-label" htmlFor="billingCity">
               <span className="d-label-text-alt text-error">
                 {errors.billingCity?.message}
               </span>
-            </div>
-          </label>
-          <label className="d-form-control">
-            <div className="d-label">
+            </label>
+          </fieldset>
+          <fieldset className="d-fieldset">
+            <label className="d-label" htmlFor="billingAddress">
               <span className="d-label-text text-lg">Cím</span>
-            </div>
+            </label>
             <input
+              id="billingAddress"
               type="text"
               placeholder="Utca, házszám"
-              className="d-input d-input-bordered"
+              className="d-input w-full"
               {...register("billingAddress")}
             />
-            <div className="d-label">
+            <label className="d-label" htmlFor="billingAddress">
               <span className="d-label-text-alt text-error">
                 {errors.billingAddress?.message}
               </span>
-            </div>
+            </label>
             <input
               type="text"
               placeholder="Emelet, ajtó, egyéb (opcionális)"
-              className="d-input d-input-bordered"
+              className="d-input w-full"
               {...register("billingSubaddress")}
             />
             <div className="d-label">
@@ -172,7 +175,7 @@ const CheckoutBillingForm: FC = () => {
                 {errors.billingSubaddress?.message}
               </span>
             </div>
-          </label>
+          </fieldset>
         </>
       )}
 

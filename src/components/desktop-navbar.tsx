@@ -16,7 +16,7 @@ const DesktopNavbar: FC<DesktopNavbarProps> = ({ navbarItems }) => {
       <div className="d-navbar-start hidden gap-1 md:flex">
         <Link
           href={"/#hello"}
-          className="d-btn d-btn-ghost hover:!bg-sky-200 py-1 text-xl normal-case"
+          className="d-btn d-btn-ghost py-1 text-xl normal-case hover:bg-sky-200!"
           aria-label="home"
         >
           <HomeIcon className="h-full" />

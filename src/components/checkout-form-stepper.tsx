@@ -92,13 +92,13 @@ const CheckoutFormStepper: FC<CheckoutStepperProps> = ({ children }) => {
   }
 
   return (
-    <div className={`container py-8 ${!isLast && "max-w-screen-xl"}`}>
+    <div className={`container py-8 ${!isLast && "max-w-(--breakpoint-xl)"}`}>
       <FormProvider {...formMethods}>
         <form
           onSubmit={handleSubmit(async (data) => await onSubmit(data))}
           className="space-y-4 [&>h2]:py-2"
         >
-          <div className="mx-auto max-w-screen-md">
+          <div className="mx-auto max-w-(--breakpoint-md)">
             <StepProgress />
           </div>
           {Children.toArray(children)[step]}

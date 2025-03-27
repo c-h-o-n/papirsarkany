@@ -32,34 +32,37 @@ const TwineCard: FC<TwineCardProps> = ({ twine }) => {
       <Card className="w-full space-y-3 p-5">
         <h3 className="font-bold">{twine.name}</h3>{" "}
         <span>(szakítószilárdság: {selectedDiameter.tensileStrength} kg)</span>
-        <div className="flex gap-2">
-          <div className="flex-shrink">
-            <label className="d-form-control w-full max-w-xs">
-              <div className="d-label">
-                <span className="d-label-text font-bold">Átmérő</span>
-              </div>
-              <select className="d-select d-select-bordered">
-                {twine.diameters.map((diamaterItem) => (
-                  <option key={diamaterItem._key}>
-                    {diamaterItem.diameter} mm
-                  </option>
-                ))}
-              </select>
+        <div className="flex flex-wrap gap-2">
+          <fieldset className="d-fieldset min-w-fit flex-1">
+            <label
+              className="d-label"
+              htmlFor={`select-diameters-${twine._id}`}
+            >
+              <span className="d-label-text font-bold">Átmérő</span>
             </label>
-          </div>
+            <select id={`select-diameters-${twine._id}`} className="d-select">
+              {twine.diameters.map((diamaterItem) => (
+                <option key={diamaterItem._key}>
+                  {diamaterItem.diameter} mm
+                </option>
+              ))}
+            </select>
+          </fieldset>
 
-          <div className="self-end">
-            <div className="d-join rounded-r-full outline-offset-0 transition-all duration-75 focus-within:outline focus-within:outline-2 focus-within:outline-base-300 focus-within:outline-offset-2">
-              <input
-                type="number"
-                className="d-input d-join-item d-input-bordered !outline-none w-full transition-all duration-150 focus:rounded-l-[0.0625rem]"
-                placeholder="hossz"
-                onChange={(e) => setLength(+e.target.value)}
-              />
-              <span className="d-join-item inline-flex items-center justify-center rounded-r-full bg-base-200 px-4">
-                m
-              </span>
-            </div>
+          <div className="flex-1/2 self-end">
+            <fieldset className="d-fieldset">
+              <div className="d-join rounded-r-full outline-offset-0 transition-all duration-75 focus-within:outline-2 focus-within:outline-offset-2">
+                <input
+                  type="number"
+                  className="d-input d-join-item w-[clamp(4rem,14rem,100%)] outline-hidden! transition-all duration-150 focus:rounded-l-[0.0625rem]"
+                  placeholder="hossz"
+                  onChange={(e) => setLength(+e.target.value)}
+                />
+                <span className="d-join-item inline-flex items-center justify-center rounded-r-full border border-neutral-content border-l-0 bg-base-200 px-4">
+                  m
+                </span>
+              </div>
+            </fieldset>
           </div>
         </div>
         {selectedDiameter.pricePerMeter && (

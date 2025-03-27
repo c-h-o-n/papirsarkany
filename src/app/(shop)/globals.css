@@ -1,31 +1,44 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@plugin "daisyui" {
+  prefix: "d-";
+  /* biome-ignore lint/correctness/noUnknownProperty: daisyui config option */
+  themes: light --default;
+}
+@plugin "daisyui/theme" {
+  /* biome-ignore lint/correctness/noUnknownProperty: daisyui/theme config option */
+  name: "light";
+  /* biome-ignore lint/correctness/noUnknownProperty: daisyui/theme config option*/
+  default: true;
 
-body {
-  /* biome-ignore lint/correctness/noUnknownFunction: theme is a Tailwind function */
-  color: theme("colors.base-content");
-  /* biome-ignore lint/correctness/noUnknownFunction: theme is a Tailwind function */
-  background: theme("colors.base-100");
+  --color-primary: #0e7daf;
+  --color-primary-content: #ffffff;
+
+  --color-error: #ef5258;
 }
 
-@layer components {
-  .material-pattern {
-    background-image: url(/material-pattern.svg);
-  }
-
-  .kite-pattern {
-    background-image: url(/kite-pattern.svg);
-  }
-
-  .home-pattern {
-    background-image: url(/home-pattern.svg);
-    background-size: contain;
-    mask-image: linear-gradient(0deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 33%);
-  }
+@theme {
+  --color-foxpost-red: #a82220;
 }
 
-/* TODO migrate this into tailwind config as plugin using addBase()) */
+@utility container {
+  margin-inline: auto;
+  padding-inline: 2rem;
+}
+
+@utility material-pattern {
+  background-image: url(/material-pattern.svg);
+}
+
+@utility kite-pattern {
+  background-image: url(/kite-pattern.svg);
+}
+
+@utility home-pattern {
+  background-image: url(/home-pattern.svg);
+  background-size: contain;
+  mask-image: linear-gradient(0deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 33%);
+}
+
 @layer base {
   h1 {
     @apply text-3xl md:text-4xl lg:text-5xl;
@@ -56,18 +69,16 @@ body {
   }
 }
 
-@layer utilities {
-  .text-wrap-balance {
-    text-wrap: balance;
-  }
+@utility d-label {
+  @apply text-base-content;
 }
 
+/* remove default controls on number inputs */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   margin: 0;
   -webkit-appearance: none; /* Safari */
 }
-
 input[type="number"] {
   appearance: none;
   -moz-appearance: textfield; /* Firefox */

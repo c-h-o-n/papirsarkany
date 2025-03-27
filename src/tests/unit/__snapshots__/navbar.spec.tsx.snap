@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`should render desktop-navbar on screens larger then 768px 1`] = `
+exports[`should render desktop-navbar on screens larger then md breakpoint 1`] = `
 <div>
   <div
     class="sticky top-0 z-40"
@@ -13,7 +13,7 @@ exports[`should render desktop-navbar on screens larger then 768px 1`] = `
       >
         <a
           aria-label="home"
-          class="d-btn d-btn-ghost hover:!bg-sky-200 py-1 text-xl normal-case"
+          class="d-btn d-btn-ghost hover:bg-sky-200! py-1 text-xl normal-case"
           href="/#hello"
         >
           <svg
@@ -149,7 +149,7 @@ exports[`should render desktop-navbar on screens larger then 768px 1`] = `
 </div>
 `;
 
-exports[`should render mobile-navbar on screens smaller then 768px 1`] = `
+exports[`should render mobile-navbar on screens smaller then md breakpoint 1`] = `
 <div>
   <div
     class="sticky top-0 z-40"
@@ -165,7 +165,7 @@ exports[`should render mobile-navbar on screens smaller then 768px 1`] = `
         >
           <div
             aria-label="mobile navigation menu"
-            class="d-btn d-btn-ghost focus:ring focus:ring-neutral"
+            class="d-btn d-btn-ghost focus:ring-3 focus:ring-neutral"
             role="button"
             tabindex="0"
           >
@@ -185,7 +185,7 @@ exports[`should render mobile-navbar on screens smaller then 768px 1`] = `
             </svg>
           </div>
           <ul
-            class="d-menu d-dropdown-content z-[1] mt-5 w-52 rounded-box bg-base-100 p-2 shadow"
+            class="d-menu d-dropdown-content z-1 mt-5 w-52 rounded-box bg-base-100 p-2 shadow-sm"
             data-pw-e2e="hamburger-menu-content"
             tabindex="0"
           >
