@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 @plugin "daisyui" {
   prefix: "d-";
   /* biome-ignore lint/correctness/noUnknownProperty: daisyui config option */
