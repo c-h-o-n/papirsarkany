@@ -13,7 +13,7 @@ exports[`should render desktop-navbar on screens larger then md breakpoint 1`] =
       >
         <a
           aria-label="home"
-          class="d-btn d-btn-ghost hover:bg-sky-200! py-1 text-xl normal-case"
+          class="d-btn d-btn-ghost py-1 text-xl normal-case hover:bg-sky-200!"
           href="/#hello"
         >
           <svg

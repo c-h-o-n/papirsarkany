@@ -123,21 +123,21 @@ exports[`should render "full" layout by default 1`] = `
         </h4>
         <div>
           <div
-            class="flex items-center"
+            class="[&>button]:active:translate-0! flex items-stretch rounded bg-base-200"
           >
             <button
-              class="d-btn no-animation rounded-r-none shadow-none focus:z-1"
+              class="d-btn rounded-r-none border-r-0 focus:z-1"
               type="button"
             >
               -
             </button>
             <input
-              class="h-12 w-12 rounded-none bg-base-200 text-center shadow-none focus:z-1"
+              class="d-input d-input-ghost h-auto w-12 rounded-none border-gray-200! border-x-0 text-center focus:z-1 focus:bg-transparent"
               type="number"
               value="2"
             />
             <button
-              class="d-btn no-animation rounded-l-none shadow-none focus:z-1 false"
+              class="d-btn rounded-l-none border-l-0 focus:z-1 false"
               type="button"
             >
               +
@@ -149,7 +149,7 @@ exports[`should render "full" layout by default 1`] = `
           type="button"
         >
           <svg
-            class="h-6 w-6"
+            class="h-6 w-6 opacity-66"
             fill="none"
             height="800px"
             viewBox="0 0 24 24"
@@ -200,21 +200,21 @@ exports[`should render "full" layout by default 1`] = `
       data-testid="cart-item-controls"
     >
       <div
-        class="flex items-center"
+        class="[&>button]:active:translate-0! flex items-stretch rounded bg-base-200"
       >
         <button
-          class="d-btn no-animation rounded-r-none shadow-none focus:z-1"
+          class="d-btn rounded-r-none border-r-0 focus:z-1"
           type="button"
         >
           -
         </button>
         <input
-          class="h-12 w-12 rounded-none bg-base-200 text-center shadow-none focus:z-1"
+          class="d-input d-input-ghost h-auto w-12 rounded-none border-gray-200! border-x-0 text-center focus:z-1 focus:bg-transparent"
           type="number"
           value="2"
         />
         <button
-          class="d-btn no-animation rounded-l-none shadow-none focus:z-1 false"
+          class="d-btn rounded-l-none border-l-0 focus:z-1 false"
           type="button"
         >
           +
@@ -225,7 +225,7 @@ exports[`should render "full" layout by default 1`] = `
         type="button"
       >
         <svg
-          class="h-6 w-6"
+          class="h-6 w-6 opacity-66"
           fill="none"
           height="800px"
           viewBox="0 0 24 24"
