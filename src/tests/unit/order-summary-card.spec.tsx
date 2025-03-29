@@ -1,7 +1,7 @@
 import { render, renderHook, screen } from "@testing-library/react";
 import { expect, test } from "vitest";
 import OrderSummaryCard from "~/components/order-summary-card";
-import { product } from "~/mocks/product.mock";
+import { kiteMock } from "~/mocks/product.mock";
 import { useCartStore } from "~/store/use-cart-store";
 
 test('should render "Üres a kosarad" when cart is empty', () => {
@@ -18,7 +18,7 @@ test('should render "definitive" layout when provided', () => {
     useCartStore.setState({
       cart: [
         {
-          ...product,
+          ...kiteMock,
           quantity: 2,
         },
       ],
@@ -35,7 +35,7 @@ test('should render "full" layout by default', () => {
     useCartStore.setState({
       cart: [
         {
-          ...product,
+          ...kiteMock,
           quantity: 2,
         },
       ],

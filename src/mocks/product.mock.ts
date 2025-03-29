@@ -1,6 +1,6 @@
 import type { InferredProduct } from "~/lib/types";
 
-export const product = {
+export const kiteMock = {
   packageInfo: {
     z: 1,
     x: 1,

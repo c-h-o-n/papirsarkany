@@ -3,7 +3,7 @@ import { expect, test } from "vitest";
 
 import CartMenuItem from "~/components/cart-menu-item";
 import useCart from "~/hooks/use-cart";
-import { product } from "~/mocks/product.mock";
+import { kiteMock } from "~/mocks/product.mock";
 import { useCartStore } from "~/store/use-cart-store";
 
 test("should render with correct numberof of total cart items", () => {
@@ -11,7 +11,7 @@ test("should render with correct numberof of total cart items", () => {
     useCartStore.setState({
       cart: [
         {
-          ...product,
+          ...kiteMock,
           quantity: 2,
         },
       ],
@@ -32,7 +32,7 @@ test("should rendered as a link to the cart page", () => {
     useCartStore.setState({
       cart: [
         {
-          ...product,
+          ...kiteMock,
           quantity: 2,
         },
       ],

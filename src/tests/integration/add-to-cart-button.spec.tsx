@@ -4,17 +4,17 @@ import { expect, test } from "vitest";
 import AddToCartButton from "~/components/add-to-cart-button";
 import useCart from "~/hooks/use-cart";
 import { useCartStore } from "~/store/use-cart-store";
-import { product } from "../../mocks/product.mock";
+import { kiteMock } from "../../mocks/product.mock";
 
 test('Add to cart button has text "Kosárba"', () => {
-  render(<AddToCartButton product={product} />);
+  render(<AddToCartButton product={kiteMock} />);
 
   expect(screen.getByRole("button")).toBeDefined();
   expect(screen.getByRole("button").textContent).toBe("Kosárba");
 });
 
 test("Add to cart button increases item quantity in cart on click", () => {
-  render(<AddToCartButton product={product} />);
+  render(<AddToCartButton product={kiteMock} />);
 
   renderHook(() => useCartStore.setState({ cart: [] }));
 

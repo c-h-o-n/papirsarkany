@@ -5,7 +5,7 @@ import {
   isFitInMaxLimit,
 } from "~/lib/foxpost";
 import type { PackageInfo } from "~/lib/types";
-import { product } from "~/mocks/product.mock";
+import { kiteMock } from "~/mocks/product.mock";
 
 test("isFitInMaxLimit should return as expected", () => {
   const largestPackageFit: PackageInfo = {
@@ -62,7 +62,7 @@ test("getFoxpostPackageSize should match package constraints", () => {
 });
 
 test("getTotalPackageInfo should return aggregated package info", () => {
-  const cart = [{ ...product, quantity: 3 }];
+  const cart = [{ ...kiteMock, quantity: 3 }];
 
   expect(getTotalPackageInfo(cart)).toEqual({
     x: 3,
