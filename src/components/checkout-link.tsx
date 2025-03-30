@@ -13,10 +13,8 @@ const CheckoutLink: FC = () => {
 
   return (
     <div className="flex justify-end">
-      <Link href={"/penztar"}>
-        <button className="d-btn d-btn-primary uppercase" type="button">
-          Tovább a fizetéshez
-        </button>
+      <Link href={"/penztar"} className="d-btn d-btn-primary uppercase">
+        Tovább a fizetéshez
       </Link>
     </div>
   );
