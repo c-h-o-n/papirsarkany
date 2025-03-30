@@ -150,7 +150,7 @@ const CheckoutShippingForm: FC = () => {
           <ShippingOptionRadioInput
             label={
               <>
-                <div className="text-foxpost-red">Foxpost automatába</div>
+                <div className="text-foxpost-red">FOXPOST-Packeta Group automata</div>
                 {!isFitInFoxpostLimit && (
                   <div className="font-normal text-sm sm:text-lg">
                     {`maximum ${FOXPOST_PACKAGE_MAX_LIMIT.weight}kg és (${FOXPOST_PACKAGE_MAX_LIMIT.x}x${FOXPOST_PACKAGE_MAX_LIMIT.y}x${FOXPOST_PACKAGE_MAX_LIMIT.z}cm-ig)`}
