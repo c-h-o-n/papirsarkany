@@ -35,7 +35,7 @@ jobs:
       - name: Compare versions
         id: compare_versions
         run: |
-          if [ "$package_version" == "$latest_release" ]; then
+          if [ "v$package_version" == "$latest_release" ]; then
             echo "Version number has not changed! Failing the job."
             exit 1
           fi
@@ -44,7 +44,7 @@ jobs:
   release:
     name: Release pushed tag
     needs: check-version-bump
-    if: needs.check-version-bump.outputs.should_release == 'true'
+    if: needs.check-version-bump.outputs.should_release == true
     runs-on: ubuntu-latest
     steps:
       - name: Create Release
