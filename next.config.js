@@ -1,14 +1,8 @@
 import NextBundleAnalyzer from "@next/bundle-analyzer";
-import createNextPluginPreval from "next-plugin-preval/config.js";
-
-const withNextPluginPreval = createNextPluginPreval();
 
 const withBundleAnalyzer = NextBundleAnalyzer({
   enabled: process.env.ANALYZE === "true",
 });
-
-const withPlugins = (nextConfig) =>
-  withNextPluginPreval(withBundleAnalyzer(nextConfig));
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -31,4 +25,4 @@ const nextConfig = {
   },
 };
 
-export default withPlugins(nextConfig);
+export default withBundleAnalyzer(nextConfig);
