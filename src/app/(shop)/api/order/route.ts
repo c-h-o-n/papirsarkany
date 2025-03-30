@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 
 import { createOrder } from "~/lib/db";
 import { sendEmail, sendOrderEmails, setSendgridApiKey } from "~/lib/email";
+import { env } from '~/lib/env';
 import { currencyFormatter } from "~/lib/formatters";
 import {
   createParcel,
@@ -94,7 +95,7 @@ export async function POST(request: Request) {
 
     if (isProdEnv()) {
       await sendEmail({
-        from: "mail@papirsarkany.hu",
+        from: env.VENDOR_EMAIL_ADDRESS,
         to: "balint.ducsai@gmail.com",
         subject: "error detected in papirsarkany.hu/api/order",
         text: `Error caught in url papirsarkany/api/order. \nreason: ${error}`,
