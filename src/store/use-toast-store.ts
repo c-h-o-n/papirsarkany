@@ -1,8 +1,8 @@
-import 'client-only';
-import { SetOptional } from 'type-fest';
-import { create } from 'zustand';
-import { delay } from '~/lib/helpers';
-import { Toast } from '~/lib/types';
+import "client-only";
+import type { SetOptional } from "type-fest";
+import { create } from "zustand";
+import { delay } from "~/lib/helpers";
+import type { Toast } from "~/lib/types";
 
 /**
  * number of ms to wait before automatically closing the toast
@@ -21,7 +21,7 @@ type Actions = {
   /**
    * Add a new toast to the store
    */
-  toast: (toast: SetOptional<Toast, 'id'>) => void;
+  toast: (toast: SetOptional<Toast, "id">) => void;
   /**
    * Remove a toast from the store
    */

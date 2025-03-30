@@ -1,12 +1,13 @@
-name: Run unit tests
+name: Lint and format
 
 on:
-  push:
+  pull_request:
+    branches:
+      - develop
 
-jobs: 
-  unit-tests:
+jobs:
+  lint-and-format:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -17,11 +18,11 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
-          cache: 'pnpm'
+          node-version-file: '.node-version'
+          cache: "pnpm"
 
       - name: Install dependencies
         run: pnpm install
 
-      - name: Run tests
-        run: pnpm run test:unit
+      - name: Run lint and format
+        run: pnpm run lint-and-format

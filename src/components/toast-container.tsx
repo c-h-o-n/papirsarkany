@@ -1,29 +1,31 @@
-'use client';
+"use client";
 
-import { AnimatePresence, m } from 'framer-motion';
-import { FC } from 'react';
+import { AnimatePresence, m } from "motion/react";
+import type { FC } from "react";
 
-import { useToastStore } from '~/store/use-toast-store';
-import LazyLoadFramerMotion from './lazy-load-framer-motion';
-import Toast from './toast';
+import { useToastStore } from "~/store/use-toast-store";
+import LazyLoadFramerMotion from "./lazy-load-framer-motion";
+import Toast from "./toast";
 
-type ToastContainerProps = {
-  // autoClose?: number;
-  // motionProps?: HTMLMotionProps<'div'>;
-};
+/**
+ * Expand with the following props:
+ *  - autoClose?: number;
+ *  - motionProps?: HTMLMotionProps<'div'>;
+ */
 
-const ToastContainer: FC<ToastContainerProps> = () => {
+const ToastContainer: FC = () => {
   const toasts = useToastStore((state) => state.toasts);
+  const dismissToast = useToastStore((state) => state.dismissToast);
 
   return toasts.map((toast) => (
     <LazyLoadFramerMotion key={toast.id}>
       <AnimatePresence>
         {toast.active && (
           <m.div
-            className="d-toast d-toast-end d-toast-bottom z-50"
+            className="d-toast d-toast-end d-toast-bottom z-50 cursor-pointer"
             initial={{
               opacity: 0,
-              x: '100%',
+              x: "100%",
               scaleY: 0.33,
             }}
             animate={{
@@ -33,9 +35,10 @@ const ToastContainer: FC<ToastContainerProps> = () => {
             }}
             exit={{
               opacity: 0,
-              x: '100%',
+              x: "100%",
               scaleY: 0.33,
             }}
+            onClick={() => dismissToast(toast.id)}
           >
             <Toast toast={toast} />
           </m.div>

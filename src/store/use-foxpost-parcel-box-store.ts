@@ -1,5 +1,5 @@
-import 'client-only';
-import { create } from 'zustand';
+import "client-only";
+import { create } from "zustand";
 
 type State = {
   destination?: string;

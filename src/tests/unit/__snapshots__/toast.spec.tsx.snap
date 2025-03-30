@@ -1,0 +1,29 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Error Toast should match snapshot 1`] = `
+<div>
+  <div
+    class="d-alert d-alert-error"
+  >
+    <span
+      class="font-semibold text-white"
+    >
+      Something terribly went wrong!
+    </span>
+  </div>
+</div>
+`;
+
+exports[`Success Toast should match snapshot 1`] = `
+<div>
+  <div
+    class="d-alert d-alert-success"
+  >
+    <span
+      class="font-semibold"
+    >
+      Congrats! You are awesome!
+    </span>
+  </div>
+</div>
+`;

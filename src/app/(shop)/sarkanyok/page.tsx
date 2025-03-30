@@ -1,6 +1,6 @@
-import KiteCard from '~/components/kite-card';
-import MasonryContainer from '~/components/masonry-container';
-import { getAllKites } from '~/lib/cms';
+import KiteCard from "~/components/kite-card";
+import ProductContainer from "~/components/product-container";
+import { getAllKites } from "~/lib/cms";
 
 export default async function Kites() {
   const kites = await getAllKites();
@@ -12,11 +12,11 @@ export default async function Kites() {
         <h3>A vételár tartalmaz 100m eresztőzsinórt és zsinórtartót.</h3>
       </div>
 
-      <MasonryContainer>
+      <ProductContainer>
         {kites.map((kite) => (
-          <KiteCard kite={kite} key={kite._id} />
+          <KiteCard key={kite._id} kite={kite} />
         ))}
-      </MasonryContainer>
+      </ProductContainer>
     </div>
   );
 }

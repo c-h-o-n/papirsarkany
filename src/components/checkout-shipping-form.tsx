@@ -1,21 +1,22 @@
-'use client';
+"use client";
 
-import { AnimatePresence, m } from 'framer-motion';
-import { FC, useMemo, useState } from 'react';
-import { useFormContext } from 'react-hook-form';
+import { AnimatePresence, m } from "motion/react";
+import { type FC, useMemo, useState } from "react";
+import { useFormContext } from "react-hook-form";
 
 import {
   FOXPOST_PACKAGE_MAX_LIMIT,
   FOXPOST_SHIPPING_FEE,
   LOCAL_PICKUP_ADDRESS,
-} from '~/lib/constants';
-import { getTotalPackageInfo, isFitInMaxLimit } from '~/lib/foxpost';
-import { OrderForm } from '~/lib/validation-schemas';
-import { useCartStore } from '~/store/use-cart-store';
-import FoxpostMap from './foxpost-map';
-import LazyLoadFramerMotion from './lazy-load-framer-motion';
-import PhoneNumberInput from './phone-number-input';
-import ShippingOptionRadioInput from './shipping-option-radio-input';
+} from "~/lib/constants";
+import { parsePhoneNumber } from "~/lib/formatters";
+import { getTotalPackageInfo, isFitInMaxLimit } from "~/lib/foxpost";
+import type { OrderForm } from "~/lib/validation-schemas";
+import { useCartStore } from "~/store/use-cart-store";
+import FormattedPhoneNumberInput from "./formatted-phone-number-input";
+import FoxpostMap from "./foxpost-map";
+import LazyLoadFramerMotion from "./lazy-load-framer-motion";
+import ShippingOptionRadioInput from "./shipping-option-radio-input";
 
 const CheckoutShippingForm: FC = () => {
   const {
@@ -35,111 +36,125 @@ const CheckoutShippingForm: FC = () => {
   const isFitInFoxpostLimit = isFitInMaxLimit(totalPackageSize);
 
   const onPersonalPickupOptionClick = () => {
-    setValue('shippingPostcode', LOCAL_PICKUP_ADDRESS.shippingPostcode);
-    setValue('shippingCity', LOCAL_PICKUP_ADDRESS.shippingCity);
-    setValue('shippingAddress', LOCAL_PICKUP_ADDRESS.shippingAddress);
+    if (getValues("shippingOption") === "Személyes átvétel") {
+      return;
+    }
 
-    trigger(['shippingPostcode', 'shippingCity', 'shippingAddress']);
+    setValue("shippingPostcode", LOCAL_PICKUP_ADDRESS.shippingPostcode);
+    setValue("shippingCity", LOCAL_PICKUP_ADDRESS.shippingCity);
+    setValue("shippingAddress", LOCAL_PICKUP_ADDRESS.shippingAddress);
+
+    trigger(["shippingPostcode", "shippingCity", "shippingAddress"]);
   };
 
   const onFoxpostOptionClick = () => {
-    const { shippingOption } = getValues();
-
-    if (shippingOption !== 'Foxpost automatába') {
-      setValue('shippingPostcode', '');
-      setValue('shippingCity', '');
-      setValue('shippingAddress', '');
+    if (getValues("shippingOption") === "Foxpost automatába") {
+      return;
     }
+
+    setValue("shippingPostcode", "");
+    setValue("shippingCity", "");
+    setValue("shippingAddress", "");
 
     setIsShowFoxpostMap(true);
   };
 
   const onPostOptionClick = () => {
-    const { shippingOption } = getValues();
-
-    if (shippingOption !== 'Postai szállítás') {
-      setValue('shippingPostcode', '');
-      setValue('shippingCity', '');
-      setValue('shippingAddress', '');
+    if (getValues("shippingOption") === "Postai szállítás") {
+      return;
     }
+
+    setValue("shippingPostcode", "");
+    setValue("shippingCity", "");
+    setValue("shippingAddress", "");
   };
 
   return (
     <>
       <div>
-        <div className="mx-auto max-w-screen-sm">
+        <div className="mx-auto max-w-(--breakpoint-sm) space-y-2">
           <h2 className="underline underline-offset-8">Elérhetőség</h2>
-          <div className="d-form-control">
-            <label className="d-label">
+          <fieldset className="d-fieldset">
+            <label className="d-label" htmlFor="email">
               <span className="d-label-text text-lg">Email</span>
             </label>
             <input
+              id="email"
               type="text"
-              placeholder={'mail.papirsarkany@gmail.com'}
-              className="d-input d-input-bordered"
-              {...register('email')}
+              placeholder={"mail.papirsarkany@gmail.com"}
+              className="d-input w-full"
+              {...register("email")}
             />
-            <label className="d-label">
+            <label className="d-label" htmlFor="email">
               <span className="d-label-text-alt text-error">
                 {errors.email?.message}
               </span>
             </label>
-          </div>
+          </fieldset>
           <div className="gap-4 sm:grid sm:grid-cols-2">
-            <div className="d-form-control">
-              <label className="d-label">
+            <fieldset className="d-fieldset">
+              <label className="d-label" htmlFor="lastName">
                 <span className="d-label-text text-lg">Vezetéknév</span>
               </label>
               <input
+                id="lastName"
                 type="text"
-                className="d-input d-input-bordered"
-                {...register('lastName')}
+                className="d-input w-full"
+                {...register("lastName")}
               />
-              <label className="d-label">
+              <label className="d-label" htmlFor="lastName">
                 <span className="d-label-text-alt text-error">
                   {errors.lastName?.message}
                 </span>
               </label>
-            </div>
-            <div className="d-form-control">
-              <label className="d-label">
+            </fieldset>
+            <fieldset className="d-fieldset">
+              <label className="d-label" htmlFor="firstName">
                 <span className="d-label-text text-lg">Keresztnév</span>
               </label>
               <input
+                id="firstName"
                 type="text"
-                className="d-input d-input-bordered"
-                {...register('firstName')}
+                className="d-input w-full"
+                {...register("firstName")}
               />
-              <label className="d-label">
+              <label className="d-label" htmlFor="firstName">
                 <span className="d-label-text-alt text-error">
                   {errors.firstName?.message}
                 </span>
               </label>
-            </div>
+            </fieldset>
           </div>
-          <div className="d-form-control">
-            <label className="d-label">
+          <fieldset className="d-fieldset">
+            <label className="d-label" htmlFor="phoneNumber">
               <span className="d-label-text text-lg">Telefonszám</span>
             </label>
-            <PhoneNumberInput {...register('phoneNumber')} />
-            <label className="d-label">
+            <FormattedPhoneNumberInput
+              id="phoneNumber"
+              {...register("phoneNumber", {
+                setValueAs: (value: string) => parsePhoneNumber(value),
+              })}
+            />
+            <label className="d-label" htmlFor="phoneNumber">
               <span className="d-label-text-alt text-error">
                 {errors.phoneNumber?.message}
               </span>
             </label>
-          </div>
+          </fieldset>
           <h2 className="underline underline-offset-8">Szállítás</h2>
           <ShippingOptionRadioInput
-            label={'Személyes átvétel'}
+            label={"Személyes átvétel"}
             onClick={onPersonalPickupOptionClick}
             value="Személyes átvétel"
           />
           <ShippingOptionRadioInput
             label={
               <>
-                <div className="text-foxpost-red">Foxpost automatába </div>
+                <div className="text-foxpost-red">
+                  FOXPOST-Packeta Group automata
+                </div>
                 {!isFitInFoxpostLimit && (
-                  <div className="text-sm font-normal sm:text-lg">
+                  <div className="font-normal text-sm sm:text-lg">
                     {`maximum ${FOXPOST_PACKAGE_MAX_LIMIT.weight}kg és (${FOXPOST_PACKAGE_MAX_LIMIT.x}x${FOXPOST_PACKAGE_MAX_LIMIT.y}x${FOXPOST_PACKAGE_MAX_LIMIT.z}cm-ig)`}
                   </div>
                 )}
@@ -153,12 +168,12 @@ const CheckoutShippingForm: FC = () => {
         </div>
         <LazyLoadFramerMotion>
           <AnimatePresence>
-            {watch('shippingOption') === 'Foxpost automatába' &&
+            {watch("shippingOption") === "Foxpost automatába" &&
               isShowFoxpostMap && (
                 <m.div
                   initial={{
                     scaleY: 0,
-                    transformOrigin: 'top',
+                    transformOrigin: "top",
                   }}
                   animate={{
                     scaleY: 1,
@@ -166,7 +181,7 @@ const CheckoutShippingForm: FC = () => {
                   exit={{
                     scaleY: 0,
                     opacity: 0,
-                    transitionTimingFunction: 'ease-in',
+                    transitionTimingFunction: "ease-in",
                   }}
                 >
                   <FoxpostMap hideMap={() => setIsShowFoxpostMap(false)} />
@@ -174,57 +189,60 @@ const CheckoutShippingForm: FC = () => {
               )}
           </AnimatePresence>
         </LazyLoadFramerMotion>
-        <div className="mx-auto max-w-screen-sm">
+        <div className="mx-auto mt-2 max-w-(--breakpoint-sm) space-y-2">
           <ShippingOptionRadioInput
             label="Postai szállítás"
             value="Postai szállítás"
             onClick={onPostOptionClick}
-            shippingFee={'szállítási költség'}
+            shippingFee={"szállítási költség"}
           />
           <span className="text-error">{errors.shippingOption?.message}</span>
-          {watch('shippingOption') === 'Postai szállítás' && (
+          {watch("shippingOption") === "Postai szállítás" && (
             <>
-              <div className="d-form-control">
-                <label className="d-label">
+              <fieldset className="d-fieldset">
+                <label className="d-label" htmlFor="shippingPostcode">
                   <span className="d-label-text text-lg">Irányítószám</span>
                 </label>
                 <input
+                  id="shippingPostcode"
                   type="text"
-                  className="d-input d-input-bordered"
-                  {...register('shippingPostcode')}
+                  className="d-input w-full"
+                  {...register("shippingPostcode")}
                 />
-                <label className="d-label">
+                <label className="d-label" htmlFor="shippingPostcode">
                   <span className="d-label-text-alt text-error">
                     {errors.shippingPostcode?.message}
                   </span>
                 </label>
-              </div>
-              <div className="d-form-control">
-                <label className="d-label">
+              </fieldset>
+              <fieldset className="d-fieldset">
+                <label className="d-label" htmlFor="shippingCity">
                   <span className="d-label-text text-lg">Város</span>
                 </label>
                 <input
+                  id="shippingCity"
                   type="text"
-                  className="d-input d-input-bordered"
-                  {...register('shippingCity')}
+                  className="d-input w-full"
+                  {...register("shippingCity")}
                 />
-                <label className="d-label">
+                <label className="d-label" htmlFor="shippingCity">
                   <span className="d-label-text-alt text-error">
                     {errors.shippingCity?.message}
                   </span>
                 </label>
-              </div>
-              <div className="d-form-control">
-                <label className="d-label">
+              </fieldset>
+              <fieldset className="d-fieldset">
+                <label className="d-label" htmlFor="shippingAddress">
                   <span className="d-label-text text-lg">Cím</span>
                 </label>
                 <input
+                  id="shippingAddress"
                   type="text"
                   placeholder="Utca, házszám"
-                  className="d-input d-input-bordered"
-                  {...register('shippingAddress')}
+                  className="d-input w-full"
+                  {...register("shippingAddress")}
                 />
-                <label className="d-label">
+                <label className="d-label" htmlFor="shippingAddress">
                   <span className="d-label-text-alt text-error">
                     {errors.shippingAddress?.message}
                   </span>
@@ -232,25 +250,25 @@ const CheckoutShippingForm: FC = () => {
                 <input
                   type="text"
                   placeholder="Emelet, ajtó, egyéb (opcionális)"
-                  className="d-input d-input-bordered"
-                  {...register('shippingSubaddress')}
+                  className="d-input w-full"
+                  {...register("shippingSubaddress")}
                 />
-                <label className="d-label">
+                <div className="d-label">
                   <span className="d-label-text-alt text-error">
                     {errors.shippingSubaddress?.message}
                   </span>
-                </label>
-              </div>
+                </div>
+              </fieldset>
             </>
           )}
         </div>
       </div>
 
-      <div className="mx-auto mt-4 max-w-screen-sm">
+      <div className="mx-auto mt-4 max-w-(--breakpoint-sm)">
         <div className="flex justify-end">
           <button
             type="submit"
-            className="d-btn d-btn-primary uppercase d-btn-block sm:w-auto"
+            className="d-btn d-btn-primary d-btn-block uppercase sm:w-auto"
           >
             Tovább
           </button>

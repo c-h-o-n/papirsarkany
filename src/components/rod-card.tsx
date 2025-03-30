@@ -1,12 +1,12 @@
-'use client';
+"use client";
 
-import { ChangeEvent, FC, useState } from 'react';
+import { type ChangeEvent, type FC, useState } from "react";
 
-import { Rod, RodDiameters } from '@sanity/lib/sanity.types';
-import { currencyFormatter, pricePerMeterFormatter } from '~/lib/formatters';
-import { WithImageAsset } from '~/lib/types';
-import AddToCartButton from './add-to-cart-button';
-import Card from './card';
+import type { Rod, RodDiameters } from "@sanity/lib/sanity.types";
+import { currencyFormatter, pricePerMeterFormatter } from "~/lib/formatters";
+import type { WithImageAsset } from "~/lib/types";
+import AddToCartButton from "./add-to-cart-button";
+import Card from "./card";
 
 type RodCardProps = {
   rod: WithImageAsset<Rod>;
@@ -39,7 +39,7 @@ const RodCard: FC<RodCardProps> = ({ rod }) => {
     );
 
     if (!newSelectedDiameter) {
-      throw new Error('No diamater found.');
+      throw new Error("No diamater found.");
     }
 
     setSelectedDiameter({
@@ -65,13 +65,14 @@ const RodCard: FC<RodCardProps> = ({ rod }) => {
       <Card className="w-full space-y-3 p-5">
         <h3 className="font-bold">{rod.name}</h3>
 
-        <div className="flex gap-2">
-          <div className="d-form-control w-full max-w-xs">
-            <label className="d-label">
+        <div className="flex flex-wrap gap-2">
+          <fieldset className="d-fieldset flex-1">
+            <label className="d-label" htmlFor={`select-diameter-${rod._id}`}>
               <span className="d-label-text font-bold">Átmérő</span>
             </label>
             <select
-              className="d-select d-select-bordered"
+              id={`select-diameter-${rod._id}`}
+              className="d-select"
               value={selectedDiameter.diameter}
               onChange={(e) => {
                 handleDiameterChange(e);
@@ -83,14 +84,15 @@ const RodCard: FC<RodCardProps> = ({ rod }) => {
                 </option>
               ))}
             </select>
-          </div>
+          </fieldset>
 
-          <div className="d-form-control w-full max-w-xs">
-            <label className="kite- d-label">
+          <fieldset className="d-fieldset flex-1">
+            <label className="d-label" htmlFor={`select-length-${rod._id}`}>
               <span className="d-label-text font-bold">Hossz</span>
             </label>
             <select
-              className="d-select d-select-bordered w-full max-w-xs"
+              id={`select-length-${rod._id}`}
+              className="d-select"
               onChange={(e) => setSelectedLength(+e.target.value)}
               value={selectedLength}
             >
@@ -100,28 +102,30 @@ const RodCard: FC<RodCardProps> = ({ rod }) => {
                 </option>
               ))}
             </select>
-          </div>
+          </fieldset>
         </div>
         {selectedDiameter.pricePerMeter && selectedLength && (
           <h2>
             {currencyFormatter(
               selectedDiameter.pricePerMeter * Math.ceil(selectedLength / 100),
-            )}{' '}
+            )}{" "}
             <span className="text-base text-gray-400">
               ({pricePerMeterFormatter(selectedDiameter.pricePerMeter)})
             </span>
           </h2>
         )}
 
-        <AddToCartButton
-          product={{
-            ...rod,
-            name: `${rod.name} (${selectedDiameter.diameter} mm - ${selectedLength} cm)`,
-            price:
-              (selectedDiameter.pricePerMeter || NaN) *
-              Math.ceil((selectedLength || NaN) / 100),
-          }}
-        />
+        <div className="flex justify-end">
+          <AddToCartButton
+            product={{
+              ...rod,
+              name: `${rod.name} (${selectedDiameter.diameter} mm - ${selectedLength} cm)`,
+              price:
+                (selectedDiameter.pricePerMeter || Number.NaN) *
+                Math.ceil((selectedLength || Number.NaN) / 100),
+            }}
+          />
+        </div>
       </Card>
     </div>
   );

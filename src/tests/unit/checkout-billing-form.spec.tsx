@@ -1,16 +1,14 @@
-import { cleanup, render, renderHook, screen } from '@testing-library/react';
+import { render, renderHook, screen } from "@testing-library/react";
 
-import { FormProvider, useForm } from 'react-hook-form';
-import { afterEach, expect, test, vi } from 'vitest';
-import CheckoutBillingForm from '~/components/checkout-billing-form';
-import { OrderForm } from '~/lib/validation-schemas';
+import { FormProvider, useForm } from "react-hook-form";
+import { expect, test, vi } from "vitest";
+import CheckoutBillingForm from "~/components/checkout-billing-form";
+import type { OrderForm } from "~/lib/validation-schemas";
 
-afterEach(cleanup);
-
-test('should throw error if shipping option was not selected', () => {
-  // Mock console error to suppress expected errors during the test
+test("should throw error if shipping option was not selected", () => {
   const consoleErrorMock = vi
-    .spyOn(console, 'error')
+    .spyOn(console, "error")
+    // biome-ignore lint/suspicious/noEmptyBlockStatements: overrides console error to suppress expected errors during the test
     .mockImplementation(() => {});
 
   const {
@@ -23,7 +21,7 @@ test('should throw error if shipping option was not selected', () => {
         <CheckoutBillingForm />
       </FormProvider>,
     );
-  }).toThrowError('Érvénytelen szállitási mód');
+  }).toThrowError("Érvénytelen szállitási mód");
 
   consoleErrorMock.mockRestore();
 });
@@ -34,7 +32,7 @@ test('should render isSameAdressAsShipping checkbox connected to the form if "Po
   } = renderHook(() =>
     useForm<OrderForm>({
       defaultValues: {
-        shippingOption: 'Postai szállítás',
+        shippingOption: "Postai szállítás",
         isSameAdressAsShipping: true,
       },
     }),
@@ -47,25 +45,25 @@ test('should render isSameAdressAsShipping checkbox connected to the form if "Po
   );
 
   const isSameAdressAsShippingCheckbox = screen.getByLabelText(
-    'A számlázási adataim megegyeznek a szállítási címemmel',
+    "A számlázási adataim megegyeznek a szállítási címemmel",
   );
 
   expect(isSameAdressAsShippingCheckbox).toBeDefined();
 
-  expect(methods.getValues('isSameAdressAsShipping')).toBe(true);
+  expect(methods.getValues("isSameAdressAsShipping")).toBe(true);
 
   isSameAdressAsShippingCheckbox.click();
 
-  expect(methods.getValues('isSameAdressAsShipping')).toBe(false);
+  expect(methods.getValues("isSameAdressAsShipping")).toBe(false);
 });
 
-test('should  rendered billing information inputs', () => {
+test("should  rendered billing information inputs", () => {
   const {
     result: { current: methods },
   } = renderHook(() =>
     useForm<OrderForm>({
       defaultValues: {
-        shippingOption: 'Személyes átvétel',
+        shippingOption: "Személyes átvétel",
       },
     }),
   );
@@ -76,5 +74,5 @@ test('should  rendered billing information inputs', () => {
     </FormProvider>,
   );
 
-  expect(screen.getAllByRole('textbox')).toHaveLength(4);
+  expect(screen.getAllByRole("textbox")).toHaveLength(4);
 });

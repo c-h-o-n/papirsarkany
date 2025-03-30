@@ -1,12 +1,11 @@
-import { render } from '@testing-library/react';
-import { afterEach, expect, test } from 'vitest';
+import { render } from "@testing-library/react";
+import { afterEach, expect, test } from "vitest";
 
-import Navbar from '~/components/navbar';
-import twConfig from '~/lib/tailwind-theme.preval';
-import { viMockMatchMedia } from '~/mocks/matchMedia.mock';
+import Navbar from "~/components/navbar";
+import { viMockMatchMedia } from "~/mocks/matchMedia.mock";
 
 const mediaQueries = {
-  desktop: `(min-width: ${twConfig.screens.md})`,
+  desktop: `(min-width: "var(--breakpoint-md)")`,
 };
 
 afterEach(() => {
@@ -16,7 +15,7 @@ afterEach(() => {
   });
 });
 
-test(`should render desktop-navbar on screens larger then ${twConfig.screens.md}`, () => {
+test("should render desktop-navbar on screens larger then md breakpoint", () => {
   viMockMatchMedia({
     media: mediaQueries.desktop,
     matches: true,
@@ -27,7 +26,7 @@ test(`should render desktop-navbar on screens larger then ${twConfig.screens.md}
   expect(container).toMatchSnapshot();
 });
 
-test(`should render mobile-navbar on screens smaller then ${twConfig.screens.md}`, () => {
+test("should render mobile-navbar on screens smaller then md breakpoint", () => {
   viMockMatchMedia({
     media: mediaQueries.desktop,
     matches: false,

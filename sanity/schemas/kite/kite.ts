@@ -1,61 +1,61 @@
-import { defineField, defineType } from 'sanity';
-import productFields from '../product-fields';
+import { defineField, defineType } from "sanity";
+import productFields from "../product-fields";
 
 export default defineType({
-  name: 'kite',
-  type: 'document',
-  title: 'Sárkányok',
+  name: "kite",
+  type: "document",
+  title: "Sárkányok",
   fields: [
     ...productFields,
     defineField({
-      name: 'slug',
-      type: 'slug',
-      title: 'Útvonal (slug)',
-      description: 'A termék ezen az útvonalon lesz elérhető.',
+      name: "slug",
+      type: "slug",
+      title: "Útvonal (slug)",
+      description: "A termék ezen az útvonalon lesz elérhető.",
       options: {
-        source: 'name',
+        source: "name",
       },
       validation: (rule) => rule.required(),
     }),
     defineField({
-      name: 'price',
-      type: 'number',
-      title: 'Ár',
+      name: "price",
+      type: "number",
+      title: "Ár",
       validation: (rule) => rule.required().positive(),
     }),
     defineField({
-      name: 'size',
-      type: 'string',
-      title: 'Méret',
+      name: "size",
+      type: "string",
+      title: "Méret",
     }),
     defineField({
-      name: 'materials',
-      type: 'kiteMaterials',
-      title: 'Anyagok',
+      name: "materials",
+      type: "kiteMaterials",
+      title: "Anyagok",
     }),
     defineField({
-      name: 'windSpeed',
-      title: 'Szélerősség',
-      type: 'string',
+      name: "windSpeed",
+      title: "Szélerősség",
+      type: "string",
       options: {
         list: [
-          'gyengétől a közepes szélig',
-          'gyengétől az élénk szélig',
-          'közepestől az élénk szélig',
+          "gyengétől a közepes szélig",
+          "gyengétől az élénk szélig",
+          "közepestől az élénk szélig",
         ],
       },
     }),
     defineField({
-      name: 'isBeginner',
-      type: 'boolean',
-      title: 'Kezdő',
+      name: "isBeginner",
+      type: "boolean",
+      title: "Kezdő",
       description: '"Kezdőknek ajánlott!" felirat',
       validation: (rule) => rule.required(),
     }),
     defineField({
-      name: 'description',
-      type: 'text',
-      title: 'Leírás',
+      name: "description",
+      type: "text",
+      title: "Leírás",
     }),
   ],
 });

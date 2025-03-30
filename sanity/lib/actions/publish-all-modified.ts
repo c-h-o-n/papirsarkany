@@ -1,8 +1,8 @@
-import { PublishAction, createClient } from '@sanity/client';
-import { defineQuery } from 'groq';
+import { type PublishAction, createClient } from "@sanity/client";
+import { defineQuery } from "groq";
 
-import { env } from '~/lib/env';
-import { apiVersion, dataset, projectId, useCdn } from '@sanity/env';
+import { apiVersion, dataset, projectId, useCdn } from "@sanity/env";
+import { env } from "~/lib/env";
 
 const { SANITY_API_TOKEN } = env;
 
@@ -14,7 +14,7 @@ const client = createClient({
   apiVersion,
 });
 
-// TODO make sure to trigger a single webhook
+// REFACTOR make sure to trigger a single webhook
 // USE CAREFULLY !!! EACH PUBLISH TRIGGERS THE REBUILD WEBHOOK
 async function main() {
   const modifiedPublishedQuery = defineQuery(
@@ -30,8 +30,8 @@ async function main() {
 
   const publishActions: PublishAction[] = modifiedPublishedDocuments.map(
     (document) => ({
-      actionType: 'sanity.action.document.publish',
-      draftId: 'drafts.' + document._id,
+      actionType: "sanity.action.document.publish",
+      draftId: `drafts.${document._id}`,
       publishedId: document._id,
     }),
   );
@@ -43,6 +43,6 @@ async function main() {
 }
 
 main().catch((e) => {
-  console.error('Error publishing documents:', e);
+  console.error("Error publishing documents:", e);
   process.exit(1);
 });

@@ -1,22 +1,22 @@
-'use client';
+"use client";
 
-import Image from 'next/image';
-import { FC, Fragment } from 'react';
+import Image from "next/image";
+import { type FC, Fragment } from "react";
 
-import TrashCanIcon from '~/assets/trash-can.svg';
-import useCart from '~/hooks/use-cart';
-import { MISSING_IMG_URL, NO_NAME } from '~/lib/constants';
-import { currencyFormatter, formatShippingFee } from '~/lib/formatters';
-import { CartItem } from '~/lib/validation-schemas';
-import { useCartStore } from '~/store/use-cart-store';
-import Card from './card';
-import ProductinCartCounter from './product-in-cart-counter';
+import TrashCanIcon from "~/assets/trash-can.svg";
+import useCart from "~/hooks/use-cart";
+import { MISSING_IMG_URL, NO_NAME } from "~/lib/constants";
+import { currencyFormatter, formatShippingFee } from "~/lib/formatters";
+import type { CartItem } from "~/lib/validation-schemas";
+import { useCartStore } from "~/store/use-cart-store";
+import Card from "./card";
+import ProductinCartCounter from "./product-in-cart-counter";
 
 type OrderSummaryCardProps = {
-  layout?: 'full' | 'definitive';
+  layout?: "full" | "definitive";
 };
 
-const OrderSummaryCard: FC<OrderSummaryCardProps> = ({ layout = 'full' }) => {
+const OrderSummaryCard: FC<OrderSummaryCardProps> = ({ layout = "full" }) => {
   const cart = useCartStore((state) => state.cart);
   const shippingFee = useCartStore((state) => state.shippingFee);
   const billingFee = useCartStore((state) => state.billingFee);
@@ -38,14 +38,14 @@ const OrderSummaryCard: FC<OrderSummaryCardProps> = ({ layout = 'full' }) => {
     );
   }
 
-  if (layout === 'definitive') {
+  if (layout === "definitive") {
     return (
       <Card className="flex flex-1 flex-col gap-4 p-8">
         {cart.map((item) => (
           <Fragment key={item._id}>
-            <div className="flex items-center justify-between flex-wrap gap-2">
-              <div className="flex gap-2 flex-shrink">
-                <div className="hidden flex-shrink-0 min-[390px]:block">
+            <div className="flex flex-wrap items-center justify-between gap-2">
+              <div className="flex shrink gap-2">
+                <div className="hidden shrink-0 min-[390px]:block">
                   {item.image && (
                     <Image
                       src={item.image.asset?.url || MISSING_IMG_URL}
@@ -62,12 +62,12 @@ const OrderSummaryCard: FC<OrderSummaryCardProps> = ({ layout = 'full' }) => {
                 <div>
                   <h3 className="font-bold">{item.name}</h3>
 
-                  <span className="text-sm font-normal text-gray-400">
+                  <span className="font-normal text-gray-400 text-sm">
                     {item.quantity} db
                   </span>
                 </div>
               </div>
-              <div className="flex items-center gap-4 flex-1 justify-end">
+              <div className="flex flex-1 items-center justify-end gap-4">
                 {item.price && (
                   <h3 className="font-bold">
                     {currencyFormatter(item.price * item.quantity)}
@@ -75,7 +75,7 @@ const OrderSummaryCard: FC<OrderSummaryCardProps> = ({ layout = 'full' }) => {
                 )}
               </div>
             </div>
-            <div className="d-divider"></div>
+            <div className="d-divider" />
           </Fragment>
         ))}
 
@@ -98,8 +98,8 @@ const OrderSummaryCard: FC<OrderSummaryCardProps> = ({ layout = 'full' }) => {
 
         <div className="flex justify-between font-bold">
           <h3 className="text-balance">
-            Összesen{' '}
-            <span className="text-base font-normal text-gray-400">
+            Összesen{" "}
+            <span className="font-normal text-base text-gray-400">
               {getTotalItemCount()} db
             </span>
           </h3>
@@ -149,10 +149,11 @@ const OrderSummaryCard: FC<OrderSummaryCardProps> = ({ layout = 'full' }) => {
               </div>
 
               <button
+                type="button"
                 className="d-btn d-btn-square d-btn-error"
                 onClick={() => onDeleteClick(item)}
               >
-                <TrashCanIcon className="h-6 w-6" />
+                <TrashCanIcon className="h-6 w-6 opacity-66" />
               </button>
             </div>
           </div>
@@ -163,20 +164,21 @@ const OrderSummaryCard: FC<OrderSummaryCardProps> = ({ layout = 'full' }) => {
             <ProductinCartCounter value={item.quantity} cartItem={item} />
 
             <button
+              type="button"
               className="d-btn d-btn-square d-btn-error"
               onClick={() => onDeleteClick(item)}
             >
-              <TrashCanIcon className="h-6 w-6" />
+              <TrashCanIcon className="h-6 w-6 opacity-66" />
             </button>
           </div>
-          <div className="d-divider"></div>
+          <div className="d-divider" />
         </Fragment>
       ))}
 
       <div className="flex justify-between font-bold">
         <h3>
-          Összesen{' '}
-          <span className="text-base font-normal text-gray-400">
+          Összesen{" "}
+          <span className="font-normal text-base text-gray-400">
             {getTotalItemCount()} db
           </span>
         </h3>

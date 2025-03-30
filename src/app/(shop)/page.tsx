@@ -1,12 +1,12 @@
-import Link from 'next/link';
+import Link from "next/link";
 
-import AboutBusinessIcon from '~/assets/about-business.svg';
-import ContactIcon from '~/assets/contact.svg';
-import CraftingIcon from '~/assets/crafting.svg';
-import HomeSection from '~/components/home-section';
-import ScrollTriggeredAnimatedCard from '~/components/scroll-triggered-animated-card';
-import Splash from '~/components/splash';
-import { env } from '~/lib/env';
+import AboutBusinessIcon from "~/assets/about-business.svg";
+import ContactIcon from "~/assets/contact.svg";
+import CraftingIcon from "~/assets/crafting.svg";
+import HomeSection from "~/components/home-section";
+import ScrollTriggeredAnimatedCard from "~/components/scroll-triggered-animated-card";
+import Splash from "~/components/splash";
+import { env } from "~/lib/env";
 
 // revalidate page every week
 export const revalidate = 604800;
@@ -16,7 +16,7 @@ export default function Home() {
     <div>
       <Splash />
 
-      <div className="container mx-auto max-w-screen-lg">
+      <div className="container mx-auto max-w-(--breakpoint-lg) ">
         <HomeSection id="vallalkozas">
           <HomeSection.Icon>
             <AboutBusinessIcon />
@@ -24,42 +24,64 @@ export default function Home() {
           <HomeSection.Content>
             <h1 className="text-center font-bold">A vállalkozásról</h1>
 
-            <ScrollTriggeredAnimatedCard className="p-5 text-center font-semibold sm:p-10">
-              <h4>
-                Üzletem nincs, ezért postai utánvétellel szállítok, melynek
-                költsége a megrendelőt terheli.
+            <ScrollTriggeredAnimatedCard
+              animationDirection="right-to-left"
+              className="p-5 text-center font-semibold sm:p-10"
+            >
+              <h3>
+                <span className="font-bold text-primary">Üzletem nincs</span>,
+                ezért{" "}
+                <span className="font-bold text-primary">
+                  postai utánvétellel
+                </span>{" "}
+                szállítok, melynek költsége a megrendelőt terheli.
                 <br />
-                Személyesen{' '}
-                <Link className="underline" href="#elerhetoseg">
-                  Nagykovácsiban
-                </Link>{' '}
+                <span className="font-bold text-primary">
+                  Személyesen{" "}
+                  <Link className="underline" href="#elerhetoseg">
+                    Nagykovácsiban
+                  </Link>{" "}
+                </span>
                 (63-as BKV busszal megközelíthető) is vásárolhat
-              </h4>
+              </h3>
             </ScrollTriggeredAnimatedCard>
 
-            <ScrollTriggeredAnimatedCard className="p-5 text-center font-semibold sm:p-10">
-              <h4>
-                Sárkányaim repülési és nyolc napos pénzvisszafizetési
-                garanciával kaphatók.
-              </h4>
-              <h4>A visszaküldés költsége a vevőt terheli.</h4>
-              <h4>
-                Minden érdeklődőnek egy óra ingyenes oktatás sárkány
-                biztosításával - vásárlási kötelezettség nélkül -
-                Nagykovácsiban. (Telefonos időpont egyeztetés után.)
-              </h4>
-
-              <h4>Mindenkinek kellemes sárkányeresztést kívánok</h4>
+            <ScrollTriggeredAnimatedCard
+              animationDirection="left-to-right"
+              className="p-5 text-center font-semibold sm:p-10"
+            >
+              <h3>
+                Sárkányaim repülési és{" "}
+                <span className="font-bold text-primary">nyolc napos </span>
+                pénzvisszafizetési garanciával kaphatók.
+                <br />A visszaküldés költsége a vevőt terheli.
+                <br />
+                Minden érdeklődőnek{" "}
+                <span className="font-bold text-primary">
+                  egy óra ingyenes oktatás
+                </span>{" "}
+                sárkány biztosításával &mdash; vásárlási kötelezettség nélkül
+                &mdash;{" "}
+                <span className="font-bold text-primary">Nagykovácsiban</span>.
+                <br />
+                (Telefonos időpont egyeztetés után.)
+                <br />
+                <span className="font-bold text-primary">
+                  Mindenkinek kellemes sárkányeresztést kívánok!
+                </span>
+              </h3>
             </ScrollTriggeredAnimatedCard>
 
-            <ScrollTriggeredAnimatedCard className="p-5 text-center sm:p-10">
-              <h2 className="font-bold">Ducsai Barnabás</h2>
-              <h5>
+            <ScrollTriggeredAnimatedCard
+              animationDirection="right-to-left"
+              className="space-y-2 p-5 text-center sm:p-10"
+            >
+              <h3 className="font-bold">Ducsai Barnabás</h3>
+              <h4>
                 <b>Adószám:</b> 61090938-1-33
-              </h5>
-              <h5>
+                <br />
                 <b>Számlaszám:</b> Erste Bank 11600006-00000000-76709302
-              </h5>
+              </h4>
             </ScrollTriggeredAnimatedCard>
           </HomeSection.Content>
         </HomeSection>
@@ -73,23 +95,40 @@ export default function Home() {
               Sárkányépítő foglalkozások
             </h1>
 
-            <ScrollTriggeredAnimatedCard className="p-5 text-center font-semibold sm:p-10">
-              <h4>
-                A sárkánykészítés és -repítés régebben mindennapos dolog volt a
-                gyerekek hétköznapjaiban. Ez a &quot;tudomány&quot; apáról fiúra
-                szállt, illetve a nagyobbaktól lesték el a kisebbek. A gyerekek
-                mára elfelejtették ezt a szép régi játékot.
-              </h4>
+            <ScrollTriggeredAnimatedCard
+              animationDirection="left-to-right"
+              className="p-5 text-center font-semibold sm:p-10"
+            >
+              <h3>
+                A{" "}
+                <span className="font-bold text-primary">
+                  sárkánykészítés és -repítés{" "}
+                </span>{" "}
+                régebben mindennapos dolog volt a gyerekek hétköznapjaiban. Ez a
+                &quot;tudomány&quot; apáról fiúra szállt, illetve a nagyobbaktól
+                lesték el a kisebbek. A gyerekek mára elfelejtették ezt a szép
+                régi játékot.
+              </h3>
             </ScrollTriggeredAnimatedCard>
 
-            <ScrollTriggeredAnimatedCard className="p-5 text-center font-semibold sm:p-10">
-              <h4>
-                Vállalom sárkányépítő foglalkozások vezetését
-                gyerekrendezvények, -intézmények és céges rendezvények számára.
+            <ScrollTriggeredAnimatedCard
+              animationDirection="right-to-left"
+              className="p-5 text-center font-semibold sm:p-10"
+            >
+              <h3>
+                Vállalom{" "}
+                <span className="font-bold text-primary">
+                  sárkányépítő foglalkozások
+                </span>{" "}
+                vezetését gyerekrendezvények, -intézmények és céges rendezvények
+                számára.
                 <br />
-                Anyagot biztosítok. (Szelet a megrendelő biztosít.) Ár egyedi
-                megállapodás alapján.
-              </h4>
+                Anyagot biztosítok.
+                <br />
+                (Szelet a megrendelő biztosít.)
+                <br />
+                Ár egyedi megállapodás alapján.
+              </h3>
             </ScrollTriggeredAnimatedCard>
           </HomeSection.Content>
         </HomeSection>
@@ -103,8 +142,8 @@ export default function Home() {
             <h1 className="text-center font-bold">Elérhetőség</h1>
 
             <div className="text-center font-semibold">
-              <h4>{env.VENDOR_EMAIL_ADDRESS}</h4>
-              <h4>+36 30 9754 786</h4>
+              <h3>{env.VENDOR_EMAIL_ADDRESS}</h3>
+              <h3>+36 30 9754 786</h3>
             </div>
 
             <iframe
@@ -114,7 +153,7 @@ export default function Home() {
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
               title="Google map"
-            ></iframe>
+            />
           </HomeSection.Content>
         </HomeSection>
       </div>

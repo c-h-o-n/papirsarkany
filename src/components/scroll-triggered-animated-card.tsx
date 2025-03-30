@@ -1,19 +1,21 @@
-'use client';
+"use client";
 
-import { m } from 'framer-motion';
-import { FC, ReactNode } from 'react';
+import { m } from "motion/react";
+import type { FC, ReactNode } from "react";
 
-import Card from './card';
-import LazyLoadFramerMotion from './lazy-load-framer-motion';
+import Card from "./card";
+import LazyLoadFramerMotion from "./lazy-load-framer-motion";
 
 type AnimatedCardProps = {
   children: ReactNode;
   className?: string;
+  animationDirection: "left-to-right" | "right-to-left";
 };
 
 const ScrollTriggeredAnimatedCard: FC<AnimatedCardProps> = ({
   children,
   className,
+  animationDirection,
 }) => {
   return (
     <LazyLoadFramerMotion>
@@ -23,14 +25,16 @@ const ScrollTriggeredAnimatedCard: FC<AnimatedCardProps> = ({
         viewport={{ amount: 0.33, once: true }}
         variants={{
           offscreen: {
-            scale: 0.33,
+            opacity: 0,
+            x: animationDirection === "left-to-right" ? "-20%" : "20%",
           },
           onscreen: {
-            scale: 1,
+            opacity: 1,
+            x: 0,
             transition: {
-              type: 'spring',
-              bounce: 0.4,
-              duration: 0.8,
+              type: "spring",
+              bounce: 0.25,
+              duration: 0.4,
             },
           },
         }}

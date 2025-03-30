@@ -1,11 +1,11 @@
-import { Reel } from '@sanity/lib/sanity.types';
-import Image from 'next/image';
-import { FC } from 'react';
-import { MISSING_IMG_URL, NO_NAME } from '~/lib/constants';
-import { currencyFormatter } from '~/lib/formatters';
-import { WithImageAsset } from '~/lib/types';
-import AddToCartButton from './add-to-cart-button';
-import Card from './card';
+import type { Reel } from "@sanity/lib/sanity.types";
+import Image from "next/image";
+import type { FC } from "react";
+import { MISSING_IMG_URL, NO_NAME } from "~/lib/constants";
+import { currencyFormatter } from "~/lib/formatters";
+import type { WithImageAsset } from "~/lib/types";
+import AddToCartButton from "./add-to-cart-button";
+import Card from "./card";
 
 type ReelCardProps = {
   reel: WithImageAsset<Reel>;
@@ -13,7 +13,7 @@ type ReelCardProps = {
 
 const ReelCard: FC<ReelCardProps> = ({ reel }) => {
   return (
-    <Card className="w-full space-y-3 p-5">
+    <Card className="flex w-full flex-col justify-between gap-3 p-5">
       <div>
         <h3 className="text-center font-bold">{reel.name}</h3>
       </div>

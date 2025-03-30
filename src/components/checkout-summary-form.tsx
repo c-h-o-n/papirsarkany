@@ -1,14 +1,14 @@
-'use client';
+"use client";
 
-import { useRouter } from 'next/navigation';
-import { useFormContext } from 'react-hook-form';
+import { useRouter } from "next/navigation";
+import { useFormContext } from "react-hook-form";
 
-import Link from 'next/link';
-import { FC } from 'react';
-import { OrderForm } from '~/lib/validation-schemas';
-import { useCheckoutFormStore } from '~/store/use-checkout-form-store';
-import Card from './card';
-import OrderSummaryCard from './order-summary-card';
+import Link from "next/link";
+import type { FC } from "react";
+import type { OrderForm } from "~/lib/validation-schemas";
+import { useCheckoutFormStore } from "~/store/use-checkout-form-store";
+import Card from "./card";
+import OrderSummaryCard from "./order-summary-card";
 
 const CheckoutSummaryForm: FC = () => {
   const router = useRouter();
@@ -64,46 +64,45 @@ const CheckoutSummaryForm: FC = () => {
         </Card>
       </div>
 
-      <label className="d-form-control">
-        <div className="d-label">
+      <fieldset className="d-fieldset">
+        <label className="d-label" htmlFor="comment">
           <span className="d-labels-text text-lg">Megjegyzés</span>
-        </div>
+        </label>
         <textarea
-          className="d-textarea d-textarea-bordered d-textarea-primary h-24"
-          {...register('comment')}
-        ></textarea>
-        <div className="d-label justify-end">
+          id="comment"
+          className="d-textarea d-textarea-primary w-full"
+          {...register("comment")}
+        />
+        <label className="d-label justify-end" htmlFor="comment">
           <span className="d-label-text-alt">
             14 napos elállási jog fentartva a rendelés leadásától számítva.
           </span>
-        </div>
-      </label>
+        </label>
+      </fieldset>
 
       <div className="text-center text-xs">
-        A „Megrendelem” gomb megnyomásával Ön elfogadja az{' '}
+        A „Megrendelem” gomb megnyomásával Ön elfogadja az{" "}
         <Link href="/aszf" className="d-link">
           Adatvédelmi Nyilatkozat és Felhasználási Feltételek
-        </Link>{' '}
+        </Link>{" "}
         tartalmát.
       </div>
 
-      <div className="flex flex-col-reverse sm:flex-row sm:justify-between gap-4">
+      <div className="flex flex-col-reverse gap-4 sm:flex-row sm:justify-between">
         <button
           type="button"
-          className="d-btn d-btn-outline d-btn-neutral uppercase d-btn-block sm:w-auto"
+          className="d-btn d-btn-outline d-btn-neutral d-btn-block uppercase sm:w-auto"
           onClick={prevStep}
         >
           Vissza
         </button>
         <button
           type="submit"
-          className={`d-btn d-btn-success uppercase d-btn-block sm:w-auto`}
+          className="d-btn d-btn-success d-btn-block uppercase sm:w-auto"
           disabled={isSubmitting}
-          onMouseEnter={() => router.prefetch('/sikeres-rendeles')}
+          onMouseEnter={() => router.prefetch("/sikeres-rendeles")}
         >
-          {isSubmitting && (
-            <span className="d-loading d-loading-spinner"></span>
-          )}
+          {isSubmitting && <span className="d-loading d-loading-spinner" />}
           Megrendelem
         </button>
       </div>

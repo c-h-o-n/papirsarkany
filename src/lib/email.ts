@@ -1,8 +1,8 @@
-import { Order } from '@prisma/client';
-import sgMail, { MailDataRequired } from '@sendgrid/mail';
-import { CUSTOMER_TEMPLATE_ID, VENDOR_TEMPLATE_ID } from './constants';
-import { env } from './env';
-import { OrderMail } from './types';
+import type { Order } from "@prisma/client";
+import sgMail, { type MailDataRequired } from "@sendgrid/mail";
+import { CUSTOMER_TEMPLATE_ID, VENDOR_TEMPLATE_ID } from "./constants";
+import { env } from "./env";
+import type { OrderMail } from "./types";
 
 export function setSendgridApiKey() {
   const { SENDGRID_API_KEY } = env;
@@ -12,14 +12,14 @@ export function setSendgridApiKey() {
 export async function sendEmail(mailData: MailDataRequired) {
   await sgMail.send(mailData);
 
-  console.log(`Vendor email is sent to ${mailData.to}`);
+  console.log(`Email is sent to ${mailData.to}`);
 }
 
 export async function sendOrderEmails(order: Order, orderEmailData: OrderMail) {
   const { VENDOR_EMAIL_ADDRESS } = env;
 
   const vendorMail: MailDataRequired = {
-    from: 'mail.papirsarkany@gmail.com',
+    from: "mail.papirsarkany@gmail.com",
     to: VENDOR_EMAIL_ADDRESS,
     templateId: VENDOR_TEMPLATE_ID,
     dynamicTemplateData: {
@@ -29,13 +29,15 @@ export async function sendOrderEmails(order: Order, orderEmailData: OrderMail) {
   };
 
   const customerMail: MailDataRequired = {
-    from: 'mail.papirsarkany@gmail.com',
+    from: "mail.papirsarkany@gmail.com",
     to: orderEmailData.contact.email,
     replyTo: VENDOR_EMAIL_ADDRESS,
     templateId: CUSTOMER_TEMPLATE_ID,
     dynamicTemplateData: orderEmailData,
   };
 
-  await sendEmail(vendorMail);
-  await sendEmail(customerMail);
+  await Promise.all([
+    await sendEmail(vendorMail),
+    await sendEmail(customerMail),
+  ]);
 }

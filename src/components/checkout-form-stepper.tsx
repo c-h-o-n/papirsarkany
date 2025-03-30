@@ -1,17 +1,15 @@
-'use client';
+"use client";
 
-import { zodResolver } from '@hookform/resolvers/zod';
-import { redirect, useRouter } from 'next/navigation';
-import { Children, FC, ReactNode } from 'react';
-import { FormProvider, useForm } from 'react-hook-form';
+import { zodResolver } from "@hookform/resolvers/zod";
+import { redirect, useRouter } from "next/navigation";
+import { Children, type FC, type ReactNode } from "react";
+import { FormProvider, useForm } from "react-hook-form";
 
-import useCart from '~/hooks/use-cart';
-import { OrderRequestBody } from '~/lib/types';
-import { OrderForm, orderFormSchema } from '~/lib/validation-schemas';
-import { useCartStore } from '~/store/use-cart-store';
-import { useCheckoutFormStore } from '~/store/use-checkout-form-store';
-import { useFoxpostParcelBoxStore } from '~/store/use-foxpost-parcel-box-store';
-import StepProgress from './step-progress';
+import { useOrder } from "~/hooks/use-order";
+import { type OrderForm, orderFormSchema } from "~/lib/validation-schemas";
+import { useCartStore } from "~/store/use-cart-store";
+import { useCheckoutFormStore } from "~/store/use-checkout-form-store";
+import StepProgress from "./step-progress";
 
 type CheckoutStepperProps = {
   children: ReactNode;
@@ -24,17 +22,13 @@ const CheckoutFormStepper: FC<CheckoutStepperProps> = ({ children }) => {
   const cart = useCartStore((state) => state.cart);
   const resetCart = useCartStore((state) => state.resetCart);
 
-  const { getTotalPrice } = useCart();
-
   const step = useCheckoutFormStore((state) => state.step);
   const nextStep = useCheckoutFormStore((state) => state.nextStep);
   const formValues = useCheckoutFormStore((state) => state.formValues);
   const setFormValues = useCheckoutFormStore((state) => state.setFormValues);
   const resetForm = useCheckoutFormStore((state) => state.resetForm);
 
-  const foxpostOperatorId = useFoxpostParcelBoxStore(
-    (state) => state.destination,
-  );
+  const { sendOrder } = useOrder();
 
   const isLast = step === Children.count(children) - 1;
 
@@ -52,15 +46,15 @@ const CheckoutFormStepper: FC<CheckoutStepperProps> = ({ children }) => {
   } = formMethods;
 
   const onSubmit = async (data: OrderForm) => {
+    if (isSubmitting) {
+      return;
+    }
+
     setFormValues(data);
 
     if (!isLast) {
       nextStep();
       window.scrollTo(0, 0);
-      return;
-    }
-
-    if (isSubmitting) {
       return;
     }
 
@@ -74,7 +68,7 @@ const CheckoutFormStepper: FC<CheckoutStepperProps> = ({ children }) => {
 
       await resetFormStores();
 
-      router.push('/sikeres-rendeles');
+      router.push("/sikeres-rendeles");
     } catch (error) {
       alert(`Hiba történt a rendelés leadásakor. \n(${error})`);
     }
@@ -89,40 +83,22 @@ const CheckoutFormStepper: FC<CheckoutStepperProps> = ({ children }) => {
     });
   };
 
-  const sendOrder = (formData: OrderForm) => {
-    const totalPrice = getTotalPrice();
-
-    return fetch('/api/order', {
-      method: 'POST',
-      body: JSON.stringify({
-        formData,
-        cart,
-        totalPrice,
-        foxpostOperatorId,
-      } satisfies OrderRequestBody),
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-    });
-  };
-
   if (!hasHydrated) {
     return;
   }
 
   if (cart.length < 1) {
-    redirect('/kosar');
+    redirect("/kosar");
   }
 
   return (
-    <div className={`container py-8 ${!isLast && 'max-w-screen-xl'}`}>
+    <div className={`container py-8 ${!isLast && "max-w-(--breakpoint-xl)"}`}>
       <FormProvider {...formMethods}>
         <form
           onSubmit={handleSubmit(async (data) => await onSubmit(data))}
           className="space-y-4 [&>h2]:py-2"
         >
-          <div className="mx-auto max-w-screen-md">
+          <div className="mx-auto max-w-(--breakpoint-md)">
             <StepProgress />
           </div>
           {Children.toArray(children)[step]}

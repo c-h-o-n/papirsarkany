@@ -1,20 +1,24 @@
-import {
+import type {
   Kite,
   Reel,
   Rod,
+  SanityImageCrop,
+  SanityImageHotspot,
   SanityImageMetadata,
   Twine,
-} from '@sanity/lib/sanity.types';
+} from "@sanity/lib/sanity.types";
 
-import { MenuItemProps } from '~/components/nav-menu-item';
-import { CartItem, OrderForm } from './validation-schemas';
+import type { MenuItemProps } from "~/components/nav-menu-item";
+import type { CartItem, OrderForm } from "./validation-schemas";
 
-export type WithImageAsset<T> = Omit<T, 'image'> & {
+export type WithImageAsset<T> = Omit<T, "image"> & {
   image: {
     asset: {
       url: string | null;
       metadata: SanityImageMetadata | null;
     } | null;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
   } | null;
 };
 
@@ -24,7 +28,7 @@ export type InferredProduct =
   | WithImageAsset<Reel>
   | WithImageAsset<Rod>;
 
-export type ProductTypes = 'kite' | 'rod' | 'reel' | 'twine';
+export type ProductTypes = "kite" | "rod" | "reel" | "twine";
 
 export type OrderRequestBody = {
   formData: OrderForm;
@@ -33,17 +37,17 @@ export type OrderRequestBody = {
   foxpostOperatorId?: string;
 };
 
-export type ShippingFee = number | 'szállítási költség';
+export type ShippingFee = number | "szállítási költség";
 
 export type ShippingOptionValue =
-  | 'Személyes átvétel'
-  | 'Postai szállítás'
-  | 'Foxpost automatába';
+  | "Személyes átvétel"
+  | "Postai szállítás"
+  | "Foxpost automatába";
 
 export type BillingOptionValue =
-  | 'Átvételkor készpénzel'
-  | 'Előreutalással'
-  | 'Átvételkor bankártyával';
+  | "Átvételkor készpénzel"
+  | "Előreutalással"
+  | "Átvételkor bankártyával";
 
 export type NewOrder = {
   contact: {
@@ -153,7 +157,7 @@ export type FoxpostPackageHandlingFees = {
   feeType: string;
 }[];
 
-export type FoxpostPackageSize = 'XS' | 'S' | 'M' | 'L' | 'XL';
+export type FoxpostPackageSize = "XS" | "S" | "M" | "L" | "XL";
 
 export type FoxpostPackageInfoCategoryConstraints = PackageInfo & {
   category: FoxpostPackageSize;
@@ -255,11 +259,11 @@ export type Toast = {
   active?: boolean;
 } & (
   | {
-      type: 'success';
+      type: "success";
       href?: string;
     }
   | {
-      type: 'error';
+      type: "error";
     }
 );
 

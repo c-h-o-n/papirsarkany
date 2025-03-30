@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import { FC } from 'react';
-import useCart from '~/hooks/use-cart';
+import Link from "next/link";
+import type { FC } from "react";
+import useCart from "~/hooks/use-cart";
 
 const CheckoutLink: FC = () => {
   const { getTotalItemCount } = useCart();
@@ -13,10 +13,8 @@ const CheckoutLink: FC = () => {
 
   return (
     <div className="flex justify-end">
-      <Link href={'/penztar'}>
-        <button className="d-btn d-btn-primary uppercase">
-          Tovább a fizetéshez
-        </button>
+      <Link href={"/penztar"} className="d-btn d-btn-primary uppercase">
+        Tovább a fizetéshez
       </Link>
     </div>
   );

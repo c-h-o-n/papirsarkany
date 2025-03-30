@@ -1,18 +1,18 @@
-import { client } from '@sanity/lib/client';
-import {
+import { client } from "@sanity/lib/client";
+import type {
   GetAllKitesQueryResult,
   GetAllReelsQueryResult,
   GetAllRodsQueryResult,
   GetAllTwinesQueryResult,
   GetKiteBySlugQueryResult,
-} from '@sanity/lib/sanity.types';
+} from "@sanity/lib/sanity.types";
 import {
   getAllKitesQuery,
   getAllReelsQuery,
   getAllRodsQuery,
   getAllTwinesQuery,
   getKiteBySlugQuery,
-} from './queries';
+} from "./queries";
 
 export async function getAllKites(): Promise<GetAllKitesQueryResult> {
   return await client.fetch(getAllKitesQuery);

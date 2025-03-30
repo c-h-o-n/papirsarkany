@@ -1,10 +1,10 @@
-import { mockMediaQueryList } from 'use-media/lib/useMedia';
-import { vi } from 'vitest';
+import { mockMediaQueryList } from "use-media/lib/useMedia";
+import { vi } from "vitest";
 
-export interface MockMatchMedia {
+type MockMatchMedia = {
   media: string;
   matches?: boolean;
-}
+};
 
 function getMockImplementation({ media, matches = false }: MockMatchMedia) {
   const mql: MediaQueryList = {

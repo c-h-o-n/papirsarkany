@@ -1,4 +1,4 @@
-import React, { FC, ReactNode } from 'react';
+import React, { type FC, type ReactNode } from "react";
 
 type HomeSectionProps = {
   id: string;
@@ -37,15 +37,17 @@ const HomeSection: HomeSectionCompound = (props) => {
     <section id={props.id} className={`py-12 ${props.className}`}>
       {Icon && <div className="flex justify-center px-12 pb-12">{Icon}</div>}
 
-      <div className="space-y-8">{Content}</div>
+      <div className="space-y-8 prose-headings:text-balance prose-headings:leading-relaxed">
+        {Content}
+      </div>
     </section>
   );
 };
 
-const Icon: HomeSectionCompound['Icon'] = ({ children }) => (
+const Icon: HomeSectionCompound["Icon"] = ({ children }) => (
   <div className="max-w-[12rem] flex-1">{children}</div>
 );
-const Content: HomeSectionCompound['Content'] = ({ children }) => children;
+const Content: HomeSectionCompound["Content"] = ({ children }) => children;
 
 HomeSection.Icon = Icon;
 HomeSection.Content = Content;

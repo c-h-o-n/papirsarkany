@@ -1,16 +1,15 @@
 import {
   FOXPOST_PACKAGE_CONSTRAINST,
-  FOXPOST_PACKAGE_HANDLING_FEES,
   FOXPOST_PACKAGE_MAX_LIMIT,
-} from './constants';
-import { env } from './env';
+} from "./constants";
+import { env } from "./env";
 
-import {
+import type {
   FoxpostCreateParcelRequestBody,
   FoxpostPackageSize,
   PackageInfo,
-} from './types';
-import { CartItem, OrderForm } from './validation-schemas';
+} from "./types";
+import type { CartItem } from "./validation-schemas";
 
 export function createParcel(body: FoxpostCreateParcelRequestBody) {
   const {
@@ -21,23 +20,16 @@ export function createParcel(body: FoxpostCreateParcelRequestBody) {
   } = env;
 
   const foxpostHeaders = new Headers({
-    Authorization:
-      'Basic ' + btoa(FOXPOST_API_USERNAME + ':' + FOXPOST_API_PASSWORD),
-    'Content-Type': 'application/json',
-    'Api-key': FOXPOST_API_KEY,
+    Authorization: `Basic ${btoa(`${FOXPOST_API_USERNAME}:${FOXPOST_API_PASSWORD}`)}`,
+    "Content-Type": "application/json",
+    "Api-key": FOXPOST_API_KEY,
   });
 
   return fetch(`${FOXPOST_API_URL}/parcel?isWeb=true`, {
-    method: 'POST',
+    method: "POST",
     headers: foxpostHeaders,
     body: JSON.stringify([body]),
   });
-}
-
-export function getCOD(normalizedFormData: OrderForm, totalPrice: number) {
-  return normalizedFormData.paymentOption === 'Átvételkor bankártyával'
-    ? totalPrice
-    : 0;
 }
 
 export function isFitInMaxLimit(packageInfo: PackageInfo): boolean {
@@ -66,7 +58,7 @@ export function getFoxpostPackageSize(
         packageInfo.y <= cy &&
         packageInfo.z <= cz
       );
-    })?.category || 'M'
+    })?.category || "M"
   );
 }
 
@@ -82,16 +74,4 @@ export function getTotalPackageInfo(cart: CartItem[]): PackageInfo {
     },
     { x: 0, y: 0, z: 0, weight: 0 },
   );
-}
-
-export function getHandlingFee(amount: number) {
-  const feeInfo = FOXPOST_PACKAGE_HANDLING_FEES.find(
-    (fee) => amount >= fee.priceRange[0] && amount <= fee.priceRange[1],
-  );
-  if (feeInfo) {
-    return feeInfo.feeType === 'flat'
-      ? feeInfo.fee
-      : (feeInfo.fee / 100) * amount;
-  }
-  return null;
 }

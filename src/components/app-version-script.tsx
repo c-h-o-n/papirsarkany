@@ -1,12 +1,11 @@
-import Script from 'next/script';
-import { FC } from 'react';
-
-import appVersion from '~/lib/app-version.preval';
+import Script from "next/script";
+import type { FC } from "react";
+import packageJSON from "../../package.json";
 
 const AppVersionScript: FC = () => {
   return (
     <Script id="appVersionInject">
-      {`window.appVersion = "${appVersion}";`}
+      {`window.appVersion = "${packageJSON.version}";`}
     </Script>
   );
 };

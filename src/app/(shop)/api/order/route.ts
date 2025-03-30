@@ -1,15 +1,16 @@
-import { NextResponse } from 'next/server';
+import { NextResponse } from "next/server";
 
-import { createOrder } from '~/lib/db';
-import { sendEmail, sendOrderEmails, setSendgridApiKey } from '~/lib/email';
-import { currencyFormatter } from '~/lib/formatters';
+import { createOrder } from "~/lib/db";
+import { sendEmail, sendOrderEmails, setSendgridApiKey } from "~/lib/email";
+import { env } from "~/lib/env";
+import { currencyFormatter } from "~/lib/formatters";
 import {
   createParcel,
   getFoxpostPackageSize,
   getTotalPackageInfo,
-} from '~/lib/foxpost';
-import { isStageEnv, isProdEnv, normalizeOrderForm } from '~/lib/helpers';
-import { OrderMail, OrderRequestBody } from '~/lib/types';
+} from "~/lib/foxpost";
+import { isProdEnv, isStageEnv, normalizeOrderForm } from "~/lib/helpers";
+import type { OrderMail, OrderRequestBody } from "~/lib/types";
 
 setSendgridApiKey();
 
@@ -23,12 +24,12 @@ export async function POST(request: Request) {
     const order = await createOrder(normalizedFormData, cart);
 
     if (
-      normalizedFormData.shippingOption === 'Foxpost automatába' &&
+      normalizedFormData.shippingOption === "Foxpost automatába" &&
       foxpostOperatorId &&
       isProdEnv()
     ) {
       const cod =
-        normalizedFormData.paymentOption === 'Átvételkor bankártyával'
+        normalizedFormData.paymentOption === "Átvételkor bankártyával"
           ? totalPrice
           : 0;
 
@@ -40,7 +41,7 @@ export async function POST(request: Request) {
         recipientEmail: normalizedFormData.email,
         recipientName: fullName,
         recipientPhone: normalizedFormData.phoneNumber,
-        size: getFoxpostPackageSize(getTotalPackageInfo(cart)) || 'M',
+        size: getFoxpostPackageSize(getTotalPackageInfo(cart)) || "M",
       });
 
       const foxpostResponseBody = (await foxpostResponse.json()) as {
@@ -76,7 +77,7 @@ export async function POST(request: Request) {
           subaddress: normalizedFormData.billingSubaddress,
         },
         comment: normalizedFormData.comment,
-        subject: 'papirsarkany.hu - Köszönöm rendelését!',
+        subject: "papirsarkany.hu - Köszönöm rendelését!",
         products: cart.map((product) => ({
           name: product.name,
           price: currencyFormatter(product.price),
@@ -94,9 +95,9 @@ export async function POST(request: Request) {
 
     if (isProdEnv()) {
       await sendEmail({
-        from: 'mail@papirsarkany.hu',
-        to: 'balint.ducsai@gmail.com',
-        subject: 'error detected in papirsarkany.hu/api/order',
+        from: env.VENDOR_EMAIL_ADDRESS,
+        to: "balint.ducsai@gmail.com",
+        subject: "error detected in papirsarkany.hu/api/order",
         text: `Error caught in url papirsarkany/api/order. \nreason: ${error}`,
       });
     }
