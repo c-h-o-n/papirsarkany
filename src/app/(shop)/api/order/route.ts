@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 
 import { createOrder } from "~/lib/db";
 import { sendEmail, sendOrderEmails, setSendgridApiKey } from "~/lib/email";
-import { env } from '~/lib/env';
+import { env } from "~/lib/env";
 import { currencyFormatter } from "~/lib/formatters";
 import {
   createParcel,
