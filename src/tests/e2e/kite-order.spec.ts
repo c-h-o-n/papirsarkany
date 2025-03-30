@@ -48,7 +48,7 @@ test("Kite order flow", async ({ page, browserName, isMobile }) => {
 
   await test.step("Fill out the order form", async () => {
     // proceed to payment info
-    await page.getByRole("button", { name: "Tovább a fizetéshez" }).click();
+    await page.getByRole("link", { name: "Tovább a fizetéshez" }).click();
 
     // fill payment info
     await page.locator('input[name="email"]').click();
