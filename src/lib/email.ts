@@ -37,7 +37,7 @@ export async function sendOrderEmails(order: Order, orderEmailData: OrderMail) {
   };
 
   await Promise.all([
-    await sendEmail(vendorMail),
-    await sendEmail(customerMail),
+    sendEmail(vendorMail),
+    sendEmail(customerMail),
   ]);
 }
