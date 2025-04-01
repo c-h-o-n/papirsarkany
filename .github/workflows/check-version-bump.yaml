@@ -36,3 +36,4 @@ jobs:
           if [ "v$PACKAGE_VERSION" == "$LATEST_RELEASE" ]; then
             echo "Version number has not changed! Failing the job."
             exit 1
+          fi
