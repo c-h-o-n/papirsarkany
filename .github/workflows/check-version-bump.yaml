@@ -9,7 +9,7 @@ jobs:
   check-version-bump:
     name: Check if version number was bumped
     runs-on: ubuntu-latest
-    if: github.base_ref == 'main' && github.head_ref == 'develop' # Ensure the PR is from develop to main
+    if: github.base_ref == 'main' && github.head_ref == 'develop'
     outputs:
       should_release: ${{ steps.compare_versions.outputs.should_release }}
     steps:
@@ -20,7 +20,7 @@ jobs:
         id: get_latest_release
         run: |
           LATEST_RELEASE=$(gh release list --limit 1 --json tagName -q '.[0].tagName' || echo "none")
-          echo "latest_release=$LATEST_RELEASE" >> $GITHUB_ENV
+          echo "LATEST_RELEASE: $LATEST_RELEASE" >> $GITHUB_ENV
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -33,6 +33,6 @@ jobs:
       - name: Compare versions
         id: compare_versions
         run: |
-          if [ "$PACKAGE_VERSION" == "$LATEST_RELEASE" ]; then
+          if [ "v$PACKAGE_VERSION" == "$LATEST_RELEASE" ]; then
             echo "Version number has not changed! Failing the job."
             exit 1
