@@ -4,7 +4,7 @@ This is official the repositoy for the [papisarkany.hu](https://papirsarkany.hu)
 
 # Prerequisites
 
-- node 20
+- node 22
 - pnpm 9
 
 ## Getting Started

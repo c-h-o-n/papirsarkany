@@ -36,8 +36,5 @@ export async function sendOrderEmails(order: Order, orderEmailData: OrderMail) {
     dynamicTemplateData: orderEmailData,
   };
 
-  await Promise.all([
-    await sendEmail(vendorMail),
-    await sendEmail(customerMail),
-  ]);
+  await Promise.all([sendEmail(vendorMail), sendEmail(customerMail)]);
 }
