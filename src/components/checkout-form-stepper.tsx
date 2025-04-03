@@ -92,7 +92,9 @@ const CheckoutFormStepper: FC<CheckoutStepperProps> = ({ children }) => {
   }
 
   return (
-    <div className={`container py-8 ${!isLast ? "max-w-(--breakpoint-xl)" : ''}`}>
+    <div
+      className={`container py-8 ${!isLast ? "max-w-(--breakpoint-xl)" : ""}`}
+    >
       <FormProvider {...formMethods}>
         <form
           onSubmit={handleSubmit(async (data) => await onSubmit(data))}
