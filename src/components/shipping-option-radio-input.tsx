@@ -53,7 +53,7 @@ export default function ShippingOptionRadioInput({
 
   return (
     <fieldset className={`d-fieldset ${isDisabled ? "opacity-30" : ""}`}>
-      <label className="flex cursor-pointer flex-wrap justify-start gap-x-2">
+      <label className="flex cursor-pointer items-center justify-start gap-x-2">
         <input
           type="radio"
           value={value}
@@ -68,19 +68,18 @@ export default function ShippingOptionRadioInput({
             {formatShippingFee(shippingFee)}
           </span>
         )}
-        {watch("shippingOption") === value && (
-          <div className="basis-full pl-8">
-            <span className="text-error">
-              {hasShippingSchemaRequiredError &&
-                missingShippingInfoErrorMessage}
-            </span>
-            <span className=" select-text text-lg">
-              {getValues("shippingOption") !== "Postai szállítás" &&
-                `${getValues("shippingPostcode")} ${getValues("shippingCity")} ${getValues("shippingAddress")}`}
-            </span>
-          </div>
-        )}
       </label>
+      {watch("shippingOption") === value && (
+        <div className="basis-full pl-8">
+          <span className="text-error">
+            {hasShippingSchemaRequiredError && missingShippingInfoErrorMessage}
+          </span>
+          <span className=" select-text text-lg">
+            {getValues("shippingOption") !== "Postai szállítás" &&
+              `${getValues("shippingPostcode")} ${getValues("shippingCity")} ${getValues("shippingAddress")}`}
+          </span>
+        </div>
+      )}
     </fieldset>
   );
 }
