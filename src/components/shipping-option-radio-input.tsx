@@ -69,18 +69,17 @@ export default function ShippingOptionRadioInput({
           </span>
         )}
       </label>
-        {watch("shippingOption") === value && (
-          <div className="basis-full pl-8">
-            <span className="text-error">
-              {hasShippingSchemaRequiredError &&
-                missingShippingInfoErrorMessage}
-            </span>
-            <span className=" select-text text-lg">
-              {getValues("shippingOption") !== "Postai szállítás" &&
-                `${getValues("shippingPostcode")} ${getValues("shippingCity")} ${getValues("shippingAddress")}`}
-            </span>
-          </div>
-        )}
+      {watch("shippingOption") === value && (
+        <div className="basis-full pl-8">
+          <span className="text-error">
+            {hasShippingSchemaRequiredError && missingShippingInfoErrorMessage}
+          </span>
+          <span className=" select-text text-lg">
+            {getValues("shippingOption") !== "Postai szállítás" &&
+              `${getValues("shippingPostcode")} ${getValues("shippingCity")} ${getValues("shippingAddress")}`}
+          </span>
+        </div>
+      )}
     </fieldset>
   );
 }
