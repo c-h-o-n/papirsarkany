@@ -136,8 +136,8 @@ importers:
         specifier: 3.1.1
         version: 3.1.1(vitest@3.1.1(@types/node@22.13.5)(jiti@2.4.2)(jsdom@26.0.0)(lightningcss@1.29.2)(terser@5.31.0)(yaml@2.6.1))
       daisyui:
-        specifier: ^5.0.9
-        version: 5.0.9
+        specifier: ^5.0.13
+        version: 5.0.13
       jsdom:
         specifier: ^26.0.0
         version: 26.0.0
@@ -3530,8 +3530,8 @@ packages:
   cyclist@1.0.2:
     resolution: {integrity: sha512-0sVXIohTfLqVIW3kb/0n6IiWF3Ifj5nm2XaSrLq2DI6fKIGa2fYAZdk917rUneaeLVpYfFcyXE2ft0fe3remsA==}
 
-  daisyui@5.0.9:
-    resolution: {integrity: sha512-RsaehHh45f+0shWgZZaOY09/8eOae2voRsqJCD71j9yrnYgcke0Nj5ys0ZxrW4SPcc4+q96kWyJu0Z8P1zZdoA==}
+  daisyui@5.0.13:
+    resolution: {integrity: sha512-ZYQgZhfMqyFNh4aIzcsILzuErBbp1/tfUIs18/D3oKuJgmfiuPf1KUZzvoGjc8f2/JK0LWZh+BAYSVtWZq2awQ==}
 
   data-uri-to-buffer@1.2.0:
     resolution: {integrity: sha512-vKQ9DTQPN1FLYiiEEOQ6IBGFqvjCa5rSK3cWMy/Nespm5d/x3dGFT9UBZnkLxCwua/IXBi2TYnwTEpsOvhC4UQ==}
@@ -10291,7 +10291,7 @@ snapshots:
 
   cyclist@1.0.2: {}
 
-  daisyui@5.0.9: {}
+  daisyui@5.0.13: {}
 
   data-uri-to-buffer@1.2.0: {}
 
